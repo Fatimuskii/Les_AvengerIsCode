@@ -5,6 +5,8 @@ package Negocio.Factoria;
 
 import Negocio.Diseño.SADiseño;
 import Negocio.Impresora.SAImpresora;
+import Negocio.Local.SALocal;
+import Negocio.Local.SALocalImp;
 import Negocio.Usuario.SAUsuario;
 import Negocio.Plataforma.SAPlataforma;
 import Negocio.PedidoImpresion.SAPedidoImpresion;
@@ -45,10 +47,10 @@ public class SAFactoriaImp extends SAFactoria {
 	 * @see SAFactoria#generateSALocal()
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object generateSALocal() {
+	public SALocal generateSALocal() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		return new SALocalImp();
 		// end-user-code
 	}
 

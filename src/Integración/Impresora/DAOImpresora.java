@@ -11,7 +11,7 @@ import Negocio.Impresora.TImpresora;
  * @author Fatimuskii
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public interface DAOImpersora {
+public interface DAOImpresora {
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->

@@ -5,6 +5,7 @@ package Negocio.Factoria;
 
 import Negocio.Diseño.SADiseño;
 import Negocio.Impresora.SAImpresora;
+import Negocio.Local.SALocal;
 import Negocio.Usuario.SAUsuario;
 import Negocio.Plataforma.SAPlataforma;
 import Negocio.PedidoImpresion.SAPedidoImpresion;
@@ -21,7 +22,7 @@ public abstract class SAFactoria {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private static int instance;
+	private static SAFactoria instance;
 
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -29,10 +30,11 @@ public abstract class SAFactoria {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public static int getInstance() {
+	public static SAFactoria getInstance() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		return 0;
+		if(instance == null) instance = new SAFactoriaImp();
+		return instance;
 		// end-user-code
 	}
 
@@ -58,7 +60,7 @@ public abstract class SAFactoria {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract Object generateSALocal();
+	public abstract SALocal generateSALocal();
 
 	/** 
 	 * <!-- begin-UML-doc -->

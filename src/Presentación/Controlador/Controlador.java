@@ -25,8 +25,12 @@ public abstract class Controlador {
 	 */
 	public static Controlador getInstance() {
 		// begin-user-code
+		if(instance == null){
+			instance = new ControladorImp();
+		}
+		
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		return instance;
 		// end-user-code
 	}
 

@@ -26,6 +26,8 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 
+import Presentación.Factoria.GUI;
+
 public class GUILocal extends JFrame implements GUI {
 
 	private JPanel contentPane;
@@ -99,5 +101,11 @@ public class GUILocal extends JFrame implements GUI {
 		lblNewLabel.setIcon(new ImageIcon("F:\\Documentos\\is codigo\\images\\local1.png"));
 		lblNewLabel.setBounds(62, 128, 150, 133);
 		contentPane.add(lblNewLabel);
+	}
+
+	@Override
+	public void update() {
+		// TODO Apéndice de método generado automáticamente
+		
 	}
 }

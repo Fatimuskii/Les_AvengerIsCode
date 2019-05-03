@@ -3,7 +3,12 @@
  */
 package Integración.Factoria;
 
-import Integración.Impresora.DAOImpersora;
+import Integración.Impresora.DAOImpresora;
+import Integración.Local.DAOLocal;
+import Integración.Local.DAOLocalImpl;
+import Integración.PedidoImpresion.DAOPedidoImpresion;
+import Integración.Plataforma.DAOPlataforma;
+import Integración.Usuario.DAOUsuario;
 import Integración.Diseño.DAODiseño;
 
 /** 
@@ -18,7 +23,7 @@ public class FactoriaDAOImp extends FactoriaDAO {
 	 * @see FactoriaDAO#generateDAOImpresora()
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public DAOImpersora generateDAOImpresora() {
+	public DAOImpresora generateDAOImpresora() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
 		return null;
@@ -42,7 +47,8 @@ public class FactoriaDAOImp extends FactoriaDAO {
 	 * @see FactoriaDAO#generateDAOUsuario()
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void generateDAOUsuario() {
+	public DAOUsuario generateDAOUsuario() {
+		return null;
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
 
@@ -54,7 +60,8 @@ public class FactoriaDAOImp extends FactoriaDAO {
 	 * @see FactoriaDAO#generateDAOPlataforma()
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void generateDAOPlataforma() {
+	public DAOPlataforma generateDAOPlataforma() {
+		return null;
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
 
@@ -66,10 +73,10 @@ public class FactoriaDAOImp extends FactoriaDAO {
 	 * @see FactoriaDAO#generateDAOLocal()
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Interface generateDAOLocal() {
+	public DAOLocal generateDAOLocal() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		return new DAOLocalImpl();
 		// end-user-code
 	}
 
@@ -78,10 +85,10 @@ public class FactoriaDAOImp extends FactoriaDAO {
 	 * @see FactoriaDAO#generatePedidoImpresion()
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void generatePedidoImpresion() {
+	public DAOPedidoImpresion generatePedidoImpresion() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-
+		return null;
 		// end-user-code
 	}
 }

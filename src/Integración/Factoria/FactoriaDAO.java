@@ -3,7 +3,11 @@
  */
 package Integración.Factoria;
 
-import Integración.Impresora.DAOImpersora;
+import Integración.Impresora.DAOImpresora;
+import Integración.Local.DAOLocal;
+import Integración.PedidoImpresion.DAOPedidoImpresion;
+import Integración.Plataforma.DAOPlataforma;
+import Integración.Usuario.DAOUsuario;
 import Integración.Diseño.DAODiseño;
 
 /** 
@@ -29,7 +33,10 @@ public abstract class FactoriaDAO {
 	public static FactoriaDAO getInstance() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		if(instance==null) {
+			instance = new FactoriaDAOImp();
+		}
+		return instance;
 		// end-user-code
 	}
 
@@ -39,7 +46,7 @@ public abstract class FactoriaDAO {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract DAOImpersora generateDAOImpresora();
+	public abstract DAOImpresora generateDAOImpresora();
 
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -54,14 +61,14 @@ public abstract class FactoriaDAO {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract void generateDAOUsuario();
+	public abstract DAOUsuario generateDAOUsuario();
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract void generateDAOPlataforma();
+	public abstract DAOPlataforma generateDAOPlataforma();
 
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -69,12 +76,12 @@ public abstract class FactoriaDAO {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract Interface generateDAOLocal();
+	public abstract DAOLocal generateDAOLocal();
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract void generatePedidoImpresion();
+	public abstract DAOPedidoImpresion generatePedidoImpresion();
 }

@@ -18,7 +18,7 @@ public interface SALocal {
 	 * @param datos
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void alta(TLocal datos);
+	public int alta(TLocal datos);
 
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -26,7 +26,7 @@ public interface SALocal {
 	 * @param IdLocal
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void baja(Integer IdLocal);
+	public int baja(Integer IdLocal);
 
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -35,7 +35,7 @@ public interface SALocal {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer modificar(TLocal datos);
+	public int modificar(TLocal datos);
 
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -52,5 +52,5 @@ public interface SALocal {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public ArrayList listarTodos();
+	public ArrayList<TLocal> listarTodos();
 }
