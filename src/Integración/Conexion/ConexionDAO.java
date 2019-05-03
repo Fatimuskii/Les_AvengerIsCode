@@ -3,6 +3,8 @@
  */
 package Integración.Conexion;
 
+import java.sql.Connection;
+
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
@@ -26,7 +28,11 @@ public abstract class ConexionDAO {
 	public static ConexionDAO getInstance() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		if(instance==null) {
+			instance = new ConexionDAOImp();
+		}
+		return instance;
+
 		// end-user-code
 	}
 
@@ -35,5 +41,5 @@ public abstract class ConexionDAO {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract void getConexion();
+	public abstract Connection getConexion();
 }
