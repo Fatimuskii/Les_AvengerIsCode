@@ -6,7 +6,7 @@ package Presentación.Controlador;
 import Negocio.Factoria.SAFactoria;
 import Negocio.Local.SALocal;
 import Negocio.Local.TLocal;
-import Presentación.Main.Events;
+import Presentación.Local.GUILocal;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -41,10 +41,9 @@ public class ControladorImp extends Controlador {
 		switch(evento){
 		
 		/*Eventos de Local*/
-		case Events.ALTA_LOCAL:
-			SALocal createSALocal = SAFactoria.getInstance().generateSALocal();
-			TLocal tLocal = (TLocal)datos;
-			int resultcreateLocal = createSALocal.alta(tLocal);
+		case Events.OPEN_GUI_LOCAL_MENU:
+			GUILocal.getInstance();
+			//GUILocal.getInstance().update
 			break;
 		
 		

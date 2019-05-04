@@ -26,11 +26,11 @@ public class SALocalImp implements SALocal {
 		// TODO Apéndice de método generado automáticamente
 		TLocal tLeido; 
 		DAOLocal localDAO = FactoriaDAO.getInstance().generateDAOLocal();
-		if ( (tLeido = localDAO.(animal.getChip()))== null ) {
-			return animalDAO.create(animal);
+		if ( (tLeido = localDAO.buscarPorNombre(datos.getNombreLocal()))== null ) {
+			return localDAO.alta(datos);
 		}else{
-			if (!tLeido.isActive()){
-				return animalDAO.activate(tLeido.getId());
+			if (!tLeido.getActivo()){
+				return localDAO.activarLocal(tLeido.getIdLocal());
 			}
 			else return -1;
 		}
@@ -39,13 +39,23 @@ public class SALocalImp implements SALocal {
 
 	/** 
 	 * (sin Javadoc)
+	 * @return 
 	 * @see SALocal#baja(Integer IdLocal)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void baja(Integer IdLocal) {
+	public int baja(int IdLocal) {
+		TLocal tLeido;
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-
+		DAOLocal localDAO= FactoriaDAO.getInstance().generateDAOLocal();
+		if ((tLeido = localDAO.buscarPorId(IdLocal)) != null) {
+			if(tLeido.getActivo())
+				return localDAO.baja(IdLocal);
+		}
+		return -1;
+		
+		
+		
 		// end-user-code
 	}
 
@@ -54,10 +64,14 @@ public class SALocalImp implements SALocal {
 	 * @see SALocal#modificar(TLocal datos)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer modificar(TLocal datos) {
+	public int modificar(TLocal datos) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		DAOLocal localDAO = FactoriaDAO.getInstance().generateDAOLocal();
+		if ((localDAO.buscarPorNombre(datos.getNombreLocal().toLowerCase())) == null)
+			return localDAO.modificar(datos);
+		else
+			return -1;
 		// end-user-code
 	}
 
@@ -66,10 +80,13 @@ public class SALocalImp implements SALocal {
 	 * @see SALocal#buscarPorId(Integer IdLocal)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TLocal buscarPorId(Integer IdLocal) {
+	public TLocal buscarPorId(int IdLocal) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		TLocal local = null;
+		DAOLocal localDAO = FactoriaDAO.getInstance().generateDAOLocal();
+		local = localDAO.buscarPorId(IdLocal);
+		return local;
 		// end-user-code
 	}
 
@@ -78,10 +95,12 @@ public class SALocalImp implements SALocal {
 	 * @see SALocal#listarTodos()
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public ArrayList listarTodos() {
+	public ArrayList<TLocal> listarTodos() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		DAOLocal localDAO = FactoriaDAO.getInstance().generateDAOLocal();
+		ArrayList<TLocal> localList = localDAO.listarTodos();
+		return localList;
 		// end-user-code
 	}
 }

@@ -210,5 +210,61 @@ public class DAOLocalImpl implements DAOLocal {
 		// end-user-code
 	}
 
+	@Override
+	public TLocal buscarPorNombre(String nombre) {
+		// TODO Apéndice de método generado automáticamente
+		// begin-user-code
+				TLocal local = null;
+				ConexionDAO daocon = ConexionDAO.getInstance();
+				Connection connection = daocon.getConexion();
+				// TODO Apéndice de método generado automáticamente
+				if (connection != null) {
+					try {
+						Statement statement = connection.createStatement();
+						String query = "SELECT * FROM locales WHERE nombre=" + nombre;
+						ResultSet resultSet = statement.executeQuery(query);
+						if (resultSet.next()) {
+							local = new TLocal(resultSet.getInt("IdLocal"), 
+									nombre,
+									resultSet.getInt("telefono"),
+									resultSet.getInt("CIF"),
+									resultSet.getString("direccion"),
+									resultSet.getInt("CP"),
+									resultSet.getString("localidad"),
+									resultSet.getInt("representante"),
+									resultSet.getBoolean("activo"));
+						}
+						connection.close();
+					} catch (SQLException e) {
+						local = null;
+					}
+				}
+
+				// end-user-code
+				return local;
+
+	}
+
+	@Override
+	public int activarLocal(int IdLocal) {
+		// TODO Apéndice de método generado automáticamente
+		int response = -100;
+		ConexionDAO connectionDAO = ConexionDAO.getInstance();
+		Connection connection = connectionDAO.getConexion();
+		
+		if(connection!=null) {
+			try {
+				Statement statement = connection.createStatement();
+				String query = "UPDATE locales SET active=1 WHERE IdLocal=" + IdLocal;
+				statement.executeUpdate(query);
+				response = IdLocal;
+				connection.close();
+			} catch (SQLException e) {
+				response = -100;
+			}
+		}
+		return response;
+	}
+
 	
 }

@@ -26,7 +26,7 @@ public interface SALocal {
 	 * @param IdLocal
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public int baja(Integer IdLocal);
+	public int baja(int IdLocal);
 
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -44,7 +44,7 @@ public interface SALocal {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TLocal buscarPorId(Integer IdLocal);
+	public TLocal buscarPorId(int IdLocal);
 
 	/** 
 	 * <!-- begin-UML-doc -->

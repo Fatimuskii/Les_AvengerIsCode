@@ -55,4 +55,6 @@ public interface DAOLocal {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public ArrayList<TLocal> listarTodos();
+	public TLocal buscarPorNombre(String nombre);
+	public int activarLocal(int IdLocal);
 }

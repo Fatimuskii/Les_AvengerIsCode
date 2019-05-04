@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Presentación.Main;
+package Presentación.Controlador;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -32,7 +32,9 @@ public class Events {
 	
 	
 	/*EVENTOS PARA LAS VISTAS*/
-	public static final int GUI = 100;
+	public static final int GUI = 100; // LA INICIAL DEL PROGRAMA
+	
+	
 	public static final int OPEN_GUI_LOCAL_MENU = 101;
 	
 	public static final int OPEN_GUI_ALTA_LOCAL = 106;
