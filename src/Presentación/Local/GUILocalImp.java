@@ -38,7 +38,7 @@ public class GUILocalImp extends GUILocal {
 	
 	private void initGUI(){
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage("F:\\Documentos\\is codigo\\images\\local.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("images\\local.png"));
 		setTitle("Local");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 631, 376);
