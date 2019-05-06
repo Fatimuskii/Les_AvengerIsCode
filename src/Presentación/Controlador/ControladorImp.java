@@ -9,7 +9,7 @@ import Negocio.Local.TLocal;
 import Presentación.Local.GUILocal;
 import Presentación.Plataforma.GUIPlataforma;
 import Presentación.Plataforma.GUIPlataformaImp;
-import Presentación.Plataforma.GUIPlataformaLogin;
+import Presentación.Plataforma.GUILogin;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -53,8 +53,8 @@ public class ControladorImp extends Controlador {
 		case Events.GUI:
 			GUIPlataformaImp.getInstance();
 			break;
-		/*case Events.GUI_LOGIN:
-			GUIPlataformaLogin;*/
+		
+
 
 		// end-user-code
 		}

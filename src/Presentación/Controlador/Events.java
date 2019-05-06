@@ -34,6 +34,8 @@ public class Events {
 	/*EVENTOS PARA LAS VISTAS*/
 	public static final int GUI = 100; // LA INICIAL DEL PROGRAMA
 	public static final int GUI_LOGIN= 101;
+	public static final int GUI_MENUADMIN=102;
+	public static final int GUI_MENUUSER=103; 
 	
 	public static final int OPEN_GUI_LOCAL_MENU = 102;
 	

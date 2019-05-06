@@ -25,4 +25,8 @@ public abstract class GUIPlataforma extends JFrame {
 		instance.setVisible(true);
 		return instance;
 	}
+	public abstract void update(int event, Object res);
+	public abstract void initGUI();
+	
+
 }

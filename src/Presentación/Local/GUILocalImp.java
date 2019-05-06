@@ -24,11 +24,7 @@ public class GUILocalImp extends GUILocal {
 	
 	private JPanel contentPane;
 	
-	@Override
-	public void update(int event, Object res) {
-		// TODO Apéndice de método generado automáticamente
-		
-	}
+
 
 	public GUILocalImp(){
 		super();
@@ -36,7 +32,7 @@ public class GUILocalImp extends GUILocal {
 		initGUI();
 	}
 	
-	private void initGUI(){
+	 public void initGUI(){
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\local.png"));
 		setTitle("Local");
@@ -86,5 +82,11 @@ public class GUILocalImp extends GUILocal {
 		lblNewLabel.setIcon(new ImageIcon("imagenes\\local1.png"));
 		lblNewLabel.setBounds(62, 128, 150, 133);
 		contentPane.add(lblNewLabel);
+	}
+
+	@Override
+	public void update(int event, Object res) {
+		// TODO Apéndice de método generado automáticamente
+		
 	}
 }

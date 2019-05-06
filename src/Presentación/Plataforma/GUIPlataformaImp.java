@@ -23,11 +23,12 @@ import Presentación.Controlador.Events;
  */
 public class GUIPlataformaImp extends GUIPlataforma {
 	
-	
+	private GUILogin loginGui;
 	private JPanel contentPane;
 	
 	public GUIPlataformaImp(){
 		super();
+		//loginGui= new GUILogin();
 		contentPane = new JPanel();	
 		initGUI();
 	}
@@ -46,7 +47,8 @@ public class GUIPlataformaImp extends GUIPlataforma {
 		JButton login = new JButton("login");
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controlador.getInstance().accion(Events.GUI_LOGIN, null);
+				loginGui = new GUILogin();
+				loginGui.setVisible(true);
 			}
 		});
 		login.setIcon(new ImageIcon("imagenes\\login.png"));
@@ -68,5 +70,12 @@ public class GUIPlataformaImp extends GUIPlataforma {
 	public void close()
 	{
 		System.exit(0);
+	}
+
+
+	@Override
+	public void update(int event, Object res) {
+		// TODO Apéndice de método generado automáticamente
+		
 	}
 }

@@ -19,6 +19,7 @@ public abstract class GUILocal extends JFrame{
 	private static GUILocal instance;
 	
 	public abstract void update(int event, Object res);
+	public abstract void initGUI();
 	
 	public static GUILocal getInstance() {
 		if(instance == null)
