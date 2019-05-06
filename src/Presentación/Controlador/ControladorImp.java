@@ -6,6 +6,7 @@ package Presentación.Controlador;
 import Negocio.Factoria.SAFactoria;
 import Negocio.Local.SALocal;
 import Negocio.Local.TLocal;
+import Presentación.Local.GUIAltaLocal;
 import Presentación.Local.GUILocal;
 import Presentación.Plataforma.GUIPlataforma;
 import Presentación.Plataforma.GUIPlataformaImp;
@@ -53,7 +54,14 @@ public class ControladorImp extends Controlador {
 		case Events.GUI:
 			GUIPlataformaImp.getInstance();
 			break;
-		
+		case Events.ALTA_LOCAL:
+			tlocal = (TLocal)datos;
+			res=this.SALocal.alta(tlocal);
+			if(res > 0)
+				GUILocal.getInstance().update(Events.ALTA_LOCAL_OK, res);
+			else
+				GUILocal.getInstance().update(Events.ALTA_LOCAL_KO, res);
+			break;
 
 
 		// end-user-code

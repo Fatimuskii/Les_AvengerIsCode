@@ -15,10 +15,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import javax.swing.JRadioButton;
-
-import Presentación.Controlador.Controlador;
-import Presentación.Controlador.Events;
 
 @SuppressWarnings("serial")
 public class GUILogin extends JFrame {

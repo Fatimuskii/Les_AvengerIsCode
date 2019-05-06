@@ -13,14 +13,19 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Negocio.Local.TLocal;
+import Presentación.GUIMensaje;
+import Presentación.Controlador.Controlador;
+import Presentación.Controlador.Events;
+
 public class GUILocalImp extends GUILocal {
 
 	
-	private GUIAltaLocal altaLocal;
-	private GUIBajaLocal bajaLocal;
-	private GUIModificarLocal modLocal;
-	private GUIBuscarLocal buscarLocal;
-	private GUIListarLocales listarLocales;
+	private GUIAltaLocal Gui_altaLocal;
+	private GUIBajaLocal Gui_bajaLocal;
+	private GUIModificarLocal Gui_modLocal;
+	private GUIBuscarLocal Gui_buscarLocal;
+	private GUIListarLocales Gui_listarLocales;
 	
 	private JPanel contentPane;
 	
@@ -29,6 +34,7 @@ public class GUILocalImp extends GUILocal {
 	public GUILocalImp(){
 		super();
 		contentPane = new JPanel();
+		Gui_altaLocal = new GUIAltaLocal();
 		initGUI();
 	}
 	
@@ -36,7 +42,7 @@ public class GUILocalImp extends GUILocal {
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\local.png"));
 		setTitle("Local");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 631, 376);
 		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -73,6 +79,7 @@ public class GUILocalImp extends GUILocal {
 		JButton button = new JButton("Registrar local");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Gui_altaLocal.setVisible(true);
 			}
 		});
 		button.setBounds(283, 264, 138, 34);
@@ -87,6 +94,17 @@ public class GUILocalImp extends GUILocal {
 	@Override
 	public void update(int event, Object res) {
 		// TODO Apéndice de método generado automáticamente
+		TLocal tlocal;
+		GUIMensaje res_mensaje = new GUIMensaje();
+	
+		switch(event){
+		case Events.ALTA_LOCAL_OK:
+			res_mensaje.showMessage("Se ha dado de alta correctamente al Local con id: "
+					+ (int) res,  "ALTA LOCAL", false);
+			break;
+		case Events.ALTA_LOCAL_KO:
+			res_mensaje.showMessage("Error en el alta del Local.",  "ALTA LOCAL", false);
 		
+		}
 	}
 }

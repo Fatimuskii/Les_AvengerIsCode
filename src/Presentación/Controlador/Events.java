@@ -19,9 +19,9 @@ public class Events {
 	
 	/*RESULTADO DE LAS OPERACIONES DEL MÓDULO local*/
 	
-	/*public static final int ALTA_LOCAL_OK = 200;
+	public static final int ALTA_LOCAL_OK = 200;
 	public static final int ALTA_LOCAL_KO = 201;
-	public static final int BAJA_LOCAL_OK = 202;
+	/*public static final int BAJA_LOCAL_OK = 202;
 	public static final int BAJA_LOCAL_KO = 203;
 	public static final int MODIFICAR_LOCAL_OK = 204;
 	public static final int MODIFICAR_LOCAL_KO = 205;
