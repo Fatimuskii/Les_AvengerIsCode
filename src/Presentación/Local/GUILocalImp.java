@@ -38,7 +38,7 @@ public class GUILocalImp extends GUILocal {
 	
 	private void initGUI(){
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage("images\\local.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\local.png"));
 		setTitle("Local");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 631, 376);
@@ -83,7 +83,7 @@ public class GUILocalImp extends GUILocal {
 		contentPane.add(button);
 		
 		JLabel lblNewLabel = new JLabel("pic_local");
-		lblNewLabel.setIcon(new ImageIcon("F:\\Documentos\\is codigo\\images\\local1.png"));
+		lblNewLabel.setIcon(new ImageIcon("imagenes\\local1.png"));
 		lblNewLabel.setBounds(62, 128, 150, 133);
 		contentPane.add(lblNewLabel);
 	}

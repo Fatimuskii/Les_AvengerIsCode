@@ -1,0 +1,7 @@
+Si quieres ajustar una imagen te aconsejo esta pag:
+
+https://onlinepngtools.com/resize-png
+ICONOS "PEQUEÑOS":
+width:90
+height:60
+

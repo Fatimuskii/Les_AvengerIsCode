@@ -13,8 +13,8 @@ public class main {
 
 		public static Dimension WINDOW_DIM = new Dimension(1000, 75);
 		public static void main(String[] args) {
-			//Controlador.getInstance().accion(Events.GUI, null);
-			Controlador.getInstance().accion(Events.OPEN_GUI_LOCAL_MENU, null);
+			Controlador.getInstance().accion(Events.GUI, null);
+			//Controlador.getInstance().accion(Events.OPEN_GUI_LOCAL_MENU, null);
 		}
 
 }
