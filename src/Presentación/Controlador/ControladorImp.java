@@ -28,7 +28,6 @@ public class ControladorImp extends Controlador {
 	 */
 
 	private SALocal SALocal;
-	private SAPlataforma SAPlataforma;
 
 	// AQUI VENDRIAN EL RESTO DE SA
 
@@ -54,8 +53,8 @@ public class ControladorImp extends Controlador {
 		case Events.GUI:
 			GUIPlataformaImp.getInstance();
 			break;
-		case Events.GUI_LOGIN:
-			GUIPlataformaLogin;
+		/*case Events.GUI_LOGIN:
+			GUIPlataformaLogin;*/
 
 		// end-user-code
 		}
