@@ -54,20 +54,18 @@ public class DAOLocalImpl implements DAOLocal {
 						+ "', '"
 						+ (datos.getActivo() ? 1 : 0) + "');";
 				statement.executeUpdate(query);
-				query = "SELECT last_insert_IdLocal() as last_IdLocal from locales";
+				query = "SELECT last_insert_id() as last_id from locales";
 				ResultSet resultSet = statement.executeQuery(query);
 				if (resultSet.next()) {
-					IdLocal = resultSet.getInt("last_IdLocal");
+					IdLocal = resultSet.getInt("last_id");
 				}
-				connection.close();
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 				IdLocal = -100;
 			}
 		}
 		return IdLocal;
-		
-		
 		// end-user-code
 	}
 

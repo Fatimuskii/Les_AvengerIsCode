@@ -79,6 +79,7 @@ public class GUILocalImp extends GUILocal {
 		JButton button = new JButton("Registrar local");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Gui_altaLocal.limpiarDatos();
 				Gui_altaLocal.setVisible(true);
 			}
 		});
@@ -104,7 +105,7 @@ public class GUILocalImp extends GUILocal {
 			break;
 		case Events.ALTA_LOCAL_KO:
 			res_mensaje.showMessage("Error en el alta del Local.",  "ALTA LOCAL", false);
-		
+			break;
 		}
 	}
 }

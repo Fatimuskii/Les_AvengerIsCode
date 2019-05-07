@@ -114,7 +114,7 @@ public TLocal(String nombre,int telefono,int CIF, String direccion,int CP,String
 	public String getNombreLocal() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		return nombre;
 		// end-user-code
 	}
 
