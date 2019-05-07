@@ -32,7 +32,7 @@ public class GUIAltaLocal extends JFrame {
 	}
 	
 	public void initGUI(){
-		
+		setResizable(false);
 		 JTextField rep_nombreCompleto;
 		 JTextField telefonoPersonal;
 		 JTextField email;

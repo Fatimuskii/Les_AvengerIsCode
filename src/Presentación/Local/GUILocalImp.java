@@ -39,7 +39,7 @@ public class GUILocalImp extends GUILocal {
 	}
 	
 	 public void initGUI(){
-		
+		 setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\local.png"));
 		setTitle("Local");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

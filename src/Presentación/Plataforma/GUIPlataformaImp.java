@@ -36,6 +36,7 @@ public class GUIPlataformaImp extends GUIPlataforma {
 	
 	public void initGUI() {
 		// TODO Apéndice de método generado automáticamente
+		setResizable(false);
 		setTitle("LES_AVENGERIS");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 840, 517);

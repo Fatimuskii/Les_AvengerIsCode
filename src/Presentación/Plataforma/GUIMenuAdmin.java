@@ -25,7 +25,7 @@ public class GUIMenuAdmin extends JFrame {
 	}
 
 	public void initGUI() {
-
+		setResizable(false);
 		setTitle("BIENVENIDO ADMIN");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
