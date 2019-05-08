@@ -12,10 +12,16 @@ package Presentación.Controlador;
 public class Events {
 	/* Eventos de Local*/
 	public static final int ALTA_LOCAL = 150;
-	public static final int BAJA_LOCAL = 151;
-	public static final int MODIFICAR_LOCAL = 152;
-	public static final int BUSCAR_LOCAL = 153;
-	public static final int LISTAR_LOCALES = 154;
+	public static final int ALTA_REPRESENTANTE = 151;
+	public static final int BAJA_LOCAL = 152;
+	public static final int BAJA_REPRESENTANTE = 153;
+	public static final int MODIFICAR_LOCAL = 154;
+	public static final int MODIFICAR_REPRESENTANTE = 155;
+	public static final int BUSCAR_LOCAL = 156;
+	public static final int BUSCAR_REPRESENTANTE = 157;
+	public static final int LISTAR_LOCALES = 158;
+	public static final int LISTAR_REPRESENTANTES = 159;
+	
 	
 	/*RESULTADO DE LAS OPERACIONES DEL MÓDULO local*/
 	

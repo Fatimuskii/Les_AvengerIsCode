@@ -5,6 +5,8 @@ package Presentación.Controlador;
 
 import Negocio.Factoria.SAFactoria;
 import Negocio.Local.SALocal;
+import Negocio.Local.SARepresentante;
+import Negocio.Local.TRepresentante;
 import Negocio.Usuario.SAUsuario;
 import Negocio.Local.TLocal;
 import Negocio.Usuario.TUsuario;
@@ -32,6 +34,7 @@ public class ControladorImp extends Controlador {
 	 */
 
 	private SALocal SALocal;
+	private SARepresentante SARepresentante;
 	private SAUsuario SAUsuario;
 
 	// AQUI VENDRIAN EL RESTO DE SA
@@ -39,6 +42,7 @@ public class ControladorImp extends Controlador {
 	public ControladorImp() {
 		SAFactoria factoriaSA = SAFactoria.getInstance();
 		SALocal = factoriaSA.generateSALocal();
+		SARepresentante = factoriaSA.generateSARepresentante();
 
 	}
 
@@ -46,7 +50,9 @@ public class ControladorImp extends Controlador {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
 		TLocal tlocal;
+		TRepresentante trepre;
 		TUsuario tUsuario;
+		
 
 		int res;
 		switch (evento) {
@@ -67,6 +73,16 @@ public class ControladorImp extends Controlador {
 				GUILocal.getInstance().update(Events.ALTA_LOCAL_OK, res);
 			else
 				GUILocal.getInstance().update(Events.ALTA_LOCAL_KO, res);
+			break;
+			
+		case Events.ALTA_REPRESENTANTE:
+			trepre = (TRepresentante)datos;
+			res=this.SARepresentante.alta(trepre);
+			
+			if(res > 0)
+				GUILocal.getInstance().update(Events.ALTA_REPRESENTANTE_OK, res);
+			else
+				GUILocal.getInstance().update(Events.ALTA_REPRESENTANTE_KO, res);
 			break;
 		case Events.OPEN_GUI_USUARIO_MENU:
 			GUIUsuario.getInstance();

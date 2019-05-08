@@ -6,6 +6,7 @@ package Negocio.Factoria;
 import Negocio.Diseño.SADiseño;
 import Negocio.Impresora.SAImpresora;
 import Negocio.Local.SALocal;
+import Negocio.Local.SARepresentante;
 import Negocio.Usuario.SAUsuario;
 import Negocio.Plataforma.SAPlataforma;
 import Negocio.PedidoImpresion.SAPedidoImpresion;
@@ -62,6 +63,7 @@ public abstract class SAFactoria {
 	 */
 	public abstract SALocal generateSALocal();
 
+	public abstract SARepresentante generateSARepresentante();
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
