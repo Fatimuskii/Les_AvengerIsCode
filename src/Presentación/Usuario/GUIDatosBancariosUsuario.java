@@ -111,8 +111,7 @@ public class GUIDatosBancariosUsuario extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if(txtNmeroDeTarjeta.getText().length() != 16) {
-					JOptionPane.showOptionDialog(new JFrame(), "El numero de la tarjeta debe tener 16 dígitos", "Quit",
-							JOptionPane.OK_OPTION, JOptionPane.OK_OPTION, null, null, null);
+					JOptionPane.showMessageDialog(new JFrame(), "El numero de la tarjeta debe tener 16 dígitos");
 				}
 			}
 		});

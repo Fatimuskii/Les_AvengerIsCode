@@ -30,13 +30,12 @@ import javax.swing.border.EmptyBorder;
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 
-
 public class GUIUsuarioImp extends GUIUsuario {
 
 	private GUIModificarUsuario GUI_ModificarUsuario;
 	private GUIBajaUsuario GUI_BajaUsuario;
 	private GUIPerfilUsuario GUI_PerfilUsuario;
-	
+
 	private JPanel contentPane;
 	private JTextField txtBuscarUsuario;
 	private boolean press;
@@ -51,7 +50,6 @@ public class GUIUsuarioImp extends GUIUsuario {
 
 	public void initGUI() {
 		setTitle("Men\u00FA Usuario");
-		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				GUIUsuarioImp.class.getResource("/logo.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -102,12 +100,6 @@ public class GUIUsuarioImp extends GUIUsuario {
 		JMenuItem mntmCerrarSesin = new JMenuItem("Cerrar sesi\u00F3n");
 		mnNewMenu.add(mntmCerrarSesin);
 
-		JButton btnNewButton = new JButton("");
-		btnNewButton.setBounds(107, 43, 56, 43);
-		contentPane.add(btnNewButton);
-		btnNewButton.setIcon(new ImageIcon(GUIUsuarioImp.class
-				.getResource("/carr.png")));
-
 		txtBuscarUsuario = new JTextField();
 		txtBuscarUsuario.addKeyListener(new KeyAdapter() {
 			@Override
@@ -120,16 +112,16 @@ public class GUIUsuarioImp extends GUIUsuario {
 		});
 		txtBuscarUsuario.setForeground(Color.GRAY);
 		txtBuscarUsuario.setText("Buscar usuario");
-		txtBuscarUsuario.setBounds(245, 43, 255, 20);
+		txtBuscarUsuario.setBounds(234, 43, 282, 20);
 		contentPane.add(txtBuscarUsuario);
 		txtBuscarUsuario.setColumns(10);
 
 		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(255, 74, 89, 23);
+		btnBuscar.setBounds(262, 85, 89, 23);
 		contentPane.add(btnBuscar);
 
 		JButton btnMostrarTodos = new JButton("Mostrar todos");
-		btnMostrarTodos.setBounds(370, 74, 118, 23);
+		btnMostrarTodos.setBounds(371, 85, 118, 23);
 		contentPane.add(btnMostrarTodos);
 	}
 }

@@ -9,6 +9,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
@@ -25,7 +28,7 @@ public class GUIPerfilUsuario extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GUIPerfilUsuario.class.getResource("/logo.png")));
 		setTitle("Perfil Usuario");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 431, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -45,21 +48,36 @@ public class GUIPerfilUsuario extends JFrame {
 		lblNewLabel_1.setBounds(20, 93, 68, 14);
 		panel.add(lblNewLabel_1);
 		
-		JButton btnNewButton = new JButton("Dise\u00F1os");
-		btnNewButton.setBounds(120, 62, 89, 23);
-		panel.add(btnNewButton);
-		
 		JButton btnImpresora = new JButton("Impresora");
-		btnImpresora.setBounds(228, 62, 89, 23);
+		btnImpresora.setBounds(10, 141, 99, 23);
 		panel.add(btnImpresora);
 		
-		JButton btnCompras = new JButton("Compras");
-		btnCompras.setBounds(10, 128, 89, 23);
-		panel.add(btnCompras);
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(119, 69, 56, 21);
+		panel.add(menuBar);
 		
-		JButton btnVentas = new JButton("Ventas");
-		btnVentas.setBounds(10, 168, 89, 23);
-		panel.add(btnVentas);
+		JMenu mnDiseos = new JMenu("Dise\u00F1os");
+		menuBar.add(mnDiseos);
+		
+		JMenuItem mntmComprados = new JMenuItem("Comprados");
+		mnDiseos.add(mntmComprados);
+		
+		JMenuItem mntmCreados = new JMenuItem("Creados");
+		mnDiseos.add(mntmCreados);
+		
+		JMenuBar menuBar_1 = new JMenuBar();
+		menuBar_1.setBounds(233, 51, 56, 43);
+		panel.add(menuBar_1);
+		
+		JMenu mnNewMenu = new JMenu("");
+		mnNewMenu.setIcon(new ImageIcon(GUIPerfilUsuario.class.getResource("/carr.png")));
+		menuBar_1.add(mnNewMenu);
+		
+		JMenuItem mntmDiseos = new JMenuItem("Dise\u00F1os");
+		mnNewMenu.add(mntmDiseos);
+		
+		JMenuItem mntmPedidosImpresin = new JMenuItem("Pedidos impresi\u00F3n");
+		mnNewMenu.add(mntmPedidosImpresin);
 	}
 	
 }

@@ -5,12 +5,15 @@ package Presentación.Controlador;
 
 import Negocio.Factoria.SAFactoria;
 import Negocio.Local.SALocal;
+import Negocio.Usuario.SAUsuario;
 import Negocio.Local.TLocal;
+import Negocio.Usuario.TUsuario;
 import Presentación.Local.GUIAltaLocal;
 import Presentación.Local.GUILocal;
 import Presentación.Plataforma.GUIPlataforma;
 import Presentación.Plataforma.GUIPlataformaImp;
 import Presentación.Plataforma.GUILogin;
+import Presentación.Usuario.GUIUsuario;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -29,6 +32,7 @@ public class ControladorImp extends Controlador {
 	 */
 
 	private SALocal SALocal;
+	private SAUsuario SAUsuario;
 
 	// AQUI VENDRIAN EL RESTO DE SA
 
@@ -42,6 +46,7 @@ public class ControladorImp extends Controlador {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
 		TLocal tlocal;
+		TUsuario tUsuario;
 
 		int res;
 		switch (evento) {
@@ -64,7 +69,7 @@ public class ControladorImp extends Controlador {
 				GUILocal.getInstance().update(Events.ALTA_LOCAL_KO, res);
 			break;
 		case Events.OPEN_GUI_USUARIO_MENU:
-			
+			GUIUsuario.getInstance();
 
 		// end-user-code
 		}

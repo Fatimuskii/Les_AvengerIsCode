@@ -331,11 +331,14 @@ public class GUIAltaUsuario extends JFrame {
 			txtContrasea.setBackground(Color.red);
 			txtConfirmarContrasea.setBackground(Color.red);
 
-			JOptionPane.showOptionDialog(new JFrame(),
-					"La contraseña no coincide", "Quit", JOptionPane.OK_OPTION,
-					JOptionPane.OK_OPTION, null, null, null);
+			JOptionPane.showMessageDialog(new JFrame(),
+					"La contraseña no coincide");
+
 			return true;
+		} else {
+			txtContrasea.setBackground(Color.white);
+			txtConfirmarContrasea.setBackground(Color.white);
+			return false;
 		}
-		return false;
 	}
 }
