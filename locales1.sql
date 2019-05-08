@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS locales (
   representante int(11) NOT NULL,
   activo tinyint(1) NOT NULL, 
   PRIMARY KEY (IdLocal, representante)
-  
+ 
 );
 
 

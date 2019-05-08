@@ -5,6 +5,7 @@ package Integración.Factoria;
 
 import Integración.Impresora.DAOImpresora;
 import Integración.Local.DAOLocal;
+import Integración.Local.DAORepresentante;
 import Integración.PedidoImpresion.DAOPedidoImpresion;
 import Integración.Plataforma.DAOPlataforma;
 import Integración.Usuario.DAOUsuario;
@@ -77,6 +78,7 @@ public abstract class FactoriaDAO {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public abstract DAOLocal generateDAOLocal();
+	public abstract DAORepresentante generateDAORepresentante();
 
 	/** 
 	 * <!-- begin-UML-doc -->

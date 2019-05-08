@@ -113,7 +113,7 @@ public class GUIAltaLocal extends JFrame {
 				String emailRep = email.getText();
 
 				representante = new TRepresentante(nombreRep, telRep, emailRep);
-				Controlador.getInstance().accion(Events.ALTA_REPRESENTANTE, representante);
+				Controlador.getInstance().accion(Events.ALTA_REPRESENTANTE_OK, representante);
 			}
 		});
 		/* DATOS DEL LOCAL EN SI: */
