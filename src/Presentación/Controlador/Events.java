@@ -21,6 +21,8 @@ public class Events {
 	
 	public static final int ALTA_LOCAL_OK = 200;
 	public static final int ALTA_LOCAL_KO = 201;
+	public static int ALTA_REPRESENTANTE_OK = 203;
+	public static int ALTA_REPRESENTANTE_KO = 204;
 	/*public static final int BAJA_LOCAL_OK = 202;
 	public static final int BAJA_LOCAL_KO = 203;
 	public static final int MODIFICAR_LOCAL_OK = 204;
@@ -44,4 +46,5 @@ public class Events {
 	public static final int OPEN_GUI_MODIFICAR_LOCAL = 112;
 	public static final int OPEN_GUI_BUSCAR_LOCAL = 113;
 	public static final int OPEN_GUI_LISTAR_LOCALES = 114;
+	
 }

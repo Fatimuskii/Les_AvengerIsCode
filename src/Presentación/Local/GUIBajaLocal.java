@@ -19,5 +19,11 @@ private JPanel contentPane;
 		// TODO Apéndice de método generado automáticamente
 		
 	}
+
+
+	public void limpiarDatos() {
+		// TODO Apéndice de método generado automáticamente
+		
+	}
 	
 }

@@ -21,6 +21,8 @@ import Presentación.Controlador.Events;
 public class GUILocalImp extends GUILocal {
 
 	
+	//MENU DE LOCAL!
+	
 	private GUIAltaLocal Gui_altaLocal;
 	private GUIBajaLocal Gui_bajaLocal;
 	private GUIModificarLocal Gui_modLocal;
@@ -29,8 +31,6 @@ public class GUILocalImp extends GUILocal {
 	
 	private JPanel contentPane;
 	
-
-
 	public GUILocalImp(){
 		super();
 		contentPane = new JPanel();
@@ -39,7 +39,8 @@ public class GUILocalImp extends GUILocal {
 	}
 	
 	 public void initGUI(){
-		 setResizable(false);
+		 
+		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\local.png"));
 		setTitle("Local");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -53,13 +54,20 @@ public class GUILocalImp extends GUILocal {
 		btnSalir.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnSalir.setBounds(447, 264, 124, 34);
 		contentPane.add(btnSalir);
+		btnSalir.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				dispose();
+			}
+		});
 		
 		JButton btnBuscarLocal = new JButton("Buscar Local");
 		btnBuscarLocal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-	
+				Gui_bajaLocal.limpiarDatos();
+				Gui_bajaLocal.setVisible(true);
 			}
 		});
+		
 		btnBuscarLocal.setBounds(386, 68, 124, 34);
 		contentPane.add(btnBuscarLocal);
 		
@@ -108,4 +116,5 @@ public class GUILocalImp extends GUILocal {
 			break;
 		}
 	}
+
 }

@@ -97,71 +97,13 @@ public class GUIAltaLocal extends JFrame {
 		email.setBounds(195, 171, 186, 22);
 		contentPane.add(email);
 
-		/* DATOS DEL LOCAL EN SI: */
+		JButton btnValidarDatosProp = new JButton("Validar Datos");
+		btnValidarDatosProp.setFont(new Font("Yu Gothic", Font.BOLD, 11));
+		btnValidarDatosProp.setBounds(353, 213, 116, 29);
+		contentPane.add(btnValidarDatosProp);
 
-		JLabel lblDatosDelLocal = new JLabel("Datos del Local:");
-		lblDatosDelLocal.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblDatosDelLocal.setBounds(40, 213, 130, 16);
-		contentPane.add(lblDatosDelLocal);
-
-		JLabel lblNombre = new JLabel("Nombre:");
-		lblNombre.setBounds(75, 233, 119, 29);
-		contentPane.add(lblNombre);
-
-		nombre = new JTextField();
-		nombre.setColumns(10);
-		nombre.setBounds(206, 236, 175, 22);
-		contentPane.add(nombre);
-
-		JLabel lblTelefono = new JLabel("Telefono:");
-		lblTelefono.setBounds(75, 263, 119, 29);
-		contentPane.add(lblTelefono);
-
-		telefono = new JTextField();
-		telefono.setColumns(10);
-		telefono.setBounds(206, 266, 116, 22);
-		contentPane.add(telefono);
-
-		JLabel lblCif = new JLabel("CIF:");
-		lblCif.setBounds(75, 293, 119, 29);
-		contentPane.add(lblCif);
-
-		CIF = new JTextField();
-		CIF.setColumns(10);
-		CIF.setBounds(206, 296, 175, 22);
-		contentPane.add(CIF);
-
-		JLabel lblDireccin = new JLabel("Direcci\u00F3n:");
-		lblDireccin.setBounds(75, 324, 119, 29);
-		contentPane.add(lblDireccin);
-
-		direccion = new JTextField();
-		direccion.setColumns(10);
-		direccion.setBounds(206, 327, 175, 22);
-		contentPane.add(direccion);
-
-		JLabel lblCdigoPostal = new JLabel("C\u00F3digo Postal:");
-		lblCdigoPostal.setBounds(75, 355, 119, 29);
-		contentPane.add(lblCdigoPostal);
-
-		CP = new JTextField();
-		CP.setColumns(10);
-		CP.setBounds(206, 358, 116, 22);
-		contentPane.add(CP);
-
-		JLabel lblLocalidad = new JLabel("Localidad");
-		lblLocalidad.setBounds(75, 383, 119, 29);
-		contentPane.add(lblLocalidad);
-
-		localidad = new JTextField();
-		localidad.setColumns(10);
-		localidad.setBounds(206, 387, 116, 22);
-		contentPane.add(localidad);
-
-		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.addActionListener(new ActionListener() {
+		btnValidarDatosProp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				// Primero recoger los datos del Representante:
 				/*
 				 * rep_nombreCompleto; telefonoPersonal; email;
@@ -171,6 +113,79 @@ public class GUIAltaLocal extends JFrame {
 				String emailRep = email.getText();
 
 				representante = new TRepresentante(nombreRep, telRep, emailRep);
+				Controlador.getInstance().accion(Events.ALTA_REPRESENTANTE, representante);
+			}
+		});
+		/* DATOS DEL LOCAL EN SI: */
+
+		JLabel lblDatosDelLocal = new JLabel("Datos del Local:");
+		lblDatosDelLocal.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblDatosDelLocal.setBounds(40, 213, 130, 16);
+		contentPane.add(lblDatosDelLocal);
+
+		JLabel lblNombre = new JLabel("Nombre:");
+		lblNombre.setBounds(75, 262, 119, 29);
+		contentPane.add(lblNombre);
+
+		nombre = new JTextField();
+		nombre.setEditable(false);
+		nombre.setColumns(10);
+		nombre.setBounds(206, 265, 175, 22);
+		contentPane.add(nombre);
+
+		JLabel lblTelefono = new JLabel("Telefono:");
+		lblTelefono.setBounds(75, 292, 119, 29);
+		contentPane.add(lblTelefono);
+
+		telefono = new JTextField();
+		telefono.setEditable(false);
+		telefono.setColumns(10);
+		telefono.setBounds(206, 295, 116, 22);
+		contentPane.add(telefono);
+
+		JLabel lblCif = new JLabel("CIF:");
+		lblCif.setBounds(75, 322, 119, 29);
+		contentPane.add(lblCif);
+
+		CIF = new JTextField();
+		CIF.setEditable(false);
+		CIF.setColumns(10);
+		CIF.setBounds(206, 325, 175, 22);
+		contentPane.add(CIF);
+
+		JLabel lblDireccin = new JLabel("Direcci\u00F3n:");
+		lblDireccin.setBounds(75, 353, 119, 29);
+		contentPane.add(lblDireccin);
+
+		direccion = new JTextField();
+		direccion.setEditable(false);
+		direccion.setColumns(10);
+		direccion.setBounds(206, 356, 175, 22);
+		contentPane.add(direccion);
+
+		JLabel lblCdigoPostal = new JLabel("C\u00F3digo Postal:");
+		lblCdigoPostal.setBounds(75, 384, 119, 29);
+		contentPane.add(lblCdigoPostal);
+
+		CP = new JTextField();
+		CP.setEditable(false);
+		CP.setColumns(10);
+		CP.setBounds(206, 387, 116, 22);
+		contentPane.add(CP);
+
+		JLabel lblLocalidad = new JLabel("Localidad");
+		lblLocalidad.setBounds(75, 412, 119, 29);
+		contentPane.add(lblLocalidad);
+
+		localidad = new JTextField();
+		localidad.setEditable(false);
+		localidad.setColumns(10);
+		localidad.setBounds(206, 416, 116, 22);
+		contentPane.add(localidad);
+
+		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 
 				// Nota: meter un comprobar de los datos de representante.
 				// Si va bien, validamos los datos de Local.
@@ -196,6 +211,7 @@ public class GUIAltaLocal extends JFrame {
 		});
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnAceptar.setBounds(353, 440, 116, 36);
+		btnAceptar.setEnabled(false);
 		contentPane.add(btnAceptar);
 
 		JLabel lblLogonuevolocal = new JLabel("LogoNuevoLocal");
