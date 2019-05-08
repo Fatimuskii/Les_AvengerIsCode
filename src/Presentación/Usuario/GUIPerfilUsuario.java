@@ -19,9 +19,10 @@ public class GUIPerfilUsuario extends JFrame {
 
 	private JPanel contentPane;
 	
-	public GUIPerfilUsuario(JPanel contentPane) throws HeadlessException {
+	public GUIPerfilUsuario() throws HeadlessException {
 		super();
-		this.contentPane = contentPane;
+		this.contentPane = new JPanel();
+		initGUI();
 	}
 
 	public void initGUI(){

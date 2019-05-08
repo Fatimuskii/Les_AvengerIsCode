@@ -70,6 +70,10 @@ public class ControladorImp extends Controlador {
 			break;
 		case Events.OPEN_GUI_USUARIO_MENU:
 			GUIUsuario.getInstance();
+			break;
+		case Events.OPEN_GUI_PERFIL_USUARIO:
+			GUIUsuario.getInstance();
+			break;
 
 		// end-user-code
 		}

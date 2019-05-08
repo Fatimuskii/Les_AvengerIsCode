@@ -44,6 +44,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 		super();
 		this.contentPane = new JPanel();
 		this.txtBuscarUsuario = new JTextField();
+		this.GUI_PerfilUsuario = new GUIPerfilUsuario();
 		this.press = false;
 		initGUI();
 	}

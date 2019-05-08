@@ -40,6 +40,7 @@ public class Events {
 	public static final int GUI_MENUUSER=103; 
 	
 	public static final int OPEN_GUI_LOCAL_MENU = 102;
+	public static final int OPEN_GUI_USUARIO_MENU = 104;	
 	
 	public static final int OPEN_GUI_ALTA_LOCAL = 110;
 	public static final int OPEN_GUI_BAJA_LOCAL = 111;
@@ -47,14 +48,16 @@ public class Events {
 	public static final int OPEN_GUI_BUSCAR_LOCAL = 113;
 	public static final int OPEN_GUI_LISTAR_LOCALES = 114;
 	
-	public static final int OPEN_GUI_USUARIO_MENU = 104;	
 	
 	public static final int OPEN_GUI_ALTA_USUARIO = 115;
 	public static final int OPEN_GUI_BAJA_USUARIO = 116;
 	public static final int OPEN_GUI_MODIFICAR_USUARIO = 117;
 	public static final int OPEN_GUI_BUSCAR_USUARIO = 118;
 	public static final int OPEN_GUI_LISTAR_USUARIO = 119;
-	public static final int OPEN_GUI_ACCESO_USUARIO = 120;//TODO
+	public static final int OPEN_GUI_ACCESO_USUARIO = 120;//TODO OSCAR
+	public static final int OPEN_GUI_DATOS_BANCARIOS_USUARIO = 121;
+	public static final int OPEN_GUI_PERFIL_USUARIO = 122;
+	
 	
 	
 }
