@@ -63,7 +63,8 @@ public class ControladorImp extends Controlador {
 			else
 				GUILocal.getInstance().update(Events.ALTA_LOCAL_KO, res);
 			break;
-
+		case Events.OPEN_GUI_USUARIO_MENU:
+			
 
 		// end-user-code
 		}

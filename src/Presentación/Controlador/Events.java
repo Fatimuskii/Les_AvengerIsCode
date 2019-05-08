@@ -47,4 +47,14 @@ public class Events {
 	public static final int OPEN_GUI_BUSCAR_LOCAL = 113;
 	public static final int OPEN_GUI_LISTAR_LOCALES = 114;
 	
+	public static final int OPEN_GUI_USUARIO_MENU = 104;	
+	
+	public static final int OPEN_GUI_ALTA_USUARIO = 115;
+	public static final int OPEN_GUI_BAJA_USUARIO = 116;
+	public static final int OPEN_GUI_MODIFICAR_USUARIO = 117;
+	public static final int OPEN_GUI_BUSCAR_USUARIO = 118;
+	public static final int OPEN_GUI_LISTAR_USUARIO = 119;
+	public static final int OPEN_GUI_ACCESO_USUARIO = 120;//TODO
+	
+	
 }

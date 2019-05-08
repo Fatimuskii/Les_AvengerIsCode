@@ -49,7 +49,8 @@ public class GUIMenuAdmin extends JFrame {
 		JButton btnLocales = new JButton("LOCALES");
 		btnLocales.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controlador.getInstance().accion(Events.OPEN_GUI_LOCAL_MENU, null);
+				Controlador.getInstance().accion(Events.OPEN_GUI_LOCAL_MENU,
+						null);
 			}
 		});
 		btnLocales.setBounds(289, 70, 116, 37);
@@ -65,6 +66,12 @@ public class GUIMenuAdmin extends JFrame {
 
 		JButton btnUsuarios = new JButton("USUARIOS");
 		btnUsuarios.setBounds(33, 186, 116, 37);
+		btnUsuarios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Controlador.getInstance().accion(Events.OPEN_GUI_USUARIO_MENU,
+						null);
+			}
+		});
 		contentPane.add(btnUsuarios);
 
 		JLabel lblLogodiseo = new JLabel("logoDise\u00F1o");
