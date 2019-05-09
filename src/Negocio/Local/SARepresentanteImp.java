@@ -10,17 +10,14 @@ public class SARepresentanteImp implements SARepresentante{
 
 	@Override
 	public int alta(TRepresentante datos) {
-		// TODO Apéndice de método generado automáticamente
-		TRepresentante tLeido; 
-		DAORepresentante localDAO = FactoriaDAO.getInstance().generateDAOLocal();
-		if ( (tLeido = localDAO.buscarPorNombre(datos.getNombreLocal()))== null ) {
-			return localDAO.alta(datos);
-		}else{
-			if (!tLeido.getActivo()){
-				return localDAO.activarLocal(tLeido.getIdLocal());
-			}
-			else return -1;
+		// TODO Apéndice de método generado automáticamente 
+		DAORepresentante repDAO = FactoriaDAO.getInstance().generateDAORepresentante();
+		if ( repDAO.buscarPorNombre(datos.getNombreCompleto())== null ) {
+			return repDAO.alta(datos);
 		}
+		else 
+			return -1;
+	
 	}
 
 	@Override

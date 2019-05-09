@@ -10,7 +10,9 @@ import Negocio.Local.TRepresentante;
 import Negocio.Usuario.SAUsuario;
 import Negocio.Local.TLocal;
 import Negocio.Usuario.TUsuario;
+import Presentación.GUIMensaje;
 import Presentación.Local.GUIAltaLocal;
+import Presentación.Local.GUIAltaRepresentante;
 import Presentación.Local.GUILocal;
 import Presentación.Plataforma.GUIPlataforma;
 import Presentación.Plataforma.GUIPlataformaImp;
@@ -46,13 +48,14 @@ public class ControladorImp extends Controlador {
 
 	}
 
+	@SuppressWarnings("null")
 	public void accion(int evento, Object datos) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
 		TLocal tlocal;
 		TRepresentante trepre;
 		TUsuario tUsuario;
-		
+		GUIMensaje res_mensaje = null;
 
 		int res;
 		switch (evento) {
@@ -66,24 +69,26 @@ public class ControladorImp extends Controlador {
 			GUIPlataformaImp.getInstance();
 			break;
 		case Events.ALTA_LOCAL:
-			tlocal = (TLocal)datos;
-			res=this.SALocal.alta(tlocal);
-			
-			if(res > 0)
+			tlocal = (TLocal) datos;
+			res = this.SALocal.alta(tlocal);
+
+			if (res > 0)
 				GUILocal.getInstance().update(Events.ALTA_LOCAL_OK, res);
 			else
 				GUILocal.getInstance().update(Events.ALTA_LOCAL_KO, res);
 			break;
-			
+
 		case Events.ALTA_REPRESENTANTE:
-			trepre = (TRepresentante)datos;
-			res=this.SARepresentante.alta(trepre);
-			
-			if(res > 0)
-				GUILocal.getInstance().update(Events.ALTA_REPRESENTANTE_OK, res);
-			else
-				GUILocal.getInstance().update(Events.ALTA_REPRESENTANTE_KO, res);
+			trepre = (TRepresentante) datos;
+			res = this.SARepresentante.alta(trepre);
+
+			if (res > 0) {
+				GUIAltaLocal guiAltLocal = new GUIAltaLocal(res);
+				guiAltLocal.setVisible(true);
+			}
+
 			break;
+
 		case Events.OPEN_GUI_USUARIO_MENU:
 			GUIUsuario.getInstance();
 			break;
@@ -92,7 +97,7 @@ public class ControladorImp extends Controlador {
 			break;
 		case Events.OPEN_GUI_MODIFICAR_USUARIO:
 			GUIUsuario.getInstance();
-			break;	
+			break;
 
 		// end-user-code
 		}

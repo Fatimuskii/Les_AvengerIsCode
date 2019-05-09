@@ -163,7 +163,7 @@ public class DAORepresentanteImp implements DAORepresentante {
 		if (connection != null) {
 			try {
 				Statement statement = connection.createStatement();
-				String query = "SELECT * FROM locales WHERE nombre=" + nombre;
+				String query = "SELECT * FROM representantes WHERE nombre=" + nombre;
 				ResultSet resultSet = statement.executeQuery(query);
 				if (resultSet.next()) {
 					repre = new TRepresentante(resultSet.getInt("IdRepresentante"), nombre,
