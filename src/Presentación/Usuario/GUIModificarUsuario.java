@@ -6,6 +6,7 @@ package Presentación.Usuario;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,10 +38,19 @@ public class GUIModificarUsuario extends JFrame{
 	private GUIDatosBancariosUsuario GUI_DatosBancariosUsuario;
 	
 	
+	
+	public GUIModificarUsuario() {
+		super();
+		this.contentPane = new JPanel();
+		GUI_AltaUsuario = new GUIAltaUsuario();
+		GUI_DatosBancariosUsuario = new GUIDatosBancariosUsuario();
+		initGUI();
+	}
+
+
 	public void initGUI(){
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GUIModificarUsuario.class.getResource("/logo.png")));
 		setTitle("Modificar Usuario");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -57,7 +67,7 @@ public class GUIModificarUsuario extends JFrame{
 				GUI_AltaUsuario.setVisible(true);
 			}
 		});
-		btnNewButton.setBounds(33, 154, 115, 23);
+		btnNewButton.setBounds(33, 154, 135, 23);
 		panel.add(btnNewButton);
 		
 		JButton btnDatosBancarios = new JButton("Datos bancarios");
@@ -66,11 +76,11 @@ public class GUIModificarUsuario extends JFrame{
 				GUI_DatosBancariosUsuario.setVisible(true);
 			}
 		});
-		btnDatosBancarios.setBounds(272, 154, 115, 23);
+		btnDatosBancarios.setBounds(239, 154, 135, 23);
 		panel.add(btnDatosBancarios);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(GUIModificarUsuario.class.getResource("/tools.png")));
+		label.setIcon(new ImageIcon(GUIModificarUsuario.class.getResource("/options-REDM.png")));
 		label.setBounds(145, 22, 123, 121);
 		panel.add(label);
 	}

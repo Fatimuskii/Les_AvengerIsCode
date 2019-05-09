@@ -88,6 +88,7 @@ public class GUIAltaUsuario extends JFrame {
 		this.label_4 = new JLabel();
 		this.label_5 = new JLabel();
 		this.btnFinalizar = new JButton();
+		this.GUI_DatosBancariosUsuario = new GUIDatosBancariosUsuario();
 		initGUI();
 	}
 
@@ -97,7 +98,6 @@ public class GUIAltaUsuario extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				GUIAltaUsuario.class.getResource("/logo.png")));
 		setTitle("Alta Usuario");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 453, 441);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

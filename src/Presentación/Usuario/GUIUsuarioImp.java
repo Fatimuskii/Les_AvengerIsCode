@@ -45,6 +45,8 @@ public class GUIUsuarioImp extends GUIUsuario {
 		this.contentPane = new JPanel();
 		this.txtBuscarUsuario = new JTextField();
 		this.GUI_PerfilUsuario = new GUIPerfilUsuario();
+		this.GUI_BajaUsuario = new GUIBajaUsuario();
+		this.GUI_ModificarUsuario = new GUIModificarUsuario();
 		this.press = false;
 		initGUI();
 	}
@@ -53,7 +55,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 		setTitle("Men\u00FA Usuario");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				GUIUsuarioImp.class.getResource("/logo.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	//	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 612, 251);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

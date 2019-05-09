@@ -26,22 +26,19 @@ public class GUIDatosBancariosUsuario extends JFrame{
 	private JTextField txtNombreEnLa;
 	private boolean press;
 	private boolean press2;
-	public GUIDatosBancariosUsuario(JPanel contentPane,
-			JTextField txtNmeroDeTarjeta, JTextField txtNombreEnLa,
-			boolean press, boolean press2) {
+	public GUIDatosBancariosUsuario() {
 		super();
-		this.contentPane = contentPane;
-		this.txtNmeroDeTarjeta = txtNmeroDeTarjeta;
-		this.txtNombreEnLa = txtNombreEnLa;
-		this.press = press;
-		this.press2 = press2;
+		this.contentPane = new JPanel();
+		this.txtNmeroDeTarjeta = new JTextField();
+		this.txtNombreEnLa = new JTextField();
+		this.press = false;
+		this.press2 = false;
 		initGUI();
 	}
 	
 	public void initGUI(){
 		setTitle("Alta Usuario");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GUIDatosBancariosUsuario.class.getResource("/logo.png")));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

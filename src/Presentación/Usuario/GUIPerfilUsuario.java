@@ -28,8 +28,7 @@ public class GUIPerfilUsuario extends JFrame {
 	public void initGUI(){
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GUIPerfilUsuario.class.getResource("/logo.png")));
 		setTitle("Perfil Usuario");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 431, 300);
+		setBounds(100, 100, 521, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -49,12 +48,12 @@ public class GUIPerfilUsuario extends JFrame {
 		lblNewLabel_1.setBounds(20, 93, 68, 14);
 		panel.add(lblNewLabel_1);
 		
-		JButton btnImpresora = new JButton("Impresora");
-		btnImpresora.setBounds(10, 141, 99, 23);
+		JButton btnImpresora = new JButton("Mi Impresora");
+		btnImpresora.setBounds(363, 86, 110, 21);
 		panel.add(btnImpresora);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(119, 69, 56, 21);
+		menuBar.setBounds(148, 86, 60, 21);
 		panel.add(menuBar);
 		
 		JMenu mnDiseos = new JMenu("Dise\u00F1os");
@@ -66,19 +65,33 @@ public class GUIPerfilUsuario extends JFrame {
 		JMenuItem mntmCreados = new JMenuItem("Creados");
 		mnDiseos.add(mntmCreados);
 		
+		JLabel lblNewLabel_2 = new JLabel("");
+		lblNewLabel_2.setIcon(new ImageIcon(GUIPerfilUsuario.class.getResource("/graphic-tools-REDM.png")));
+		lblNewLabel_2.setBounds(155, 36, 53, 49);
+		panel.add(lblNewLabel_2);
+		
 		JMenuBar menuBar_1 = new JMenuBar();
-		menuBar_1.setBounds(233, 51, 56, 43);
+		menuBar_1.setBounds(256, 86, 60, 21);
 		panel.add(menuBar_1);
 		
-		JMenu mnNewMenu = new JMenu("");
-		mnNewMenu.setIcon(new ImageIcon(GUIPerfilUsuario.class.getResource("/carr.png")));
-		menuBar_1.add(mnNewMenu);
+		JMenu mnCesta = new JMenu("  Cesta");
+		menuBar_1.add(mnCesta);
 		
 		JMenuItem mntmDiseos = new JMenuItem("Dise\u00F1os");
-		mnNewMenu.add(mntmDiseos);
+		mnCesta.add(mntmDiseos);
 		
-		JMenuItem mntmPedidosImpresin = new JMenuItem("Pedidos impresi\u00F3n");
-		mnNewMenu.add(mntmPedidosImpresin);
+		JMenuItem menuItem = new JMenuItem("Pedido impresión");
+		mnCesta.add(menuItem);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(GUIPerfilUsuario.class.getResource("/commerce-and-shopping-REDM.png")));
+		label.setBounds(261, 36, 53, 49);
+		panel.add(label);
+		
+		JLabel label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(GUIPerfilUsuario.class.getResource("/3d-printer-REDM.png")));
+		label_1.setBounds(393, 36, 53, 49);
+		panel.add(label_1);
 	}
 	
 }
