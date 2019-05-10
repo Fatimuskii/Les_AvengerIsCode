@@ -47,6 +47,7 @@ public class Events {
 	
 	public static final int OPEN_GUI_LOCAL_MENU = 102;
 	public static final int OPEN_GUI_USUARIO_MENU = 104;	
+	public static final int OPEN_GUI_IMPRESORA_MENU = 105;	
 	
 	public static final int OPEN_GUI_ALTA_LOCAL = 110;
 	public static final int OPEN_GUI_BAJA_LOCAL = 111;
@@ -63,6 +64,13 @@ public class Events {
 	public static final int OPEN_GUI_ACCESO_USUARIO = 120;//TODO OSCAR
 	public static final int OPEN_GUI_DATOS_BANCARIOS_USUARIO = 121;
 	public static final int OPEN_GUI_PERFIL_USUARIO = 122;
+	
+	public static final int OPEN_GUI_ALTA_IMPRESORA = 123;
+	public static final int OPEN_GUI_BAJA_IMPRESORA = 124;
+	public static final int OPEN_GUI_MODIFICAR_IMPRESORA = 125;
+	public static final int OPEN_GUI_BUSCAR_IMPRESORA = 126;
+	public static final int OPEN_GUI_LISTAR_IMPRESORA = 127;
+	public static final int OPEN_GUI_BUSCAR_USUARIO_IMPRESORA = 128;
 	
 	
 	

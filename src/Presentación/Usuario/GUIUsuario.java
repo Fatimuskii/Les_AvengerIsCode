@@ -12,7 +12,7 @@ import javax.swing.JFrame;
  * @author Fatimuskii
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public abstract class GUIUsuario extends JFrame{//No era abstracta TODO
+public abstract class GUIUsuario extends JFrame{
 	private static GUIUsuario instance;
 	public abstract void initGUI();
 	

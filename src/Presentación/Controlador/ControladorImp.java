@@ -11,6 +11,7 @@ import Negocio.Usuario.SAUsuario;
 import Negocio.Local.TLocal;
 import Negocio.Usuario.TUsuario;
 import Presentación.GUIMensaje;
+import Presentación.Impresora.GUIImpresora;
 import Presentación.Local.GUIAltaLocal;
 import Presentación.Local.GUIAltaRepresentante;
 import Presentación.Local.GUILocal;
@@ -98,6 +99,27 @@ public class ControladorImp extends Controlador {
 		case Events.OPEN_GUI_MODIFICAR_USUARIO:
 			GUIUsuario.getInstance();
 			break;
+		case Events.OPEN_GUI_ALTA_IMPRESORA:
+			GUIImpresora.getInstance();
+			break;
+		case Events.OPEN_GUI_BAJA_IMPRESORA:
+			GUIImpresora.getInstance();
+			break;	
+		case Events.OPEN_GUI_BUSCAR_IMPRESORA:
+			GUIImpresora.getInstance();
+			break;	
+		case Events.OPEN_GUI_BUSCAR_USUARIO_IMPRESORA:
+			GUIImpresora.getInstance();
+			break;
+		case Events.OPEN_GUI_LISTAR_IMPRESORA:
+			GUIImpresora.getInstance();
+			break;
+		case Events.OPEN_GUI_MODIFICAR_IMPRESORA:
+			GUIImpresora.getInstance();
+			break;
+		case Events.OPEN_GUI_IMPRESORA_MENU:
+			GUIImpresora.getInstance();
+			break;		
 
 		// end-user-code
 		}

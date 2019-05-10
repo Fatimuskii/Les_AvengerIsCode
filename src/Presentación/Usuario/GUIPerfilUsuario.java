@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,13 +17,17 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Presentación.Impresora.GUIImpresoraImp;
+
 public class GUIPerfilUsuario extends JFrame {
 
 	private JPanel contentPane;
+	private GUIImpresoraImp GUI_ImpresoraImp;
 	
 	public GUIPerfilUsuario() throws HeadlessException {
 		super();
 		this.contentPane = new JPanel();
+		this.GUI_ImpresoraImp = new GUIImpresoraImp();
 		initGUI();
 	}
 
@@ -49,6 +55,12 @@ public class GUIPerfilUsuario extends JFrame {
 		panel.add(lblNewLabel_1);
 		
 		JButton btnImpresora = new JButton("Mi Impresora");
+		btnImpresora.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUI_ImpresoraImp.setVisible(true);	
+			}
+		});
+		
 		btnImpresora.setBounds(363, 86, 110, 21);
 		panel.add(btnImpresora);
 		

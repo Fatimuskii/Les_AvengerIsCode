@@ -8,6 +8,8 @@ import java.awt.Component;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -38,7 +40,6 @@ public class GUIUsuarioImp extends GUIUsuario {
 
 	private JPanel contentPane;
 	private JTextField txtBuscarUsuario;
-	private boolean press;
 
 	public GUIUsuarioImp() {
 		super();
@@ -47,7 +48,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 		this.GUI_PerfilUsuario = new GUIPerfilUsuario();
 		this.GUI_BajaUsuario = new GUIBajaUsuario();
 		this.GUI_ModificarUsuario = new GUIModificarUsuario();
-		this.press = false;
+		this.setFocusable(true);
 		initGUI();
 	}
 
@@ -61,8 +62,6 @@ public class GUIUsuarioImp extends GUIUsuario {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		press = false;
 
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(20, 22, 77, 64);
@@ -104,12 +103,17 @@ public class GUIUsuarioImp extends GUIUsuario {
 		mnNewMenu.add(mntmCerrarSesin);
 
 		txtBuscarUsuario = new JTextField();
-		txtBuscarUsuario.addKeyListener(new KeyAdapter() {
+		txtBuscarUsuario.addFocusListener(new FocusAdapter() {
 			@Override
-			public void keyPressed(KeyEvent arg0) {
-				if (!press) {
+			public void focusGained(FocusEvent arg0) {
+				if (txtBuscarUsuario.getText().equals("Buscar usuario")) {
 					txtBuscarUsuario.setText("");
-					press = true;
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtBuscarUsuario.getText().equals("")) {
+					txtBuscarUsuario.setText("Buscar usuario");
 				}
 			}
 		});
