@@ -7,6 +7,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -53,14 +55,8 @@ public class GUIAltaUsuario extends JFrame {
 	private JLabel label_3;
 	private JLabel label_4;
 	private JLabel label_5;
-
-	private boolean press;
-	private boolean press2;
-	private boolean press3;
-	private boolean press4;
-	private boolean press5;
-	private boolean press6;
 	private JButton btnFinalizar;
+	
 
 	private GUIDatosBancariosUsuario GUI_DatosBancariosUsuario;
 
@@ -89,14 +85,12 @@ public class GUIAltaUsuario extends JFrame {
 		this.label_5 = new JLabel();
 		this.btnFinalizar = new JButton();
 		this.GUI_DatosBancariosUsuario = new GUIDatosBancariosUsuario();
+		this.setFocusable(true);
 		initGUI();
 	}
 
 	public void initGUI() {
-		setResizable(false);
-
-		setIconImage(Toolkit.getDefaultToolkit().getImage(
-				GUIAltaUsuario.class.getResource("/logo.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(GUIAltaUsuario.class.getResource("/logo.png")));
 		setTitle("Alta Usuario");
 		setBounds(100, 100, 453, 441);
 		contentPane = new JPanel();
@@ -109,15 +103,21 @@ public class GUIAltaUsuario extends JFrame {
 		panel.setLayout(null);
 
 		txtNombre = new JTextField();
-		txtNombre.addKeyListener(new KeyAdapter() {
+		txtNombre.addFocusListener(new FocusAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				if (!press6) {
+			public void focusGained(FocusEvent arg0) {
+				if (txtNombre.getText().equals("Nombre")) {
 					txtNombre.setText("");
-					press6 = true;
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtNombre.getText().equals("")) {
+					txtNombre.setText("Nombre");
 				}
 			}
 		});
+		
 		txtNombre.setForeground(Color.DARK_GRAY);
 		txtNombre.setText("Nombre");
 		txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -127,12 +127,17 @@ public class GUIAltaUsuario extends JFrame {
 		txtNombre.setColumns(10);
 
 		txtApellidos = new JTextField();
-		txtApellidos.addKeyListener(new KeyAdapter() {
+		txtApellidos.addFocusListener(new FocusAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				if (!press5) {
+			public void focusGained(FocusEvent arg0) {
+				if (txtApellidos.getText().equals("Apellido(s)")) {
 					txtApellidos.setText("");
-					press5 = true;
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtApellidos.getText().equals("")) {
+					txtApellidos.setText("Apellido(s)");
 				}
 			}
 		});
@@ -143,12 +148,17 @@ public class GUIAltaUsuario extends JFrame {
 		txtApellidos.setColumns(10);
 
 		txtEmail = new JTextField();
-		txtEmail.addKeyListener(new KeyAdapter() {
+		txtEmail.addFocusListener(new FocusAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				if (!press4) {
+			public void focusGained(FocusEvent arg0) {
+				if (txtEmail.getText().equals("E-mail")) {
 					txtEmail.setText("");
-					press4 = true;
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtEmail.getText().equals("")) {
+					txtEmail.setText("E-mail");
 				}
 			}
 		});
@@ -159,12 +169,17 @@ public class GUIAltaUsuario extends JFrame {
 		txtEmail.setColumns(10);
 
 		txtContrasea = new JTextField();
-		txtContrasea.addKeyListener(new KeyAdapter() {
+		txtContrasea.addFocusListener(new FocusAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				if (!press2) {
+			public void focusGained(FocusEvent arg0) {
+				if (txtContrasea.getText().equals("Contraseña")) {
 					txtContrasea.setText("");
-					press2 = true;
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtContrasea.getText().equals("")) {
+					txtContrasea.setText("Contraseña");
 				}
 			}
 		});
@@ -180,12 +195,17 @@ public class GUIAltaUsuario extends JFrame {
 		panel.add(lblFechaDeNacimiento);
 
 		txtConfirmarContrasea = new JTextField();
-		txtConfirmarContrasea.addKeyListener(new KeyAdapter() {
+		txtConfirmarContrasea.addFocusListener(new FocusAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				if (!press) {
+			public void focusGained(FocusEvent arg0) {
+				if (txtConfirmarContrasea.getText().equals("Confirmar contraseña")) {
 					txtConfirmarContrasea.setText("");
-					press = true;
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtConfirmarContrasea.getText().equals("")) {
+					txtConfirmarContrasea.setText("Confirmar contraseña");
 				}
 			}
 		});
@@ -201,22 +221,27 @@ public class GUIAltaUsuario extends JFrame {
 		panel.add(spinner);
 
 		spinner_1 = new JSpinner();
-		spinner_1.setModel(new SpinnerNumberModel(1, 1, 12, 1));
+		spinner_1.setModel(new SpinnerNumberModel(1, 1, 12, 2));
 		spinner_1.setBounds(77, 184, 39, 20);
 		panel.add(spinner_1);
 
 		spinner_2 = new JSpinner();
-		spinner_2.setModel(new SpinnerNumberModel(1900, 1900, 2001, 1));
+		spinner_2.setModel(new SpinnerNumberModel(1900, 1900, 2001, 4));
 		spinner_2.setBounds(126, 184, 65, 20);
 		panel.add(spinner_2);
 
 		txtDireccin = new JTextField();
-		txtDireccin.addKeyListener(new KeyAdapter() {
+		txtDireccin.addFocusListener(new FocusAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
-				if (!press3) {
+			public void focusGained(FocusEvent arg0) {
+				if (txtDireccin.getText().equals("Dirección")) {
 					txtDireccin.setText("");
-					press3 = true;
+				}
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtDireccin.getText().equals("")) {
+					txtDireccin.setText("Dirección");
 				}
 			}
 		});
@@ -240,10 +265,8 @@ public class GUIAltaUsuario extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				if (!datosObligatorios()) {
-					JOptionPane.showOptionDialog(new JFrame(),
-							"Debes rellenar los campos obligatorios (*)",
-							"Quit", JOptionPane.OK_OPTION,
-							JOptionPane.OK_OPTION, null, null, null);
+					JOptionPane.showOptionDialog(new JFrame(), "Debes rellenar los campos obligatorios (*)", "Quit",
+							JOptionPane.OK_OPTION, JOptionPane.OK_OPTION, null, null, null);
 				} else {
 					if (!contraseñaErr()) {
 						GUI_DatosBancariosUsuario.setVisible(true);
@@ -259,10 +282,8 @@ public class GUIAltaUsuario extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (!datosObligatorios()) {
-					JOptionPane.showOptionDialog(new JFrame(),
-							"Debes rellenar los campos obligatorios (*)",
-							"Quit", JOptionPane.OK_OPTION,
-							JOptionPane.OK_OPTION, null, null, null);
+					JOptionPane.showOptionDialog(new JFrame(), "Debes rellenar los campos obligatorios (*)", "Quit",
+							JOptionPane.OK_OPTION, JOptionPane.OK_OPTION, null, null, null);
 				}
 				contraseñaErr();
 			}
@@ -311,34 +332,30 @@ public class GUIAltaUsuario extends JFrame {
 		label_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		label_5.setBounds(20, 316, 17, 14);
 		panel.add(label_5);
-
 	}
 
 	private boolean datosObligatorios() {
-		if (txtNombre.getText().isEmpty() || txtApellidos.getText().isEmpty()
-				|| txtEmail.getText().isEmpty()
-				|| txtContrasea.getText().isEmpty()
-				|| txtConfirmarContrasea.getText().isEmpty()
-				|| txtDireccin.getText().isEmpty() || !press || !press2
-				|| !press3 || !press4 || !press5 || !press6)
+		if (txtNombre.getText().equals("Nombre") || txtApellidos.getText().equals("Apellido(s)") || txtEmail.getText().equals("E-mail")
+				|| txtContrasea.getText().equals("Contraseña") || txtConfirmarContrasea.getText().equals("Confirmar contraseña")
+				|| txtDireccin.getText().equals("Dirección"))
 			return false;
 		return true;
 	}
 
 	private boolean contraseñaErr() {
-		if (!this.txtConfirmarContrasea.getText().equals(
-				this.txtContrasea.getText())) {
+		if (!this.txtConfirmarContrasea.getText().equals(this.txtContrasea.getText())) {
 			txtContrasea.setBackground(Color.red);
 			txtConfirmarContrasea.setBackground(Color.red);
-
-			JOptionPane.showMessageDialog(new JFrame(),
-					"La contraseña no coincide");
-
+			JOptionPane.showMessageDialog(new JFrame(), "La contraseña no coincide");
 			return true;
-		} else {
+		}
+		else {
 			txtContrasea.setBackground(Color.white);
 			txtConfirmarContrasea.setBackground(Color.white);
-			return false;
+
+		return false;
 		}
 	}
+	
+	//GENERAR ID ALEATORIO TODO
 }
