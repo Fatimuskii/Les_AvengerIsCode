@@ -56,19 +56,19 @@ public class ControladorImp extends Controlador {
 		TLocal tlocal;
 		TRepresentante trepre;
 		TUsuario tUsuario;
-		GUIMensaje res_mensaje = null;
 
 		int res;
 		switch (evento) {
 
-		/* Eventos de Local */
+		case Events.GUI:
+			GUIPlataformaImp.getInstance();
+			break;
+		/* Eventos de Local & Representante */
 		case Events.OPEN_GUI_LOCAL_MENU:
 			GUILocal.getInstance();
 			// GUILocal.getInstance().update
 			break;
-		case Events.GUI:
-			GUIPlataformaImp.getInstance();
-			break;
+
 		case Events.ALTA_LOCAL:
 			tlocal = (TLocal) datos;
 			res = this.SALocal.alta(tlocal);
@@ -82,11 +82,14 @@ public class ControladorImp extends Controlador {
 		case Events.ALTA_REPRESENTANTE:
 			trepre = (TRepresentante) datos;
 			res = this.SARepresentante.alta(trepre);
-
 			if (res > 0) {
-				GUIAltaLocal guiAltLocal = new GUIAltaLocal(res);
-				guiAltLocal.setVisible(true);
-			}
+				GUILocal.getInstance()
+						.update(Events.ALTA_REPRESENTANTE_OK, res);
+				//GUIAltaLocal Gui_altaLocal= new GUIAltaLocal();
+				
+			} else
+				GUILocal.getInstance()
+						.update(Events.ALTA_REPRESENTANTE_KO, res);
 
 			break;
 

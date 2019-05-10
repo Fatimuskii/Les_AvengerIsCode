@@ -23,20 +23,21 @@ public class GUILocalImp extends GUILocal {
 
 	// MENU DE LOCAL!
 
-	//private GUIAltaLocal Gui_altaLocal;
+	private GUIAltaLocal Gui_altaLocal;
 	private GUIAltaRepresentante Gui_altaRepre;
 	private GUIBajaLocal Gui_bajaLocal;
 	private GUIModificarLocal Gui_modLocal;
 	private GUIBuscarLocal Gui_buscarLocal;
 	private GUIListarLocales Gui_listarLocales;
 
+	JTextField nombreLocal;
+
 	private JPanel contentPane;
 
 	public GUILocalImp() {
 		super();
 		contentPane = new JPanel();
-		//Gui_altaLocal = new GUIAltaLocal();
-		Gui_altaRepre = new GUIAltaRepresentante();
+		// Gui_altaRepre = new GUIAltaRepresentante();
 		initGUI();
 	}
 
@@ -63,9 +64,28 @@ public class GUILocalImp extends GUILocal {
 			}
 		});
 
+		nombreLocal = new JTextField();
+		nombreLocal.setBounds(62, 75, 311, 28);
+		contentPane.add(nombreLocal);
+		nombreLocal.setColumns(10);
+
 		JButton btnBuscarLocal = new JButton("Buscar Local");
 		btnBuscarLocal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GUIMensaje mensaje = new GUIMensaje();
+				String n = nombreLocal.getText();
+
+				if (!n.equals("")) {
+					try {
+						Controlador.getInstance().accion(
+								Events.OPEN_GUI_BUSCAR_LOCAL, n);
+						dispose();
+					} catch (NumberFormatException number) {
+						mensaje.showMessage("Solo se admiten numeros", "",
+								false);
+						nombreLocal.setText("");
+					}
+				}
 			}
 		});
 
@@ -80,16 +100,13 @@ public class GUILocalImp extends GUILocal {
 		btnMostrarLocales.setBounds(386, 125, 124, 34);
 		contentPane.add(btnMostrarLocales);
 
-		JTextField nombreLocal = new JTextField();
-		nombreLocal.setBounds(62, 75, 311, 28);
-		contentPane.add(nombreLocal);
-		nombreLocal.setColumns(10);
-
 		JButton button = new JButton("Registrar local");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Gui_altaRepre.limpiarDatos();
+				Gui_altaRepre = new GUIAltaRepresentante();
 				Gui_altaRepre.setVisible(true);
+				
+				//Gui_altaLocal= new GUIAltaLocal();
 			}
 		});
 		button.setBounds(283, 264, 138, 34);
@@ -117,6 +134,19 @@ public class GUILocalImp extends GUILocal {
 					"ALTA LOCAL", false);
 			break;
 
+		case Events.ALTA_REPRESENTANTE_OK:
+			res_mensaje.showMessage(
+					"Se ha dado de alta correctamente al Representante con id: "
+							+ (int) res, "ALTA LOCAL", false);
+			Gui_altaLocal= new GUIAltaLocal();
+			Gui_altaLocal.setIdRepresentante((int)res);
+			Gui_altaLocal.setVisible(true);
+			
+			break;
+		case Events.ALTA_REPRESENTANTE_KO:
+			res_mensaje.showMessage("Error en el alta del Representante.",
+					"ALTA LOCAL", false);
+			break;
 		}
 
 	}

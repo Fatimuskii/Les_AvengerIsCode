@@ -28,52 +28,46 @@ import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 
 @SuppressWarnings("serial")
-public class GUIAltaLocal extends JFrame {
+public class GUIAltaLocal extends GUILocalImp {
 
 	
-
 	private JPanel contentPane;
 
 	private TLocal local;
 	private int IdRepresentante;
 
 	
-	JTextField nombre;
-	JTextField telefono;
-	JTextField CIF;
-	JTextField direccion;
-	JTextField CP;
-	JTextField localidad;
-	//JTextField IdRepre;
+	private JTextField nombre;
+	private JTextField telefono;
+	private JTextField CIF;
+	private JTextField direccion;
+	private JTextField CP;
+	private JTextField localidad;
 	
 
-	public GUIAltaLocal() {
+	public GUIAltaLocal(){
 		super();
 		contentPane = new JPanel();
-		initGUI();
-	}
-	public GUIAltaLocal(int idRep){
-		super();
-		contentPane = new JPanel();
-		this.IdRepresentante= idRep;
 		initGUI();
 	}
 
 	public int getIdRepresentante(){
 		return this.IdRepresentante;
 	}
+	public void setIdRepresentante(int id){
+		this.IdRepresentante = id;
+	}
 
 	public void initGUI() {
 		setResizable(false);
-
 		setIconImage(Toolkit
 				.getDefaultToolkit()
 				.getImage(
 						"imagenes\\local1.png"));
 		setTitle("FORMULARIO DE CREACION DE LOCAL");
-		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 492, 455);
+		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -182,7 +176,7 @@ public class GUIAltaLocal extends JFrame {
 	public void limpiarDatos() {
 		// TODO Apéndice de método generado automáticamente
 		contentPane = new JPanel();
-		initGUI();
+		//initGUI();
 	}
 
 

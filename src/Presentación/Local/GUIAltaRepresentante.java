@@ -13,7 +13,8 @@ import Presentación.GUIMensaje;
 import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 
-public class GUIAltaRepresentante extends JFrame {
+@SuppressWarnings("serial")
+public class GUIAltaRepresentante extends GUILocalImp {
 
 	private JPanel contentPane;
 	private TRepresentante representante;
@@ -21,13 +22,12 @@ public class GUIAltaRepresentante extends JFrame {
 	private JTextField rep_nombreCompleto;
 	private JTextField telefonoPersonal;
 	private JTextField email;
-	
 
 	public GUIAltaRepresentante() {
 		super();
 		contentPane = new JPanel();
 		initGUI();
-
+		
 	}
 	
 	public void initGUI() {
@@ -86,7 +86,6 @@ public class GUIAltaRepresentante extends JFrame {
 					Controlador.getInstance().accion(Events.ALTA_REPRESENTANTE, representante);
 					dispose();
 				
-				
 			}
 		});
 		botonAceptar.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -115,7 +114,7 @@ public class GUIAltaRepresentante extends JFrame {
 	public void limpiarDatos() {
 		// TODO Apéndice de método generado automáticamente
 		contentPane = new JPanel();
-		initGUI();
+		//initGUI();
 	}
 
 }

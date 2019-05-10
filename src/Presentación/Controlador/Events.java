@@ -46,6 +46,7 @@ public class Events {
 	public static final int GUI_MENUUSER=103; 
 	
 	public static final int OPEN_GUI_LOCAL_MENU = 102;
+	
 	public static final int OPEN_GUI_USUARIO_MENU = 104;	
 	public static final int OPEN_GUI_IMPRESORA_MENU = 105;	
 	
@@ -54,24 +55,23 @@ public class Events {
 	public static final int OPEN_GUI_MODIFICAR_LOCAL = 112;
 	public static final int OPEN_GUI_BUSCAR_LOCAL = 113;
 	public static final int OPEN_GUI_LISTAR_LOCALES = 114;
+	public static final int	OPEN_GUI_REPRESENTANTE= 115;
 	
 	
-	public static final int OPEN_GUI_ALTA_USUARIO = 115;
-	public static final int OPEN_GUI_BAJA_USUARIO = 116;
-	public static final int OPEN_GUI_MODIFICAR_USUARIO = 117;
-	public static final int OPEN_GUI_BUSCAR_USUARIO = 118;
-	public static final int OPEN_GUI_LISTAR_USUARIO = 119;
-	public static final int OPEN_GUI_ACCESO_USUARIO = 120;//TODO OSCAR
-	public static final int OPEN_GUI_DATOS_BANCARIOS_USUARIO = 121;
-	public static final int OPEN_GUI_PERFIL_USUARIO = 122;
+	public static final int OPEN_GUI_ALTA_USUARIO = 116;
+	public static final int OPEN_GUI_BAJA_USUARIO = 117;
+	public static final int OPEN_GUI_MODIFICAR_USUARIO = 118;
+	public static final int OPEN_GUI_BUSCAR_USUARIO = 119;
+	public static final int OPEN_GUI_LISTAR_USUARIO = 120;
+	public static final int OPEN_GUI_ACCESO_USUARIO = 121;//TODO OSCAR
+	public static final int OPEN_GUI_DATOS_BANCARIOS_USUARIO = 122;
+	public static final int OPEN_GUI_PERFIL_USUARIO = 123;
 	
-	public static final int OPEN_GUI_ALTA_IMPRESORA = 123;
-	public static final int OPEN_GUI_BAJA_IMPRESORA = 124;
-	public static final int OPEN_GUI_MODIFICAR_IMPRESORA = 125;
-	public static final int OPEN_GUI_BUSCAR_IMPRESORA = 126;
-	public static final int OPEN_GUI_LISTAR_IMPRESORA = 127;
-	public static final int OPEN_GUI_BUSCAR_USUARIO_IMPRESORA = 128;
-	
-	
+	public static final int OPEN_GUI_ALTA_IMPRESORA = 124;
+	public static final int OPEN_GUI_BAJA_IMPRESORA = 125;
+	public static final int OPEN_GUI_MODIFICAR_IMPRESORA = 126;
+	public static final int OPEN_GUI_BUSCAR_IMPRESORA = 127;
+	public static final int OPEN_GUI_LISTAR_IMPRESORA = 128;
+	public static final int OPEN_GUI_BUSCAR_USUARIO_IMPRESORA = 129;
 	
 }
