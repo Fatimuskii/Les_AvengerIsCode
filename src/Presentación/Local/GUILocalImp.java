@@ -76,15 +76,13 @@ public class GUILocalImp extends GUILocal {
 				String n = nombreLocal.getText();
 
 				if (!n.equals("")) {
-					try {
-						Controlador.getInstance().accion(
-								Events.OPEN_GUI_BUSCAR_LOCAL, n);
-						dispose();
-					} catch (NumberFormatException number) {
-						mensaje.showMessage("Solo se admiten numeros", "",
-								false);
-						nombreLocal.setText("");
-					}
+					Gui_buscarLocal = new GUIBuscarLocal();
+					Gui_buscarLocal.setVisible(true);	
+				}
+				else{
+					mensaje.showMessage("No se admiten sól numeros", "",
+							false);
+					nombreLocal.setText("");
 				}
 			}
 		});
