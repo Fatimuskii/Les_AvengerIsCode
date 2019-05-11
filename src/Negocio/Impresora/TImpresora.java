@@ -48,6 +48,29 @@ public class TImpresora {
 	 */
 	private boolean activo;
 
+	public TImpresora(int idImpresora, String nombre, String material, float alto,
+			float ancho, float profundidad, int usuario, boolean activo) {
+		this.Id_impresora=idImpresora;
+		this.nombre=nombre;
+		this.material=material;
+		this.alto = alto;
+		this.ancho=ancho;
+		this.profundidad=profundidad;
+		this.usuario=usuario;
+		this.activo=activo;
+	}
+	
+	public TImpresora(String nombre, String material, float alto, float ancho,
+			float profundidad, int usuario, boolean activo) {
+		this.nombre=nombre;
+		this.material=material;
+		this.alto = alto;
+		this.ancho=ancho;
+		this.profundidad=profundidad;
+		this.usuario=usuario;
+		this.activo=activo;
+	}
+
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->

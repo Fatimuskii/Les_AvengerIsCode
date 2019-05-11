@@ -9,6 +9,22 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- --------------------------------------------------------
 
+--
+-- Estructura de tabla para la tabla `disenos`
+--
+CREATE TABLE IF NOT EXISTS disenos(
+	idDiseno int(11) NOT NULL AUTO_INCREMENT,
+	nombre varchar(20) NOT NULL,
+	descripcion varchar(200),
+	propietario int(11) NOT NULL,
+	alto float NOT NULL,
+	ancho float NOT NULL,
+	profundidad float NOT NULL,
+	precio float NOT NULL,
+	archivo varchar(50) NOT NULL,
+	activo tinyint(1) NOT NULL,
+	PRIMARY KEY (idDiseno)
+);
 
 --
 -- Estructura de tabla para la tabla `representantes`

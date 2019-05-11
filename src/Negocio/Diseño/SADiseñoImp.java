@@ -4,8 +4,6 @@
 package Negocio.Diseño;
 
 
-
-
 import java.util.ArrayList;
 
 import Integración.Diseño.DAODiseño;
@@ -60,8 +58,6 @@ public class SADiseñoImp implements SADiseño {
 
 		TDiseño tDiseño;
 		tDiseño = diseñoDAO.buscarPorId(idDiseño);
-		System.out.println("entrando en BAJAA");
-
 		if (tDiseño != null) {
 			if (tDiseño.getActivo()) {
 				id = diseñoDAO.baja(idDiseño);

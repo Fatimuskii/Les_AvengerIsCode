@@ -37,7 +37,7 @@ public interface SAImpresora {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TImpresora buscarPorUsuario(int idUsuario);
+	public ArrayList<TImpresora> buscarPorUsuario(int idUsuario);
 
 	/** 
 	 * <!-- begin-UML-doc -->

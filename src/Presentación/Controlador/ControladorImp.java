@@ -130,7 +130,6 @@ public class ControladorImp extends Controlador {
 			/*DISEÑO*/
 		case Events.OPEN_GUI_DISEÑO_MENU:
 			GUIDiseño.getInstance();
-			// GUIDiseño.getInstance().update
 			break;
 		case Events.ALTA_DISEÑO:
 			tDiseño = (TDiseño) datos;

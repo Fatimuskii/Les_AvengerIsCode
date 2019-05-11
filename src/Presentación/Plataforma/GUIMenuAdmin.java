@@ -46,6 +46,7 @@ public class GUIMenuAdmin extends JFrame {
 		JButton btnImpresoras = new JButton("IMPRESORAS");
 		btnImpresoras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Controlador.getInstance().accion(Events.OPEN_GUI_IMPRESORA_MENU, null);
 			}
 		});
 		btnImpresoras.setBounds(161, 70, 116, 37);

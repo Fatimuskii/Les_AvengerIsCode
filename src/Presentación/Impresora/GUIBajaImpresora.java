@@ -22,7 +22,7 @@ import javax.swing.border.EmptyBorder;
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
- * @author Fatimuskii
+ * @author Marina
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 
@@ -30,6 +30,7 @@ import javax.swing.border.EmptyBorder;
 /**
  * Launch the application.
  */
+@SuppressWarnings("serial")
 public class GUIBajaImpresora extends JFrame {
 	
 	private JPanel contentPane;
@@ -51,7 +52,7 @@ public class GUIBajaImpresora extends JFrame {
 	 */
 	public void initGUI() {
 		setTitle("Baja Impresora");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(GUIBajaImpresora.class.getResource("/3d-printer.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\3d-printer.png"));
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -103,7 +104,8 @@ public class GUIBajaImpresora extends JFrame {
 		panel.add(textField_1);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(GUIBajaImpresora.class.getResource("/3d-printer-REDM.png")));
+		
+		lblNewLabel.setIcon(new ImageIcon("imagenes\\3d-printer-REDM.png"));
 		lblNewLabel.setBounds(187, 11, 73, 69);
 		panel.add(lblNewLabel);
 	}

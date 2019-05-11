@@ -35,6 +35,7 @@ import java.awt.event.ActionEvent;
  * Launch the application.
  */
 
+@SuppressWarnings("serial")
 public class GUIImpresoraImp extends GUIImpresora {
 	private JPanel contentPane;
 	private JTextField txtBuscar;
@@ -45,7 +46,7 @@ public class GUIImpresoraImp extends GUIImpresora {
 	public GUIImpresoraImp() {
 		super();
 		setTitle("Menu Impresora");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(GUIImpresoraImp.class.getResource("/3d-printer.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\3d-printer.png"));
 		this.contentPane = new JPanel();
 		this.txtBuscar = new JTextField();
 		this.txtBuscarIdusuarioImpresor = new JTextField();
@@ -71,7 +72,7 @@ public class GUIImpresoraImp extends GUIImpresora {
 		panel.setLayout(null);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(GUIImpresoraImp.class.getResource("/3d-printer-REDM.png")));
+		label.setIcon(new ImageIcon("imagenes\\3d-printer-REDM.png"));
 		label.setBounds(22, 0, 73, 69);
 		panel.add(label);
 		
@@ -158,12 +159,12 @@ public class GUIImpresoraImp extends GUIImpresora {
 		panel.add(button);
 		
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(GUIImpresoraImp.class.getResource("/logo-REDM-REDM.png")));
+		label_1.setIcon(new ImageIcon("imagenes\\logo-REDM-REDM.png"));
 		label_1.setBounds(25, 127, 46, 41);
 		panel.add(label_1);
 		
 		JLabel label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(GUIImpresoraImp.class.getResource("/Usuario-impresor-REDM.png")));
+		label_2.setIcon(new ImageIcon("imagenes\\Usuario-impresor-REDM.png"));
 		label_2.setBounds(22, 188, 53, 52);
 		panel.add(label_2);
 	}

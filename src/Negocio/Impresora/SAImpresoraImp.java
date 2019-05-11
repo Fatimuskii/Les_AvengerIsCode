@@ -5,6 +5,13 @@ package Negocio.Impresora;
 
 import java.util.ArrayList;
 
+import Integración.Diseño.DAODiseño;
+import Integración.Factoria.FactoriaDAO;
+import Integración.Impresora.DAOImpresora;
+import Integración.Usuario.DAOUsuario;
+import Negocio.Diseño.TDiseño;
+import Negocio.Usuario.TUsuario;
+
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
@@ -20,7 +27,22 @@ public class SAImpresoraImp implements SAImpresora {
 	public int alta(TImpresora tImpresora) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		return 0;
+		int id_impresora = -1;
+		
+		if (tImpresora != null) {	
+			//DAOUsuario usuarioDAO = FactoriaDAO.getInstance().generateDAOUsuario();
+
+		/*	TUsuario usuario = usuarioDAO.buscarIdUsuario(tDiseño.getPropietario());
+			if(usuario != null){
+				if(usuario.getActivo()){*/
+					DAOImpresora impresoraDAO = FactoriaDAO.getInstance().generateDAOImpresora();
+					tImpresora.setActivo(true);
+					id_impresora = impresoraDAO.alta(tImpresora);
+				}
+	//		}
+		//}
+		
+		return id_impresora;
 		// end-user-code
 	}
 
@@ -31,8 +53,10 @@ public class SAImpresoraImp implements SAImpresora {
 	 */
 	public TImpresora buscarId(int idImpresora) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
+		TImpresora tImpresora = null;
+		DAOImpresora impresoraDAO = FactoriaDAO.getInstance().generateDAOImpresora();
+		tImpresora = impresoraDAO.buscarId(idImpresora);
+		return tImpresora;
 		// end-user-code
 	}
 
@@ -41,10 +65,21 @@ public class SAImpresoraImp implements SAImpresora {
 	 * @see SAImpresora#buscarPorUsuario(int idUsuario)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TImpresora buscarPorUsuario(int idUsuario) {
+	public ArrayList<TImpresora> buscarPorUsuario(int idUsuario) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
+		ArrayList<TImpresora> listaImpresora = null;
+		
+		//Comprobar que el usuario existe y está activo
+		DAOUsuario usuarioDAO = FactoriaDAO.getInstance().generateDAOUsuario();
+		TUsuario usu = usuarioDAO.buscarId(idUsuario);
+		if(usu != null){
+			if(usu.getActivo()){
+				DAOImpresora impresoraDAO = FactoriaDAO.getInstance().generateDAOImpresora();
+				listaImpresora = impresoraDAO.buscarPorUsuario(idUsuario);
+			}
+		}
+		
+		return listaImpresora;
 		// end-user-code
 	}
 
@@ -55,8 +90,9 @@ public class SAImpresoraImp implements SAImpresora {
 	 */
 	public ArrayList<TImpresora> listarTodo() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
+		DAOImpresora impresoraDAO = FactoriaDAO.getInstance().generateDAOImpresora();
+		ArrayList<TImpresora> listaImpresora = impresoraDAO.listarTodo();
+		return listaImpresora;
 		// end-user-code
 	}
 
@@ -79,8 +115,19 @@ public class SAImpresoraImp implements SAImpresora {
 	 */
 	public int baja(int idImpresora) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return 0;
+		int id = -1;
+
+		DAOImpresora impresoraDAO = FactoriaDAO.getInstance().generateDAOImpresora();
+		
+		TImpresora tImpresora;
+		tImpresora = impresoraDAO.buscarId(idImpresora);
+		if (tImpresora != null) {
+			if (tImpresora.getActivo()) {
+				id = impresoraDAO.baja(idImpresora);
+			}
+		}
+
+		return id;
 		// end-user-code
 	}
 }

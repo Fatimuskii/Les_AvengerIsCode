@@ -78,7 +78,7 @@ public class GUIAltaImpresora extends JFrame{
 
 		setResizable(false);
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(GUIAltaImpresora.class.getResource("/3d-printer.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\3d-printer.png"));
 		setTitle("Alta Impresora");
 		setBounds(100, 100, 453, 441);
 		contentPane = new JPanel();
@@ -208,7 +208,7 @@ public class GUIAltaImpresora extends JFrame{
 		txtIntroduceTuId.setColumns(10);
 
 		JLabel label_7 = new JLabel("");
-		label_7.setIcon(new ImageIcon(GUIAltaImpresora.class.getResource("/logo-REDM.png")));
+		label_7.setIcon(new ImageIcon("imagenes\\logo-REDM.png"));
 		label_7.setBounds(28, 237, 58, 53);
 		panel.add(label_7);
 
@@ -231,7 +231,7 @@ public class GUIAltaImpresora extends JFrame{
 		panel.add(label_2);
 
 		JLabel label_3 = new JLabel("");
-		label_3.setIcon(new ImageIcon(GUIAltaImpresora.class.getResource("/3d-printer-REDM-REDM.png")));
+		label_3.setIcon(new ImageIcon("imagenes\\3d-printer-REDM-REDM.png"));
 		label_3.setBounds(229, 23, 156, 138);
 		panel.add(label_3);
 
