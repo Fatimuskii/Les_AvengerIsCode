@@ -4,10 +4,14 @@
 package Negocio.Diseño;
 
 
+
+
 import java.util.ArrayList;
 
 import Integración.Diseño.DAODiseño;
 import Integración.Factoria.FactoriaDAO;
+import Integración.Usuario.DAOUsuario;
+import Negocio.Usuario.TUsuario;
 
 
 /** 
@@ -24,17 +28,22 @@ public class SADiseñoImp implements SADiseño {
 	 */
 	public int alta(TDiseño tDiseño) {
 		// begin-user-code
+		int id_diseño = -1;
 		
-		int id_diseño=-1;
-		
-		
-		
-		if (tDiseño != null) {
-			DAODiseño diseñoDAO = FactoriaDAO.getInstance().generateDAODiseño();
-		}
+		if (tDiseño != null) {	
+			//DAOUsuario usuarioDAO = FactoriaDAO.getInstance().generateDAOUsuario();
+			
+		/*	TUsuario usuario = usuarioDAO.buscarIdUsuario(tDiseño.getPropietario());
+			if(usuario != null){
+				if(usuario.getActivo()){*/
+					DAODiseño diseñoDAO = FactoriaDAO.getInstance().generateDAODiseño();
+					tDiseño.setActivo(true);
+					id_diseño = diseñoDAO.alta(tDiseño);
+				}
+	//		}
+		//}
 		
 		return id_diseño;
-		 
 		// end-user-code
 	}
 
@@ -93,13 +102,12 @@ public class SADiseñoImp implements SADiseño {
 	 * @see SADiseño#buscarPorPalabraClave(String palabraClave)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TDiseño buscarPorPalabraClave(String palabraClave) {
+	public ArrayList<TDiseño> buscarPorPalabraClave(String palabraClave) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		TDiseño tDiseño = null;
 		DAODiseño diseñoDAO = FactoriaDAO.getInstance().generateDAODiseño();
-		tDiseño = diseñoDAO.buscarPorPalabraClave(palabraClave);
-		return tDiseño;
+		ArrayList<TDiseño> listaDiseños = diseñoDAO.buscarPorPalabraClave(palabraClave);
+		return listaDiseños;
 		// end-user-code
 	}
 
@@ -124,8 +132,18 @@ public class SADiseñoImp implements SADiseño {
 	public ArrayList<TDiseño> listarPorUsuario(int idUsuario) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		DAODiseño diseñoDAO = FactoriaDAO.getInstance().generateDAODiseño();
-		ArrayList<TDiseño> listaDiseños = diseñoDAO.listarPorUsuario(idUsuario);
+		ArrayList<TDiseño> listaDiseños = null;
+		
+		//Comprobar que el usuario existe y está activo
+		DAOUsuario usuarioDAO = FactoriaDAO.getInstance().generateDAOUsuario();
+		TUsuario usu = usuarioDAO.buscarId(idUsuario);
+		if(usu != null){
+			if(usu.getActivo()){
+				DAODiseño diseñoDAO = FactoriaDAO.getInstance().generateDAODiseño();
+				listaDiseños = diseñoDAO.listarPorUsuario(idUsuario);
+			}
+		}
+		
 		return listaDiseños;
 		// end-user-code
 	}

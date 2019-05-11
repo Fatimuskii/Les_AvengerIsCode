@@ -3,10 +3,12 @@
  */
 package Negocio.Impresora;
 
+import java.util.ArrayList;
+
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
- * @author Fatimuskii
+ * @author Marina
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public interface SAImpresora {
@@ -43,7 +45,7 @@ public interface SAImpresora {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object listarTodo();
+	public ArrayList<TImpresora> listarTodo();
 
 	/** 
 	 * <!-- begin-UML-doc -->

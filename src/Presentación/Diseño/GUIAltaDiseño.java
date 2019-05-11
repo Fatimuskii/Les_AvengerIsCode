@@ -6,6 +6,8 @@ package Presentación.Diseño;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -13,10 +15,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+
+import Negocio.Diseño.TDiseño;
+import Presentación.Controlador.Controlador;
+import Presentación.Controlador.Events;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -36,6 +43,7 @@ public class GUIAltaDiseño extends JFrame{
 	private JTextField textProfundidad;
 	private JTextArea textAreaDescripcion;
 
+	private TDiseño diseño;
 	
 	public GUIAltaDiseño(){
 		super();
@@ -91,6 +99,27 @@ public class GUIAltaDiseño extends JFrame{
 		textProfundidad.setColumns(10);
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					String nombre = textNombre.getText();
+					float altura = Float.parseFloat(textAltura.getText());
+					float ancho = Float.parseFloat(textAncho.getText());
+					float profundidad = Float.parseFloat(textProfundidad.getText());
+					float precio = Float.parseFloat(textPrecio.getText());
+					String descripcion = textAreaDescripcion.getText();
+					//¿String?
+					String archivo = textArchivo.getText();
+				
+					
+					diseño = new TDiseño(nombre, descripcion,1, altura, ancho, profundidad, precio, archivo, true);
+					Controlador.getInstance().accion(Events.ALTA_DISEÑO, diseño);
+				}
+				catch(Exception ex){
+					JOptionPane.showMessageDialog(null, "Informacion Erronea", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
 		
 		JLabel label = new JLabel("*");
 		label.setForeground(Color.RED);
@@ -253,7 +282,6 @@ public class GUIAltaDiseño extends JFrame{
 		textPrecio.setText("");
 		textArchivo.setText("");
 		textProfundidad.setText("");
-		textAreaDescripcion.setText("");
 		textAreaDescripcion.setText("");
 		// end-user-code
 	}

@@ -16,7 +16,7 @@ import Integración.Conexion.ConexionDAO;
  * @author Fatimuskii
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class DAOUsuarioImpl implements DAOUsuario {
+public class DAOUsuarioImp implements DAOUsuario {
 	/** 
 	 * (sin Javadoc)
 	 * @see DAOUsuario#create()

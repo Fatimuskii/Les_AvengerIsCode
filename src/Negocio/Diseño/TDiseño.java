@@ -3,8 +3,6 @@
  */
 package Negocio.Diseño;
 
-import Negocio.Usuario.TUsuario;
-
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
@@ -40,7 +38,21 @@ public class TDiseño {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private TDimension dimensiones;
+	private float alto;
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	private float ancho;
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	private float profundidad;
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
@@ -83,11 +95,35 @@ public class TDiseño {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private boolean activo;
-
-	public TDiseño(int int1, String string, String string2, int int2, int int3,
-			float float1, String string3, int int4, Object object,
-			boolean boolean1) {
-		// TODO Apéndice de constructor generado automáticamente
+	
+	public TDiseño(int id, String nombre, String descripcion, int idUsuario, float alto,
+			float ancho, float profundidad, float precio, String archivo, Object imagen,
+			boolean activo) {
+		this.id_diseño = id;
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.propietario = idUsuario;
+		this.alto = alto;
+		this.ancho = ancho;
+		this.profundidad = profundidad;
+		this.precio = precio;
+		this.archivo = archivo;
+		this.imagen = imagen;
+		this.activo = activo;
+	}
+	
+	public TDiseño(String nombre, String descripcion, int idUsuario, float alto,
+			float ancho, float profundidad, float precio, String archivo,/* Object imagen,*/
+			boolean activo) {
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.propietario = idUsuario;
+		this.alto = alto;
+		this.ancho = ancho;
+		this.profundidad = profundidad;
+		this.precio = precio;
+		this.archivo = archivo;
+		this.activo = activo;
 	}
 
 	/**
@@ -99,7 +135,6 @@ public class TDiseño {
 	 */
 	public int getId_diseño() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		return this.id_diseño;
 		// end-user-code
 	}
@@ -113,7 +148,6 @@ public class TDiseño {
 	 */
 	public void setId_diseño(int id) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		this.id_diseño = id;
 		// end-user-code
 	}
@@ -127,7 +161,6 @@ public class TDiseño {
 	 */
 	public String getNombre() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		return this.nombre;
 		// end-user-code
 	}
@@ -141,7 +174,6 @@ public class TDiseño {
 	 */
 	public void setNombre(String nombre) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		this.nombre = nombre;
 		// end-user-code
 	}
@@ -155,7 +187,6 @@ public class TDiseño {
 	 */
 	public int getPropietario() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		return this.propietario;
 		// end-user-code
 	}
@@ -169,7 +200,6 @@ public class TDiseño {
 	 */
 	public void setPropietario(int propietario) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		this.propietario = propietario;
 		// end-user-code
 	}
@@ -181,10 +211,9 @@ public class TDiseño {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TDimension getDimensiones() {
+	public float getAlto() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return this.dimensiones;
+		return this.alto;
 		// end-user-code
 	}
 
@@ -195,10 +224,61 @@ public class TDiseño {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setDimensiones(TDimension dimensiones) {
+	public void setAlto(float alto) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		this.dimensiones = dimensiones;
+		this.alto = alto;
+		// end-user-code
+	}
+	
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @return
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public float getAncho() {
+		// begin-user-code
+		return this.ancho;
+		// end-user-code
+	}
+	
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @param dimensiones
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public void setAncho(float ancho) {
+		// begin-user-code
+		this.ancho = ancho;
+		// end-user-code
+	}
+	
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @return
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public float getProfundidad() {
+		// begin-user-code
+		return this.profundidad;
+		// end-user-code
+	}
+	
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @param dimensiones
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public void setProfundidad(float profundidad) {
+		// begin-user-code
+		this.profundidad = profundidad;
 		// end-user-code
 	}
 
@@ -211,7 +291,6 @@ public class TDiseño {
 	 */
 	public float getPrecio() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		return this.precio;
 		// end-user-code
 	}
@@ -238,7 +317,6 @@ public class TDiseño {
 	 */
 	public int getPuntuacion() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		return this.puntuacion;
 		// end-user-code
 	}
@@ -252,7 +330,6 @@ public class TDiseño {
 	 */
 	public void setPuntuacion(int puntuacion) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		this.puntuacion = puntuacion;
 		// end-user-code
 	}
@@ -266,7 +343,6 @@ public class TDiseño {
 	 */
 	public String getDescripcion() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		return this.descripcion;
 		// end-user-code
 	}
@@ -280,7 +356,6 @@ public class TDiseño {
 	 */
 	public void setDescripcion(String descripcion) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		this.descripcion = descripcion;
 		// end-user-code
 	}
@@ -319,7 +394,7 @@ public class TDiseño {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void getImagen() {
+	public Object getImagen() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
 		return this.imagen;

@@ -4,6 +4,7 @@
 package Integración.Factoria;
 
 import Integración.Impresora.DAOImpresora;
+import Integración.Impresora.DAOImpresoraImp;
 import Integración.Local.DAOLocal;
 import Integración.Local.DAOLocalImpl;
 import Integración.Local.DAORepresentante;
@@ -13,7 +14,9 @@ import Integración.PedidoImpresion.DAOPedidoImpresionImp;
 import Integración.Plataforma.DAOPlataforma;
 import Integración.Plataforma.DAOPlataformaImp;
 import Integración.Usuario.DAOUsuario;
+import Integración.Usuario.DAOUsuarioImp;
 import Integración.Diseño.DAODiseño;
+import Integración.Diseño.DAODiseñoImp;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -29,8 +32,7 @@ public class FactoriaDAOImp extends FactoriaDAO {
 	 */
 	public DAOImpresora generateDAOImpresora() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
+		return new DAOImpresoraImp();
 		// end-user-code
 	}
 

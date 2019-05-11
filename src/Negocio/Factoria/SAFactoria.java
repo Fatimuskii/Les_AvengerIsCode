@@ -86,5 +86,5 @@ public abstract class SAFactoria {
 	 * @param Parameter1
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public abstract void generateSAPedidoImpresion(SAPedidoImpresion Parameter1);
+	public abstract SAPedidoImpresion generateSAPedidoImpresion();
 }

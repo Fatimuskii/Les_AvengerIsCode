@@ -3,6 +3,8 @@
  */
 package Presentación.Controlador;
 
+import java.util.ArrayList;
+
 import Negocio.Factoria.SAFactoria;
 import Negocio.Local.SALocal;
 import Negocio.Local.SARepresentante;
@@ -12,14 +14,9 @@ import Negocio.Local.TLocal;
 import Negocio.Usuario.TUsuario;
 import Negocio.Diseño.SADiseño;
 import Negocio.Diseño.TDiseño;
-import Presentación.GUIMensaje;
 import Presentación.Impresora.GUIImpresora;
-import Presentación.Local.GUIAltaLocal;
-import Presentación.Local.GUIAltaRepresentante;
 import Presentación.Local.GUILocal;
-import Presentación.Plataforma.GUIPlataforma;
 import Presentación.Plataforma.GUIPlataformaImp;
-import Presentación.Plataforma.GUILogin;
 import Presentación.Usuario.GUIUsuario;
 import Presentación.Diseño.GUIDiseño;
 
@@ -62,7 +59,9 @@ public class ControladorImp extends Controlador {
 		TUsuario tUsuario;
 		TDiseño tDiseño;
 		
-		
+		int idDiseño;
+		int idUsuario;
+		ArrayList<TDiseño> resultD;
 		int res;
 		switch (evento) {
 
@@ -74,7 +73,6 @@ public class ControladorImp extends Controlador {
 			GUILocal.getInstance();
 			// GUILocal.getInstance().update
 			break;
-
 		case Events.ALTA_LOCAL:
 			tlocal = (TLocal) datos;
 			res = this.SALocal.alta(tlocal);
@@ -139,10 +137,59 @@ public class ControladorImp extends Controlador {
 			res = this.SADiseño.alta(tDiseño);
 
 			if (res > 0)
-				GUILocal.getInstance().update(Events.ALTA_DISEÑO_OK, res);
+				GUIDiseño.getInstance().update(Events.ALTA_DISEÑO_OK, res);
 			else
-				GUILocal.getInstance().update(Events.ALTA_DISEÑO_KO, res);
+				GUIDiseño.getInstance().update(Events.ALTA_DISEÑO_KO, res);
 			break;
+		case Events.BAJA_DISEÑO:
+			idDiseño = (int) datos;
+			res = this.SADiseño.baja(idDiseño);
+			
+			if (res > 0)
+				GUIDiseño.getInstance().update(Events.BAJA_DISEÑO_OK, res);
+			else
+				GUIDiseño.getInstance().update(Events.BAJA_DISEÑO_KO, res);
+			break;
+		case Events.LISTAR_DISEÑOS:
+			resultD = this.SADiseño.listarTodos();
+			if (resultD != null)
+				GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_OK, resultD);
+			else
+				GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_KO, resultD);
+			break;
+			case Events.LISTAR_DISEÑOS_USU:
+				int idU = (int) datos;
+				resultD = this.SADiseño.listarPorUsuario(idU);
+			if (resultD != null)
+				GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_USU_OK, resultD);
+			else
+				GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_USU_KO, resultD);
+			break;
+			case Events.BUSCAR_DISEÑO_ID:
+			idDiseño = (int) datos;
+			tDiseño = this.SADiseño.buscarPorId(idDiseño);
+			if (tDiseño != null)
+				GUIDiseño.getInstance().update(Events.BUSCAR_DISEÑO_ID_OK, tDiseño);
+			else
+				GUIDiseño.getInstance().update(Events.BUSCAR_DISEÑO_ID_KO, tDiseño);
+			break;
+		case Events.BUSCAR_DISEÑO_PALABRA_CLAVE:
+			String palabra = (String) datos;
+			resultD = this.SADiseño.buscarPorPalabraClave(palabra);
+			if (resultD != null)
+				GUIDiseño.getInstance().update(Events.BUSCAR_DISEÑO_PALABRA_CLAVE, resultD);
+			else
+				GUIDiseño.getInstance().update(Events.BUSCAR_DISEÑO_PALABRA_CLAVE, resultD);
+			break;
+		case Events.MODIFICAR_DISEÑO:
+			tDiseño = (TDiseño) datos;
+			res = this.SADiseño.modificar(tDiseño);
+			if (res > 0)
+				GUIDiseño.getInstance().update(Events.MODIFICAR_DISEÑO_OK, res);
+			else
+				GUIDiseño.getInstance().update(Events.MODIFICAR_DISEÑO_KO, res);
+			break;
+			
 		// end-user-code
 		}
 

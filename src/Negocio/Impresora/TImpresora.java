@@ -3,14 +3,11 @@
  */
 package Negocio.Impresora;
 
-import Diagramadeclases.Impresora.Material;
-import Diagramadeclases.Diseño.Dimension;
-import Diagramadeclases.Usuario.Usuario;
 
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
- * @author Fatimuskii
+ * @author Marina
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class TImpresora {
@@ -43,7 +40,7 @@ public class TImpresora {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Usuario usuario;
+	private int usuario;
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
@@ -57,10 +54,9 @@ public class TImpresora {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer getId_impresora() {
+	public int getId_impresora() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
+		return this.Id_impresora;
 		// end-user-code
 	}
 
@@ -72,8 +68,7 @@ public class TImpresora {
 	 */
 	public void setId_impresora(int id) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
+		this.Id_impresora = id;
 		// end-user-code
 	}
 
@@ -85,8 +80,7 @@ public class TImpresora {
 	 */
 	public String getNombre() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
+		return this.nombre;
 		// end-user-code
 	}
 
@@ -98,8 +92,7 @@ public class TImpresora {
 	 */
 	public void setNombre(String nombre) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
+		this.nombre = nombre;
 		// end-user-code
 	}
 
@@ -109,7 +102,7 @@ public class TImpresora {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Enumeration getMaterial() {
+	public Material getMaterial() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
 		return null;
@@ -122,7 +115,7 @@ public class TImpresora {
 	 * @param material
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setMaterial(Enumeration material) {
+	public void setMaterial(Material material) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
 
@@ -135,10 +128,10 @@ public class TImpresora {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Class getTamaño() {
+	public Dimension getTamaño() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		return this.tamaño;
 		// end-user-code
 	}
 
@@ -148,7 +141,7 @@ public class TImpresora {
 	 * @param tamaño
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setTamaño(Class tamaño) {
+	public void setTamaño(Dimension tamaño) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
 
@@ -161,10 +154,10 @@ public class TImpresora {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Class getUsuario() {
+	public int getUsuario() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		return this.usuario;
 		// end-user-code
 	}
 
@@ -174,10 +167,9 @@ public class TImpresora {
 	 * @param usuario
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setUsuario(Class usuario) {
+	public void setUsuario(int usuario) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
+		this.usuario = usuario;
 		// end-user-code
 	}
 
@@ -189,8 +181,7 @@ public class TImpresora {
 	 */
 	public boolean getActivo() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return false;
+		return this.activo;
 		// end-user-code
 	}
 
@@ -202,8 +193,7 @@ public class TImpresora {
 	 */
 	public void setActivo(boolean activo) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
+		this.activo = activo;
 		// end-user-code
 	}
 }

@@ -10,6 +10,10 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
+
+import Presentación.Controlador.Controlador;
+import Presentación.Controlador.Events;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -24,7 +28,7 @@ import java.awt.event.ActionEvent;
 public class GUIBajaDiseño extends JFrame{
 	
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField textId;
 	
 	public GUIBajaDiseño(){
 		super();
@@ -43,10 +47,10 @@ public class GUIBajaDiseño extends JFrame{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBounds(171, 59, 86, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		textId = new JTextField();
+		textId.setBounds(171, 59, 86, 20);
+		contentPane.add(textId);
+		textId.setColumns(10);
 		
 		JLabel lblIdDiseo = new JLabel("ID Diseño:");
 		lblIdDiseo.setBounds(74, 62, 79, 14);
@@ -57,12 +61,13 @@ public class GUIBajaDiseño extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				
 				//Comprobar si el ID es correcto
-				
+				int id = Integer.parseInt(textId.getText());
 				//Comprobar si existe el ID del diseño
 				
 				int confirma = JOptionPane.showConfirmDialog(null, "¿Desea dar de baja el diseño?", "Confirmar baja de Diseño", 
 						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				if(confirma == JOptionPane.YES_OPTION) {
+					Controlador.getInstance().accion(Events.BAJA_DISEÑO, id);
 					//Dar de baja
 					//Poner activo a 0
 				}
@@ -84,7 +89,7 @@ public class GUIBajaDiseño extends JFrame{
 	 */
 	public void clearData() {
 		// begin-user-code
-		textField.setText("");
+		textId.setText("");
 		// end-user-code
 	}
 }

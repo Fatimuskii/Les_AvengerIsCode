@@ -132,7 +132,7 @@ public class GUIDiseñoImp extends GUIDiseño {
 		btnListarDiseos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gUIListarDiseños.clearData();
-				// gUIListarDiseños.setVisible(true);
+				gUIListarDiseños.setVisible(true);
 			}
 		});
 
@@ -148,13 +148,16 @@ public class GUIDiseñoImp extends GUIDiseño {
 		JButton btnListarDiseosPor = new JButton("Listar Diseños por usuario");
 		btnListarDiseosPor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				gUIListarporUsuarioDiseño.clearData();
+				gUIListarporUsuarioDiseño.setVisible(true);
 			}
 		});
 
 		JButton btnBuscarDiseo = new JButton("Buscar Diseño");
 		btnBuscarDiseo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//String id = txtBuscarId.getText();
+				
 				gUIBuscarporIdDiseño.clearData();
 				gUIBuscarporIdDiseño.setVisible(true);
 			}
@@ -164,7 +167,8 @@ public class GUIDiseñoImp extends GUIDiseño {
 				"Buscar Diseños por Palabra Clave");
 		btnBuscarDiseoPor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				gUIBuscarPalabraDiseño.clearData();
+				gUIBuscarPalabraDiseño.setVisible(true);
 			}
 		});
 

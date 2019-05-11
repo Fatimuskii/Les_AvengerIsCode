@@ -4,11 +4,12 @@
 package Integración.Impresora;
 
 import Negocio.Impresora.TImpresora;
+import java.util.ArrayList;
 
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
- * @author Fatimuskii
+ * @author Marina
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public interface DAOImpresora {
@@ -19,7 +20,7 @@ public interface DAOImpresora {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public int alta(Class tImpresora);
+	public int alta(TImpresora tImpresora);
 
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -28,7 +29,7 @@ public interface DAOImpresora {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Class buscarId(int idImpresora);
+	public TImpresora buscarId(int idImpresora);
 
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -45,7 +46,7 @@ public interface DAOImpresora {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object listarTodo();
+	public ArrayList<TImpresora> listarTodo();
 
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -54,7 +55,7 @@ public interface DAOImpresora {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public int modificar(Class tImpresora);
+	public int modificar(TImpresora tImpresora);
 
 	/** 
 	 * <!-- begin-UML-doc -->

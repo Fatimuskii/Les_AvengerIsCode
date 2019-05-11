@@ -60,7 +60,6 @@ public class SAFactoriaImp extends SAFactoria {
 	}
 	@Override
 	public SARepresentante generateSARepresentante() {
-		// TODO Apéndice de método generado automáticamente
 		return new SARepresentanteImp();
 	}
 	/** 

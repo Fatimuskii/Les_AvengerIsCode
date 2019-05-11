@@ -6,15 +6,11 @@ package Integración.Diseño;
 import Integración.Conexion.ConexionDAO;
 import Negocio.Diseño.TDiseño;
 
-import integracion.DAOConnection;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-import negocio.producto.TProducto;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -22,7 +18,7 @@ import negocio.producto.TProducto;
  * @author Marina
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class DAODiseñoImpl implements DAODiseño {
+public class DAODiseñoImp implements DAODiseño {
 	/** 
 	 * (sin Javadoc)
 	 * @see DAODiseño#alta(TDiseño tDiseño)
@@ -37,26 +33,28 @@ public class DAODiseñoImpl implements DAODiseño {
 		if(connection != null){
 			try{
 				Statement statement = connection.createStatement();
-				String query = "INSERT INTO diseños (nombre, descripcion, propietario, dimensiones, precio, archivo, puntuacion, imagen)"
+				String query = "INSERT INTO diseños (nombre, descripcion, propietario, alto, ancho, profundidad, precio, archivo, imagen)"
 						+ "VALUES ('"
-						+tDiseño.getNombre()
+						+ tDiseño.getNombre()
 						+ "', '"
 						+ tDiseño.getDescripcion()
 						+ "', '"
 						+ tDiseño.getPropietario()
 						+ "', '"
-						+ tDiseño.getDimensiones()
+						+ tDiseño.getAlto()
 						+ "', '"
-						+tDiseño.getPrecio()
+						+ tDiseño.getAncho()
 						+ "', '"
-						+tDiseño.getArchivo()
+						+ tDiseño.getProfundidad()
 						+ "', '"
-						+tDiseño.getPuntuacion()
+						+ tDiseño.getPrecio()
 						+ "', '"
-						+tDiseño.getImagen()
+						+ tDiseño.getArchivo()
 						+ "', '"
-						+(tDiseño.getActivo() ? 1 : 0)
-						+");";;
+						+ tDiseño.getImagen()
+						+ "', '"
+						+ (tDiseño.getActivo() ? 1 : 0)
+						+ ");";
 				statement.executeUpdate(query);
 				query = "SELECT last_insert_idDiseño() as last_IdDiseño from diseños";
 				ResultSet resultSet = statement.executeQuery(query);
@@ -115,14 +113,14 @@ public class DAODiseñoImpl implements DAODiseño {
 			try {
 				Statement statement = connection.createStatement();
 				String query = "UPDATE producto SET "
-						
-						+ "nombre='" + tDiseño.getNombre()+"', "
+						+ "nombre='" + tDiseño.getNombre()+ "', "
 						+ "descripcion='"+tDiseño.getDescripcion() + "', "
 						+ "propietario='" + tDiseño.getPropietario() + "', "
-						+ "dimensiones='" +  tDiseño.getDimensiones() + "', "
+						+ "alto='" +  tDiseño.getAlto() + "', "
+						+ "ancho='" +  tDiseño.getAncho() + "', "
+						+ "profundidad='" +  tDiseño.getProfundidad() + "', "
 						+ "precio='" + tDiseño.getPrecio() + "', "
 						+ "archivo='" + tDiseño.getArchivo() + "', "
-						+ "puntuacion='" + tDiseño.getPuntuacion() + "', "
 						+ "imagen='" + tDiseño.getImagen() + "', "
 						+ "activo=" + (tDiseño.getActivo() ? 1 : 0) + " "
 						+ "WHERE idDiseño=" + tDiseño.getId_diseño();
@@ -151,7 +149,7 @@ public class DAODiseñoImpl implements DAODiseño {
 		if(connection!=null) {
 			try {
 				Statement statement = connection.createStatement();
-				String query = "SELECT * FROM diseños WHERE idDiseño=" +idDiseño;
+				String query = "SELECT * FROM diseños WHERE idDiseño=" + idDiseño;
 				ResultSet resultSet = statement.executeQuery(query);
 				if(resultSet.next()) {
 					tDiseño = new TDiseño(
@@ -159,10 +157,11 @@ public class DAODiseñoImpl implements DAODiseño {
 							resultSet.getString("nombre"),
 							resultSet.getString("descripcion"),
 							resultSet.getInt("propietario"),
-							resultSet.getInt("dimensiones"),
+							resultSet.getFloat("alto"),
+							resultSet.getFloat("ancho"),
+							resultSet.getFloat("profundidad"),
 							resultSet.getFloat("precio"),
 							resultSet.getString("archivo"),
-							resultSet.getInt("puntuacion"),
 							resultSet.getObject("imagen"),
 							resultSet.getBoolean("activo")
 							);
@@ -181,7 +180,7 @@ public class DAODiseñoImpl implements DAODiseño {
 	 * @see DAODiseño#buscarPorPalabraClave(String palabraClave)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TDiseño buscarPorPalabraClave(String palabraClave) {
+	public ArrayList<TDiseño> buscarPorPalabraClave(String palabraClave) {
 		// begin-user-code
 		TDiseño tDiseño = null;
 		ArrayList<TDiseño>  listaDiseños = new ArrayList<>();
@@ -199,10 +198,11 @@ public class DAODiseñoImpl implements DAODiseño {
 							resultSet.getString("nombre"),
 							resultSet.getString("descripcion"),
 							resultSet.getInt("propietario"),
-							resultSet.getInt("dimensiones"),
+							resultSet.getFloat("alto"),
+							resultSet.getFloat("ancho"),
+							resultSet.getFloat("profundidad"),
 							resultSet.getFloat("precio"),
 							resultSet.getString("archivo"),
-							resultSet.getInt("puntuacion"),
 							resultSet.getObject("imagen"),
 							resultSet.getBoolean("activo")
 							);
@@ -241,10 +241,11 @@ public class DAODiseñoImpl implements DAODiseño {
 							resultSet.getString("nombre"),
 							resultSet.getString("descripcion"),
 							resultSet.getInt("propietario"),
-							resultSet.getInt("dimensiones"),
+							resultSet.getFloat("alto"),
+							resultSet.getFloat("ancho"),
+							resultSet.getFloat("profundidad"),
 							resultSet.getFloat("precio"),
 							resultSet.getString("archivo"),
-							resultSet.getInt("puntuacion"),
 							resultSet.getObject("imagen"),
 							resultSet.getBoolean("activo")
 							);
@@ -284,10 +285,11 @@ public class DAODiseñoImpl implements DAODiseño {
 							resultSet.getString("nombre"),
 							resultSet.getString("descripcion"),
 							resultSet.getInt("propietario"),
-							resultSet.getInt("dimensiones"),
+							resultSet.getFloat("alto"),
+							resultSet.getFloat("ancho"),
+							resultSet.getFloat("profundidad"),
 							resultSet.getFloat("precio"),
 							resultSet.getString("archivo"),
-							resultSet.getInt("puntuacion"),
 							resultSet.getObject("imagen"),
 							resultSet.getBoolean("activo")
 							);
