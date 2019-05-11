@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
 
+import Negocio.Diseño.TDiseño;
 import Presentación.Controlador.Events;
 
 import java.awt.event.ActionListener;
@@ -42,8 +43,6 @@ public class GUIBuscarporIdDiseño extends JFrame{
 	private JTextField textPuntuacion;
 	private JButton btnAceptar;
 	
-	
-	private JTextField[] texts = { textDiseño, textNombre, textDimensiones, textPuntuacion};
 
 	public GUIBuscarporIdDiseño(){
 		super();
@@ -96,9 +95,9 @@ public class GUIBuscarporIdDiseño extends JFrame{
 		
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				
-				
+				dispose();
 			}
 		});
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
@@ -188,20 +187,30 @@ public class GUIBuscarporIdDiseño extends JFrame{
 	 */
 	public void clearData() {
 		// begin-user-code
-		for (int i = 0; i < texts.length; ++i) {
-			texts[i].setText("");
-		}
+		textDiseño.setText("");
+		textNombre.setText("");
+		textDimensiones.setText("");
+		textPuntuacion.setText("");
 		textPane.setText("");
 		// end-user-code
 	}
 	
-	public void update(int event, Object res){
+	public void update(int event, TDiseño res){
 		switch (event) {
-		case Events.ALTA_DISEÑO_OK:
-			JOptionPane.showMessageDialog(null,"Éxito al crear el diseño");
-			//this.setVisible(false);
+		case Events.BUSCAR_DISEÑO_ID_OK:
+			textDiseño.setText("" + res.getId_diseño());
+			textNombre.setText("" + res.getNombre());
+			textDimensiones.setText("" + res.getAlto() + "x" + res.getAncho() + "x" + res.getProfundidad());
+			textPuntuacion.setText("" + res.getPropietario());
+			textPane.setText("" + res.getDescripcion());
+			
+			textDiseño.setEnabled(true);
+			textNombre.setEnabled(true);
+			textDimensiones.setEnabled(true);
+			textPuntuacion.setEnabled(true);
+			textPane.setEnabled(true);
 			break;
-		case Events.ALTA_DISEÑO_KO:
+		case Events.BUSCAR_DISEÑO_ID_KO:
 			JOptionPane.showMessageDialog(null,"Error al crear el producto");
 			break;
 		}

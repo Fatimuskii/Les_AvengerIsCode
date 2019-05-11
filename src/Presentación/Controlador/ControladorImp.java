@@ -177,9 +177,9 @@ public class ControladorImp extends Controlador {
 			String palabra = (String) datos;
 			resultD = this.SADiseño.buscarPorPalabraClave(palabra);
 			if (resultD != null)
-				GUIDiseño.getInstance().update(Events.BUSCAR_DISEÑO_PALABRA_CLAVE, resultD);
+				GUIDiseño.getInstance().update(Events.BUSCAR_DISEÑO_PALABRA_CLAVE_OK, resultD);
 			else
-				GUIDiseño.getInstance().update(Events.BUSCAR_DISEÑO_PALABRA_CLAVE, resultD);
+				GUIDiseño.getInstance().update(Events.BUSCAR_DISEÑO_PALABRA_CLAVE_KO, resultD);
 			break;
 		case Events.MODIFICAR_DISEÑO:
 			tDiseño = (TDiseño) datos;

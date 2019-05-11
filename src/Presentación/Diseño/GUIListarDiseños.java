@@ -3,33 +3,23 @@
  */
 package Presentación.Diseño;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JToolBar;
-import java.awt.GridBagLayout;
 import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 
 import Negocio.Diseño.TDiseño;
-import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 
 /** 
@@ -38,6 +28,7 @@ import Presentación.Controlador.Events;
  * @author Marina
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
+@SuppressWarnings("serial")
 public class GUIListarDiseños extends JFrame{
 
 	private JPanel contentPane;

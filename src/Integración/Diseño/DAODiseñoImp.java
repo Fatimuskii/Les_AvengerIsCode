@@ -192,11 +192,11 @@ public class DAODiseñoImp implements DAODiseño {
 		if(connection!=null) {
 			try {
 				Statement statement = connection.createStatement();
-				String query = "SELECT * FROM diseños WHERE nombre CONTAINS=" +palabraClave;
+				String query = "SELECT * FROM disenos WHERE nombre LIKE '%"+ palabraClave + "%'";
 				ResultSet resultSet = statement.executeQuery(query);
 				while(resultSet.next()) {
 					tDiseño = new TDiseño(
-							resultSet.getInt("idDiseño"),
+							resultSet.getInt("idDiseno"),
 							resultSet.getString("nombre"),
 							resultSet.getString("descripcion"),
 							resultSet.getInt("propietario"),
@@ -277,7 +277,7 @@ public class DAODiseñoImp implements DAODiseño {
 		if(connection!=null) {
 			try {
 				Statement statement = connection.createStatement();
-				String query = "SELECT * FROM diseños WHERE propietario="+idUsuario;
+				String query = "SELECT * FROM disenos WHERE propietario="+idUsuario;
 				ResultSet resultSet = statement.executeQuery(query);
 				TDiseño tDiseño;
 				while(resultSet.next()) {

@@ -95,7 +95,6 @@ public class SADiseñoImp implements SADiseño {
 		DAODiseño diseñoDAO = FactoriaDAO.getInstance().generateDAODiseño();
 		tDiseño = diseñoDAO.buscarPorId(idDiseño);
 		return tDiseño;
-
 		// end-user-code
 	}
 

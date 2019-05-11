@@ -139,9 +139,8 @@ public class GUIDiseñoImp extends GUIDiseño {
 			public void actionPerformed(ActionEvent e) {
 				gUIListarDiseños.clearData();
 				gUIListarDiseños.setVisible(true);
-				//GUIListar??
 				Controlador.getInstance().accion(Events.LISTAR_DISEÑOS, null);
-				toFront();
+				gUIListarDiseños.toFront();
 			}
 		});
 
@@ -165,10 +164,21 @@ public class GUIDiseñoImp extends GUIDiseño {
 		JButton btnBuscarDiseo = new JButton("Buscar Diseño");
 		btnBuscarDiseo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//String id = txtBuscarId.getText();
-				
 				gUIBuscarporIdDiseño.clearData();
+				int id = Integer.parseInt(txtBuscarId.getText());
+				
 				gUIBuscarporIdDiseño.setVisible(true);
+				
+				
+				try {
+					Controlador.getInstance().accion(Events.BUSCAR_DISEÑO_ID, id);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(new JFrame(),
+							"Información Errónea", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				}
+				
+				gUIBuscarporIdDiseño.toFront();
 			}
 		});
 
@@ -176,8 +186,11 @@ public class GUIDiseñoImp extends GUIDiseño {
 				"Buscar Diseños por Palabra Clave");
 		btnBuscarDiseoPor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String palabra = txtBuscarPalabraClave.getText();
 				gUIBuscarPalabraDiseño.clearData();
 				gUIBuscarPalabraDiseño.setVisible(true);
+				Controlador.getInstance().accion(Events.BUSCAR_DISEÑO_PALABRA_CLAVE, palabra);
+				gUIBuscarPalabraDiseño.toFront();
 			}
 		});
 
@@ -425,10 +438,10 @@ public class GUIDiseñoImp extends GUIDiseño {
 	public void update(int event, Object res){
 		switch (event) {
 		case Events.ALTA_DISEÑO_OK:
-			JOptionPane.showMessageDialog(null,"Éxito al crear el diseño");
+			gUIAltaDiseño.update(event, res);
 			break;
 		case Events.ALTA_DISEÑO_KO:
-			JOptionPane.showMessageDialog(null, "Error al crear el producto");
+			gUIAltaDiseño.update(event, res);
 			break;
 		case Events.BAJA_DISEÑO_OK:
 			gUIBajaDiseño.update(event, res);
@@ -442,6 +455,14 @@ public class GUIDiseñoImp extends GUIDiseño {
 		case Events.LISTAR_DISEÑOS_KO:
 			gUIListarDiseños.update(event, (ArrayList<TDiseño>) res);
 			break;
+		case Events.BUSCAR_DISEÑO_ID_OK:
+			gUIBuscarporIdDiseño.update(event, (TDiseño) res);
+		case Events.BUSCAR_DISEÑO_ID_KO:
+			gUIBuscarporIdDiseño.update(event, (TDiseño) res);
+		case Events.BUSCAR_DISEÑO_PALABRA_CLAVE_OK:
+			gUIBuscarPalabraDiseño.update(event, (ArrayList<TDiseño>) res);
+		case Events.BUSCAR_DISEÑO_PALABRA_CLAVE_KO:
+			gUIBuscarPalabraDiseño.update(event, (ArrayList<TDiseño>) res);
 		}
 		
 		

@@ -32,6 +32,7 @@ public class ConexionDAOImp extends ConexionDAO {
 		// TODO Apéndice de método generado automáticamente
 		String user = "root";
 		String pass = "";
+		// end-user-code
 		
 		try {
 			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/les_avengeris", user, pass);

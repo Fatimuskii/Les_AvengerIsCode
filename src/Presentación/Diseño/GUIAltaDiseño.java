@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -110,7 +111,6 @@ public class GUIAltaDiseño extends JFrame{
 					String descripcion = textAreaDescripcion.getText();
 					//¿String?
 					String archivo = textArchivo.getText();
-				
 					
 					diseño = new TDiseño(nombre, descripcion, 1, altura, ancho, profundidad, precio, archivo, true);
 					Controlador.getInstance().accion(Events.ALTA_DISEÑO, diseño);
@@ -286,7 +286,19 @@ public class GUIAltaDiseño extends JFrame{
 		// end-user-code
 	}
 	
-
+	public void update(int event, Object res){
+		switch (event) {
+		case Events.ALTA_DISEÑO_OK:
+			JOptionPane.showMessageDialog(null,"Éxito al crear el diseño");
+			dispose();
+			break;
+		case Events.ALTA_DISEÑO_KO:
+			JOptionPane.showMessageDialog(null, "Error al crear el producto");
+			break;
+		}
+		
+		
+	}
 
 	
 }
