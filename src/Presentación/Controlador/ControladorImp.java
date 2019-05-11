@@ -10,6 +10,8 @@ import Negocio.Local.TRepresentante;
 import Negocio.Usuario.SAUsuario;
 import Negocio.Local.TLocal;
 import Negocio.Usuario.TUsuario;
+import Negocio.Diseño.SADiseño;
+import Negocio.Diseño.TDiseño;
 import Presentación.GUIMensaje;
 import Presentación.Impresora.GUIImpresora;
 import Presentación.Local.GUIAltaLocal;
@@ -19,6 +21,7 @@ import Presentación.Plataforma.GUIPlataforma;
 import Presentación.Plataforma.GUIPlataformaImp;
 import Presentación.Plataforma.GUILogin;
 import Presentación.Usuario.GUIUsuario;
+import Presentación.Diseño.GUIDiseño;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -39,6 +42,7 @@ public class ControladorImp extends Controlador {
 	private SALocal SALocal;
 	private SARepresentante SARepresentante;
 	private SAUsuario SAUsuario;
+	private SADiseño SADiseño;
 
 	// AQUI VENDRIAN EL RESTO DE SA
 
@@ -46,7 +50,7 @@ public class ControladorImp extends Controlador {
 		SAFactoria factoriaSA = SAFactoria.getInstance();
 		SALocal = factoriaSA.generateSALocal();
 		SARepresentante = factoriaSA.generateSARepresentante();
-
+		SADiseño = factoriaSA.generateSADiseño();
 	}
 
 	@SuppressWarnings("null")

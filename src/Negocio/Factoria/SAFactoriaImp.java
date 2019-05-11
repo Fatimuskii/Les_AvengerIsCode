@@ -4,14 +4,19 @@
 package Negocio.Factoria;
 
 import Negocio.Diseño.SADiseño;
+import Negocio.Diseño.SADiseñoImp;
 import Negocio.Impresora.SAImpresora;
+import Negocio.Impresora.SAImpresoraImp;
 import Negocio.Local.SALocal;
 import Negocio.Local.SALocalImp;
 import Negocio.Local.SARepresentante;
 import Negocio.Local.SARepresentanteImp;
 import Negocio.Usuario.SAUsuario;
+import Negocio.Usuario.SAUsuarioImp;
 import Negocio.Plataforma.SAPlataforma;
+import Negocio.Plataforma.SAPlataformaImp;
 import Negocio.PedidoImpresion.SAPedidoImpresion;
+import Negocio.PedidoImpresion.SAPedidoImpresionImp;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -27,8 +32,7 @@ public class SAFactoriaImp extends SAFactoria {
 	 */
 	public SADiseño generateSADiseño() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
+		return new SADiseñoImp();
 		// end-user-code
 	}
 
@@ -39,8 +43,7 @@ public class SAFactoriaImp extends SAFactoria {
 	 */
 	public SAImpresora generateSAImpresora() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
+		return new SAImpresoraImp();
 		// end-user-code
 	}
 
@@ -52,7 +55,6 @@ public class SAFactoriaImp extends SAFactoria {
 	
 	public SALocal generateSALocal() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		return new SALocalImp();
 		// end-user-code
 	}
@@ -68,8 +70,7 @@ public class SAFactoriaImp extends SAFactoria {
 	 */
 	public SAUsuario generateSAUsuario() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
+		return new SAUsuarioImp();
 		// end-user-code
 	}
 
@@ -80,8 +81,7 @@ public class SAFactoriaImp extends SAFactoria {
 	 */
 	public SAPlataforma generateSAPlataforma() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
+		return new SAPlataformaImp();
 		// end-user-code
 	}
 
@@ -90,10 +90,9 @@ public class SAFactoriaImp extends SAFactoria {
 	 * @see SAFactoria#generateSAPedidoImpresion(SAPedidoImpresion Parameter1)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void generateSAPedidoImpresion(SAPedidoImpresion Parameter1) {
+	public SAPedidoImpresion generateSAPedidoImpresion() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
+		return new SAPedidoImpresionImp();
 		// end-user-code
 	}
 
