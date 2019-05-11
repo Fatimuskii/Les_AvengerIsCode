@@ -29,6 +29,7 @@ public class GUIBajaDiseño extends JFrame{
 	
 	private JPanel contentPane;
 	private JTextField textId;
+	private int id;
 	
 	public GUIBajaDiseño(){
 		super();
@@ -61,17 +62,16 @@ public class GUIBajaDiseño extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				
 				//Comprobar si el ID es correcto
-				int id = Integer.parseInt(textId.getText());
+				id = Integer.parseInt(textId.getText());
 				//Comprobar si existe el ID del diseño
 				
 				int confirma = JOptionPane.showConfirmDialog(null, "¿Desea dar de baja el diseño?", "Confirmar baja de Diseño", 
 						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				if(confirma == JOptionPane.YES_OPTION) {
 					Controlador.getInstance().accion(Events.BAJA_DISEÑO, id);
-					//Dar de baja
-					//Poner activo a 0
 				}
 				else {
+					dispose();
 					//No dar de baja el diseño
 					//¿Volver a Menú o a la GUI de baja?
 				}
@@ -92,4 +92,18 @@ public class GUIBajaDiseño extends JFrame{
 		textId.setText("");
 		// end-user-code
 	}
+	
+	public void update(int event, Object res){
+		switch (event) {
+		case Events.BAJA_DISEÑO_OK:
+			JOptionPane.showMessageDialog(null,"Eliminado correctamente el diseño: "+ id, "", JOptionPane.INFORMATION_MESSAGE);
+			//this.setVisible(false);
+			break;
+		case Events.BAJA_DISEÑO_KO:
+			JOptionPane.showMessageDialog(null,"Error al eliminar el diseño: " +id, "", JOptionPane.ERROR_MESSAGE);
+			break;
+		}
+		
+	}
+
 }

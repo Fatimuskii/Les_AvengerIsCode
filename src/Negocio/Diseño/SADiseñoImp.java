@@ -32,7 +32,7 @@ public class SADiseñoImp implements SADiseño {
 		
 		if (tDiseño != null) {	
 			//DAOUsuario usuarioDAO = FactoriaDAO.getInstance().generateDAOUsuario();
-			
+
 		/*	TUsuario usuario = usuarioDAO.buscarIdUsuario(tDiseño.getPropietario());
 			if(usuario != null){
 				if(usuario.getActivo()){*/
@@ -60,6 +60,8 @@ public class SADiseñoImp implements SADiseño {
 
 		TDiseño tDiseño;
 		tDiseño = diseñoDAO.buscarPorId(idDiseño);
+		System.out.println("entrando en BAJAA");
+
 		if (tDiseño != null) {
 			if (tDiseño.getActivo()) {
 				id = diseñoDAO.baja(idDiseño);
@@ -104,7 +106,6 @@ public class SADiseñoImp implements SADiseño {
 	 */
 	public ArrayList<TDiseño> buscarPorPalabraClave(String palabraClave) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		DAODiseño diseñoDAO = FactoriaDAO.getInstance().generateDAODiseño();
 		ArrayList<TDiseño> listaDiseños = diseñoDAO.buscarPorPalabraClave(palabraClave);
 		return listaDiseños;

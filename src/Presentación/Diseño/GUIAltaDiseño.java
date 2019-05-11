@@ -112,11 +112,11 @@ public class GUIAltaDiseño extends JFrame{
 					String archivo = textArchivo.getText();
 				
 					
-					diseño = new TDiseño(nombre, descripcion,1, altura, ancho, profundidad, precio, archivo, true);
+					diseño = new TDiseño(nombre, descripcion, 1, altura, ancho, profundidad, precio, archivo, true);
 					Controlador.getInstance().accion(Events.ALTA_DISEÑO, diseño);
 				}
 				catch(Exception ex){
-					JOptionPane.showMessageDialog(null, "Informacion Erronea", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Información Errónea", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -285,5 +285,8 @@ public class GUIAltaDiseño extends JFrame{
 		textAreaDescripcion.setText("");
 		// end-user-code
 	}
+	
+
+
 	
 }

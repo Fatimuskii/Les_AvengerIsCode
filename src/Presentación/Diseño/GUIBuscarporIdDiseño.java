@@ -9,10 +9,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
+
+import Presentación.Controlador.Events;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
@@ -190,4 +194,18 @@ public class GUIBuscarporIdDiseño extends JFrame{
 		textPane.setText("");
 		// end-user-code
 	}
+	
+	public void update(int event, Object res){
+		switch (event) {
+		case Events.ALTA_DISEÑO_OK:
+			JOptionPane.showMessageDialog(null,"Éxito al crear el diseño");
+			//this.setVisible(false);
+			break;
+		case Events.ALTA_DISEÑO_KO:
+			JOptionPane.showMessageDialog(null,"Error al crear el producto");
+			break;
+		}
+		
+	}
+
 }

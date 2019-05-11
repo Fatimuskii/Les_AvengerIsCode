@@ -144,7 +144,7 @@ public class ControladorImp extends Controlador {
 		case Events.BAJA_DISEÑO:
 			idDiseño = (int) datos;
 			res = this.SADiseño.baja(idDiseño);
-			
+			System.out.println("resultado Baja: " + res);
 			if (res > 0)
 				GUIDiseño.getInstance().update(Events.BAJA_DISEÑO_OK, res);
 			else
@@ -157,15 +157,15 @@ public class ControladorImp extends Controlador {
 			else
 				GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_KO, resultD);
 			break;
-			case Events.LISTAR_DISEÑOS_USU:
-				int idU = (int) datos;
-				resultD = this.SADiseño.listarPorUsuario(idU);
+		case Events.LISTAR_DISEÑOS_USU:
+			idUsuario = (int) datos;
+			resultD = this.SADiseño.listarPorUsuario(idUsuario);
 			if (resultD != null)
 				GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_USU_OK, resultD);
 			else
 				GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_USU_KO, resultD);
 			break;
-			case Events.BUSCAR_DISEÑO_ID:
+		case Events.BUSCAR_DISEÑO_ID:
 			idDiseño = (int) datos;
 			tDiseño = this.SADiseño.buscarPorId(idDiseño);
 			if (tDiseño != null)

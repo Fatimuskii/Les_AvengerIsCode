@@ -8,16 +8,22 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.ArrayList;
 
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.border.EmptyBorder;
+
+import Negocio.Diseño.TDiseño;
+import Presentación.Controlador.Controlador;
+import Presentación.Controlador.Events;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -133,6 +139,9 @@ public class GUIDiseñoImp extends GUIDiseño {
 			public void actionPerformed(ActionEvent e) {
 				gUIListarDiseños.clearData();
 				gUIListarDiseños.setVisible(true);
+				//GUIListar??
+				Controlador.getInstance().accion(Events.LISTAR_DISEÑOS, null);
+				toFront();
 			}
 		});
 
@@ -412,10 +421,29 @@ public class GUIDiseñoImp extends GUIDiseño {
 	 * @see GUIDiseño#update(int event, Object res)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void update(int event, Object res) {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	@SuppressWarnings("unchecked")
+	public void update(int event, Object res){
+		switch (event) {
+		case Events.ALTA_DISEÑO_OK:
+			JOptionPane.showMessageDialog(null,"Éxito al crear el diseño");
+			break;
+		case Events.ALTA_DISEÑO_KO:
+			JOptionPane.showMessageDialog(null, "Error al crear el producto");
+			break;
+		case Events.BAJA_DISEÑO_OK:
+			gUIBajaDiseño.update(event, res);
+			break;
+		case Events.BAJA_DISEÑO_KO:
+			gUIBajaDiseño.update(event, res);
+			break;
+		case Events.LISTAR_DISEÑOS_OK:
+			gUIListarDiseños.update(event,(ArrayList<TDiseño>) res);
+			break;
+		case Events.LISTAR_DISEÑOS_KO:
+			gUIListarDiseños.update(event, (ArrayList<TDiseño>) res);
+			break;
+		}
+		
+		
 	}
 }

@@ -97,7 +97,7 @@ public class TDiseño {
 	private boolean activo;
 	
 	public TDiseño(int id, String nombre, String descripcion, int idUsuario, float alto,
-			float ancho, float profundidad, float precio, String archivo, Object imagen,
+			float ancho, float profundidad, float precio, String archivo, /*Object imagen,*/
 			boolean activo) {
 		this.id_diseño = id;
 		this.nombre = nombre;
@@ -108,7 +108,7 @@ public class TDiseño {
 		this.profundidad = profundidad;
 		this.precio = precio;
 		this.archivo = archivo;
-		this.imagen = imagen;
+		//this.imagen = imagen;
 		this.activo = activo;
 	}
 	

@@ -29,11 +29,11 @@ public class DAODiseñoImp implements DAODiseño {
 		int idDiseño = -100;
 		ConexionDAO con = ConexionDAO.getInstance();
 		Connection connection = con.getConexion();
-		
+
 		if(connection != null){
 			try{
 				Statement statement = connection.createStatement();
-				String query = "INSERT INTO diseños (nombre, descripcion, propietario, alto, ancho, profundidad, precio, archivo, imagen)"
+				String query = "INSERT INTO disenos (nombre, descripcion, propietario, alto, ancho, profundidad, precio, archivo, activo)"
 						+ "VALUES ('"
 						+ tDiseño.getNombre()
 						+ "', '"
@@ -50,16 +50,16 @@ public class DAODiseñoImp implements DAODiseño {
 						+ tDiseño.getPrecio()
 						+ "', '"
 						+ tDiseño.getArchivo()
-						+ "', '"
-						+ tDiseño.getImagen()
+						/*+ "', '"
+						+ tDiseño.getImagen()*/
 						+ "', '"
 						+ (tDiseño.getActivo() ? 1 : 0)
-						+ ");";
+						+ "');";
 				statement.executeUpdate(query);
-				query = "SELECT last_insert_idDiseño() as last_IdDiseño from diseños";
+				query = "SELECT last_insert_id() as last_id from disenos";
 				ResultSet resultSet = statement.executeQuery(query);
 				if (resultSet.next()) {
-					idDiseño = resultSet.getInt("last_idDiseño");
+					idDiseño = resultSet.getInt("last_id");
 				}
 				connection.close();
 			}
@@ -85,9 +85,11 @@ public class DAODiseñoImp implements DAODiseño {
 		
 		if(connection !=null){
 			try{
-				Statement statement =connection.createStatement();
-				String query = "UPDATE diseños SET activo=0 WHERE idDiseño=" + idDiseño;
+				Statement statement = connection.createStatement();
+				String query = "UPDATE disenos SET activo=0 WHERE idDiseno=" + idDiseño;
 				statement.executeUpdate(query);
+				result = idDiseño;
+				connection.close();
 			}
 			catch(SQLException e){
 				e.printStackTrace();
@@ -112,7 +114,7 @@ public class DAODiseñoImp implements DAODiseño {
 		if(connection!=null) {
 			try {
 				Statement statement = connection.createStatement();
-				String query = "UPDATE producto SET "
+				String query = "UPDATE disenos SET "
 						+ "nombre='" + tDiseño.getNombre()+ "', "
 						+ "descripcion='"+tDiseño.getDescripcion() + "', "
 						+ "propietario='" + tDiseño.getPropietario() + "', "
@@ -121,7 +123,7 @@ public class DAODiseñoImp implements DAODiseño {
 						+ "profundidad='" +  tDiseño.getProfundidad() + "', "
 						+ "precio='" + tDiseño.getPrecio() + "', "
 						+ "archivo='" + tDiseño.getArchivo() + "', "
-						+ "imagen='" + tDiseño.getImagen() + "', "
+						//+ "imagen='" + tDiseño.getImagen() + "', "
 						+ "activo=" + (tDiseño.getActivo() ? 1 : 0) + " "
 						+ "WHERE idDiseño=" + tDiseño.getId_diseño();
 				statement.executeUpdate(query);
@@ -149,7 +151,7 @@ public class DAODiseñoImp implements DAODiseño {
 		if(connection!=null) {
 			try {
 				Statement statement = connection.createStatement();
-				String query = "SELECT * FROM diseños WHERE idDiseño=" + idDiseño;
+				String query = "SELECT * FROM disenos WHERE idDiseno=" + idDiseño;
 				ResultSet resultSet = statement.executeQuery(query);
 				if(resultSet.next()) {
 					tDiseño = new TDiseño(
@@ -162,7 +164,7 @@ public class DAODiseñoImp implements DAODiseño {
 							resultSet.getFloat("profundidad"),
 							resultSet.getFloat("precio"),
 							resultSet.getString("archivo"),
-							resultSet.getObject("imagen"),
+						//	resultSet.getObject("imagen"),
 							resultSet.getBoolean("activo")
 							);
 				}
@@ -203,7 +205,7 @@ public class DAODiseñoImp implements DAODiseño {
 							resultSet.getFloat("profundidad"),
 							resultSet.getFloat("precio"),
 							resultSet.getString("archivo"),
-							resultSet.getObject("imagen"),
+							//resultSet.getObject("imagen"),
 							resultSet.getBoolean("activo")
 							);
 					listaDiseños.add(tDiseño);
@@ -213,7 +215,7 @@ public class DAODiseñoImp implements DAODiseño {
 			}
 		}
 		
-		return tDiseño;
+		return listaDiseños;
 		// end-user-code
 	}
 
@@ -224,7 +226,6 @@ public class DAODiseñoImp implements DAODiseño {
 	 */
 	public ArrayList<TDiseño> listarTodos() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		ArrayList<TDiseño>  listaDiseños = new ArrayList<>();
 		ConexionDAO connectionDAO = ConexionDAO.getInstance();
 		Connection connection = connectionDAO.getConexion();
@@ -232,12 +233,12 @@ public class DAODiseñoImp implements DAODiseño {
 		if(connection!=null) {
 			try {
 				Statement statement = connection.createStatement();
-				String query = "SELECT * FROM diseños WHERE activo=1";
+				String query = "SELECT * FROM disenos WHERE activo=1";
 				ResultSet resultSet = statement.executeQuery(query);
 				TDiseño tDiseño;
 				while(resultSet.next()) {
 					tDiseño = new TDiseño(
-							resultSet.getInt("idDiseño"),
+							resultSet.getInt("idDiseno"),
 							resultSet.getString("nombre"),
 							resultSet.getString("descripcion"),
 							resultSet.getInt("propietario"),
@@ -246,7 +247,7 @@ public class DAODiseñoImp implements DAODiseño {
 							resultSet.getFloat("profundidad"),
 							resultSet.getFloat("precio"),
 							resultSet.getString("archivo"),
-							resultSet.getObject("imagen"),
+							//resultSet.getObject("imagen"),
 							resultSet.getBoolean("activo")
 							);
 					listaDiseños.add(tDiseño);
@@ -290,7 +291,7 @@ public class DAODiseñoImp implements DAODiseño {
 							resultSet.getFloat("profundidad"),
 							resultSet.getFloat("precio"),
 							resultSet.getString("archivo"),
-							resultSet.getObject("imagen"),
+							//resultSet.getObject("imagen"),
 							resultSet.getBoolean("activo")
 							);
 					listaDiseños.add(tDiseño);

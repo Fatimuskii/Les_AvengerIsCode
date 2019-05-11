@@ -9,8 +9,6 @@ public class main {
 	/**
 	 * @param args
 	 */
-		// TODO Apéndice de método generado automáticamente
-
 		public static Dimension WINDOW_DIM = new Dimension(1000, 75);
 		
 		public static void main(String[] args) {
