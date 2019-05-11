@@ -13,6 +13,7 @@ import javax.swing.JFrame;
  * @author Marina
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
+@SuppressWarnings("serial")
 public abstract class GUIDiseño extends JFrame{
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -27,28 +28,13 @@ public abstract class GUIDiseño extends JFrame{
 	 * @param evento
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public static GUIDiseño getInstance(int evento) {
+	public static GUIDiseño getInstance() {
 		// begin-user-code
 		if(instance == null)
 			instance = new GUIDiseñoImp();
 		instance.setVisible(true);
 		return instance;
 		// end-user-code
-	}
-
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUIDiseño frame = new GUIDiseñoImp();
-					frame.setFocusable(true);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
 	}
 
 	/** 

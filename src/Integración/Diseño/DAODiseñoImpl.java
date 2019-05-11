@@ -3,25 +3,75 @@
  */
 package Integración.Diseño;
 
+import Integración.Conexion.ConexionDAO;
+import Negocio.Diseño.TDiseño;
+
+import integracion.DAOConnection;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+
+import negocio.producto.TProducto;
 
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
- * @author Fatimuskii
+ * @author Marina
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class DAODiseñoImpl implements DAODiseño {
 	/** 
 	 * (sin Javadoc)
-	 * @see DAODiseño#alta(Class tDiseño)
+	 * @see DAODiseño#alta(TDiseño tDiseño)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public int alta(Class tDiseño) {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return 0;
-		// end-user-code
+	public int alta(TDiseño tDiseño) {
+		
+		int idDiseño = -100;
+		ConexionDAO con = ConexionDAO.getInstance();
+		Connection connection = con.getConexion();
+		
+		if(connection != null){
+			try{
+				Statement statement = connection.createStatement();
+				String query = "INSERT INTO diseños (nombre, descripcion, propietario, dimensiones, precio, archivo, puntuacion, imagen)"
+						+ "VALUES ('"
+						+tDiseño.getNombre()
+						+ "', '"
+						+ tDiseño.getDescripcion()
+						+ "', '"
+						+ tDiseño.getPropietario()
+						+ "', '"
+						+ tDiseño.getDimensiones()
+						+ "', '"
+						+tDiseño.getPrecio()
+						+ "', '"
+						+tDiseño.getArchivo()
+						+ "', '"
+						+tDiseño.getPuntuacion()
+						+ "', '"
+						+tDiseño.getImagen()
+						+ "', '"
+						+(tDiseño.getActivo() ? 1 : 0)
+						+");";;
+				statement.executeUpdate(query);
+				query = "SELECT last_insert_idDiseño() as last_IdDiseño from diseños";
+				ResultSet resultSet = statement.executeQuery(query);
+				if (resultSet.next()) {
+					idDiseño = resultSet.getInt("last_idDiseño");
+				}
+				connection.close();
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+				idDiseño = -100;
+			}
+		}
+		
+		return idDiseño;
 	}
 
 	/** 
@@ -31,20 +81,59 @@ public class DAODiseñoImpl implements DAODiseño {
 	 */
 	public int baja(int idDiseño) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return 0;
+		int result = -100;
+		ConexionDAO connectionDAO = ConexionDAO.getInstance();
+		Connection connection = connectionDAO.getConexion();
+		
+		if(connection !=null){
+			try{
+				Statement statement =connection.createStatement();
+				String query = "UPDATE diseños SET activo=0 WHERE idDiseño=" + idDiseño;
+				statement.executeUpdate(query);
+			}
+			catch(SQLException e){
+				e.printStackTrace();
+				result =-100;
+			}
+		}
+		return result;
 		// end-user-code
 	}
 
 	/** 
 	 * (sin Javadoc)
-	 * @see DAODiseño#modificar(Class tDiseño)
+	 * @see DAODiseño#modificar(TDiseño tDiseño)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public int modificar(Class tDiseño) {
+	public int modificar(TDiseño tDiseño) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return 0;
+		int idDiseño = -100;
+		ConexionDAO connectionDAO = ConexionDAO.getInstance();
+		Connection connection = connectionDAO.getConexion();
+		
+		if(connection!=null) {
+			try {
+				Statement statement = connection.createStatement();
+				String query = "UPDATE producto SET "
+						
+						+ "nombre='" + tDiseño.getNombre()+"', "
+						+ "descripcion='"+tDiseño.getDescripcion() + "', "
+						+ "propietario='" + tDiseño.getPropietario() + "', "
+						+ "dimensiones='" +  tDiseño.getDimensiones() + "', "
+						+ "precio='" + tDiseño.getPrecio() + "', "
+						+ "archivo='" + tDiseño.getArchivo() + "', "
+						+ "puntuacion='" + tDiseño.getPuntuacion() + "', "
+						+ "imagen='" + tDiseño.getImagen() + "', "
+						+ "activo=" + (tDiseño.getActivo() ? 1 : 0) + " "
+						+ "WHERE idDiseño=" + tDiseño.getId_diseño();
+				statement.executeUpdate(query);
+				idDiseño = tDiseño.getId_diseño();
+			} catch (SQLException e) {
+				idDiseño = -100;
+			}
+		}
+		
+		return idDiseño;
 		// end-user-code
 	}
 
@@ -53,10 +142,37 @@ public class DAODiseñoImpl implements DAODiseño {
 	 * @see DAODiseño#buscarPorId(int idDiseño)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Class buscarPorId(int idDiseño) {
+	public TDiseño buscarPorId(int idDiseño) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
+		TDiseño tDiseño = null;
+		ConexionDAO connectionDAO = ConexionDAO.getInstance();
+		Connection connection = connectionDAO.getConexion();
+		
+		if(connection!=null) {
+			try {
+				Statement statement = connection.createStatement();
+				String query = "SELECT * FROM diseños WHERE idDiseño=" +idDiseño;
+				ResultSet resultSet = statement.executeQuery(query);
+				if(resultSet.next()) {
+					tDiseño = new TDiseño(
+							idDiseño,
+							resultSet.getString("nombre"),
+							resultSet.getString("descripcion"),
+							resultSet.getInt("propietario"),
+							resultSet.getInt("dimensiones"),
+							resultSet.getFloat("precio"),
+							resultSet.getString("archivo"),
+							resultSet.getInt("puntuacion"),
+							resultSet.getObject("imagen"),
+							resultSet.getBoolean("activo")
+							);
+				}
+			} catch (SQLException e) {
+				tDiseño = null;
+			}
+		}
+		
+		return tDiseño;
 		// end-user-code
 	}
 
@@ -65,10 +181,39 @@ public class DAODiseñoImpl implements DAODiseño {
 	 * @see DAODiseño#buscarPorPalabraClave(String palabraClave)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public int buscarPorPalabraClave(String palabraClave) {
+	public TDiseño buscarPorPalabraClave(String palabraClave) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return 0;
+		TDiseño tDiseño = null;
+		ArrayList<TDiseño>  listaDiseños = new ArrayList<>();
+		ConexionDAO connectionDAO = ConexionDAO.getInstance();
+		Connection connection = connectionDAO.getConexion();
+		
+		if(connection!=null) {
+			try {
+				Statement statement = connection.createStatement();
+				String query = "SELECT * FROM diseños WHERE nombre CONTAINS=" +palabraClave;
+				ResultSet resultSet = statement.executeQuery(query);
+				while(resultSet.next()) {
+					tDiseño = new TDiseño(
+							resultSet.getInt("idDiseño"),
+							resultSet.getString("nombre"),
+							resultSet.getString("descripcion"),
+							resultSet.getInt("propietario"),
+							resultSet.getInt("dimensiones"),
+							resultSet.getFloat("precio"),
+							resultSet.getString("archivo"),
+							resultSet.getInt("puntuacion"),
+							resultSet.getObject("imagen"),
+							resultSet.getBoolean("activo")
+							);
+					listaDiseños.add(tDiseño);
+				}
+			} catch (SQLException e) {
+				tDiseño = null;
+			}
+		}
+		
+		return tDiseño;
 		// end-user-code
 	}
 
@@ -77,10 +222,41 @@ public class DAODiseñoImpl implements DAODiseño {
 	 * @see DAODiseño#listarTodos()
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public ArrayList listarTodos() {
+	public ArrayList<TDiseño> listarTodos() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		ArrayList<TDiseño>  listaDiseños = new ArrayList<>();
+		ConexionDAO connectionDAO = ConexionDAO.getInstance();
+		Connection connection = connectionDAO.getConexion();
+		
+		if(connection!=null) {
+			try {
+				Statement statement = connection.createStatement();
+				String query = "SELECT * FROM diseños WHERE activo=1";
+				ResultSet resultSet = statement.executeQuery(query);
+				TDiseño tDiseño;
+				while(resultSet.next()) {
+					tDiseño = new TDiseño(
+							resultSet.getInt("idDiseño"),
+							resultSet.getString("nombre"),
+							resultSet.getString("descripcion"),
+							resultSet.getInt("propietario"),
+							resultSet.getInt("dimensiones"),
+							resultSet.getFloat("precio"),
+							resultSet.getString("archivo"),
+							resultSet.getInt("puntuacion"),
+							resultSet.getObject("imagen"),
+							resultSet.getBoolean("activo")
+							);
+					listaDiseños.add(tDiseño);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				listaDiseños = null;
+			}
+		}
+		
+		return listaDiseños;
 		// end-user-code
 	}
 
@@ -89,10 +265,41 @@ public class DAODiseñoImpl implements DAODiseño {
 	 * @see DAODiseño#listarPorUsuario(int idUsuario)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object listarPorUsuario(int idUsuario) {
+	public ArrayList<TDiseño> listarPorUsuario(int idUsuario) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		ArrayList<TDiseño>  listaDiseños = new ArrayList<>();
+		ConexionDAO connectionDAO = ConexionDAO.getInstance();
+		Connection connection = connectionDAO.getConexion();
+		
+		if(connection!=null) {
+			try {
+				Statement statement = connection.createStatement();
+				String query = "SELECT * FROM diseños WHERE propietario="+idUsuario;
+				ResultSet resultSet = statement.executeQuery(query);
+				TDiseño tDiseño;
+				while(resultSet.next()) {
+					tDiseño = new TDiseño(
+							resultSet.getInt("idDiseño"),
+							resultSet.getString("nombre"),
+							resultSet.getString("descripcion"),
+							resultSet.getInt("propietario"),
+							resultSet.getInt("dimensiones"),
+							resultSet.getFloat("precio"),
+							resultSet.getString("archivo"),
+							resultSet.getInt("puntuacion"),
+							resultSet.getObject("imagen"),
+							resultSet.getBoolean("activo")
+							);
+					listaDiseños.add(tDiseño);
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				listaDiseños = null;
+			}
+		}
+		
+		return listaDiseños;
 		// end-user-code
 	}
 }

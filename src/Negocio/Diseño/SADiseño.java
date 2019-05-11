@@ -3,10 +3,12 @@
  */
 package Negocio.Diseño;
 
+import java.util.ArrayList;
+
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
- * @author Fatimuskii
+ * @author Marina
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public interface SADiseño {
@@ -53,7 +55,7 @@ public interface SADiseño {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public int buscarPorPalabraClave(String palabraClave);
+	public TDiseño buscarPorPalabraClave(String palabraClave);
 
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -61,7 +63,7 @@ public interface SADiseño {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object listarTodos();
+	public ArrayList<TDiseño> listarTodos();
 
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -70,5 +72,5 @@ public interface SADiseño {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object listarPorUsuario(int idUsuario);
+	public ArrayList<TDiseño> listarPorUsuario(int idUsuario);
 }

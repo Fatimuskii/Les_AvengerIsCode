@@ -60,7 +60,9 @@ public class ControladorImp extends Controlador {
 		TLocal tlocal;
 		TRepresentante trepre;
 		TUsuario tUsuario;
-
+		TDiseño tDiseño;
+		
+		
 		int res;
 		switch (evento) {
 
@@ -126,8 +128,21 @@ public class ControladorImp extends Controlador {
 			break;
 		case Events.OPEN_GUI_IMPRESORA_MENU:
 			GUIImpresora.getInstance();
-			break;		
+			break;	
+			/*DISEÑO*/
+		case Events.OPEN_GUI_DISEÑO_MENU:
+			GUIDiseño.getInstance();
+			// GUIDiseño.getInstance().update
+			break;
+		case Events.ALTA_DISEÑO:
+			tDiseño = (TDiseño) datos;
+			res = this.SADiseño.alta(tDiseño);
 
+			if (res > 0)
+				GUILocal.getInstance().update(Events.ALTA_DISEÑO_OK, res);
+			else
+				GUILocal.getInstance().update(Events.ALTA_DISEÑO_KO, res);
+			break;
 		// end-user-code
 		}
 

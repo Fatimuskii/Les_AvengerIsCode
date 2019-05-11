@@ -99,7 +99,7 @@ public class GUIDiseñoImp extends GUIDiseño {
 		setIconImage(Toolkit
 				.getDefaultToolkit()
 				.getImage(
-						"C:\\Users\\Marina\\IBM\\rationalsdp\\IS\\Les_AvengerIsCode\\imagenes\\graphic-tools-REDM.png"));
+						"imagenes\\graphic-tools-REDM.png"));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 536, 338);
 
@@ -110,7 +110,7 @@ public class GUIDiseñoImp extends GUIDiseño {
 		JLabel lblIconoDiseño = new JLabel("");
 		lblIconoDiseño
 				.setIcon(new ImageIcon(
-						"C:\\Users\\Marina\\IBM\\rationalsdp\\IS\\Les_AvengerIsCode\\imagenes\\DiseñoIconMenu.png"));
+						"imagenes\\DiseñoIconMenu.png"));
 
 		JButton btnAltaDiseño = new JButton("Alta Diseño");
 		btnAltaDiseño.addActionListener(new ActionListener() {

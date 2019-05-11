@@ -36,7 +36,6 @@ public class GUIAltaDiseño extends JFrame{
 	private JTextField textProfundidad;
 	private JTextArea textAreaDescripcion;
 
-	private JTextField[] texts = { textNombre, textAltura, textAncho, textPrecio, textArchivo, textProfundidad };
 	
 	public GUIAltaDiseño(){
 		super();
@@ -46,7 +45,7 @@ public class GUIAltaDiseño extends JFrame{
 	
 	private void initGUI() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Marina\\IBM\\rationalsdp\\IS\\Les_AvengerIsCode\\imagenes\\graphic-tools.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\graphic-tools.png"));
 		setTitle("Alta Diseño");
 		setBounds(100, 100, 390, 425);
 		contentPane = new JPanel();
@@ -248,8 +247,13 @@ public class GUIAltaDiseño extends JFrame{
 	 */
 	public void clearData() {
 		// begin-user-code
-		for (int i = 0; i < texts.length; ++i)
-			texts[i].setText("");
+		textNombre.setText("");
+		textAltura.setText("");
+		textAncho.setText("");
+		textPrecio.setText("");
+		textArchivo.setText("");
+		textProfundidad.setText("");
+		textAreaDescripcion.setText("");
 		textAreaDescripcion.setText("");
 		// end-user-code
 	}

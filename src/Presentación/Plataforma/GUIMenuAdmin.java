@@ -34,9 +34,14 @@ public class GUIMenuAdmin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btnDiseos = new JButton("DISE\u00D1OS");
-		btnDiseos.setBounds(33, 70, 116, 37);
-		contentPane.add(btnDiseos);
+		JButton btnDiseños = new JButton("DISEÑOS");
+		btnDiseños.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Controlador.getInstance().accion(Events.OPEN_GUI_DISEÑO_MENU, null);
+			}
+		});
+		btnDiseños.setBounds(33, 70, 116, 37);
+		contentPane.add(btnDiseños);
 
 		JButton btnImpresoras = new JButton("IMPRESORAS");
 		btnImpresoras.addActionListener(new ActionListener() {

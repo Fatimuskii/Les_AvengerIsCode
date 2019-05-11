@@ -3,13 +3,13 @@
  */
 package Integración.Diseño;
 
+import Negocio.Diseño.TDiseño;
 import java.util.ArrayList;
 
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
- * @author Fatimuskii
- * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+ * @author Marina
  */
 public interface DAODiseño {
 	/** 
@@ -19,7 +19,7 @@ public interface DAODiseño {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public int alta(Class tDiseño);
+	public int alta(TDiseño tDiseño);
 
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -37,7 +37,7 @@ public interface DAODiseño {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public int modificar(Class tDiseño);
+	public int modificar(TDiseño tDiseño);
 
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -46,7 +46,7 @@ public interface DAODiseño {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Class buscarPorId(int idDiseño);
+	public TDiseño buscarPorId(int idDiseño);
 
 	/** 
 	 * <!-- begin-UML-doc -->
@@ -55,22 +55,20 @@ public interface DAODiseño {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public int buscarPorPalabraClave(String palabraClave);
+	public TDiseño buscarPorPalabraClave(String palabraClave);
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @return
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public ArrayList listarTodos();
+	public ArrayList<TDiseño> listarTodos();
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @param idUsuario
 	 * @return
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object listarPorUsuario(int idUsuario);
+	public ArrayList<TDiseño> listarPorUsuario(int idUsuario);
 }

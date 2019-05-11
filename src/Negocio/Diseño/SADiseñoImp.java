@@ -3,10 +3,17 @@
  */
 package Negocio.Diseño;
 
+
+import java.util.ArrayList;
+
+import Integración.Diseño.DAODiseño;
+import Integración.Factoria.FactoriaDAO;
+
+
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
- * @author Fatimuskii
+ * @author Marina
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class SADiseñoImp implements SADiseño {
@@ -17,8 +24,17 @@ public class SADiseñoImp implements SADiseño {
 	 */
 	public int alta(TDiseño tDiseño) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return 0;
+		
+		int id_diseño=-1;
+		
+		
+		
+		if (tDiseño != null) {
+			DAODiseño diseñoDAO = FactoriaDAO.getInstance().generateDAODiseño();
+		}
+		
+		return id_diseño;
+		 
 		// end-user-code
 	}
 
@@ -29,8 +45,19 @@ public class SADiseñoImp implements SADiseño {
 	 */
 	public int baja(int idDiseño) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return 0;
+		int id = -1;
+
+		DAODiseño diseñoDAO = FactoriaDAO.getInstance().generateDAODiseño();
+
+		TDiseño tDiseño;
+		tDiseño = diseñoDAO.buscarPorId(idDiseño);
+		if (tDiseño != null) {
+			if (tDiseño.getActivo()) {
+				id = diseñoDAO.baja(idDiseño);
+			}
+		}
+
+		return id;
 		// end-user-code
 	}
 
@@ -53,8 +80,11 @@ public class SADiseñoImp implements SADiseño {
 	 */
 	public TDiseño buscarPorId(int idDiseño) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
+		TDiseño tDiseño = null;
+		DAODiseño diseñoDAO = FactoriaDAO.getInstance().generateDAODiseño();
+		tDiseño = diseñoDAO.buscarPorId(idDiseño);
+		return tDiseño;
+
 		// end-user-code
 	}
 
@@ -63,10 +93,13 @@ public class SADiseñoImp implements SADiseño {
 	 * @see SADiseño#buscarPorPalabraClave(String palabraClave)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public int buscarPorPalabraClave(String palabraClave) {
+	public TDiseño buscarPorPalabraClave(String palabraClave) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		return 0;
+		TDiseño tDiseño = null;
+		DAODiseño diseñoDAO = FactoriaDAO.getInstance().generateDAODiseño();
+		tDiseño = diseñoDAO.buscarPorPalabraClave(palabraClave);
+		return tDiseño;
 		// end-user-code
 	}
 
@@ -75,10 +108,11 @@ public class SADiseñoImp implements SADiseño {
 	 * @see SADiseño#listarTodos()
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object listarTodos() {
+	public ArrayList<TDiseño> listarTodos() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
+		DAODiseño diseñoDAO = FactoriaDAO.getInstance().generateDAODiseño();
+		ArrayList<TDiseño> listaDiseños = diseñoDAO.listarTodos();
+		return listaDiseños;
 		// end-user-code
 	}
 
@@ -87,10 +121,12 @@ public class SADiseñoImp implements SADiseño {
 	 * @see SADiseño#listarPorUsuario(int idUsuario)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Object listarPorUsuario(int idUsuario) {
+	public ArrayList<TDiseño> listarPorUsuario(int idUsuario) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		DAODiseño diseñoDAO = FactoriaDAO.getInstance().generateDAODiseño();
+		ArrayList<TDiseño> listaDiseños = diseñoDAO.listarPorUsuario(idUsuario);
+		return listaDiseños;
 		// end-user-code
 	}
 }
