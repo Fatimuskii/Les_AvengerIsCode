@@ -14,6 +14,8 @@ import Negocio.Local.TLocal;
 import Negocio.Usuario.TUsuario;
 import Negocio.Diseño.SADiseño;
 import Negocio.Diseño.TDiseño;
+import Negocio.Impresora.SAImpresora;
+import Negocio.Impresora.TImpresora;
 import Presentación.Impresora.GUIImpresora;
 import Presentación.Local.GUILocal;
 import Presentación.Plataforma.GUIPlataformaImp;
@@ -40,6 +42,7 @@ public class ControladorImp extends Controlador {
 	private SARepresentante SARepresentante;
 	private SAUsuario SAUsuario;
 	private SADiseño SADiseño;
+	private SAImpresora SAImpresora;
 
 	// AQUI VENDRIAN EL RESTO DE SA
 
@@ -50,7 +53,6 @@ public class ControladorImp extends Controlador {
 		SADiseño = factoriaSA.generateSADiseño();
 	}
 
-	@SuppressWarnings("null")
 	public void accion(int evento, Object datos) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
@@ -188,7 +190,14 @@ public class ControladorImp extends Controlador {
 			else
 				GUIDiseño.getInstance().update(Events.MODIFICAR_DISEÑO_KO, res);
 			break;
-			
+		case Events.MODIFICAR_DISEÑO_COMPROBAR:
+			idDiseño = (int) datos;
+			tDiseño = this.SADiseño.buscarPorId(idDiseño);
+			if (tDiseño != null)
+				GUIDiseño.getInstance().update(Events.MODIFICAR_DISEÑO_COMPROBAR_OK, null);
+			else
+				GUIDiseño.getInstance().update(Events.MODIFICAR_DISEÑO_COMPROBAR_KO, null);
+			break;
 		// end-user-code
 		}
 

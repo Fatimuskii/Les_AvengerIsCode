@@ -46,7 +46,7 @@ public class Events {
 	public static final int BUSCAR_DISEÑO_PALABRA_CLAVE = 305;
 	public static final int LISTAR_DISEÑOS = 306;
 	public static final int LISTAR_DISEÑOS_USU = 307;
-	
+	public static final int MODIFICAR_DISEÑO_COMPROBAR = 333;
 	
 	public static final int ALTA_DISEÑO_OK = 308;
 	public static final int ALTA_DISEÑO_KO = 309;
@@ -62,6 +62,8 @@ public class Events {
 	public static final int LISTAR_DISEÑOS_KO = 328;
 	public static final int LISTAR_DISEÑOS_USU_OK = 329;
 	public static final int LISTAR_DISEÑOS_USU_KO = 330;
+	public static final int MODIFICAR_DISEÑO_COMPROBAR_OK = 331;
+	public static final int MODIFICAR_DISEÑO_COMPROBAR_KO = 332;
 	
 	/*EVENTOS PARA LAS VISTAS*/
 	public static final int GUI = 100; // LA INICIAL DEL PROGRAMA
@@ -102,15 +104,7 @@ public class Events {
 	//GUIs Diseño
 	
 	public static final int OPEN_GUI_DISEÑO_MENU = 300;
-/*
-	public static final int OPEN_GUI_ALTA_DISEÑO = 301;
-	public static final int OPEN_GUI_BAJA_DISEÑO = 302;
-	public static final int OPEN_GUI_MODIFICAR_DISEÑO = 303;
-	public static final int OPEN_GUI_BUSCAR_DISEÑO_ID = 304;
-	public static final int OPEN_GUI_BUSCAR_DISEÑO_USU = 305;
-	public static final int OPEN_GUI_LISTAR_DISEÑOS = 306;
-	public static final int OPEN_GUI_LISTAR_DISEÑOS_USU = 307;
-*/
+
 		
 	
 }

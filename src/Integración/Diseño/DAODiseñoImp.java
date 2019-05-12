@@ -125,7 +125,7 @@ public class DAODiseñoImp implements DAODiseño {
 						+ "archivo='" + tDiseño.getArchivo() + "', "
 						//+ "imagen='" + tDiseño.getImagen() + "', "
 						+ "activo=" + (tDiseño.getActivo() ? 1 : 0) + " "
-						+ "WHERE idDiseño=" + tDiseño.getId_diseño();
+						+ "WHERE idDiseno=" + tDiseño.getId_diseño();
 				statement.executeUpdate(query);
 				idDiseño = tDiseño.getId_diseño();
 			} catch (SQLException e) {
@@ -282,7 +282,7 @@ public class DAODiseñoImp implements DAODiseño {
 				TDiseño tDiseño;
 				while(resultSet.next()) {
 					tDiseño = new TDiseño(
-							resultSet.getInt("idDiseño"),
+							resultSet.getInt("idDiseno"),
 							resultSet.getString("nombre"),
 							resultSet.getString("descripcion"),
 							resultSet.getInt("propietario"),

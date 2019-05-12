@@ -463,6 +463,18 @@ public class GUIDiseñoImp extends GUIDiseño {
 			gUIBuscarPalabraDiseño.update(event, (ArrayList<TDiseño>) res);
 		case Events.BUSCAR_DISEÑO_PALABRA_CLAVE_KO:
 			gUIBuscarPalabraDiseño.update(event, (ArrayList<TDiseño>) res);
+		case Events.MODIFICAR_DISEÑO_OK:
+			gUIModificarDiseño.update(Events.MODIFICAR_DISEÑO_OK, res);
+			break;
+		case Events.MODIFICAR_DISEÑO_KO:
+			gUIModificarDiseño.update(Events.MODIFICAR_DISEÑO_KO, res);
+			break;
+		case Events.MODIFICAR_DISEÑO_COMPROBAR_OK:
+			gUIModificarDiseño.update(Events.MODIFICAR_DISEÑO_COMPROBAR_OK, res);
+			break;
+		case Events.MODIFICAR_DISEÑO_COMPROBAR_KO:
+			gUIModificarDiseño.update(Events.MODIFICAR_DISEÑO_COMPROBAR_KO, res);
+			break;
 		}
 		
 		

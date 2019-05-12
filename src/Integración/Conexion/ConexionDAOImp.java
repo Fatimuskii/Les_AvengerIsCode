@@ -35,7 +35,7 @@ public class ConexionDAOImp extends ConexionDAO {
 		// end-user-code
 		
 		try {
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/avengeris", user, pass);
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/les_avengeris", user, pass);
 			System.out.println("BASE DE DATOS CONECTADA");
 		} catch (SQLException e) {
 			conexion=null;

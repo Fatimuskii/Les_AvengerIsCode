@@ -75,8 +75,15 @@ public class SADiseñoImp implements SADiseño {
 	 */
 	public int modificar(TDiseño tDiseño) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return 0;
+		int id = -1;
+		if (tDiseño != null) {
+
+			DAODiseño diseñoDAO = FactoriaDAO.getInstance().generateDAODiseño();
+			if (tDiseño != null) {
+				id = diseñoDAO.modificar(tDiseño);
+			}
+		}
+		return id;
 		// end-user-code
 	}
 
@@ -131,14 +138,14 @@ public class SADiseñoImp implements SADiseño {
 		ArrayList<TDiseño> listaDiseños = null;
 		
 		//Comprobar que el usuario existe y está activo
-		DAOUsuario usuarioDAO = FactoriaDAO.getInstance().generateDAOUsuario();
-		TUsuario usu = usuarioDAO.buscarId(idUsuario);
-		if(usu != null){
-			if(usu.getActivo()){
+		//DAOUsuario usuarioDAO = FactoriaDAO.getInstance().generateDAOUsuario();
+		//TUsuario usu = usuarioDAO.buscarId(idUsuario);
+		//if(usu != null){
+		//	if(usu.getActivo()){
 				DAODiseño diseñoDAO = FactoriaDAO.getInstance().generateDAODiseño();
 				listaDiseños = diseñoDAO.listarPorUsuario(idUsuario);
-			}
-		}
+		//	}
+		//}
 		
 		return listaDiseños;
 		// end-user-code
