@@ -164,7 +164,6 @@ public class GUIBuscarLocal extends JFrame {
 		switch(event){
 
 		case Events.BUSCAR_LOCAL_OK:
-		
 			IdLocalField.setText(""+res.getIdLocal());
 			nombreField.setText(res.getNombreLocal());
 			telField.setText(""+res.getTelefono());

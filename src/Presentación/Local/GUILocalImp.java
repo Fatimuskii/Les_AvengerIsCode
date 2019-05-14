@@ -72,9 +72,14 @@ public class GUILocalImp extends GUILocal {
 				GUIMensaje mensaje = new GUIMensaje();
 				if (!IdLocalText.getText().equals("")) {
 					int idLoc = Integer.parseInt(IdLocalText.getText());
-					Controlador.getInstance()
-							.accion(Events.BUSCAR_LOCAL, idLoc);
-					Gui_buscarLocal.limpiar();
+
+					try {
+						Controlador.getInstance().accion(Events.BUSCAR_LOCAL,
+								idLoc);
+						
+					} catch (Exception err) {
+						err.getMessage();
+					}
 				} else {
 					mensaje.showMessage("Debe introducir un Id",
 							"BUSCAR LOCAL", false);
@@ -115,8 +120,11 @@ public class GUILocalImp extends GUILocal {
 	@Override
 	public void update(int event, Object res) {
 
+		GUIMensaje res_mensaje = new GUIMensaje();
 		switch (event) {
 		case Events.ALTA_LOCAL_OK:
+			Gui_buscarLocal = new GUIBuscarLocal();
+			Gui_buscarLocal.setVisible(true);
 			Gui_altaLocal.update(event, res);
 			break;
 		case Events.ALTA_LOCAL_KO:
@@ -146,13 +154,14 @@ public class GUILocalImp extends GUILocal {
 		case Events.MODIFICAR_LOCAL_KO:
 
 		case Events.BUSCAR_LOCAL_OK:
-			Gui_buscarLocal.update(event, (TLocal) res);
 			Gui_buscarLocal = new GUIBuscarLocal();
+			Gui_buscarLocal.update(event, (TLocal) res);
 			Gui_buscarLocal.setVisible(true);
 			break;
 		case Events.BUSCAR_LOCAL_KO:
-			Gui_buscarLocal.update(event, (TLocal) res);
-			break;
+			res_mensaje.showMessage("Error en la búsqueda del Local.",
+					"BUSCAR LOCAL", false);
+			break;	
 
 		}
 
