@@ -72,7 +72,7 @@ public class GUIAltaRepresentante extends GUILocalImp {
 		email.setBounds(210, 154, 186, 22);
 		contentPane.add(email);
 
-		JButton botonAceptar = new JButton("Aceptar");
+		JButton botonAceptar = new JButton("Continuar->");
 		botonAceptar.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
