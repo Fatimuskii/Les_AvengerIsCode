@@ -105,7 +105,7 @@ public class GUIDiseñoImp extends GUIDiseño {
 		setIconImage(Toolkit
 				.getDefaultToolkit()
 				.getImage(
-						"imagenes\\graphic-tools-REDM.png"));
+						"imagenes\\graphic-tools.png"));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 536, 338);
 
@@ -116,7 +116,7 @@ public class GUIDiseñoImp extends GUIDiseño {
 		JLabel lblIconoDiseño = new JLabel("");
 		lblIconoDiseño
 				.setIcon(new ImageIcon(
-						"imagenes\\DiseñoIconMenu.png"));
+						"imagenes\\IconoDiseñoMenu.png"));
 
 		JButton btnAltaDiseño = new JButton("Alta Diseño");
 		btnAltaDiseño.addActionListener(new ActionListener() {

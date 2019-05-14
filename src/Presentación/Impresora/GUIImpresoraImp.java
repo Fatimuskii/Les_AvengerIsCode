@@ -21,6 +21,18 @@ import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JButton;
+
+import Negocio.Diseño.TDiseño;
+import Presentación.Controlador.Events;
+import Presentación.Diseño.GUIAltaDiseño;
+import Presentación.Diseño.GUIBajaDiseño;
+import Presentación.Diseño.GUIBuscarPalabraDiseño;
+import Presentación.Diseño.GUIBuscarporIdDiseño;
+import Presentación.Diseño.GUIDiseño;
+import Presentación.Diseño.GUIListarDiseños;
+import Presentación.Diseño.GUIListarporUsuarioDiseño;
+import Presentación.Diseño.GUIModificarDiseño;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 /** 
@@ -29,6 +41,7 @@ import java.awt.event.ActionEvent;
  * @author Fatimuskii
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
+import java.util.ArrayList;
 
 
 /**
@@ -37,6 +50,14 @@ import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class GUIImpresoraImp extends GUIImpresora {
+	
+	private GUIAltaImpresora gUIAltaImpresora;
+	private GUIBajaImpresora gUIBajaImpresora;
+	private GUIModificarImpresora gUIModificarImpresora;
+	private GUIListarImpresora gUIListarImpresora;
+	private GUIBuscarIdImpresora gUIBuscarIdImpresora;
+	private GUIBuscarUsuarioImpresora gUIBuscarUsuarioImpresora;
+	
 	private JPanel contentPane;
 	private JTextField txtBuscar;
 	private JTextField txtBuscarIdusuarioImpresor;
@@ -167,5 +188,36 @@ public class GUIImpresoraImp extends GUIImpresora {
 		label_2.setIcon(new ImageIcon("imagenes\\Usuario-impresor-REDM.png"));
 		label_2.setBounds(22, 188, 53, 52);
 		panel.add(label_2);
+	}
+
+
+
+	/** 
+	 * (sin Javadoc)
+	 * @see GUIDiseño#update(int event, Object res)
+	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	@SuppressWarnings("unchecked")
+	public void update(int event, Object res){
+		switch (event) {
+		case Events.ALTA_IMPRESORA_OK:
+			gUIAltaImpresora.update(event, null);
+			break;
+		case Events.ALTA_IMPRESORA_KO:
+			gUIAltaImpresora.update(event, null);
+			break;
+		case Events.BAJA_IMPRESORA_OK:
+			gUIBajaImpresora.update(event, res);
+			break;
+		case Events.BAJA_DISEÑO_KO:
+			gUIBajaImpresora.update(event, res);
+			break;
+		case Events.MODIFICAR_IMPRESORA_OK:
+			gUIModificarImpresora.update(Events.MODIFICAR_DISEÑO_OK, res);
+			break;
+		case Events.MODIFICAR_IMPRESORA_KO:
+			gUIModificarImpresora.update(Events.MODIFICAR_DISEÑO_KO, res);
+			break;
+		}
 	}
 }

@@ -6,8 +6,6 @@ package Presentación.Diseño;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -232,7 +230,7 @@ public class GUIModificarDiseño extends JFrame{
 			textPane.setEnabled(true);
 			break;
 		case Events.MODIFICAR_DISEÑO_COMPROBAR_KO:
-			JOptionPane.showMessageDialog(null,"El diseño con el id: " + id + "no existe.","Error Diseño",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,"El diseño con el id: " + id + " no existe.","Error Diseño",JOptionPane.ERROR_MESSAGE);
 			break;
 		}
 		

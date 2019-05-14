@@ -19,6 +19,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Presentación.Controlador.Events;
+
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
@@ -37,7 +39,7 @@ public class GUIBajaImpresora extends JFrame {
 	private JTextField textField;
 	private JPasswordField passwordField;
 	private JTextField textField_1;
-
+	private int id;
 	
 	public GUIBajaImpresora() {
 		super();
@@ -108,5 +110,17 @@ public class GUIBajaImpresora extends JFrame {
 		lblNewLabel.setIcon(new ImageIcon("imagenes\\3d-printer-REDM.png"));
 		lblNewLabel.setBounds(187, 11, 73, 69);
 		panel.add(lblNewLabel);
+	}
+
+	public void update(int event, Object res) {
+		switch(event){
+		case Events.BAJA_IMPRESORA_OK:
+			JOptionPane.showMessageDialog(null,"Eliminado correctamente la impresora : "+ id, "", JOptionPane.INFORMATION_MESSAGE);
+			break;
+		case Events.BAJA_IMPRESORA_KO:
+			JOptionPane.showMessageDialog(null,"Error al eliminar el diseño: " +id, "", JOptionPane.ERROR_MESSAGE);
+			break;
+		}
+		
 	}
 }

@@ -27,6 +27,7 @@ import Presentación.Controlador.Events;
  * @author Marina
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
+@SuppressWarnings("serial")
 public class GUIBuscarPalabraDiseño extends JFrame{
 	
 	private JPanel contentPane;

@@ -8,7 +8,6 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -293,7 +292,7 @@ public class GUIAltaDiseño extends JFrame{
 			dispose();
 			break;
 		case Events.ALTA_DISEÑO_KO:
-			JOptionPane.showMessageDialog(null, "Error al crear el producto");
+			JOptionPane.showMessageDialog(null, "Error al crear el diseño");
 			break;
 		}
 		

@@ -39,6 +39,9 @@ public class Events {
 	public static final int LISTAR_LOCALES_KO = 209;*/
 	
 	//DISEÑO
+	//GUI Diseño
+	public static final int OPEN_GUI_DISEÑO_MENU = 300;
+	
 	public static final int ALTA_DISEÑO = 301;
 	public static final int BAJA_DISEÑO = 302;
 	public static final int MODIFICAR_DISEÑO = 303;
@@ -64,6 +67,32 @@ public class Events {
 	public static final int LISTAR_DISEÑOS_USU_KO = 330;
 	public static final int MODIFICAR_DISEÑO_COMPROBAR_OK = 331;
 	public static final int MODIFICAR_DISEÑO_COMPROBAR_KO = 332;
+	
+	
+	//IMPRESORA
+	public static final int ALTA_IMPRESORA = 401;
+	public static final int BAJA_IMPRESORA = 402;
+	public static final int MODIFICAR_IMPRESORA = 403;
+	public static final int BUSCAR_IMPRESORA = 404;
+	public static final int LISTAR_IMPRESORAS = 405;
+	public static final int BUSCAR_USUARIO_IMPRESORA = 406;
+	public static final int MODIFICAR_IMPRESORA_COMPROBAR = 419;
+	
+	public static final int ALTA_IMPRESORA_OK = 407;
+	public static final int ALTA_IMPRESORA_KO = 408;
+	public static final int BAJA_IMPRESORA_OK = 409;
+	public static final int BAJA_IMPRESORA_KO = 410;
+	public static final int MODIFICAR_IMPRESORA_OK  = 411;
+	public static final int MODIFICAR_IMPRESORA_KO = 412;
+	public static final int BUSCAR_IMPRESORA_OK  = 413;
+	public static final int BUSCAR_IMPRESORA_KO = 414;
+	public static final int LISTAR_IMPRESORAS_OK  = 415;
+	public static final int LISTAR_IMPRESORAS_KO = 416;
+	public static final int BUSCAR_USUARIO_IMPRESORA_OK  = 417;
+	public static final int BUSCAR_USUARIO_IMPRESORA_KO = 418;
+	public static final int MODIFICAR_IMPRESORA_COMPROBAR_OK = 420;
+	public static final int MODIFICAR_IMPRESORA_COMPROBAR_KO = 421;
+
 	
 	/*EVENTOS PARA LAS VISTAS*/
 	public static final int GUI = 100; // LA INICIAL DEL PROGRAMA
@@ -93,17 +122,6 @@ public class Events {
 	public static final int OPEN_GUI_DATOS_BANCARIOS_USUARIO = 122;
 	public static final int OPEN_GUI_PERFIL_USUARIO = 123;
 	
-	public static final int OPEN_GUI_ALTA_IMPRESORA = 124;
-	public static final int OPEN_GUI_BAJA_IMPRESORA = 125;
-	public static final int OPEN_GUI_MODIFICAR_IMPRESORA = 126;
-	public static final int OPEN_GUI_BUSCAR_IMPRESORA = 127;
-	public static final int OPEN_GUI_LISTAR_IMPRESORA = 128;
-	public static final int OPEN_GUI_BUSCAR_USUARIO_IMPRESORA = 129;
-	
-	
-	//GUIs Diseño
-	
-	public static final int OPEN_GUI_DISEÑO_MENU = 300;
 
 		
 	

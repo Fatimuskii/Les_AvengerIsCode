@@ -29,8 +29,13 @@ import javax.swing.ImageIcon;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JRadioButton;
+
+import Negocio.Diseño.TDiseño;
+import Presentación.Controlador.Events;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -42,6 +47,7 @@ import java.awt.event.ActionEvent;
 /**
  * Launch the application.
  */
+@SuppressWarnings("serial")
 public class GUIAltaImpresora extends JFrame{
 	
 	private JPanel contentPane;
@@ -242,5 +248,18 @@ public class GUIAltaImpresora extends JFrame{
 				|| txtIntroduceTuId.getText().equals("Introduce tu Id"))
 			return false;
 		return true;
+	}
+	
+	public void update(int event, Object res){
+		switch (event) {
+		case Events.ALTA_IMPRESORA_OK:
+			JOptionPane.showMessageDialog(null,"Éxito al crear la impresora");
+			dispose();
+			break;
+		case Events.ALTA_IMPRESORA_KO:
+			JOptionPane.showMessageDialog(null, "Error al crear la impresora", "Error Alta Impresora", JOptionPane.ERROR_MESSAGE);
+			break;
+		}
+		
 	}
 }

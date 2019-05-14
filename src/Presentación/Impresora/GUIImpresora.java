@@ -23,4 +23,13 @@ public abstract class GUIImpresora extends JFrame{
 		instance.setVisible(true);
 		return instance;
 	}
+	
+	/** 
+	 * <!-- begin-UML-doc -->
+	 * <!-- end-UML-doc -->
+	 * @param event
+	 * @param res
+	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public abstract void update(int event, Object res);
 }

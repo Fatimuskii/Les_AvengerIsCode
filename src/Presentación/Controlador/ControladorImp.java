@@ -51,6 +51,7 @@ public class ControladorImp extends Controlador {
 		SALocal = factoriaSA.generateSALocal();
 		SARepresentante = factoriaSA.generateSARepresentante();
 		SADiseño = factoriaSA.generateSADiseño();
+		SAImpresora = factoriaSA.generateSAImpresora();
 	}
 
 	public void accion(int evento, Object datos) {
@@ -60,10 +61,13 @@ public class ControladorImp extends Controlador {
 		TRepresentante trepre;
 		TUsuario tUsuario;
 		TDiseño tDiseño;
+		TImpresora tImpresora;
 		
 		int idDiseño;
 		int idUsuario;
+		int idImpresora;
 		ArrayList<TDiseño> resultD;
+		ArrayList<TImpresora> resultI;
 		int res;
 		switch (evento) {
 
@@ -108,27 +112,61 @@ public class ControladorImp extends Controlador {
 		case Events.OPEN_GUI_MODIFICAR_USUARIO:
 			GUIUsuario.getInstance();
 			break;
-		case Events.OPEN_GUI_ALTA_IMPRESORA:
-			GUIImpresora.getInstance();
-			break;
-		case Events.OPEN_GUI_BAJA_IMPRESORA:
-			GUIImpresora.getInstance();
-			break;	
-		case Events.OPEN_GUI_BUSCAR_IMPRESORA:
-			GUIImpresora.getInstance();
-			break;	
-		case Events.OPEN_GUI_BUSCAR_USUARIO_IMPRESORA:
-			GUIImpresora.getInstance();
-			break;
-		case Events.OPEN_GUI_LISTAR_IMPRESORA:
-			GUIImpresora.getInstance();
-			break;
-		case Events.OPEN_GUI_MODIFICAR_IMPRESORA:
-			GUIImpresora.getInstance();
-			break;
+		/*IMPRESORA*/
 		case Events.OPEN_GUI_IMPRESORA_MENU:
 			GUIImpresora.getInstance();
 			break;	
+		case Events.ALTA_IMPRESORA:
+			tImpresora = (TImpresora) datos;
+			res = this.SAImpresora.alta(tImpresora);
+
+			if (res > 0)
+				GUIImpresora.getInstance().update(Events.ALTA_IMPRESORA_OK, res);
+			else
+				GUIImpresora.getInstance().update(Events.ALTA_IMPRESORA_KO, res);
+			break;
+		case Events.BAJA_IMPRESORA:
+			idImpresora = (int) datos;
+			res = this.SAImpresora.baja(idImpresora);
+			if (res > 0)
+				GUIImpresora.getInstance().update(Events.BAJA_IMPRESORA_OK, res);
+			else
+				GUIImpresora.getInstance().update(Events.BAJA_IMPRESORA_KO, res);
+			break;	
+		case Events.BUSCAR_IMPRESORA:
+			idImpresora = (int) datos;
+			tImpresora = this.SAImpresora.buscarId(idImpresora);
+			if (tImpresora != null)
+				GUIImpresora.getInstance().update(Events.BUSCAR_IMPRESORA_OK, tImpresora);
+			else
+				GUIImpresora.getInstance().update(Events.BUSCAR_IMPRESORA_KO, tImpresora);
+			break;	
+		case Events.BUSCAR_USUARIO_IMPRESORA:
+			GUIImpresora.getInstance();
+			break;
+		case Events.LISTAR_IMPRESORAS:
+			resultI = this.SAImpresora.listarTodo();
+			if (resultI != null)
+				GUIImpresora.getInstance().update(Events.LISTAR_IMPRESORAS_OK, resultI);
+			else
+				GUIImpresora.getInstance().update(Events.LISTAR_IMPRESORAS_KO, resultI);
+			break;
+		case Events.MODIFICAR_IMPRESORA:
+			tImpresora = (TImpresora) datos;
+			res = this.SAImpresora.modificar(tImpresora);
+			if (res > 0)
+				GUIImpresora.getInstance().update(Events.MODIFICAR_IMPRESORA_OK, res);
+			else
+				GUIImpresora.getInstance().update(Events.MODIFICAR_IMPRESORA_KO, res);
+			break;
+		case Events.MODIFICAR_IMPRESORA_COMPROBAR:
+			idImpresora = (int) datos;
+			tImpresora = this.SAImpresora.buscarId(idImpresora);
+			if (tImpresora != null)
+				GUIImpresora.getInstance().update(Events.MODIFICAR_IMPRESORA_COMPROBAR_OK, null);
+			else
+				GUIImpresora.getInstance().update(Events.MODIFICAR_IMPRESORA_COMPROBAR_KO, null);
+			break;
 			/*DISEÑO*/
 		case Events.OPEN_GUI_DISEÑO_MENU:
 			GUIDiseño.getInstance();
@@ -145,7 +183,6 @@ public class ControladorImp extends Controlador {
 		case Events.BAJA_DISEÑO:
 			idDiseño = (int) datos;
 			res = this.SADiseño.baja(idDiseño);
-			System.out.println("resultado Baja: " + res);
 			if (res > 0)
 				GUIDiseño.getInstance().update(Events.BAJA_DISEÑO_OK, res);
 			else
