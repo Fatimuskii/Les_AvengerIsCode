@@ -63,6 +63,7 @@ public class ControladorImp extends Controlador {
 		TDiseño tDiseño;
 		TImpresora tImpresora;
 		
+		int idLocal;
 		int idDiseño;
 		int idUsuario;
 		int idImpresora;
@@ -102,7 +103,14 @@ public class ControladorImp extends Controlador {
 						.update(Events.ALTA_REPRESENTANTE_KO, res);
 
 			break;
-
+		case Events.BUSCAR_LOCAL:
+			idLocal = (int)datos;
+			tlocal=this.SALocal.buscarPorId(idLocal);
+			if(tlocal!=null)
+				GUILocal.getInstance().update(Events.BUSCAR_LOCAL_OK, tlocal);
+			else
+				GUILocal.getInstance().update(Events.BUSCAR_LOCAL_KO, tlocal);
+			break;
 		case Events.OPEN_GUI_USUARIO_MENU:
 			GUIUsuario.getInstance();
 			break;

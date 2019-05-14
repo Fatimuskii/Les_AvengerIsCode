@@ -26,11 +26,8 @@ public class GUILocalImp extends GUILocal {
 	private GUIAltaLocal Gui_altaLocal;
 	private GUIAltaRepresentante Gui_altaRepre;
 	private GUIBajaLocal Gui_bajaLocal;
-	private GUIModificarLocal Gui_modLocal;
 	private GUIBuscarLocal Gui_buscarLocal;
-	private GUIListarLocales Gui_listarLocales;
-
-	JTextField nombreLocal;
+	private JTextField IdLocalText;
 
 	private JPanel contentPane;
 
@@ -64,25 +61,24 @@ public class GUILocalImp extends GUILocal {
 			}
 		});
 
-		nombreLocal = new JTextField();
-		nombreLocal.setBounds(62, 75, 311, 28);
-		contentPane.add(nombreLocal);
-		nombreLocal.setColumns(10);
+		IdLocalText = new JTextField();
+		IdLocalText.setBounds(62, 75, 311, 28);
+		contentPane.add(IdLocalText);
+		IdLocalText.setColumns(10);
 
 		JButton btnBuscarLocal = new JButton("Buscar Local");
 		btnBuscarLocal.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GUIMensaje mensaje = new GUIMensaje();
-				String n = nombreLocal.getText();
-
-				if (!n.equals("")) {
-					Gui_buscarLocal = new GUIBuscarLocal();
-					Gui_buscarLocal.setVisible(true);	
-				}
-				else{
-					mensaje.showMessage("No se admiten sól numeros", "",
-							false);
-					nombreLocal.setText("");
+				if (!IdLocalText.getText().equals("")) {
+					int idLoc = Integer.parseInt(IdLocalText.getText());
+					Controlador.getInstance()
+							.accion(Events.BUSCAR_LOCAL, idLoc);
+					Gui_buscarLocal.limpiar();
+				} else {
+					mensaje.showMessage("Debe introducir un Id",
+							"BUSCAR LOCAL", false);
+					IdLocalText.setText("");
 				}
 			}
 		});
@@ -103,8 +99,8 @@ public class GUILocalImp extends GUILocal {
 			public void actionPerformed(ActionEvent e) {
 				Gui_altaRepre = new GUIAltaRepresentante();
 				Gui_altaRepre.setVisible(true);
-				
-				//Gui_altaLocal= new GUIAltaLocal();
+
+				// Gui_altaLocal= new GUIAltaLocal();
 			}
 		});
 		button.setBounds(283, 264, 138, 34);
@@ -118,8 +114,6 @@ public class GUILocalImp extends GUILocal {
 
 	@Override
 	public void update(int event, Object res) {
-		// TODO Apéndice de método generado automáticamente
-		GUIMensaje res_mensaje = new GUIMensaje();
 
 		switch (event) {
 		case Events.ALTA_LOCAL_OK:
@@ -133,28 +127,34 @@ public class GUILocalImp extends GUILocal {
 			Gui_altaLocal = new GUIAltaLocal();
 			Gui_altaLocal.setIdRepresentante((int) res);
 			Gui_altaLocal.setVisible(true);
-			
+			break;
+		case Events.BAJA_LOCAL_OK:
+			Gui_bajaLocal.update(event, res);
+			break;
+		case Events.BAJA_LOCAL_KO:
+			Gui_bajaLocal.update(event, res);
 			break;
 		case Events.ALTA_REPRESENTANTE_KO:
 			Gui_altaRepre.update(event, res);
-			
+
 		case Events.BAJA_DISEÑO_OK:
 			break;
-			
 		case Events.BAJA_DISEÑO_KO:
 			break;
 		case Events.MODIFICAR_LOCAL_OK:
 			break;
 		case Events.MODIFICAR_LOCAL_KO:
-			
+
 		case Events.BUSCAR_LOCAL_OK:
+			Gui_buscarLocal.update(event, (TLocal) res);
+			Gui_buscarLocal = new GUIBuscarLocal();
+			Gui_buscarLocal.setVisible(true);
 			break;
 		case Events.BUSCAR_LOCAL_KO:
+			Gui_buscarLocal.update(event, (TLocal) res);
 			break;
-		
+
 		}
-		
-		
 
 	}
 

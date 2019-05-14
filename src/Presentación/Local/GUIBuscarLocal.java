@@ -8,16 +8,16 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
 import Negocio.Local.TLocal;
+import Presentación.GUIMensaje;
+import Presentación.Controlador.Events;
 
 @SuppressWarnings("serial")
 public class GUIBuscarLocal extends JFrame {
@@ -29,8 +29,8 @@ public class GUIBuscarLocal extends JFrame {
 	private JTextField dirField;
 	private JTextField cpField;
 	private JTextField locField;
-	private JTextField repreField;
-	private JTextField activoField;
+	private JComboBox datosPropietarioCombo;
+	//private JTextField activoField;
 
 	private JPanel contentPane;
 	private TLocal local;
@@ -38,24 +38,11 @@ public class GUIBuscarLocal extends JFrame {
 	
 	public GUIBuscarLocal(){
 		super();	
-		/*this.local = local;
-		this.id = "" + this.local.getIdLocal();
-		this.nombre = this.local.getNombreLocal();
-		this.tel = "" + this.local.getTelefono();
-		this.CIF = "" + this.local.getCIF();
-		this.dir = this.local.getDireccion();
-		this.cp = "" + this.local.getCP();
-		this.loc = this.local.getLocalidad();
-		this.repre = "" + this.local.getRepresentante();
-
-		if (this.local.getActivo())
-			this.activo = "SI";
-		else
-			this.activo = "NO";
-		*/
+		contentPane = new JPanel();
 		initGUI();
 	}
 
+	@SuppressWarnings("rawtypes")
 	public void initGUI() {
 
 		// tabla con todos los datos del Local
@@ -76,61 +63,83 @@ public class GUIBuscarLocal extends JFrame {
 		lblIdlocal.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblIdlocal.setBounds(29, 28, 67, 16);
 		contentPane.add(lblIdlocal);
+		
+		IdLocalField = new JTextField();
+		IdLocalField.setBounds(96, 28, 74, 22);
+		contentPane.add(IdLocalField);
+		IdLocalField.setEditable(false);
 
 		JLabel lblNombre = new JLabel("Nombre:");
 		lblNombre.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNombre.setBounds(29, 56, 67, 16);
 		contentPane.add(lblNombre);
+		
+		nombreField = new JTextField();
+		nombreField.setBounds(96, 57, 101, 22);
+		contentPane.add(nombreField);
+		nombreField.setEditable(false);
 
 		JLabel lblTelfono = new JLabel("Tel\u00E9fono:");
 		lblTelfono.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblTelfono.setBounds(29, 85, 67, 16);
 		contentPane.add(lblTelfono);
+		
+		telField = new JTextField();
+		telField.setBounds(96, 85, 84, 22);
+		contentPane.add(telField);
+		telField.setEditable(false);
+
 
 		JLabel lblCif = new JLabel("CIF:");
 		lblCif.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblCif.setBounds(29, 120, 67, 16);
 		contentPane.add(lblCif);
+		
+		CIFField = new JTextField();
+		CIFField.setBounds(69, 114, 101, 22);
+		contentPane.add(CIFField);
+		CIFField.setEditable(false);
 
 		JLabel lblDireccin = new JLabel("Direcci\u00F3n:");
 		lblDireccin.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblDireccin.setBounds(29, 143, 67, 16);
 		contentPane.add(lblDireccin);
 
+		dirField = new JTextField();
+		dirField.setBounds(96, 143, 141, 22);
+		contentPane.add(dirField);
+		dirField.setEditable(false);
+
 		JLabel lblLocalidad = new JLabel("Localidad:");
 		lblLocalidad.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblLocalidad.setBounds(29, 172, 67, 16);
 		contentPane.add(lblLocalidad);
 
+		locField = new JTextField();
+		locField.setBounds(96, 172, 84, 22);
+		contentPane.add(locField);
+		locField.setEditable(false);
+		
+		JLabel lblCp = new JLabel("CP:");
+		lblCp.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblCp.setBounds(29, 206, 43, 16);
+		contentPane.add(lblCp);
+		
+		cpField = new JTextField();
+		cpField.setBounds(69, 200, 67, 22);
+		contentPane.add(cpField);
+		cpField.setEditable(false);
+		
 		JLabel lblDueo = new JLabel("Propietario:");
 		lblDueo.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblDueo.setBounds(29, 201, 141, 16);
+		lblDueo.setBounds(29, 227, 141, 16);
 		contentPane.add(lblDueo);
-
-		JTextPane IdLocalText = new JTextPane();
-		IdLocalText.setBounds(96, 28, 74, 22);
-		contentPane.add(IdLocalText);
-
-		JTextPane nombreText = new JTextPane();
-		nombreText.setBounds(96, 57, 101, 22);
-		contentPane.add(nombreText);
-
-		JTextPane telefonoText = new JTextPane();
-		telefonoText.setBounds(96, 85, 84, 22);
-		contentPane.add(telefonoText);
-
-		JTextPane cifText = new JTextPane();
-		cifText.setBounds(69, 114, 101, 22);
-		contentPane.add(cifText);
-
-		JTextPane dirText = new JTextPane();
-		dirText.setBounds(96, 143, 141, 22);
-		contentPane.add(dirText);
-
-		JTextPane localidadText = new JTextPane();
-		localidadText.setBounds(96, 172, 84, 22);
-		contentPane.add(localidadText);
-
+		
+		datosPropietarioCombo = new JComboBox();
+		datosPropietarioCombo.setModel(new DefaultComboBoxModel(new String[] {"Prueba1", "Prueba2", "Prueba3"}));
+		datosPropietarioCombo.setBounds(122, 226, 135, 22);
+		contentPane.add(datosPropietarioCombo);
+		
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -147,10 +156,34 @@ public class GUIBuscarLocal extends JFrame {
 		btnEliminar.setForeground(Color.RED);
 		btnEliminar.setBounds(323, 197, 97, 25);
 		contentPane.add(btnEliminar);
+	}
 
-		JComboBox datosPropietarioCombo = new JComboBox();
-		datosPropietarioCombo.setBounds(122, 200, 135, 22);
-		contentPane.add(datosPropietarioCombo);
+	public void update(int event, TLocal res) {
+		// TODO Apéndice de método generado automáticamente
+		GUIMensaje res_mensaje = new GUIMensaje();
+		switch(event){
+
+		case Events.BUSCAR_LOCAL_OK:
+		
+			IdLocalField.setText(""+res.getIdLocal());
+			nombreField.setText(res.getNombreLocal());
+			telField.setText(""+res.getTelefono());
+			CIFField.setText(""+res.getCIF());
+			dirField.setText(res.getDireccion());
+			cpField.setText(""+res.getCP());
+			locField.setText(res.getLocalidad());
+			break;
+		case Events.BUSCAR_LOCAL_KO:
+			res_mensaje.showMessage("Error en la búsqueda del Local.",
+					"BUSCAR LOCAL", false);
+			break;	
+		}
+		
+	}
+
+	public void limpiar() {
+		// TODO Apéndice de método generado automáticamente
+		this.contentPane= new JPanel();
 	}
 	
 	

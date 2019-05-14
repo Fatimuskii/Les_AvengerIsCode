@@ -25,5 +25,11 @@ private JPanel contentPane;
 		// TODO Apéndice de método generado automáticamente
 		
 	}
+
+
+	public void update(int event, Object res) {
+		// TODO Apéndice de método generado automáticamente
+		
+	}
 	
 }

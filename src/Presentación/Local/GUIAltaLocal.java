@@ -163,7 +163,7 @@ public class GUIAltaLocal extends GUILocalImp {
 
 		JLabel lblLogoaltalocal = new JLabel("logoAltaLocal");
 		lblLogoaltalocal.setBounds(327, 42, 76, 74);
-		Icon icono = new ImageIcon(new ImageIcon("F:\\Documentos\\IS 2018-2019\\Les_AvengerIsCode\\imagenes\\altaLocal.png").getImage().getScaledInstance(lblLogoaltalocal.getWidth(), lblLogoaltalocal.getHeight(), Image.SCALE_DEFAULT));
+		Icon icono = new ImageIcon(new ImageIcon("imagenes\\altaLocal.png").getImage().getScaledInstance(lblLogoaltalocal.getWidth(), lblLogoaltalocal.getHeight(), Image.SCALE_DEFAULT));
 		lblLogoaltalocal.setIcon(icono);
 		this.repaint();
 		
