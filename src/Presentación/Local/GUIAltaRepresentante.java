@@ -18,7 +18,7 @@ public class GUIAltaRepresentante extends GUILocalImp {
 
 	private JPanel contentPane;
 	private TRepresentante representante;
-	
+
 	private JTextField rep_nombreCompleto;
 	private JTextField telefonoPersonal;
 	private JTextField email;
@@ -27,9 +27,9 @@ public class GUIAltaRepresentante extends GUILocalImp {
 		super();
 		contentPane = new JPanel();
 		initGUI();
-		
+
 	}
-	
+
 	public void initGUI() {
 		setTitle("ALTA LOCAL");
 		setResizable(false);
@@ -74,18 +74,18 @@ public class GUIAltaRepresentante extends GUILocalImp {
 
 		JButton botonAceptar = new JButton("Continuar->");
 		botonAceptar.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
-				
+
 				String nombreRep = rep_nombreCompleto.getText();
 				int telRep = Integer.parseInt(telefonoPersonal.getText());
 				String emailRep = email.getText();
 
-			
-					representante = new TRepresentante(nombreRep, telRep, emailRep);
-					Controlador.getInstance().accion(Events.ALTA_REPRESENTANTE, representante);
-					dispose();
-				
+				representante = new TRepresentante(nombreRep, telRep, emailRep);
+				Controlador.getInstance().accion(Events.ALTA_REPRESENTANTE,
+						representante);
+				dispose();
+
 			}
 		});
 		botonAceptar.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -101,20 +101,40 @@ public class GUIAltaRepresentante extends GUILocalImp {
 		btnatras.setFont(new Font("Tahoma", Font.BOLD, 15));
 		btnatras.setBounds(183, 205, 111, 42);
 		contentPane.add(btnatras);
-		
+
 		JLabel lblLogoaltaRep = new JLabel("logoAltaLocal");
 		lblLogoaltaRep.setBounds(347, 31, 49, 44);
-		Icon icono = new ImageIcon(new ImageIcon("F:\\Documentos\\IS 2018-2019\\Les_AvengerIsCode\\imagenes\\loginRepresentante.png").getImage().getScaledInstance(lblLogoaltaRep.getWidth(), lblLogoaltaRep.getHeight(), Image.SCALE_DEFAULT));
+		Icon icono = new ImageIcon(
+				new ImageIcon(
+						"F:\\Documentos\\IS 2018-2019\\Les_AvengerIsCode\\imagenes\\loginRepresentante.png")
+						.getImage()
+						.getScaledInstance(lblLogoaltaRep.getWidth(),
+								lblLogoaltaRep.getHeight(), Image.SCALE_DEFAULT));
 		lblLogoaltaRep.setIcon(icono);
 		this.repaint();
-		
+
 		contentPane.add(lblLogoaltaRep);
 	}
-	
+
 	public void limpiarDatos() {
 		// TODO Apéndice de método generado automáticamente
 		contentPane = new JPanel();
-		//initGUI();
+		// initGUI();
 	}
 
+	public void update(int event, Object res) {
+
+		GUIMensaje res_mensaje= new GUIMensaje();
+		switch (event) {
+		case Events.ALTA_REPRESENTANTE_OK:
+			res_mensaje.showMessage(
+					"Se ha dado de alta correctamente al Representante con id: "
+							+ (int) res, "ALTA LOCAL", false);
+			break;
+		case Events.ALTA_REPRESENTANTE_KO:
+			res_mensaje.showMessage("Error en el alta del Representante.",
+					"ALTA LOCAL", false);
+			break;
+		}
+	}
 }

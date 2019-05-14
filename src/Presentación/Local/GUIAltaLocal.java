@@ -24,6 +24,7 @@ import javax.swing.ImageIcon;
 import Negocio.Local.SARepresentante;
 import Negocio.Local.TLocal;
 import Negocio.Local.TRepresentante;
+import Presentación.GUIMensaje;
 import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 
@@ -149,9 +150,6 @@ public class GUIAltaLocal extends GUILocalImp {
 				int cpLocal = Integer.parseInt(CP.getText());
 				String locLocal = localidad.getText();
 
-				// Nota.... no se como conseguir el ID que genere el
-				// TRepresentante...)
-
 				local = new TLocal(nombreLocal, telLocal, cifLocal, dirLocal,
 						cpLocal, locLocal, getIdRepresentante(), true);
 				Controlador.getInstance().accion(Events.ALTA_LOCAL, local);
@@ -173,6 +171,22 @@ public class GUIAltaLocal extends GUILocalImp {
 		
 	}
 
+	public void update(int event, Object res) {
+		// TODO Apéndice de método generado automáticamente
+		GUIMensaje res_mensaje = new GUIMensaje();
+		switch (event) {
+		case Events.ALTA_LOCAL_OK:
+			res_mensaje.showMessage(
+					"Se ha dado de alta correctamente al Local con id: "
+							+ (int) res, "ALTA LOCAL", false);
+	
+			break;
+		case Events.ALTA_LOCAL_KO:
+			res_mensaje.showMessage("Error en el alta del Local.",
+					"ALTA LOCAL", false);
+			break;
+		}
+	}
 	public void limpiarDatos() {
 		// TODO Apéndice de método generado automáticamente
 		contentPane = new JPanel();

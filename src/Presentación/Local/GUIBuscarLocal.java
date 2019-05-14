@@ -1,5 +1,7 @@
 package Presentación.Local;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -18,7 +20,7 @@ import javax.swing.border.EmptyBorder;
 import Negocio.Local.TLocal;
 
 @SuppressWarnings("serial")
-public class GUIBuscarLocal extends GUILocalImp {
+public class GUIBuscarLocal extends JFrame {
 
 	private JTextField IdLocalField;
 	private JTextField nombreField;
@@ -31,9 +33,11 @@ public class GUIBuscarLocal extends GUILocalImp {
 	private JTextField activoField;
 
 	private JPanel contentPane;
-
-	public GUIBuscarLocal() {
-
+	private TLocal local;
+	String id, nombre, tel, CIF, dir, cp, loc, repre, activo;
+	
+	public GUIBuscarLocal(){
+		super();	
 		/*this.local = local;
 		this.id = "" + this.local.getIdLocal();
 		this.nombre = this.local.getNombreLocal();
@@ -148,5 +152,6 @@ public class GUIBuscarLocal extends GUILocalImp {
 		datosPropietarioCombo.setBounds(122, 200, 135, 22);
 		contentPane.add(datosPropietarioCombo);
 	}
-
+	
+	
 }

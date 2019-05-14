@@ -27,20 +27,19 @@ public class Events {
 	
 	public static final int ALTA_LOCAL_OK = 200;
 	public static final int ALTA_LOCAL_KO = 201;
-	public static final int ALTA_REPRESENTANTE_OK = 203;
-	public static final int ALTA_REPRESENTANTE_KO = 204;
-	/*public static final int BAJA_LOCAL_OK = 202;
-	public static final int BAJA_LOCAL_KO = 203;
-	public static final int MODIFICAR_LOCAL_OK = 204;
-	public static final int MODIFICAR_LOCAL_KO = 205;
-	public static final int BUSCAR_LOCAL_OK = 206;
-	public static final int BUSCAR_LOCAL_KO = 207;
-	public static final int LISTAR_LOCALES_OK = 208;
-	public static final int LISTAR_LOCALES_KO = 209;*/
+	public static final int ALTA_REPRESENTANTE_OK = 202;
+	public static final int ALTA_REPRESENTANTE_KO = 203;
+	public static final int BAJA_LOCAL_OK = 204;
+	public static final int BAJA_LOCAL_KO = 205;
+	public static final int MODIFICAR_LOCAL_OK = 206;
+	public static final int MODIFICAR_LOCAL_KO = 207;
+	public static final int BUSCAR_LOCAL_OK = 208;
+	public static final int BUSCAR_LOCAL_KO = 209;
+	public static final int LISTAR_LOCALES_OK = 2010;
+	public static final int LISTAR_LOCALES_KO = 2011;
 	
 	//DISEÑO
 	//GUI Diseño
-	public static final int OPEN_GUI_DISEÑO_MENU = 300;
 	
 	public static final int ALTA_DISEÑO = 301;
 	public static final int BAJA_DISEÑO = 302;
@@ -100,17 +99,17 @@ public class Events {
 	public static final int GUI_MENUADMIN=102;
 	public static final int GUI_MENUUSER=103; 
 	
-	public static final int OPEN_GUI_LOCAL_MENU = 102;
+	public static final int OPEN_GUI_LOCAL_MENU = 104;
+	public static final int OPEN_GUI_USUARIO_MENU = 105;	
+	public static final int OPEN_GUI_IMPRESORA_MENU = 106;	
+	public static final int OPEN_GUI_DISEÑO_MENU = 107;
 	
-	public static final int OPEN_GUI_USUARIO_MENU = 104;	
-	public static final int OPEN_GUI_IMPRESORA_MENU = 105;	
-	
-	public static final int OPEN_GUI_ALTA_LOCAL = 110;
+	/*public static final int OPEN_GUI_ALTA_LOCAL = 110;
 	public static final int OPEN_GUI_BAJA_LOCAL = 111;
 	public static final int OPEN_GUI_MODIFICAR_LOCAL = 112;
 	public static final int OPEN_GUI_BUSCAR_LOCAL = 113;
 	public static final int OPEN_GUI_LISTAR_LOCALES = 114;
-	public static final int	OPEN_GUI_REPRESENTANTE= 115;
+	public static final int	OPEN_GUI_REPRESENTANTE= 115;*/
 	
 	
 	public static final int OPEN_GUI_ALTA_USUARIO = 116;

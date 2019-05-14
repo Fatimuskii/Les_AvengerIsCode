@@ -123,29 +123,38 @@ public class GUILocalImp extends GUILocal {
 
 		switch (event) {
 		case Events.ALTA_LOCAL_OK:
-			res_mensaje.showMessage(
-					"Se ha dado de alta correctamente al Local con id: "
-							+ (int) res, "ALTA LOCAL", false);
+			Gui_altaLocal.update(event, res);
 			break;
 		case Events.ALTA_LOCAL_KO:
-			res_mensaje.showMessage("Error en el alta del Local.",
-					"ALTA LOCAL", false);
+			Gui_altaLocal.update(event, res);
 			break;
-
 		case Events.ALTA_REPRESENTANTE_OK:
-			res_mensaje.showMessage(
-					"Se ha dado de alta correctamente al Representante con id: "
-							+ (int) res, "ALTA LOCAL", false);
-			Gui_altaLocal= new GUIAltaLocal();
-			Gui_altaLocal.setIdRepresentante((int)res);
+			Gui_altaRepre.update(event, res);
+			Gui_altaLocal = new GUIAltaLocal();
+			Gui_altaLocal.setIdRepresentante((int) res);
 			Gui_altaLocal.setVisible(true);
 			
 			break;
 		case Events.ALTA_REPRESENTANTE_KO:
-			res_mensaje.showMessage("Error en el alta del Representante.",
-					"ALTA LOCAL", false);
+			Gui_altaRepre.update(event, res);
+			
+		case Events.BAJA_DISEÑO_OK:
 			break;
+			
+		case Events.BAJA_DISEÑO_KO:
+			break;
+		case Events.MODIFICAR_LOCAL_OK:
+			break;
+		case Events.MODIFICAR_LOCAL_KO:
+			
+		case Events.BUSCAR_LOCAL_OK:
+			break;
+		case Events.BUSCAR_LOCAL_KO:
+			break;
+		
 		}
+		
+		
 
 	}
 
