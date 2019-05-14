@@ -110,6 +110,7 @@ public class GUIBuscarPalabraDiseño extends JFrame{
 	public void update(int event, ArrayList<TDiseño> res){
 		switch (event) {
 		case Events.BUSCAR_DISEÑO_PALABRA_CLAVE_OK:
+			if(res.size()>0){
 			 tableModel.setRowCount(0);
 			 for (int i = 0; i < res.size(); i++)
 				 tableModel.insertRow(i, new Object[] 
@@ -117,6 +118,11 @@ public class GUIBuscarPalabraDiseño extends JFrame{
 						 res.get(i).getPropietario(), res.get(i).getAlto() +"x"+ res.get(i).getAncho() +"x"+ 
 						 res.get(i).getProfundidad(), res.get(i).getPrecio() });
 			 table.setModel(tableModel);
+			}
+			else{
+				dispose();
+				JOptionPane.showMessageDialog(null, "No existen diseños con ese nombre");
+			}
 			break;
 		case Events.BUSCAR_DISEÑO_PALABRA_CLAVE_KO:
 			JOptionPane.showMessageDialog(null, "Error al listar los diseños", "Error Listar", JOptionPane.ERROR_MESSAGE);
