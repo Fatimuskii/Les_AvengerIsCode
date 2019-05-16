@@ -177,11 +177,13 @@ public class GUIBuscarLocal extends JFrame {
 			
 			Controlador.getInstance().accion(Events.BUSCAR_REPRESENTANTE,
 					local.getRepresentante());
-			
+		
 			break;
 		case Events.BUSCAR_LOCAL_KO:
 			res_mensaje.showMessage("Error en la búsqueda del Local.",
 					"BUSCAR LOCAL", false);
+			
+			dispose();
 			break;	
 		case Events.BUSCAR_REPRESENTANTE_OK:
 			TRepresentante repre= (TRepresentante)res;
