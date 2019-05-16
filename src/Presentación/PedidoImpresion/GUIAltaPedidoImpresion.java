@@ -42,25 +42,17 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp{
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GUIAltaPedidoImpresion frame = new GUIAltaPedidoImpresion();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	public GUIAltaPedidoImpresion(){
+		this.contentPane= new JPanel();
+		initGUI();
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public GUIAltaPedidoImpresion() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Paula\\IBM\\rationalsdp\\workspace\\Les_AvengerIsCode\\imagenes\\3d-printer.png"));
-		setTitle("ALTA PEDIDO IMPRESION\r\n");
+	public void initGUI() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Paula\\IBM\\rationalsdp\\workspace\\Les_AvengerIsCode\\imagenes\\logoUsu.png"));
+		setTitle("ALTA PEDIDO IMPRESION");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 681, 470);
 		contentPane = new JPanel();
@@ -93,16 +85,11 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp{
 				 GUIPedidoImpresionImp imp; 
 				imp= new  GUIPedidoImpresionImp(); 
 				imp.setVisible(true); 
+				dispose();
 			}
 		});
 		mnArchivo.add(mntmVolverAlMenu);
 		mnArchivo.add(mntmSalir);
-		
-		JMenu mnUsuario = new JMenu("Usuario");
-		menuBar.add(mnUsuario);
-		
-		JMenu mnDiseo = new JMenu("Dise\u00F1o");
-		menuBar.add(mnDiseo);
 		
 		JMenu mnPedidoimpresion = new JMenu("PedidoImpresion");
 		menuBar.add(mnPedidoimpresion);
@@ -113,23 +100,56 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp{
 				GUIAltaPedidoImpresion alta; //declaro el nombre
 				alta= new GUIAltaPedidoImpresion(); //creo caja de dialogo
 				alta.setVisible(true); //hace visible la caja
+				dispose();
 			}
 		});
 		mnPedidoimpresion.add(mntmAlta);
 		
 		JMenuItem mntmBaja = new JMenuItem("Baja");
+		mntmBaja.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUIBajaPedidoImpresion baja; 
+				baja= new GUIBajaPedidoImpresion(); 
+				baja.setVisible(true);
+				dispose();
+			}
+		});
 		mnPedidoimpresion.add(mntmBaja);
 		
 		JMenuItem mntmBuscar = new JMenuItem("Buscar");
+		mntmBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUIBuscarPedido buscar;
+				buscar= new GUIBuscarPedido(); 
+				buscar.setVisible(true);
+				dispose();
+			}
+		});
 		mnPedidoimpresion.add(mntmBuscar);
 		
 		JMenu mnModificar = new JMenu("Modificar");
 		mnPedidoimpresion.add(mnModificar);
 		
 		JMenuItem mntmPedidoImpresion = new JMenuItem("Pedido impresion");
+		mntmPedidoImpresion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUIModificarPedido modificar;
+				modificar= new GUIModificarPedido(); 
+				modificar.setVisible(true);
+				dispose();
+			}
+		});
 		mnModificar.add(mntmPedidoImpresion);
 		
 		JMenuItem mntmEnvio = new JMenuItem("Envio");
+		mntmEnvio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUIModificarEnvio envio;
+				envio= new GUIModificarEnvio(); 
+				envio.setVisible(true);
+				dispose();
+			}
+		});
 		mnModificar.add(mntmEnvio);
 		
 		JLabel lblLogo = new JLabel("");
@@ -145,7 +165,7 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp{
 		
 		txtNombre = new JTextField();
 		txtNombre.setText("NOMBRE\r\n");
-		txtNombre.setForeground(Color.GRAY);
+		txtNombre.setForeground(Color.BLACK);
 		/*txtNombre.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
@@ -173,7 +193,7 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp{
 		
 		JTextPane txtpnListaDeDiseos = new JTextPane();
 		txtpnListaDeDiseos.setText("LISTA DE DISE\u00D1OS");
-		txtpnListaDeDiseos.setBounds(237, 140, 206, 202);
+		txtpnListaDeDiseos.setBounds(237, 140, 311, 240);
 		panel.add(txtpnListaDeDiseos);
 		
 		JButton btnContinuar = new JButton("Continuar");
@@ -182,7 +202,7 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp{
 				
 			}
 		});
-		btnContinuar.setBounds(482, 350, 97, 25);
+		btnContinuar.setBounds(57, 269, 126, 40);
 		panel.add(btnContinuar);
 		
 		this.repaint();

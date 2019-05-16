@@ -11,26 +11,27 @@ package Presentación.PedidoImpresion;
  */
 
 
-	import java.awt.BorderLayout;
-	import java.awt.EventQueue;
-	import java.awt.Image;
-	import javax.swing.JFrame;
-	import javax.swing.JPanel;
-	import javax.swing.border.EmptyBorder;
-	import javax.swing.JMenuBar;
-	import javax.swing.JMenu;
-	import javax.swing.JMenuItem;
-	import javax.swing.JProgressBar;
-	import javax.swing.JCheckBoxMenuItem;
-	import java.awt.event.ActionListener;
-	import java.awt.event.ActionEvent;
-	import java.awt.Toolkit;
-	import javax.swing.JLabel;
-	import javax.swing.Icon;
-	import javax.swing.ImageIcon;
-	import javax.swing.JButton;
-	import javax.swing.JToggleButton;
-	import java.awt.Font;
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.Image;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JProgressBar;
+import javax.swing.JCheckBoxMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
+import javax.swing.JLabel;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JToggleButton;
+import java.awt.Font;
 
 	public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 
@@ -45,13 +46,13 @@ package Presentación.PedidoImpresion;
 		 */
 		public GUIPedidoImpresionImp() {
 			this.contentPane= new JPanel();
-			initGui();
+			initGUI();
 		}
 		
-		public void initGui(){
+		public void initGUI(){
 			
 			
-			setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Paula\\IBM\\rationalsdp\\workspace\\Les_AvengerIsCode\\imagenes\\3d-printer.png"));
+			setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Paula\\IBM\\rationalsdp\\workspace\\Les_AvengerIsCode\\imagenes\\logoUsu.png"));
 			setTitle("MENU PEDIDO IMPRESION");
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setBounds(100, 100, 605, 429);
@@ -85,32 +86,57 @@ package Presentación.PedidoImpresion;
 					GUIAltaPedidoImpresion alta; //declaro el nombre
 					alta= new GUIAltaPedidoImpresion(); //creo caja de dialogo
 					alta.setVisible(true); //hace visible la caja
+					//dispose(); //para cerrar la ventana anterior y dejar solo a la que llama
 				
 				}
 			});
 			mnAlta.add(mntmAlta);
 			
 			JMenuItem mntmBaja = new JMenuItem("Cancelar pedido\r\n");
-			/*mntmBaja.addActionListener(new ActionListener() {
+			mntmBaja.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					JDialogError error; //declaro el nombre
-					error= new JDialogError(); //creo caja de dialogo
-				//	alta.setLocationRelativeTo(this); //centra la caja 
-					error.setVisible(true); //hace visible la caja
+					GUIBajaPedidoImpresion baja; //declaro el nombre
+					baja= new GUIBajaPedidoImpresion(); //creo caja de dialogo
+					baja.setVisible(true);
+					//dispose();
 				}
-			});*/
+			});
 			mnAlta.add(mntmBaja);
 			
 			JMenuItem mntmBuscar = new JMenuItem("Buscar pedido\r\n");
+			mntmBuscar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIBuscarPedido buscar;
+					buscar= new GUIBuscarPedido(); 
+					buscar.setVisible(true);
+				//	dispose();
+				}
+			});
 			mnAlta.add(mntmBuscar);
 			
 			JMenu mnModificar = new JMenu("Modificar");
 			mnAlta.add(mnModificar);
 			
 			JMenuItem mntmPedidoImpresion = new JMenuItem("Pedido impresion");
+			mntmPedidoImpresion.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIModificarPedido modificar;
+					modificar= new GUIModificarPedido(); 
+					modificar.setVisible(true);
+				//	dispose();
+				}
+			});
 			mnModificar.add(mntmPedidoImpresion);
 			
 			JMenuItem mntmEnvio = new JMenuItem("Envio");
+			mntmEnvio.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIModificarEnvio envio;
+					envio= new GUIModificarEnvio(); 
+					envio.setVisible(true);
+					//dispose();
+				}
+			});
 			mnModificar.add(mntmEnvio);
 			
 			JLabel lblLogo = new JLabel("");
@@ -130,6 +156,7 @@ package Presentación.PedidoImpresion;
 					GUIAltaPedidoImpresion alta; //declaro el nombre
 					alta= new GUIAltaPedidoImpresion(); //creo caja de dialogo
 					alta.setVisible(true); //hace visible la caja
+				//	dispose();
 				}
 			});
 			btnHacerPedido.setBounds(312, 53, 263, 65);
@@ -137,28 +164,45 @@ package Presentación.PedidoImpresion;
 			contentPane.add(btnHacerPedido);
 			
 			JButton btnBajaPedido = new JButton("CANCELAR PEDIDO\r\n");
-			/*btnBajaPedido.addActionListener(new ActionListener() {
+			btnBajaPedido.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					JDialogError error; //declaro el nombre
-					error= new JDialogError(); //creo caja de dialogo
-				//	alta.setLocationRelativeTo(this); //centra la caja 
-					error.setVisible(true); //hace visible la caja
+					GUIBajaPedidoImpresion baja; 
+					baja= new GUIBajaPedidoImpresion(); 
+					baja.setVisible(true);
+					//dispose();
 				}
-			});*/
+			});
 			btnBajaPedido.setBounds(312, 131, 263, 65);
 			btnBajaPedido.setFont(new Font("Tahoma", Font.PLAIN, 21));
 			contentPane.add(btnBajaPedido);
 			
 			JButton btnModificarPedido = new JButton("MODIFICAR PEDIDO\r\n");
+			btnModificarPedido.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIModificar mod;
+					mod= new GUIModificar(); 
+					mod.setVisible(true);
+				//	dispose();
+				}
+			});
 			btnModificarPedido.setBounds(312, 292, 263, 65);
 			btnModificarPedido.setFont(new Font("Tahoma", Font.PLAIN, 21));
 			contentPane.add(btnModificarPedido);
 			
 			JButton btnBuscarPedido = new JButton("BUSCAR PEDIDO\r\n");
+			btnBuscarPedido.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					GUIBuscarPedido buscar;
+					buscar= new GUIBuscarPedido(); 
+					buscar.setVisible(true);
+				//	dispose();
+				}
+			});
 			btnBuscarPedido.setBounds(312, 214, 263, 65);
 			btnBuscarPedido.setFont(new Font("Tahoma", Font.PLAIN, 21));
 			contentPane.add(btnBuscarPedido);
 			this.repaint();
+			
 			
 			
 		}
