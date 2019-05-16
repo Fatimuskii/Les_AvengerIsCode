@@ -31,7 +31,12 @@ public class SARepresentanteImp implements SARepresentante{
 	@Override
 	public int modificar(TRepresentante datos) {
 		// TODO Apéndice de método generado automáticamente
-		return 0;
+		DAORepresentante repDAO = FactoriaDAO.getInstance().generateDAORepresentante();
+		int res= repDAO.modificar(datos);
+		if (res>0)
+			return res;
+		else
+			return -1;
 	}
 
 	@Override

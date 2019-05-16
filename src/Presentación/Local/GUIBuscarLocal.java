@@ -34,6 +34,8 @@ public class GUIBuscarLocal extends JFrame {
 	@SuppressWarnings("rawtypes")
 	private JComboBox datosPropietarioCombo;
 	private GUIModificarLocal Gui_modificarLocal;
+	TRepresentante repre;
+	TLocal local;
 	
 
 	//private JTextField activoField;
@@ -148,7 +150,8 @@ public class GUIBuscarLocal extends JFrame {
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Gui_modificarLocal = new GUIModificarLocal(idLoc);
+				
+				Gui_modificarLocal = new GUIModificarLocal(local,repre);
 				Gui_modificarLocal.setVisible(true);
 			}
 		});
@@ -172,7 +175,7 @@ public class GUIBuscarLocal extends JFrame {
 		switch(event){
 
 		case Events.BUSCAR_LOCAL_OK:
-			TLocal local = (TLocal)res;
+			local = (TLocal)res;
 			IdLocalField.setText(""+local.getIdLocal());
 			nombreField.setText(local.getNombreLocal());
 			telField.setText(""+local.getTelefono());
@@ -192,7 +195,7 @@ public class GUIBuscarLocal extends JFrame {
 			dispose();
 			break;	
 		case Events.BUSCAR_REPRESENTANTE_OK:
-			TRepresentante repre= (TRepresentante)res;
+			repre= (TRepresentante)res;
 			String idProp= ""+repre.getIdRepresentante();
 			String name= repre.getNombreCompleto();
 			String telefono= ""+repre.getTel();
@@ -206,17 +209,16 @@ public class GUIBuscarLocal extends JFrame {
 			dispose();
 			break;
 		case Events.MODIFICAR_LOCAL_OK:
-			
+			Gui_modificarLocal.update(event, res);
 			break;
 		case Events.MODIFICAR_LOCAL_KO:
-			res_mensaje.showMessage("Error en la modificación del Local:",
-					"MODIFICAR LOCAL", false);
+			Gui_modificarLocal.update(event, res);
 			break;
 		case Events.MODIFICAR_REPRESENTANTE_OK:
-			
+			Gui_modificarLocal.update(event, res);
 			break;
 		case Events.MODIFICAR_REPRESENTANTE_KO:
-			
+			Gui_modificarLocal.update(event, res);
 			break;
 		}	
 		

@@ -130,6 +130,30 @@ public class ControladorImp extends Controlador {
 			else 
 				GUILocal.getInstance().update(Events.BUSCAR_REPRESENTANTE_KO, trepre);
 			break;
+			
+		case Events.MODIFICAR_LOCAL:
+			tlocal = (TLocal) datos;
+			res = this.SALocal.modificar(tlocal);
+			if (res > 0) {
+				GUILocal.getInstance()
+						.update(Events.MODIFICAR_LOCAL_OK, res);
+			} else
+				GUILocal.getInstance()
+						.update(Events.MODIFICAR_LOCAL_KO, res);
+			break;
+		case Events.MODIFICAR_REPRESENTANTE:
+			trepre= (TRepresentante) datos; 
+			res= this.SARepresentante.modificar(trepre);
+			if (res > 0) {
+				GUILocal.getInstance()
+						.update(Events.MODIFICAR_REPRESENTANTE_OK, res);			
+			} else
+				GUILocal.getInstance()
+						.update(Events.MODIFICAR_REPRESENTANTE_KO, res);
+			break;
+			
+			
+			
 		case Events.OPEN_GUI_USUARIO_MENU:
 			GUIUsuario.getInstance();
 			break;

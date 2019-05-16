@@ -115,13 +115,13 @@ public class DAOLocalImpl implements DAOLocal {
 				Statement statement = connection.createStatement();
 				String query = "UPDATE locales SET " 
 						+ "nombre='" + datos.getNombreLocal()+ "', " 
-						+ "telefono=" + datos.getTelefono()+ ", " 
-						+ "CIF=" + datos.getCIF() + ", " 
-						+ "direccion=" + datos.getDireccion() + ", " 
-						+ "CP=" + datos.getCP() + ", " 
-						+ "localidad=" + datos.getLocalidad() + ", " 
-						+ "representante=" + datos.getRepresentante() + ", " 
-						+ "activo=" + datos.getActivo() 
+						+ "telefono='" + datos.getTelefono()+ "', " 
+						+ "CIF='" + datos.getCIF() + "', " 
+						+ "direccion='" + datos.getDireccion() + "', " 
+						+ "CP='" + datos.getCP() + "', " 
+						+ "localidad='" + datos.getLocalidad() + "', " 
+						+ "representante='" + datos.getRepresentante() + "', " 
+						+ "activo= " + (datos.getActivo() ? 1 : 0) + " "
 						+ "WHERE IdLocal=" + datos.getIdLocal();
 				statement.executeUpdate(query);
 				IdLocal = datos.getIdLocal();
@@ -131,6 +131,7 @@ public class DAOLocalImpl implements DAOLocal {
 				IdLocal = -100;
 			}
 		}
+		System.out.println("ID QUE DEVUELVE: " + IdLocal);
 		return IdLocal;
 		// end-user-code
 	}

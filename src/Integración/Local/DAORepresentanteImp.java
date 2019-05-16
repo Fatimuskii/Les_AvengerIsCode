@@ -70,17 +70,17 @@ public class DAORepresentanteImp implements DAORepresentante {
 	public int modificar(TRepresentante datos) {
 		// TODO Apéndice de método generado automáticamente
 		int IdRepresentante = -100;
-		ConexionDAO connectionDAO = ConexionDAO.getInstance();
-		Connection connection = connectionDAO.getConexion();
+		ConexionDAO con = ConexionDAO.getInstance();
+		Connection connection = con.getConexion();
 		// TODO Apéndice de método generado automáticamente
 		if (connection != null) {
 			try {
 				Statement statement = connection.createStatement();
-				String query = "UPDATE representantes SET " + "nombre='"
-						+ datos.getNombreCompleto() + "', " + "telefono="
-						+ datos.getTel() + ", " + "email=" + datos.getEmail()
-						+ ", " + "WHERE IdRepresentante="
-						+ datos.getIdRepresentante();
+				String query = "UPDATE representantes SET " 
+						+ "nombre='" + datos.getNombreCompleto() + "', " 
+						+ "telefono='" + datos.getTel() + "', "
+						+ "email='" + datos.getEmail() +"' "
+						+ "WHERE IdRepresentante=" + datos.getIdRepresentante();
 				statement.executeUpdate(query);
 				IdRepresentante = datos.getIdRepresentante();
 				connection.close();
@@ -162,7 +162,7 @@ public class DAORepresentanteImp implements DAORepresentante {
 		if (connection != null) {
 			try {
 				Statement statement = connection.createStatement();
-				String query = "SELECT * FROM representantes WHERE nombre=" + nombre;
+				String query = "SELECT * FROM representantes WHERE nombre='" + nombre+"'";
 				ResultSet resultSet = statement.executeQuery(query);
 				if (resultSet.next()) {
 					repre = new TRepresentante(resultSet.getInt("IdRepresentante"), nombre,

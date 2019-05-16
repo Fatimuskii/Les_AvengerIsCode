@@ -115,8 +115,6 @@ public class GUILocalImp extends GUILocal {
 			public void actionPerformed(ActionEvent e) {
 				Gui_altaRepre = new GUIAltaRepresentante();
 				Gui_altaRepre.setVisible(true);
-
-				// Gui_altaLocal= new GUIAltaLocal();
 			}
 		});
 		button.setBounds(283, 264, 138, 34);
@@ -158,16 +156,25 @@ public class GUILocalImp extends GUILocal {
 		case Events.BAJA_DISEÑO_KO:
 			break;
 		case Events.MODIFICAR_LOCAL_OK:
+			Gui_buscarLocal.update(event, res);
 			break;
 		case Events.MODIFICAR_LOCAL_KO:
+			Gui_buscarLocal.update(event, res);
 			break;
+		case Events.MODIFICAR_REPRESENTANTE_OK:
+			Gui_buscarLocal.update(event, res);
+			break;
+		case Events.MODIFICAR_REPRESENTANTE_KO:
+			Gui_buscarLocal.update(event, res);
+			break;
+			
 		case Events.BUSCAR_LOCAL_OK:
 			Gui_buscarLocal.update(event, res);
 			
 			break;
 		case Events.BUSCAR_LOCAL_KO:
 			Gui_buscarLocal.update(event, res);
-			Gui_buscarLocal.dispose();
+			//Gui_buscarLocal.dispose();
 			break;
 		case Events.BUSCAR_REPRESENTANTE_OK:
 			Gui_buscarLocal.update(event, res);
