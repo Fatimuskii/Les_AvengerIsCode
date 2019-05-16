@@ -97,6 +97,13 @@ public class Events {
 	public static final int BUSCAR_USUARIO_IMPRESORA_KO = 418;
 	public static final int MODIFICAR_IMPRESORA_COMPROBAR_OK = 420;
 	public static final int MODIFICAR_IMPRESORA_COMPROBAR_KO = 421;
+	
+	//PEDIDO IMPRESION
+	
+	public static final int ALTA_PEDIDO_IMPRESION = 422;
+	
+	public static final int ALTA_PEDIDO_IMPRESION_OK = 432;
+	public static final int ALTA_PEDIDO_IMPRESION_KO = 433;
 
 	
 	/*EVENTOS PARA LAS VISTAS*/
@@ -126,6 +133,9 @@ public class Events {
 	public static final int OPEN_GUI_ACCESO_USUARIO = 121;//TODO OSCAR
 	public static final int OPEN_GUI_DATOS_BANCARIOS_USUARIO = 122;
 	public static final int OPEN_GUI_PERFIL_USUARIO = 123;
+	
+	
+	
 	
 
 		

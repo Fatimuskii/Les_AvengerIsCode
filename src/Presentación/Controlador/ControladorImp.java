@@ -11,13 +11,17 @@ import Negocio.Local.SARepresentante;
 import Negocio.Local.TRepresentante;
 import Negocio.Usuario.SAUsuario;
 import Negocio.Local.TLocal;
+import Negocio.PedidoImpresion.TPedidoImpresion;
 import Negocio.Usuario.TUsuario;
 import Negocio.Diseño.SADiseño;
 import Negocio.Diseño.TDiseño;
 import Negocio.Impresora.SAImpresora;
 import Negocio.Impresora.TImpresora;
+import Negocio.PedidoImpresion.SAPedidoImpresion;
+import Negocio.PedidoImpresion.TPedidoImpresion;
 import Presentación.Impresora.GUIImpresora;
 import Presentación.Local.GUILocal;
+import Presentación.PedidoImpresion.GUIPedidoImpresion;
 import Presentación.Plataforma.GUIPlataformaImp;
 import Presentación.Usuario.GUIUsuario;
 import Presentación.Diseño.GUIDiseño;
@@ -43,6 +47,8 @@ public class ControladorImp extends Controlador {
 	private SAUsuario SAUsuario;
 	private SADiseño SADiseño;
 	private SAImpresora SAImpresora;
+	private SAPedidoImpresion SAPedidoImpresion;
+	
 
 	// AQUI VENDRIAN EL RESTO DE SA
 
@@ -52,6 +58,7 @@ public class ControladorImp extends Controlador {
 		SARepresentante = factoriaSA.generateSARepresentante();
 		SADiseño = factoriaSA.generateSADiseño();
 		SAImpresora = factoriaSA.generateSAImpresora();
+		SAPedidoImpresion = factoriaSA.generateSAPedidoImpresion();
 	}
 
 	public void accion(int evento, Object datos) {
@@ -62,6 +69,7 @@ public class ControladorImp extends Controlador {
 		TUsuario tUsuario;
 		TDiseño tDiseño;
 		TImpresora tImpresora;
+		TPedidoImpresion tPedidoImpresion;
 		
 		int idLocal;
 		int idRepre;
@@ -254,7 +262,18 @@ public class ControladorImp extends Controlador {
 			else
 				GUIDiseño.getInstance().update(Events.MODIFICAR_DISEÑO_COMPROBAR_KO, null);
 			break;
+		/*case Events.ALTA_PEDIDO_IMPRESION:
+			tPedidoImpresion = (TPedidoImpresion) datos;
+			res = this.SAPedidoImpresion.alta(tPedidoImpresion);
+
+			if (res > 0)
+				GUIPedidoImpresion.getInstance().update(Events.ALTA_PEDIDO_IMPRESION_OK, res);
+			else
+				GUIPedidoImpresion.getInstance().update(Events.ALTA_PEDIDO_IMPRESION_KO, res);
+			break;*/
+			
 		// end-user-code
+			
 		}
 
 	}
