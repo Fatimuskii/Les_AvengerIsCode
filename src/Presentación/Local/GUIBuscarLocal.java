@@ -16,7 +16,9 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Negocio.Local.TLocal;
+import Negocio.Local.TRepresentante;
 import Presentación.GUIMensaje;
+import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 
 @SuppressWarnings("serial")
@@ -31,20 +33,19 @@ public class GUIBuscarLocal extends JFrame {
 	private JTextField locField;
 	private JComboBox datosPropietarioCombo;
 	//private JTextField activoField;
-
-	private JPanel contentPane;
-	private TLocal local;
-	String id, nombre, tel, CIF, dir, cp, loc, repre, activo;
+	private int idLoc;
+	private JPanel contentPane; 
 	
-	public GUIBuscarLocal(){
-		super();	
+	public GUIBuscarLocal(int idLoc){
+		
+		super();
+		this.idLoc= idLoc;
 		contentPane = new JPanel();
 		initGUI();
 	}
-
+	
 	@SuppressWarnings("rawtypes")
 	public void initGUI() {
-
 		// tabla con todos los datos del Local
 		// SALDRÁ BOTON EDITAR Y BORRAR.
 		setResizable(false);
@@ -136,7 +137,7 @@ public class GUIBuscarLocal extends JFrame {
 		contentPane.add(lblDueo);
 		
 		datosPropietarioCombo = new JComboBox();
-		datosPropietarioCombo.setModel(new DefaultComboBoxModel(new String[] {"Prueba1", "Prueba2", "Prueba3"}));
+		//datosPropietarioCombo.setModel(new DefaultComboBoxModel(new String[] {"Prueba1", "Prueba2", "Prueba3"}));
 		datosPropietarioCombo.setBounds(122, 226, 135, 22);
 		contentPane.add(datosPropietarioCombo);
 		
@@ -158,25 +159,45 @@ public class GUIBuscarLocal extends JFrame {
 		contentPane.add(btnEliminar);
 	}
 
-	public void update(int event, TLocal res) {
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public void update(int event, Object res) {
 		// TODO Apéndice de método generado automáticamente
 		GUIMensaje res_mensaje = new GUIMensaje();
 		switch(event){
 
 		case Events.BUSCAR_LOCAL_OK:
-			IdLocalField.setText(""+res.getIdLocal());
-			nombreField.setText(res.getNombreLocal());
-			telField.setText(""+res.getTelefono());
-			CIFField.setText(""+res.getCIF());
-			dirField.setText(res.getDireccion());
-			cpField.setText(""+res.getCP());
-			locField.setText(res.getLocalidad());
+			TLocal local = (TLocal)res;
+			IdLocalField.setText(""+local.getIdLocal());
+			nombreField.setText(local.getNombreLocal());
+			telField.setText(""+local.getTelefono());
+			CIFField.setText(""+local.getCIF());
+			dirField.setText(local.getDireccion());
+			cpField.setText(""+local.getCP());
+			locField.setText(local.getLocalidad());
+			
+			Controlador.getInstance().accion(Events.BUSCAR_REPRESENTANTE,
+					local.getRepresentante());
+			
 			break;
 		case Events.BUSCAR_LOCAL_KO:
 			res_mensaje.showMessage("Error en la búsqueda del Local.",
 					"BUSCAR LOCAL", false);
 			break;	
-		}
+		case Events.BUSCAR_REPRESENTANTE_OK:
+			TRepresentante repre= (TRepresentante)res;
+			String idProp= ""+repre.getIdRepresentante();
+			String name= repre.getNombreCompleto();
+			String telefono= ""+repre.getTel();
+			String email= repre.getEmail();
+			datosPropietarioCombo.setModel(new DefaultComboBoxModel(new String[] {idProp, name, telefono, email}));
+			break;
+		
+		case Events.BUSCAR_REPRESENTANTE_KO:
+			res_mensaje.showMessage("Error en la búsqueda de los datos del propietario.",
+					"BUSCAR LOCAL", false);
+			break;
+		}	
+	
 		
 	}
 

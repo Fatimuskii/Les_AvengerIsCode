@@ -2,7 +2,6 @@ package Integración.Local;
 
 import java.util.ArrayList;
 
-import Negocio.Local.TLocal;
 import Negocio.Local.TRepresentante;
 
 public interface DAORepresentante {

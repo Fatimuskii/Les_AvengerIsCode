@@ -2,9 +2,11 @@ package Negocio.Local;
 
 import java.util.ArrayList;
 
+import Integración.Diseño.DAODiseño;
 import Integración.Factoria.FactoriaDAO;
 import Integración.Local.DAOLocal;
 import Integración.Local.DAORepresentante;
+import Negocio.Diseño.TDiseño;
 
 public class SARepresentanteImp implements SARepresentante{
 
@@ -33,9 +35,14 @@ public class SARepresentanteImp implements SARepresentante{
 	}
 
 	@Override
-	public TLocal buscarPorId(int IdRepresentante) {
+	public TRepresentante buscarPorId(int IdRepresentante) {
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		// begin-user-code
+				TRepresentante tRepre = null;
+				DAORepresentante repreDAO = FactoriaDAO.getInstance().generateDAORepresentante();
+				tRepre = repreDAO.buscarPorId(IdRepresentante);
+				return tRepre;
+				// end-user-code
 	}
 
 	@Override

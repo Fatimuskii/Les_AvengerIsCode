@@ -36,6 +36,7 @@ public class GUIAltaLocal extends GUILocalImp {
 
 	private TLocal local;
 	private int IdRepresentante;
+	private TRepresentante repre;
 
 	
 	private JTextField nombre;
@@ -58,7 +59,7 @@ public class GUIAltaLocal extends GUILocalImp {
 	public void setIdRepresentante(int id){
 		this.IdRepresentante = id;
 	}
-
+	
 	public void initGUI() {
 		setResizable(false);
 		setIconImage(Toolkit

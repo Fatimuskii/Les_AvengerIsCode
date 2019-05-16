@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import Integración.Conexion.ConexionDAO;
-import Negocio.Local.TLocal;
 import Negocio.Local.TRepresentante;
 
 public class DAORepresentanteImp implements DAORepresentante {

@@ -30,13 +30,19 @@ public class Events {
 	public static final int ALTA_REPRESENTANTE_OK = 202;
 	public static final int ALTA_REPRESENTANTE_KO = 203;
 	public static final int BAJA_LOCAL_OK = 204;
-	public static final int BAJA_LOCAL_KO = 205;
-	public static final int MODIFICAR_LOCAL_OK = 206;
-	public static final int MODIFICAR_LOCAL_KO = 207;
-	public static final int BUSCAR_LOCAL_OK = 208;
-	public static final int BUSCAR_LOCAL_KO = 209;
-	public static final int LISTAR_LOCALES_OK = 2010;
-	public static final int LISTAR_LOCALES_KO = 2011;
+	public static final int BAJA_REPRESENTANTE_OK = 205;
+	public static final int BAJA_REPRESENTANTE_KO = 206;
+	public static final int BAJA_LOCAL_KO = 207;
+	public static final int MODIFICAR_LOCAL_OK = 208;
+	public static final int MODIFICAR_REPRESENTANTE_OK = 209;
+	public static final int MODIFICAR_REPRESENTANTE_KO= 2010;
+	public static final int MODIFICAR_LOCAL_KO = 2011;
+	public static final int BUSCAR_LOCAL_OK = 2012;
+	public static final int BUSCAR_REPRESENTANTE_OK = 2013;
+	public static final int BUSCAR_REPRESENTANTE_KO= 2014;
+	public static final int BUSCAR_LOCAL_KO = 2015;
+	public static final int LISTAR_LOCALES_OK = 2016;
+	public static final int LISTAR_LOCALES_KO = 2017;
 	
 	//DISEÑO
 	//GUI Diseño

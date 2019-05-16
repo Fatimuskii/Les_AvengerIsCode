@@ -15,10 +15,12 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Negocio.Local.TLocal;
+import Negocio.Local.TRepresentante;
 import Presentación.GUIMensaje;
 import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 
+@SuppressWarnings("serial")
 public class GUILocalImp extends GUILocal {
 
 	// MENU DE LOCAL!
@@ -30,12 +32,21 @@ public class GUILocalImp extends GUILocal {
 	private JTextField IdLocalText;
 
 	private JPanel contentPane;
+	private TRepresentante repre;
 
 	public GUILocalImp() {
 		super();
 		contentPane = new JPanel();
 		// Gui_altaRepre = new GUIAltaRepresentante();
 		initGUI();
+	}
+
+	public void setRepre(TRepresentante repre) {
+		this.repre = repre;
+	}
+
+	public TRepresentante getRepre() {
+		return this.repre;
 	}
 
 	public void initGUI() {
@@ -73,13 +84,11 @@ public class GUILocalImp extends GUILocal {
 				if (!IdLocalText.getText().equals("")) {
 					int idLoc = Integer.parseInt(IdLocalText.getText());
 
-					try {
-						Controlador.getInstance().accion(Events.BUSCAR_LOCAL,
-								idLoc);
-						
-					} catch (Exception err) {
-						err.getMessage();
-					}
+					Gui_buscarLocal = new GUIBuscarLocal(idLoc);
+					Controlador.getInstance().accion(Events.BUSCAR_LOCAL,
+							idLoc);
+					Gui_buscarLocal.setVisible(true);
+
 				} else {
 					mensaje.showMessage("Debe introducir un Id",
 							"BUSCAR LOCAL", false);
@@ -120,11 +129,8 @@ public class GUILocalImp extends GUILocal {
 	@Override
 	public void update(int event, Object res) {
 
-		GUIMensaje res_mensaje = new GUIMensaje();
 		switch (event) {
 		case Events.ALTA_LOCAL_OK:
-			Gui_buscarLocal = new GUIBuscarLocal();
-			Gui_buscarLocal.setVisible(true);
 			Gui_altaLocal.update(event, res);
 			break;
 		case Events.ALTA_LOCAL_KO:
@@ -152,17 +158,21 @@ public class GUILocalImp extends GUILocal {
 		case Events.MODIFICAR_LOCAL_OK:
 			break;
 		case Events.MODIFICAR_LOCAL_KO:
-
+			break;
 		case Events.BUSCAR_LOCAL_OK:
-			Gui_buscarLocal = new GUIBuscarLocal();
-			Gui_buscarLocal.update(event, (TLocal) res);
-			Gui_buscarLocal.setVisible(true);
+			Gui_buscarLocal.update(event, res);
+			
 			break;
 		case Events.BUSCAR_LOCAL_KO:
-			res_mensaje.showMessage("Error en la búsqueda del Local.",
-					"BUSCAR LOCAL", false);
-			break;	
+			Gui_buscarLocal.update(event, res);
+			break;
+		case Events.BUSCAR_REPRESENTANTE_OK:
+			Gui_buscarLocal.update(event, res);
+			break;
 
+		case Events.BUSCAR_REPRESENTANTE_KO:
+			Gui_buscarLocal.update(event, res);
+			break;
 		}
 
 	}
