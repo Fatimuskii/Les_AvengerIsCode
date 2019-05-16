@@ -31,7 +31,11 @@ public class GUIBuscarLocal extends JFrame {
 	private JTextField dirField;
 	private JTextField cpField;
 	private JTextField locField;
+	@SuppressWarnings("rawtypes")
 	private JComboBox datosPropietarioCombo;
+	private GUIModificarLocal Gui_modificarLocal;
+	
+
 	//private JTextField activoField;
 	private int idLoc;
 	private JPanel contentPane; 
@@ -144,6 +148,8 @@ public class GUIBuscarLocal extends JFrame {
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				Gui_modificarLocal = new GUIModificarLocal(idLoc);
+				Gui_modificarLocal.setVisible(true);
 			}
 		});
 		btnModificar.setBounds(323, 163, 97, 25);
@@ -197,8 +203,24 @@ public class GUIBuscarLocal extends JFrame {
 		case Events.BUSCAR_REPRESENTANTE_KO:
 			res_mensaje.showMessage("Error en la búsqueda de los datos del propietario.",
 					"BUSCAR LOCAL", false);
+			dispose();
+			break;
+		case Events.MODIFICAR_LOCAL_OK:
+			
+			break;
+		case Events.MODIFICAR_LOCAL_KO:
+			res_mensaje.showMessage("Error en la modificación del Local:",
+					"MODIFICAR LOCAL", false);
+			break;
+		case Events.MODIFICAR_REPRESENTANTE_OK:
+			
+			break;
+		case Events.MODIFICAR_REPRESENTANTE_KO:
+			
 			break;
 		}	
+		
+		
 	
 		
 	}

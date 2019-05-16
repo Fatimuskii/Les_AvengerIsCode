@@ -29,6 +29,7 @@ public class GUILocalImp extends GUILocal {
 	private GUIAltaRepresentante Gui_altaRepre;
 	private GUIBajaLocal Gui_bajaLocal;
 	private GUIBuscarLocal Gui_buscarLocal;
+	private GUIModificarLocal Gui_modificarLocal;
 	private JTextField IdLocalText;
 
 	private JPanel contentPane;
@@ -166,6 +167,7 @@ public class GUILocalImp extends GUILocal {
 			break;
 		case Events.BUSCAR_LOCAL_KO:
 			Gui_buscarLocal.update(event, res);
+			Gui_buscarLocal.dispose();
 			break;
 		case Events.BUSCAR_REPRESENTANTE_OK:
 			Gui_buscarLocal.update(event, res);
