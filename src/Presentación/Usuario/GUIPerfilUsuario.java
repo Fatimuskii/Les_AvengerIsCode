@@ -1,6 +1,7 @@
 package Presentación.Usuario;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
@@ -15,6 +16,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Presentación.Impresora.GUIImpresoraImp;
@@ -23,6 +25,7 @@ public class GUIPerfilUsuario extends JFrame {
 
 	private JPanel contentPane;
 	private GUIImpresoraImp GUI_ImpresoraImp;
+	private JTextField textField;
 	
 	public GUIPerfilUsuario() throws HeadlessException {
 		super();
@@ -32,7 +35,7 @@ public class GUIPerfilUsuario extends JFrame {
 	}
 
 	public void initGUI(){
-		setIconImage(Toolkit.getDefaultToolkit().getImage(GUIPerfilUsuario.class.getResource("/logo.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\logo.png"));
 		setTitle("Perfil Usuario");
 		setBounds(100, 100, 521, 300);
 		contentPane = new JPanel();
@@ -45,7 +48,7 @@ public class GUIPerfilUsuario extends JFrame {
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(GUIPerfilUsuario.class.getResource("/logo.png")));
+		lblNewLabel.setIcon(new ImageIcon("imagenes\\logo.png"));
 		lblNewLabel.setBounds(10, 11, 78, 74);
 		panel.add(lblNewLabel);
 		
@@ -78,7 +81,7 @@ public class GUIPerfilUsuario extends JFrame {
 		mnDiseos.add(mntmCreados);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(GUIPerfilUsuario.class.getResource("/graphic-tools-REDM.png")));
+		lblNewLabel_2.setIcon(new ImageIcon("imagenes\\graphic-tools-REDM.png"));
 		lblNewLabel_2.setBounds(155, 36, 53, 49);
 		panel.add(lblNewLabel_2);
 		
@@ -96,14 +99,42 @@ public class GUIPerfilUsuario extends JFrame {
 		mnCesta.add(menuItem);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(GUIPerfilUsuario.class.getResource("/commerce-and-shopping-REDM.png")));
+		label.setIcon(new ImageIcon("imagenes\\commerce-and-shopping-REDM.png"));
 		label.setBounds(261, 36, 53, 49);
 		panel.add(label);
 		
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(GUIPerfilUsuario.class.getResource("/3d-printer-REDM.png")));
+		label_1.setIcon(new ImageIcon("imagenes\\3d-printer-REDM.png"));
 		label_1.setBounds(393, 36, 53, 49);
 		panel.add(label_1);
+		
+		textField = new JTextField();
+		textField.setText("Buscar usuario");
+		textField.setForeground(Color.GRAY);
+		textField.setColumns(10);
+		textField.setBounds(183, 164, 227, 20);
+		panel.add(textField);
+		
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setBounds(183, 195, 89, 23);
+		panel.add(btnBuscar);
+		
+		JButton button = new JButton("Mostrar todos");
+		button.setBounds(292, 195, 118, 23);
+		panel.add(button);
+		
+		JMenuBar menuBar_2 = new JMenuBar();
+		menuBar_2.setBounds(10, 134, 85, 21);
+		panel.add(menuBar_2);
+		
+		JMenu mnConfiguacin = new JMenu("Configuaci\u00F3n");
+		menuBar_2.add(mnConfiguacin);
+		
+		JMenuItem mntmModificarUsuario = new JMenuItem("Modificar usuario");
+		mnConfiguacin.add(mntmModificarUsuario);
+		
+		JMenuItem mntmCerrarSesin = new JMenuItem("Cerrar sesi\u00F3n");
+		mnConfiguacin.add(mntmCerrarSesin);
 	}
 	
 }

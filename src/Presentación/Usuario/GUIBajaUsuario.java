@@ -43,8 +43,7 @@ public class GUIBajaUsuario extends JFrame {
 
 	public void initGUI() {
 		setTitle("Baja Usuario");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(
-				GUIBajaUsuario.class.getResource("/logo.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\logo.png"));
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -56,8 +55,7 @@ public class GUIBajaUsuario extends JFrame {
 		panel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(GUIBajaUsuario.class
-				.getResource("/log2.png")));
+		lblNewLabel.setIcon(new ImageIcon("imagenes\\log2.png"));
 		lblNewLabel.setBounds(169, 11, 94, 86);
 		panel.add(lblNewLabel);
 

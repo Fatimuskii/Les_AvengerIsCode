@@ -39,7 +39,7 @@ public class GUIDatosBancariosUsuario extends JFrame {
 	public void initGUI() {
 		setTitle("Alta Usuario");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
-				GUIDatosBancariosUsuario.class.getResource("/logo.png")));
+				GUIDatosBancariosUsuario.class.getResource("imagenes\\logo.png")));
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

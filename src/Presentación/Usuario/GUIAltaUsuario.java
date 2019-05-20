@@ -7,6 +7,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
@@ -24,6 +26,11 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
+
+import Negocio.Diseño.TDiseño;
+import Negocio.Usuario.TUsuario;
+import Presentación.Controlador.Controlador;
+import Presentación.Controlador.Events;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -47,7 +54,6 @@ public class GUIAltaUsuario extends JFrame {
 	private JTextField txtDireccin;
 	private JLabel lblDatosPersonales;
 	private JSeparator separator;
-	private JButton btnNewButton;
 	private JLabel lblNewLabel;
 	private JLabel label;
 	private JLabel label_1;
@@ -55,10 +61,11 @@ public class GUIAltaUsuario extends JFrame {
 	private JLabel label_3;
 	private JLabel label_4;
 	private JLabel label_5;
-	private JButton btnFinalizar;
 	
+	private JTextField numTarjeta;
+	private JTextField nombreTarjeta;
 
-	private GUIDatosBancariosUsuario GUI_DatosBancariosUsuario;
+	private JButton btnFinalizar;
 
 	public GUIAltaUsuario() {
 		super();
@@ -67,6 +74,8 @@ public class GUIAltaUsuario extends JFrame {
 		this.txtApellidos = new JTextField();
 		this.txtEmail = new JTextField();
 		this.txtContrasea = new JTextField();
+		this.numTarjeta = new JTextField();
+		this.nombreTarjeta = new JTextField();
 		this.lblFechaDeNacimiento = new JLabel();
 		this.txtConfirmarContrasea = new JTextField();
 		this.spinner = new JSpinner();
@@ -75,7 +84,6 @@ public class GUIAltaUsuario extends JFrame {
 		this.txtDireccin = new JTextField();
 		this.lblDatosPersonales = new JLabel();
 		this.separator = new JSeparator();
-		this.btnNewButton = new JButton();
 		this.lblNewLabel = new JLabel();
 		this.label = new JLabel();
 		this.label_1 = new JLabel();
@@ -84,15 +92,14 @@ public class GUIAltaUsuario extends JFrame {
 		this.label_4 = new JLabel();
 		this.label_5 = new JLabel();
 		this.btnFinalizar = new JButton();
-		this.GUI_DatosBancariosUsuario = new GUIDatosBancariosUsuario();
 		this.setFocusable(true);
 		initGUI();
 	}
 
 	public void initGUI() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(GUIAltaUsuario.class.getResource("/logo.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\logo.png"));
 		setTitle("Alta Usuario");
-		setBounds(100, 100, 453, 441);
+		setBounds(100, 100, 453, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -110,6 +117,7 @@ public class GUIAltaUsuario extends JFrame {
 					txtNombre.setText("");
 				}
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txtNombre.getText().equals("")) {
@@ -117,12 +125,12 @@ public class GUIAltaUsuario extends JFrame {
 				}
 			}
 		});
-		
+
 		txtNombre.setForeground(Color.DARK_GRAY);
 		txtNombre.setText("Nombre");
 		txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtNombre.setToolTipText("");
-		txtNombre.setBounds(28, 86, 103, 20);
+		txtNombre.setBounds(28, 47, 103, 20);
 		panel.add(txtNombre);
 		txtNombre.setColumns(10);
 
@@ -134,6 +142,7 @@ public class GUIAltaUsuario extends JFrame {
 					txtApellidos.setText("");
 				}
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txtApellidos.getText().equals("")) {
@@ -143,7 +152,7 @@ public class GUIAltaUsuario extends JFrame {
 		});
 		txtApellidos.setForeground(Color.DARK_GRAY);
 		txtApellidos.setText("Apellido(s)");
-		txtApellidos.setBounds(158, 86, 176, 20);
+		txtApellidos.setBounds(150, 47, 176, 20);
 		panel.add(txtApellidos);
 		txtApellidos.setColumns(10);
 
@@ -155,6 +164,7 @@ public class GUIAltaUsuario extends JFrame {
 					txtEmail.setText("");
 				}
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txtEmail.getText().equals("")) {
@@ -164,7 +174,7 @@ public class GUIAltaUsuario extends JFrame {
 		});
 		txtEmail.setForeground(Color.DARK_GRAY);
 		txtEmail.setText("E-mail");
-		txtEmail.setBounds(28, 117, 306, 20);
+		txtEmail.setBounds(28, 78, 306, 20);
 		panel.add(txtEmail);
 		txtEmail.setColumns(10);
 
@@ -176,6 +186,7 @@ public class GUIAltaUsuario extends JFrame {
 					txtContrasea.setText("");
 				}
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txtContrasea.getText().equals("")) {
@@ -185,23 +196,25 @@ public class GUIAltaUsuario extends JFrame {
 		});
 		txtContrasea.setForeground(Color.DARK_GRAY);
 		txtContrasea.setText("Contrase\u00F1a");
-		txtContrasea.setBounds(28, 285, 139, 20);
+		txtContrasea.setBounds(28, 403, 139, 20);
 		panel.add(txtContrasea);
 		txtContrasea.setColumns(10);
 
 		lblFechaDeNacimiento = new JLabel("Fecha de nacimiento");
 		lblFechaDeNacimiento.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblFechaDeNacimiento.setBounds(28, 159, 124, 14);
+		lblFechaDeNacimiento.setBounds(28, 109, 124, 14);
 		panel.add(lblFechaDeNacimiento);
 
 		txtConfirmarContrasea = new JTextField();
 		txtConfirmarContrasea.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
-				if (txtConfirmarContrasea.getText().equals("Confirmar contraseña")) {
+				if (txtConfirmarContrasea.getText().equals(
+						"Confirmar contraseña")) {
 					txtConfirmarContrasea.setText("");
 				}
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txtConfirmarContrasea.getText().equals("")) {
@@ -211,23 +224,23 @@ public class GUIAltaUsuario extends JFrame {
 		});
 		txtConfirmarContrasea.setForeground(Color.DARK_GRAY);
 		txtConfirmarContrasea.setText("Confirmar contrase\u00F1a");
-		txtConfirmarContrasea.setBounds(28, 316, 139, 20);
+		txtConfirmarContrasea.setBounds(28, 434, 139, 20);
 		panel.add(txtConfirmarContrasea);
 		txtConfirmarContrasea.setColumns(10);
 
 		spinner = new JSpinner();
 		spinner.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-		spinner.setBounds(28, 184, 39, 20);
+		spinner.setBounds(28, 134, 39, 20);
 		panel.add(spinner);
 
 		spinner_1 = new JSpinner();
 		spinner_1.setModel(new SpinnerNumberModel(1, 1, 12, 2));
-		spinner_1.setBounds(77, 184, 39, 20);
+		spinner_1.setBounds(77, 134, 39, 20);
 		panel.add(spinner_1);
 
 		spinner_2 = new JSpinner();
 		spinner_2.setModel(new SpinnerNumberModel(1900, 1900, 2001, 4));
-		spinner_2.setBounds(126, 184, 65, 20);
+		spinner_2.setBounds(126, 134, 65, 20);
 		panel.add(spinner_2);
 
 		txtDireccin = new JTextField();
@@ -238,6 +251,7 @@ public class GUIAltaUsuario extends JFrame {
 					txtDireccin.setText("");
 				}
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txtDireccin.getText().equals("")) {
@@ -247,91 +261,132 @@ public class GUIAltaUsuario extends JFrame {
 		});
 		txtDireccin.setForeground(Color.DARK_GRAY);
 		txtDireccin.setText("Direcci\u00F3n");
-		txtDireccin.setBounds(28, 227, 306, 20);
+		txtDireccin.setBounds(28, 165, 306, 20);
 		panel.add(txtDireccin);
 		txtDireccin.setColumns(10);
 
 		lblDatosPersonales = new JLabel("Datos personales");
 		lblDatosPersonales.setFont(new Font("Tahoma", Font.BOLD, 16));
-		lblDatosPersonales.setBounds(28, 50, 176, 25);
+		lblDatosPersonales.setBounds(28, 11, 176, 25);
 		panel.add(lblDatosPersonales);
 
 		separator = new JSeparator();
-		separator.setBounds(28, 272, 306, 2);
+		separator.setBounds(28, 381, 306, 2);
 		panel.add(separator);
-
-		btnNewButton = new JButton("Siguiente");
-		btnNewButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				if (!datosObligatorios()) {
-					JOptionPane.showOptionDialog(new JFrame(), "Debes rellenar los campos obligatorios (*)", "Quit",
-							JOptionPane.OK_OPTION, JOptionPane.OK_OPTION, null, null, null);
-				} else {
-					if (!contraseñaErr()) {
-						GUI_DatosBancariosUsuario.setVisible(true);
-					}
-				}
-			}
-		});
-		btnNewButton.setBounds(213, 358, 89, 23);
-		panel.add(btnNewButton);
 
 		btnFinalizar = new JButton("Finalizar");
 		btnFinalizar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (!datosObligatorios()) {
-					JOptionPane.showOptionDialog(new JFrame(), "Debes rellenar los campos obligatorios (*)", "Quit",
-							JOptionPane.OK_OPTION, JOptionPane.OK_OPTION, null, null, null);
+					JOptionPane.showOptionDialog(new JFrame(),
+							"Debes rellenar los campos obligatorios (*)",
+							"Quit", JOptionPane.OK_OPTION,
+							JOptionPane.OK_OPTION, null, null, null);
 				}
 				contraseñaErr();
 			}
 		});
-		btnFinalizar.setBounds(312, 358, 89, 23);
+		btnFinalizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					String nombre = txtNombre.getText();
+					String apellidos = txtApellidos.getText();
+					String email = txtEmail.getText();
+					//fecha de nacimiento
+					String direccion = txtDireccin.getText();
+					String nombTarjeta = nombreTarjeta.getText();
+					int numeroTarjeta = Integer.parseInt(numTarjeta.getText());
+					//fecha de vencimiento
+					String contraseña = txtContrasea.getText();
+					
+					TUsuario tUsuario = new TUsuario (); //TODO
+					Controlador.getInstance().accion(Events.OPEN_GUI_ALTA_USUARIO, tUsuario);
+				}
+				catch(Exception ex){
+					JOptionPane.showMessageDialog(null, "Información Errónea", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+		});
+		btnFinalizar.setBounds(318, 467, 89, 23);
 		panel.add(btnFinalizar);
 
 		lblNewLabel = new JLabel("*");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNewLabel.setForeground(new Color(255, 0, 0));
-		lblNewLabel.setBounds(20, 88, 8, 14);
+		lblNewLabel.setBounds(20, 49, 8, 14);
 		panel.add(lblNewLabel);
 
 		label = new JLabel("*");
 		label.setForeground(Color.RED);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label.setBounds(150, 88, 17, 14);
+		label.setBounds(141, 49, 17, 14);
 		panel.add(label);
 
 		label_1 = new JLabel("*");
 		label_1.setForeground(Color.RED);
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_1.setBounds(20, 120, 17, 14);
+		label_1.setBounds(20, 78, 17, 14);
 		panel.add(label_1);
 
 		label_2 = new JLabel("*");
 		label_2.setForeground(Color.RED);
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_2.setBounds(20, 159, 17, 14);
+		label_2.setBounds(20, 109, 17, 14);
 		panel.add(label_2);
 
 		label_3 = new JLabel("*");
 		label_3.setForeground(Color.RED);
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_3.setBounds(20, 230, 17, 14);
+		label_3.setBounds(20, 165, 17, 14);
 		panel.add(label_3);
 
 		label_4 = new JLabel("*");
 		label_4.setForeground(Color.RED);
 		label_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_4.setBounds(20, 288, 17, 14);
+		label_4.setBounds(20, 405, 17, 14);
 		panel.add(label_4);
 
 		label_5 = new JLabel("*");
 		label_5.setForeground(Color.RED);
 		label_5.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_5.setBounds(20, 316, 17, 14);
+		label_5.setBounds(20, 434, 17, 14);
 		panel.add(label_5);
+
+		JLabel label_6 = new JLabel("Datos bancarios");
+		label_6.setFont(new Font("Tahoma", Font.BOLD, 16));
+		label_6.setBounds(28, 211, 152, 23);
+		panel.add(label_6);
+
+	
+		numTarjeta.setText("N\u00FAmero de tarjeta");
+		numTarjeta.setForeground(Color.DARK_GRAY);
+		numTarjeta.setColumns(10);
+		numTarjeta.setBounds(28, 245, 152, 20);
+		panel.add(numTarjeta);
+
+		
+		nombreTarjeta.setText("Nombre en la tarjeta");
+		nombreTarjeta.setForeground(Color.DARK_GRAY);
+		nombreTarjeta.setColumns(10);
+		nombreTarjeta.setBounds(28, 282, 152, 20);
+		panel.add(nombreTarjeta);
+
+		JLabel label_7 = new JLabel("Fecha de vencimiento");
+		label_7.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_7.setBounds(29, 318, 138, 14);
+		panel.add(label_7);
+
+		JSpinner spinner_3 = new JSpinner();
+		spinner_3.setModel(new SpinnerNumberModel(1, 1, 12, 1));
+		spinner_3.setBounds(28, 343, 46, 20);
+		panel.add(spinner_3);
+
+		JSpinner spinner_4 = new JSpinner();
+		spinner_4.setModel(new SpinnerNumberModel(new Integer(2019),
+				new Integer(2019), null, new Integer(1)));
+		spinner_4.setBounds(86, 343, 66, 20);
+		panel.add(spinner_4);
 	}
 
 	private boolean datosObligatorios() {
@@ -355,7 +410,8 @@ public class GUIAltaUsuario extends JFrame {
 
 		return false;
 		}
+
 	}
-	
-	//GENERAR ID ALEATORIO TODO
+
+	// GENERAR ID ALEATORIO TODO
 }

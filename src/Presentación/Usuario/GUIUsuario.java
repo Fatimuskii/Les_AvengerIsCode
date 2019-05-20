@@ -22,4 +22,6 @@ public abstract class GUIUsuario extends JFrame{
 		instance.setVisible(true);
 		return instance;
 	}
+	
+	public abstract void update(int event, Object res);
 }

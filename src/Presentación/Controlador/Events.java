@@ -124,7 +124,7 @@ public class Events {
 	public static final int OPEN_GUI_LISTAR_LOCALES = 114;
 	public static final int	OPEN_GUI_REPRESENTANTE= 115;*/
 	
-	
+	//USUARIO
 	public static final int OPEN_GUI_ALTA_USUARIO = 116;
 	public static final int OPEN_GUI_BAJA_USUARIO = 117;
 	public static final int OPEN_GUI_MODIFICAR_USUARIO = 118;
@@ -132,7 +132,10 @@ public class Events {
 	public static final int OPEN_GUI_LISTAR_USUARIO = 120;
 	public static final int OPEN_GUI_ACCESO_USUARIO = 121;//TODO OSCAR
 	public static final int OPEN_GUI_DATOS_BANCARIOS_USUARIO = 122;
-	public static final int OPEN_GUI_PERFIL_USUARIO = 123;
+	public static final int MODIFICAR_USUARIO_COMPROBAR = 125;
+	public static final int MODIFICAR_USUARIO_COMPROBAR_OK = 126;
+	public static final int MODIFICAR_USUARIO_COMPROBAR_KO = 127;
+
 	
 	
 	

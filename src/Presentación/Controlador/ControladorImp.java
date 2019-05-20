@@ -157,9 +157,6 @@ public class ControladorImp extends Controlador {
 		case Events.OPEN_GUI_USUARIO_MENU:
 			GUIUsuario.getInstance();
 			break;
-		case Events.OPEN_GUI_PERFIL_USUARIO:
-			GUIUsuario.getInstance();
-			break;
 		case Events.OPEN_GUI_MODIFICAR_USUARIO:
 			GUIUsuario.getInstance();
 			break;
@@ -285,6 +282,15 @@ public class ControladorImp extends Controlador {
 				GUIDiseño.getInstance().update(Events.MODIFICAR_DISEÑO_COMPROBAR_OK, null);
 			else
 				GUIDiseño.getInstance().update(Events.MODIFICAR_DISEÑO_COMPROBAR_KO, null);
+			break;
+			
+		case Events.MODIFICAR_USUARIO_COMPROBAR:
+			idUsuario = (int) datos;
+			tUsuario = this.SAUsuario.buscarIdUsuario(idUsuario);
+			if (tUsuario != null)
+				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_COMPROBAR, null);
+			else
+				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_COMPROBAR_KO, null);
 			break;
 		/*case Events.ALTA_PEDIDO_IMPRESION:
 			tPedidoImpresion = (TPedidoImpresion) datos;
