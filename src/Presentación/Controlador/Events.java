@@ -130,12 +130,19 @@ public class Events {
 	public static final int MODIFICAR_USUARIO = 118;
 	public static final int BUSCAR_USUARIO = 119;
 	public static final int LISTAR_USUARIO = 120;
-	public static final int ACCESO_USUARIO = 121;//TODO OSCAR
+	//public static final int ACCESO_USUARIO = 121;//TODO OSCAR
 	public static final int MODIFICAR_USUARIO_OK  = 122;
 	public static final int MODIFICAR_USUARIO_KO = 123;
 	public static final int MODIFICAR_USUARIO_COMPROBAR = 125;
 	public static final int MODIFICAR_USUARIO_COMPROBAR_OK = 126;
 	public static final int MODIFICAR_USUARIO_COMPROBAR_KO = 127;
+	
+	//PLATAFORMA
+	public static final int ACCESO_USUARIO = 500;
+	public static final int ALTA_CARRITO = 501;
+	public static final int MODIFICAR_CARRITO = 502;
+	public static final int BAJA_CARRITO = 503;
+	
 
 
 	

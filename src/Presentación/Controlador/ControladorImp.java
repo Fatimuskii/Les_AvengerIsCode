@@ -292,6 +292,12 @@ public class ControladorImp extends Controlador {
 			else
 				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_COMPROBAR_KO, null);
 			break;
+		case Events.ALTA_CARRITO:
+			break;
+		case Events.MODIFICAR_CARRITO:
+			break;
+		case Events.BAJA_CARRITO:
+			break;
 		/*case Events.ALTA_PEDIDO_IMPRESION:
 			tPedidoImpresion = (TPedidoImpresion) datos;
 			res = this.SAPedidoImpresion.alta(tPedidoImpresion);
