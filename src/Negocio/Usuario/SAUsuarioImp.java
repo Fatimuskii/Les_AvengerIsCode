@@ -3,6 +3,8 @@
  */
 package Negocio.Usuario;
 
+import java.util.ArrayList;
+
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
@@ -14,13 +16,13 @@ public class SAUsuarioImp implements SAUsuario {
 	@Override
 	public Integer altaUsuario(TUsuario tUsuario) {
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		return 0;
 	}
 
 	@Override
-	public Boolean bajaUsuario(Integer idUsuario) {
+	public Integer bajaUsuario(Integer idUsuario) {
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		return 0;
 	}
 
 	@Override
@@ -36,14 +38,15 @@ public class SAUsuarioImp implements SAUsuario {
 	}
 
 	@Override
-	public String buscarID(TUsuario tUsuario) {
+	public Integer modificarUsuario(TUsuario tUsuario) {
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		return 0;
 	}
 
 	@Override
-	public Boolean modificarUsuario(TUsuario tUsuario) {
+	public ArrayList<TUsuario> listarUsuarios() {
 		// TODO Apéndice de método generado automáticamente
 		return null;
 	}
+	
 }

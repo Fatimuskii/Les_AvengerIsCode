@@ -1,7 +1,6 @@
-/**
- * 
- */
 package Integración.Usuario;
+
+import java.util.ArrayList;
 
 import Negocio.Usuario.TUsuario;
 /** 
@@ -24,22 +23,23 @@ public interface DAOUsuario {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void bajaUsuario(int idUsuario);
+	public int bajaUsuario(int idUsuario);
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void buscarIdUsuario(int idUsuario);
+	public TUsuario buscarIdUsuario(int idUsuario);
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void acceso(TUsuario tUsuario);
+	public TUsuario acceso(TUsuario tUsuario); // CAMBIO basandome en fatima y marina.
 	
-	public void buscarId(TUsuario tUsuario);
-	public void modificarUsuario(TUsuario tUsuario);
+	public ArrayList<TUsuario> listarUsuarios();	
+	
+	public Integer modificarUsuario(TUsuario tUsuario); 
 }

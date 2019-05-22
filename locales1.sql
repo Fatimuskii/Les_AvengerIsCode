@@ -57,6 +57,27 @@ CREATE TABLE IF NOT EXISTS locales (
 );
 
 
+--
+-- Estructura de tabla para la tabla 'usuario' 
+
+CREATE TABLE IF NOT EXIST usuario (
+  idUsuario int(5) NOT NULL AUTO_INCREMENT,
+  nombre varchar(20) NOT NULL,
+  apellidos varchar(40) NOT NULL,
+  email varchar(40) NOT NULL,
+  fechaNacimiento date NOT NULL,
+  direccion varchar(40) NOT NULL,
+  contraseña varchar(25) NOT NULL,
+  titularCuenta varchar (25) NOT NULL,
+  cuentaBancaria int(11) NOT NULL,
+  cvv int(3) NOT NULL,
+  fechaCaducidad date NOT NULL,
+  PRIMARY KEY(idUsuario)
+  
+  
+);
+
+
 ALTER TABLE locales ADD CONSTRAINT representante_local_FK FOREIGN KEY (representante)
 	REFERENCES representantes (IdRepresentante)
 	ON DELETE CASCADE;

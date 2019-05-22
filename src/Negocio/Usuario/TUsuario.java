@@ -1,15 +1,13 @@
-/**
- * 
- */
+
 package Negocio.Usuario;
 
 import java.util.ArrayList;
-import java.util.Set;
+import java.util.Date;
 
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
- * @author Fatimuskii
+ * @author Stephani
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class TUsuario {
@@ -48,43 +46,53 @@ public class TUsuario {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Fecha fechaNacimiento;
+	private Date fechaNacimiento;
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private DatosBancarios datosBancarios;
+	
+	//private Object listaUsuarios;//?
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Object listaUsuarios;
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	private Set<DatosBancarios> Copiar_1_datosBancarios;
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	private Fecha fecha;
+	
+	private String email;
+	
+	private String titularCuenta;
+	
+	private Integer numeroCuenta;
+	
+	private Integer cvv;
+	
+	private Date fechaCaducidad;
+	
+	private ArrayList<TUsuario> arrayTUsuario = new ArrayList<>();
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @return
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
+	
+	
+	public TUsuario(Integer idUsuario, String nombre, String apellidos, Date fechaNacimiento, String direccion, String contraseña, String titularCuenta, Integer numeroCuenta,
+			Integer cvv, Date fechaCaducidad){
+		
+		this.idUsuario = idUsuario;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.fechaNacimiento = fechaNacimiento;
+		this.direccion = direccion;		
+		this.contraseña = contraseña;
+		this.titularCuenta = titularCuenta;
+		this.numeroCuenta = numeroCuenta;
+		this.cvv = cvv;
+		this.fechaCaducidad = fechaCaducidad;
+		
+		
+	}
+	
 	public Integer getIdUsuario() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
-		// end-user-code
+		return idUsuario;
 	}
 
 	/** 
@@ -94,10 +102,7 @@ public class TUsuario {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public String getNombre() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
-		// end-user-code
+		return nombre;
 	}
 
 	/** 
@@ -107,10 +112,7 @@ public class TUsuario {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public String getApellidos() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
-		// end-user-code
+		return apellidos;
 	}
 
 	/** 
@@ -120,10 +122,7 @@ public class TUsuario {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public String getDireccion() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
-		// end-user-code
+		return direccion;
 	}
 
 	/** 
@@ -133,10 +132,7 @@ public class TUsuario {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public String getContraseña() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
-		// end-user-code
+		return contraseña;
 	}
 
 	/** 
@@ -145,37 +141,17 @@ public class TUsuario {
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Fecha getFechaNacimiento() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
-		// end-user-code
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
 	}
-
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @return
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public DatosBancarios getDatosBancarios() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
-		// end-user-code
-	}
-
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @return
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public ArrayList getListaUsuarios() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return null;
-		// end-user-code
+	public ArrayList<TUsuario> getListaUsuarios() {
+		return new ArrayList<TUsuario>(arrayTUsuario);
 	}
 
 	/** 
@@ -184,11 +160,8 @@ public class TUsuario {
 	 * @param id
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setIdUsuario(String id) {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	public void setIdUsuario(Integer id) {
+		this.idUsuario = id;
 	}
 
 	/** 
@@ -198,10 +171,7 @@ public class TUsuario {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setNombre(String nombre) {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+		this.nombre = nombre;
 	}
 
 	/** 
@@ -211,10 +181,7 @@ public class TUsuario {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setApellidos(String apellidos) {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+		this.apellidos = apellidos;
 	}
 
 	/** 
@@ -224,10 +191,7 @@ public class TUsuario {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setDireccion(String direccion) {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+		this.direccion = direccion;
 	}
 
 	/** 
@@ -237,23 +201,19 @@ public class TUsuario {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setContraseña(String contraseña) {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+		this.contraseña = contraseña;
 	}
 
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @param fechaNacimento
+	 * @param fechaNacimiento 
+	 * @param fechaNacimiento 
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setFechaNacimiento(String fechaNacimento) {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
 	/** 
@@ -262,23 +222,57 @@ public class TUsuario {
 	 * @param datosBancarios
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setDatosBancarios(int datosBancarios) {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 
-		// end-user-code
+	public void setListaUsuarios(ArrayList<TUsuario> listaUsuarios) {
+		this.arrayTUsuario = listaUsuarios;
+	}
+	
+	public String getTitularCuenta(){		
+		return titularCuenta;
+	}
+	
+	
+	public Integer getNumeroCuenta(){		
+		return numeroCuenta;
+	}
+	
+	
+	public Integer getCvv(){		
+		return cvv;
+		
+	}
+	
+	public Date getFechaCaducidad(){		
+		return fechaCaducidad;
+		
+	}
+	
+	public void setTitularCuenta(String titularC){
+		this.titularCuenta = titularC;
+	}
+	
+	public void setNumeroCuenta(Integer cuentaB){
+		this.numeroCuenta = cuentaB;
+	}
+	
+	public void setCvv(Integer cvv){
+		this.cvv = cvv;
+	}
+	
+	public void setFechaCaducidad( Date fechaC){
+		this.fechaCaducidad = fechaC;
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @param listaUsuarios
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void setListaUsuarios(ArrayList listaUsuarios) {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
-		// end-user-code
+	public String getEmail() {
+		return email;
+	} 
+	
+	public void setEmail(String email){
+		this.email = email;
 	}
+	
+	
+	
+	
+
 }
