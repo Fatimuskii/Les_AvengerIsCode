@@ -34,11 +34,13 @@ public class DAOUsuarioImp implements DAOUsuario {
 		if(connection != null){
 			try{
 				Statement statement = connection.createStatement();
-				String query = "INSERT INTO usuario (nombre, apellidos, fechaNaciemiento, direccion, contraseña, datosBancarios)"
+				String query = "INSERT INTO usuario (nombre, apellidos, email, fechaNaciemiento, direccion, contraseña, datosBancarios)"
 						+ "VALUES ('"
 						+ datos.getNombre()
 						+"','"
 						+datos.getApellidos()
+						+"','"
+						+datos.getEmail()
 						+"','"
 						+datos.getFechaNacimiento()
 						+"','"
@@ -109,6 +111,7 @@ public class DAOUsuarioImp implements DAOUsuario {
 							idUsuario,
 							resultSet.getString("nombre"),
 							resultSet.getString("apellidos"),
+							resultSet.getString("email"),
 							resultSet.getDate("fechaNacimiento"),
 							resultSet.getString("direccion"),
 							resultSet.getString("contraseña"),
@@ -152,6 +155,7 @@ public class DAOUsuarioImp implements DAOUsuario {
 							resultSet.getInt("idUsuario"),
 							resultSet.getString("nombre"),
 							resultSet.getString("apellidos"),
+							resultSet.getString("email"),
 							resultSet.getDate("fechaNacimiento"),
 							resultSet.getString("direccion"),
 							resultSet.getString("contraseña"),

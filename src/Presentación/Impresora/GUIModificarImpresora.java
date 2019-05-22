@@ -70,6 +70,7 @@ public class GUIModificarImpresora extends JFrame {
 		this.alto = new JSpinner();
 		this.ancho = new JSpinner();
 		this.profundidad = new JSpinner();
+		this.txtIntroduceTuId = new JTextField();
 		this.setFocusable(true);
 		initGUI();
 	}
@@ -89,11 +90,11 @@ public class GUIModificarImpresora extends JFrame {
 			contentPane.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 
-			txtIntroduceTuId = new JTextField();
+			
 			txtIntroduceTuId.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent arg0) {
-					if (txtIntroduceTuId.getText().equals("Introduce tu Id")) {
+					if (txtIntroduceTuId.getText().equals("idImpresora")) {
 						txtIntroduceTuId.setText("");
 					}
 				}
@@ -101,15 +102,16 @@ public class GUIModificarImpresora extends JFrame {
 				@Override
 				public void focusLost(FocusEvent e) {
 					if (txtIntroduceTuId.getText().equals("")) {
-						txtIntroduceTuId.setText("Introduce tu Id");
+						txtIntroduceTuId.setText("idImpresora");
 					}
 				}
 			});
 			txtIntroduceTuId.setForeground(Color.GRAY);
-			txtIntroduceTuId.setText("Introduce tu IdImpresora");
+			txtIntroduceTuId.setText("IdImpresora");
 			txtIntroduceTuId.setBounds(162, 11, 122, 20);
-			panel.add(txtIntroduceTuId);
 			txtIntroduceTuId.setColumns(10);
+			panel.add(txtIntroduceTuId);
+
 			
 			btnComprobar = new JButton("Comprobar");
 			btnComprobar.addActionListener(new ActionListener() {
