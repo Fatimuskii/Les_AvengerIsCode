@@ -72,7 +72,7 @@ public class TUsuario {
 
 	
 	
-	public TUsuario(Integer idUsuario, String nombre, String apellidos, Date fechaNacimiento, String direccion, String contraseña, String titularCuenta, Integer numeroCuenta,
+	public TUsuario(Integer idUsuario, String nombre, String apellidos, String email, Date fechaNacimiento, String direccion, String contraseña, String titularCuenta, Integer numeroCuenta,
 			Date fechaCaducidad){
 		
 		this.idUsuario = idUsuario;
@@ -83,7 +83,7 @@ public class TUsuario {
 		this.contraseña = contraseña;
 		this.titularCuenta = titularCuenta;
 		this.numeroCuenta = numeroCuenta;
-		
+		this.email = email;
 		this.fechaCaducidad = fechaCaducidad;
 		
 		

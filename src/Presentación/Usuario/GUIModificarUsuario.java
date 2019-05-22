@@ -340,7 +340,7 @@ public class GUIModificarUsuario extends JFrame {
 				}
 				String contraseña = txtContrasea.getText();
 
-				TUsuario tUsuario = new TUsuario(id, nombre, apellidos,
+				TUsuario tUsuario = new TUsuario(id, nombre, apellidos, email,
 						fechaNacimiento, direccion, contraseña, nombTarjeta,
 						numeroTarjeta, fechaVencimiento); // TODO
 				Controlador.getInstance().accion(Events.MODIFICAR_USUARIO,
