@@ -300,8 +300,8 @@ public class GUIAltaUsuario extends JFrame {
 					//fecha de vencimiento
 					String contraseña = txtContrasea.getText();
 					
-					TUsuario tUsuario = new TUsuario (); //TODO
-					Controlador.getInstance().accion(Events.OPEN_GUI_ALTA_USUARIO, tUsuario);
+					//TUsuario tUsuario = new TUsuario(); //TODO
+					//Controlador.getInstance().accion(Events.OPEN_GUI_ALTA_USUARIO, tUsuario);
 				}
 				catch(Exception ex){
 					JOptionPane.showMessageDialog(null, "Información Errónea", "Error", JOptionPane.ERROR_MESSAGE);

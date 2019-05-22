@@ -72,6 +72,7 @@ public class GUIImpresoraImp extends GUIImpresora {
 		this.txtBuscar = new JTextField();
 		this.txtBuscarIdusuarioImpresor = new JTextField();
 		this.GUI_BajaImpresora = new GUIBajaImpresora();
+		this.gUIModificarImpresora = new GUIModificarImpresora();
 		this.setFocusable(true);
 		initGUI();
 	}
@@ -120,7 +121,7 @@ public class GUIImpresoraImp extends GUIImpresora {
 		JMenuItem mntmModificarImpresora = new JMenuItem("Modificar impresora");
 		mntmModificarImpresora.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//HACER MODIFICAR IMPRESORA (DISTINTO DE ALTA(?))
+				gUIModificarImpresora.setVisible(true);
 			}
 		});
 		mnConfiguracin.add(mntmModificarImpresora);

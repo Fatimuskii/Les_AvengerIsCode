@@ -52,8 +52,6 @@ public class DAOUsuarioImp implements DAOUsuario {
 						+"','"
 						+datos.getNumeroCuenta()
 						+"','"
-						+datos.getCvv()		
-						+"','"
 						+datos.getFechaCaducidad()	
 						+ "');";
 						
@@ -116,7 +114,6 @@ public class DAOUsuarioImp implements DAOUsuario {
 							resultSet.getString("contraseña"),
 							resultSet.getString("titularCuenta"),
 							resultSet.getInt("numeroCuenta"),
-							resultSet.getInt("cvv"),
 							resultSet.getDate("fechaCaducidad")
 							);
 				}
@@ -160,7 +157,6 @@ public class DAOUsuarioImp implements DAOUsuario {
 							resultSet.getString("contraseña"),
 							resultSet.getString("titularCuenta"),
 							resultSet.getInt("numeroCuenta"),
-							resultSet.getInt("cvv"),
 							resultSet.getDate("fechaCaducidad")
 							);
 				}
@@ -194,7 +190,6 @@ public class DAOUsuarioImp implements DAOUsuario {
 						+ "e-mail='" + tUsuario.getEmail() + "', "
 						+ "titularCuenta='" + tUsuario.getTitularCuenta() + ",' "
 						+ "numerCuenta='" + tUsuario.getNumeroCuenta() + ",' "
-						+ "cvv='" + tUsuario.getCvv() + ",' "
 						+ "fechaCaducidad='" + tUsuario.getFechaCaducidad()
 						+ "WHERE idDiseño=" + tUsuario.getIdUsuario();
 				

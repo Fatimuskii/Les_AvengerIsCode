@@ -17,6 +17,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -39,24 +42,29 @@ import Negocio.Usuario.TUsuario;
 import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 
-/** 
- * <!-- begin-UML-doc -->
- * <!-- end-UML-doc -->
+/**
+ * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+ * 
  * @author Fatimuskii
- * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+ * @generated 
+ *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class GUIModificarUsuario extends JFrame{
-	
+public class GUIModificarUsuario extends JFrame {
+
 	private JPanel contentPane;
 	private JTextField txtNombre;
 	private JTextField txtApellidos;
 	private JTextField txtEmail;
 	private JTextField txtContrasea;
 	private JLabel lblFechaDeNacimiento;
+	private JLabel lblDatosBancarios;
+	private JLabel lblFechaVencimiento;
 	private JTextField txtConfirmarContrasea;
-	private JSpinner spinner;
-	private JSpinner spinner_1;
-	private JSpinner spinner_2;
+	private JSpinner dia;
+	private JSpinner mes;
+	private JSpinner anio;
+	private JSpinner mes_2;
+	private JSpinner anio_2;
 	private JTextField txtDireccin;
 	private JLabel lblDatosPersonales;
 	private JSeparator separator;
@@ -65,9 +73,11 @@ public class GUIModificarUsuario extends JFrame{
 	private JTextField numTarjeta;
 	private JTextField nombreTarjeta;
 	private JTextField txtIdusuario;
+	private SimpleDateFormat fechaNac;
+	private SimpleDateFormat fechaVenc;
 
 	private int id;
-	
+
 	public GUIModificarUsuario() {
 		super();
 		this.contentPane = new JPanel();
@@ -78,23 +88,24 @@ public class GUIModificarUsuario extends JFrame{
 		this.txtEmail = new JTextField();
 		this.txtIdusuario = new JTextField();
 		this.txtContrasea = new JTextField();
-		this.lblFechaDeNacimiento = new JLabel();
 		this.txtConfirmarContrasea = new JTextField();
-		this.spinner = new JSpinner();
-		this.spinner_1 = new JSpinner();
-		this.spinner_2 = new JSpinner();
+		this.dia = new JSpinner();
+		this.mes = new JSpinner();
+		this.anio = new JSpinner();
+		this.mes_2 = new JSpinner();
+		this.anio_2 = new JSpinner();
 		this.txtDireccin = new JTextField();
-		this.lblDatosPersonales = new JLabel();
 		this.separator = new JSeparator();
 		this.btnFinalizar = new JButton();
+		this.fechaNac = new SimpleDateFormat("dd/MM/yyyy");
+		this.fechaVenc = new SimpleDateFormat("MM/yyyy");
 		this.setFocusable(true);
 		initGUI();
 	}
 
-
-	public void initGUI(){
+	public void initGUI() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\logo.png"));
-		setTitle("Alta Usuario");
+		setTitle("Modificar Usuario");
 		setBounds(100, 100, 453, 560);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -113,6 +124,7 @@ public class GUIModificarUsuario extends JFrame{
 					txtNombre.setText("");
 				}
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txtNombre.getText().equals("")) {
@@ -120,7 +132,7 @@ public class GUIModificarUsuario extends JFrame{
 				}
 			}
 		});
-		
+
 		txtNombre.setForeground(Color.DARK_GRAY);
 		txtNombre.setText("Nombre");
 		txtNombre.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -137,6 +149,7 @@ public class GUIModificarUsuario extends JFrame{
 					txtApellidos.setText("");
 				}
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txtApellidos.getText().equals("")) {
@@ -158,6 +171,7 @@ public class GUIModificarUsuario extends JFrame{
 					txtEmail.setText("");
 				}
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txtEmail.getText().equals("")) {
@@ -179,6 +193,7 @@ public class GUIModificarUsuario extends JFrame{
 					txtContrasea.setText("");
 				}
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txtContrasea.getText().equals("")) {
@@ -192,19 +207,16 @@ public class GUIModificarUsuario extends JFrame{
 		panel.add(txtContrasea);
 		txtContrasea.setColumns(10);
 
-		lblFechaDeNacimiento = new JLabel("Fecha de nacimiento");
-		lblFechaDeNacimiento.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblFechaDeNacimiento.setBounds(28, 171, 124, 14);
-		panel.add(lblFechaDeNacimiento);
-
 		txtConfirmarContrasea = new JTextField();
 		txtConfirmarContrasea.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
-				if (txtConfirmarContrasea.getText().equals("Confirmar contraseña")) {
+				if (txtConfirmarContrasea.getText().equals(
+						"Confirmar contraseña")) {
 					txtConfirmarContrasea.setText("");
 				}
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txtConfirmarContrasea.getText().equals("")) {
@@ -218,20 +230,24 @@ public class GUIModificarUsuario extends JFrame{
 		panel.add(txtConfirmarContrasea);
 		txtConfirmarContrasea.setColumns(10);
 
-		spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-		spinner.setBounds(28, 196, 39, 20);
-		panel.add(spinner);
+		lblFechaDeNacimiento = new JLabel("Fecha de nacimiento");
+		lblFechaDeNacimiento.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblFechaDeNacimiento.setBounds(28, 171, 124, 14);
+		panel.add(lblFechaDeNacimiento);
 
-		spinner_1 = new JSpinner();
-		spinner_1.setModel(new SpinnerNumberModel(1, 1, 12, 2));
-		spinner_1.setBounds(77, 196, 39, 20);
-		panel.add(spinner_1);
+		dia.setModel(new SpinnerNumberModel(1, 1, 31, 1));
+		dia.setBounds(28, 196, 39, 20);
+		panel.add(dia);
 
-		spinner_2 = new JSpinner();
-		spinner_2.setModel(new SpinnerNumberModel(1900, 1900, 2001, 4));
-		spinner_2.setBounds(126, 196, 65, 20);
-		panel.add(spinner_2);
+		mes = new JSpinner();
+		mes.setModel(new SpinnerNumberModel(1, 1, 12, 2));
+		mes.setBounds(77, 196, 39, 20);
+		panel.add(mes);
+
+		anio = new JSpinner();
+		anio.setModel(new SpinnerNumberModel(1900, 1900, 2001, 4));
+		anio.setBounds(126, 196, 65, 20);
+		panel.add(anio);
 
 		txtDireccin = new JTextField();
 		txtDireccin.addFocusListener(new FocusAdapter() {
@@ -241,6 +257,7 @@ public class GUIModificarUsuario extends JFrame{
 					txtDireccin.setText("");
 				}
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txtDireccin.getText().equals("")) {
@@ -263,73 +280,80 @@ public class GUIModificarUsuario extends JFrame{
 		separator.setBounds(28, 410, 306, 2);
 		panel.add(separator);
 
+		lblDatosBancarios = new JLabel("Datos bancarios");
+		lblDatosBancarios.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblDatosBancarios.setBounds(28, 258, 152, 23);
+		panel.add(lblDatosBancarios);
+
+		numTarjeta.setText("N\u00FAmero de tarjeta");
+		numTarjeta.setForeground(Color.DARK_GRAY);
+		numTarjeta.setColumns(10);
+		numTarjeta.setBounds(28, 292, 152, 20);
+		panel.add(numTarjeta);
+
+		nombreTarjeta.setText("Nombre en la tarjeta");
+		nombreTarjeta.setForeground(Color.DARK_GRAY);
+		nombreTarjeta.setColumns(10);
+		nombreTarjeta.setBounds(28, 323, 152, 20);
+		panel.add(nombreTarjeta);
+
+		lblFechaVencimiento = new JLabel("Fecha de vencimiento");
+		lblFechaVencimiento.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblFechaVencimiento.setBounds(28, 354, 138, 14);
+		panel.add(lblFechaVencimiento);
+
+		mes_2.setModel(new SpinnerNumberModel(1, 1, 12, 1));
+		mes_2.setBounds(28, 379, 46, 20);
+		panel.add(mes_2);
+
+		anio_2.setModel(new SpinnerNumberModel(new Integer(2019), new Integer(
+				2019), null, new Integer(1)));
+		anio_2.setBounds(86, 379, 66, 20);
+		panel.add(anio_2);
+
 		btnFinalizar = new JButton("Finalizar");
-		btnFinalizar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (!datosObligatorios()) {
-					JOptionPane.showOptionDialog(new JFrame(), "Debes rellenar los campos obligatorios (*)", "Quit",
-							JOptionPane.OK_OPTION, JOptionPane.OK_OPTION, null, null, null);
-				}
-				contraseñaErr();
-			}
-		});
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				id = Integer.parseInt(txtIdusuario.getText());
 				String nombre = txtNombre.getText();
 				String apellidos = txtApellidos.getText();
 				String email = txtEmail.getText();
-				//fecha de nacimiento
+				// fecha de nacimiento
+				Date fechaNacimiento = null;
+				try {
+					fechaNacimiento = fechaNac.parse(dia + "/" + mes + "/"
+							+ anio);
+				} catch (ParseException e2) {
+					// TODO Bloque catch generado automáticamente
+					e2.printStackTrace();
+				}
 				String direccion = txtDireccin.getText();
 				String nombTarjeta = nombreTarjeta.getText();
 				int numeroTarjeta = Integer.parseInt(numTarjeta.getText());
-				//fecha de vencimiento
+				// fecha de vencimiento
+				Date fechaVencimiento = null;
+				try {
+					fechaVencimiento = fechaVenc.parse(mes_2 + "/" + anio_2);
+				} catch (ParseException e1) {
+					// TODO Bloque catch generado automáticamente
+					e1.printStackTrace();
+				}
 				String contraseña = txtContrasea.getText();
-				
-				TUsuario tUsuario = new TUsuario (); //TODO
-				Controlador.getInstance().accion(Events.OPEN_GUI_MODIFICAR_USUARIO, tUsuario);
+
+				TUsuario tUsuario = new TUsuario(id, nombre, apellidos,
+						fechaNacimiento, direccion, contraseña, nombTarjeta,
+						numeroTarjeta, fechaVencimiento); // TODO
+				Controlador.getInstance().accion(Events.MODIFICAR_USUARIO,
+						tUsuario);
 			}
 		});
 		btnFinalizar.setBounds(328, 477, 89, 23);
 		panel.add(btnFinalizar);
-		
-		JLabel label_6 = new JLabel("Datos bancarios");
-		label_6.setFont(new Font("Tahoma", Font.BOLD, 16));
-		label_6.setBounds(28, 258, 152, 23);
-		panel.add(label_6);
-		
-		numTarjeta.setText("N\u00FAmero de tarjeta");
-		numTarjeta.setForeground(Color.DARK_GRAY);
-		numTarjeta.setColumns(10);
-		numTarjeta.setBounds(28, 292, 152, 20);
-		panel.add(numTarjeta);
-		
-		nombreTarjeta.setText("Nombre en la tarjeta");
-		nombreTarjeta.setForeground(Color.DARK_GRAY);
-		nombreTarjeta.setColumns(10);
-		nombreTarjeta.setBounds(28, 323, 152, 20);
-		panel.add(nombreTarjeta);
-		
-		JLabel label_7 = new JLabel("Fecha de vencimiento");
-		label_7.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_7.setBounds(28, 354, 138, 14);
-		panel.add(label_7);
-		
-		JSpinner spinner_3 = new JSpinner();
-		spinner_3.setModel(new SpinnerNumberModel(1, 1, 12, 1));
-		spinner_3.setBounds(28, 379, 46, 20);
-		panel.add(spinner_3);
-		
-		JSpinner spinner_4 = new JSpinner();
-		spinner_4.setModel(new SpinnerNumberModel(new Integer(2019), new Integer(2019), null, new Integer(1)));
-		spinner_4.setBounds(86, 379, 66, 20);
-		panel.add(spinner_4);
-		
+
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(28, 60, 306, 2);
 		panel.add(separator_1);
-		
+
 		txtIdusuario.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
@@ -337,6 +361,7 @@ public class GUIModificarUsuario extends JFrame{
 					txtIdusuario.setText("");
 				}
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txtIdusuario.getText().equals("")) {
@@ -351,39 +376,32 @@ public class GUIModificarUsuario extends JFrame{
 		txtIdusuario.setColumns(10);
 		txtIdusuario.setBounds(28, 29, 124, 20);
 		panel.add(txtIdusuario);
-		
+
 		JButton btnComprobar = new JButton("Comprobar");
 		btnComprobar.setBounds(193, 28, 89, 23);
 		btnComprobar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				id = Integer.parseInt(txtIdusuario.getText());
-				Controlador.getInstance().accion(Events.MODIFICAR_DISEÑO_COMPROBAR, id);
+				Controlador.getInstance().accion(
+						Events.MODIFICAR_USUARIO_COMPROBAR, id);
 				toFront();
 			}
 		});
 		panel.add(btnComprobar);
 	}
 
-	private boolean datosObligatorios() {
-		if (txtNombre.getText().equals("Nombre") || txtApellidos.getText().equals("Apellido(s)") || txtEmail.getText().equals("E-mail")
-				|| txtContrasea.getText().equals("Contraseña") || txtConfirmarContrasea.getText().equals("Confirmar contraseña")
-				|| txtDireccin.getText().equals("Dirección"))
-			return false;
-		return true;
-	}
-
-	private boolean contraseñaErr() {
-		if (!this.txtConfirmarContrasea.getText().equals(this.txtContrasea.getText())) {
-			txtContrasea.setBackground(Color.red);
-			txtConfirmarContrasea.setBackground(Color.red);
-			JOptionPane.showMessageDialog(new JFrame(), "La contraseña no coincide");
-			return true;
-		}
-		else {
-			txtContrasea.setBackground(Color.white);
-			txtConfirmarContrasea.setBackground(Color.white);
-
-		return false;
+	public void update(int events, Object res) {
+		switch (events) {
+		case Events.MODIFICAR_USUARIO:
+			JOptionPane.showMessageDialog(null,
+					"Éxito al modificar el usuario id: " + id);
+			dispose();
+			break;
+		case Events.MODIFICAR_USUARIO_KO:
+			JOptionPane.showMessageDialog(null,
+					"Error al modificar el usuario id: " + id, "Error Usuario",
+					JOptionPane.ERROR_MESSAGE);
+			break;
 		}
 	}
 }

@@ -157,7 +157,7 @@ public class ControladorImp extends Controlador {
 		case Events.OPEN_GUI_USUARIO_MENU:
 			GUIUsuario.getInstance();
 			break;
-		case Events.OPEN_GUI_MODIFICAR_USUARIO:
+		case Events.MODIFICAR_USUARIO:
 			GUIUsuario.getInstance();
 			break;
 		/*IMPRESORA*/

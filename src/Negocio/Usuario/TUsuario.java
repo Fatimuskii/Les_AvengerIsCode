@@ -66,8 +66,6 @@ public class TUsuario {
 	
 	private Integer numeroCuenta;
 	
-	private Integer cvv;
-	
 	private Date fechaCaducidad;
 	
 	private ArrayList<TUsuario> arrayTUsuario = new ArrayList<>();
@@ -75,7 +73,7 @@ public class TUsuario {
 	
 	
 	public TUsuario(Integer idUsuario, String nombre, String apellidos, Date fechaNacimiento, String direccion, String contraseña, String titularCuenta, Integer numeroCuenta,
-			Integer cvv, Date fechaCaducidad){
+			Date fechaCaducidad){
 		
 		this.idUsuario = idUsuario;
 		this.nombre = nombre;
@@ -85,7 +83,7 @@ public class TUsuario {
 		this.contraseña = contraseña;
 		this.titularCuenta = titularCuenta;
 		this.numeroCuenta = numeroCuenta;
-		this.cvv = cvv;
+		
 		this.fechaCaducidad = fechaCaducidad;
 		
 		
@@ -236,12 +234,6 @@ public class TUsuario {
 		return numeroCuenta;
 	}
 	
-	
-	public Integer getCvv(){		
-		return cvv;
-		
-	}
-	
 	public Date getFechaCaducidad(){		
 		return fechaCaducidad;
 		
@@ -253,10 +245,6 @@ public class TUsuario {
 	
 	public void setNumeroCuenta(Integer cuentaB){
 		this.numeroCuenta = cuentaB;
-	}
-	
-	public void setCvv(Integer cvv){
-		this.cvv = cvv;
 	}
 	
 	public void setFechaCaducidad( Date fechaC){
