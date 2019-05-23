@@ -115,6 +115,41 @@ public class GUIModificarUsuario extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
+		
+		txtIdusuario.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				if (txtIdusuario.getText().equals("idUsuario")) {
+					txtIdusuario.setText("");
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtIdusuario.getText().equals("")) {
+					txtIdusuario.setText("idUsuario");
+				}
+			}
+		});
+		txtIdusuario.setToolTipText("");
+		txtIdusuario.setText("idUsuario");
+		txtIdusuario.setForeground(Color.DARK_GRAY);
+		txtIdusuario.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		txtIdusuario.setColumns(10);
+		txtIdusuario.setBounds(28, 29, 124, 20);
+		panel.add(txtIdusuario);
+
+		JButton btnComprobar = new JButton("Comprobar");
+		btnComprobar.setBounds(193, 28, 89, 23);
+		btnComprobar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				id = Integer.parseInt(txtIdusuario.getText());
+				Controlador.getInstance().accion(
+						Events.MODIFICAR_USUARIO_COMPROBAR, id);
+				toFront();
+			}
+		});
+		panel.add(btnComprobar);
 
 		txtNombre = new JTextField();
 		txtNombre.addFocusListener(new FocusAdapter() {
@@ -353,41 +388,6 @@ public class GUIModificarUsuario extends JFrame {
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(28, 60, 306, 2);
 		panel.add(separator_1);
-
-		txtIdusuario.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				if (txtIdusuario.getText().equals("idUsuario")) {
-					txtIdusuario.setText("");
-				}
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (txtIdusuario.getText().equals("")) {
-					txtIdusuario.setText("idUsuario");
-				}
-			}
-		});
-		txtIdusuario.setToolTipText("");
-		txtIdusuario.setText("idUsuario");
-		txtIdusuario.setForeground(Color.DARK_GRAY);
-		txtIdusuario.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		txtIdusuario.setColumns(10);
-		txtIdusuario.setBounds(28, 29, 124, 20);
-		panel.add(txtIdusuario);
-
-		JButton btnComprobar = new JButton("Comprobar");
-		btnComprobar.setBounds(193, 28, 89, 23);
-		btnComprobar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				id = Integer.parseInt(txtIdusuario.getText());
-				Controlador.getInstance().accion(
-						Events.MODIFICAR_USUARIO_COMPROBAR, id);
-				toFront();
-			}
-		});
-		panel.add(btnComprobar);
 	}
 
 	public void update(int events, Object res) {

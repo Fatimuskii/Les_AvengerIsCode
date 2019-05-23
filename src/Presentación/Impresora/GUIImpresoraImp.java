@@ -57,11 +57,12 @@ public class GUIImpresoraImp extends GUIImpresora {
 	private GUIListarImpresora gUIListarImpresora;
 	private GUIBuscarIdImpresora gUIBuscarIdImpresora;
 	private GUIBuscarUsuarioImpresora gUIBuscarUsuarioImpresora;
+	private GUIBajaImpresora GUI_BajaImpresora;	
+	private GUIAltaImpresora GUI_AltaImpresora;
 	
 	private JPanel contentPane;
 	private JTextField txtBuscar;
 	private JTextField txtBuscarIdusuarioImpresor;
-	private GUIBajaImpresora GUI_BajaImpresora;	
 	
 	
 	public GUIImpresoraImp() {
@@ -73,6 +74,7 @@ public class GUIImpresoraImp extends GUIImpresora {
 		this.txtBuscarIdusuarioImpresor = new JTextField();
 		this.GUI_BajaImpresora = new GUIBajaImpresora();
 		this.gUIModificarImpresora = new GUIModificarImpresora();
+		this.GUI_AltaImpresora = new GUIAltaImpresora();
 		this.setFocusable(true);
 		initGUI();
 	}
@@ -125,6 +127,15 @@ public class GUIImpresoraImp extends GUIImpresora {
 			}
 		});
 		mnConfiguracin.add(mntmModificarImpresora);
+		
+		JMenuItem mntmAltaImpresora = new JMenuItem("Dar de alta");
+		mntmAltaImpresora.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUI_AltaImpresora.setVisible(true);
+			}
+		});
+		mnConfiguracin.add(mntmAltaImpresora);
+		
 		
 		txtBuscar = new JTextField();
 		txtBuscar.setForeground(Color.DARK_GRAY);

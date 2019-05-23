@@ -136,6 +136,18 @@ public class Events {
 	public static final int MODIFICAR_USUARIO_COMPROBAR = 125;
 	public static final int MODIFICAR_USUARIO_COMPROBAR_OK = 126;
 	public static final int MODIFICAR_USUARIO_COMPROBAR_KO = 127;
+	public static final int ALTA_USUARIO_OK = 128;
+	public static final int ALTA_USUARIO_KO = 129;
+	public static final int BAJA_USUARIO_OK = 130;
+	public static final int BAJA_USUARIO_KO = 131;
+	public static final int BUSCAR_USUARIO_OK  = 132;
+	public static final int BUSCAR_USUARIO_KO = 133;
+	public static final int LISTAR_USUARIO_OK  = 134;
+	public static final int LISTAR_USUARIO_KO = 135;
+	
+
+
+	
 	
 	//PLATAFORMA
 	public static final int ACCESO_USUARIO = 500;

@@ -129,10 +129,7 @@ public class DAOUsuarioImp implements DAOUsuario {
 	}
 	
 	public TUsuario acceso(TUsuario tUsuario){
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 
-		// end-user-code
 		
 		return tUsuario;
 	}
@@ -191,7 +188,7 @@ public class DAOUsuarioImp implements DAOUsuario {
 						+ "apellidos='" + tUsuario.getApellidos() + "', "
 						+ "direccion='" + tUsuario.getDireccion() + "', "
 						+ "fechaNacimiento='" + tUsuario.getFechaNacimiento() + "', "
-						+ "e-mail='" + tUsuario.getEmail() + "', "
+						+ "email='" + tUsuario.getEmail() + "', "
 						+ "titularCuenta='" + tUsuario.getTitularCuenta() + ",' "
 						+ "numerCuenta='" + tUsuario.getNumeroCuenta() + ",' "
 						+ "fechaCaducidad='" + tUsuario.getFechaCaducidad()

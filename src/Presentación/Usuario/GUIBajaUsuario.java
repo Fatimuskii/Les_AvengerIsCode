@@ -20,6 +20,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Presentación.Controlador.Events;
+
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
@@ -32,6 +34,7 @@ public class GUIBajaUsuario extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JPasswordField passwordField;
+	private int id;
 
 	public GUIBajaUsuario(){
 		super();
@@ -90,5 +93,16 @@ public class GUIBajaUsuario extends JFrame {
 		passwordField.setBounds(135, 150, 162, 20);
 		panel.add(passwordField);
 	}
-
+	public void update(int event, Object res) {
+		switch(event){
+		case Events.BAJA_USUARIO_OK:
+			JOptionPane.showMessageDialog(null,"Eliminado correctamente el usuario : "+ id, "", JOptionPane.INFORMATION_MESSAGE);
+			break;
+		case Events.BAJA_USUARIO_KO:
+			JOptionPane.showMessageDialog(null,"Error al eliminar el usuario: " +id, "", JOptionPane.ERROR_MESSAGE);
+			break;
+		}
+		
+	}
+	
 }

@@ -411,7 +411,20 @@ public class GUIAltaUsuario extends JFrame {
 		return false;
 		}
 
+		
+		
 	}
-
+	public void update(int event, Object res){
+		switch (event) {
+		case Events.ALTA_USUARIO_OK:
+			JOptionPane.showMessageDialog(null,"Éxito al crear el usuario");
+			dispose();
+			break;
+		case Events.ALTA_USUARIO_KO:
+			JOptionPane.showMessageDialog(null, "Error al crear el usuario", "Error Alta Usuario", JOptionPane.ERROR_MESSAGE);
+			break;
+		}
+		
+	}
 	// GENERAR ID ALEATORIO TODO
 }

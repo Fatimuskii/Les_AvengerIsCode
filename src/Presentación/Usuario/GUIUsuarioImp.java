@@ -5,7 +5,6 @@ package Presentación.Usuario;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
@@ -13,21 +12,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Presentación.Controlador.Events;
 import Presentación.Impresora.GUIImpresoraImp;
 
 /**
@@ -45,6 +41,9 @@ public class GUIUsuarioImp extends GUIUsuario {
 	private JTextField textField;
 	private GUIModificarUsuario GUI_ModificarUsuario;
 	private GUIBajaUsuario GUI_BajaUsuario;
+	private GUIAltaUsuario GUI_AltaUsuario;
+	private JLabel id_Usuario;
+	private boolean admin;
 
 	public GUIUsuarioImp() throws HeadlessException {
 		super();
@@ -52,6 +51,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 		this.GUI_ImpresoraImp = new GUIImpresoraImp();
 		this.GUI_ModificarUsuario = new GUIModificarUsuario();
 		this.GUI_BajaUsuario = new GUIBajaUsuario();
+		this.GUI_AltaUsuario = new GUIAltaUsuario();
 		initGUI();
 	}
 
@@ -73,10 +73,10 @@ public class GUIUsuarioImp extends GUIUsuario {
 		lblNewLabel.setBounds(10, 11, 78, 74);
 		panel.add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("ID Usuario");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1.setBounds(20, 93, 68, 14);
-		panel.add(lblNewLabel_1);
+		id_Usuario = new JLabel("ID Usuario");
+		id_Usuario.setFont(new Font("Tahoma", Font.BOLD, 11));
+		id_Usuario.setBounds(20, 93, 68, 14);
+		panel.add(id_Usuario);
 
 		JButton btnImpresora = new JButton("Mi Impresora");
 		btnImpresora.addActionListener(new ActionListener() {
@@ -132,6 +132,21 @@ public class GUIUsuarioImp extends GUIUsuario {
 
 		textField = new JTextField();
 		textField.setText("Buscar usuario");
+		textField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				if (textField.getText().equals("Buscar usuario")) {
+					textField.setText("");
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (textField.getText().equals("")) {
+					textField.setText("Buscar usuario");
+				}
+			}
+		});
 		textField.setForeground(Color.GRAY);
 		textField.setColumns(10);
 		textField.setBounds(183, 164, 227, 20);
@@ -144,6 +159,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 		JButton button = new JButton("Mostrar todos");
 		button.setBounds(292, 195, 118, 23);
 		panel.add(button);
+		if(!admin)button.setEnabled(false);
 
 		JMenuBar menuBar_2 = new JMenuBar();
 		menuBar_2.setBounds(10, 134, 90, 21);
@@ -167,6 +183,15 @@ public class GUIUsuarioImp extends GUIUsuario {
 			}
 		});
 		mnConfiguacin.add(mntmDarDeBaja);
+		
+		JMenuItem mntmDarDeAlta = new JMenuItem("Dar de alta");
+		mntmDarDeAlta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GUI_AltaUsuario.setVisible(true);
+			}
+		});
+		mnConfiguacin.add(mntmDarDeAlta);
+		if(!admin) mntmDarDeAlta.setEnabled(false);
 
 		JMenuItem mntmCerrarSesin = new JMenuItem("Cerrar sesi\u00F3n");
 		mnConfiguacin.add(mntmCerrarSesin);
@@ -175,7 +200,26 @@ public class GUIUsuarioImp extends GUIUsuario {
 
 	@Override
 	public void update(int event, Object res) {
-		// TODO Apéndice de método generado automáticamente
+		switch (event) {
+		case Events.ALTA_USUARIO_OK:
+			GUI_AltaUsuario.update(event, null);
+			break;
+		case Events.ALTA_USUARIO_KO:
+			GUI_AltaUsuario.update(event, null);
+			break;
+		case Events.BAJA_USUARIO_OK:
+			GUI_BajaUsuario.update(event, res);
+			break;
+		case Events.BAJA_USUARIO_KO:
+			GUI_BajaUsuario.update(event, res);
+			break;
+		case Events.MODIFICAR_USUARIO_OK:
+			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_OK, res);
+			break;
+		case Events.MODIFICAR_USUARIO_KO:
+			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_KO, res);
+			break;
+		}
 		
 	}
 

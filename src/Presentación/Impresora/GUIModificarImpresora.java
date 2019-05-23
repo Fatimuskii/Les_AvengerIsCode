@@ -16,6 +16,7 @@ import java.awt.event.MouseEvent;
 import java.text.ParseException;
 import java.util.Date;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -212,7 +213,7 @@ public class GUIModificarImpresora extends JFrame {
 			btnFinalizar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					id = Integer.parseInt(txtIntroduceTuId.getText());
-					//String material = String.valueOf(mnMaterial.getPressedIcon());//TODO
+				//	String material = String.valueOf(mnMaterial.getPressedIcon());//TODO
 					String nombre = null;
 					float al = Float.valueOf(alto.getValue().toString());
 					float an = Float.valueOf(ancho.getValue().toString());
