@@ -28,7 +28,7 @@ public class SAUsuarioImp implements SAUsuario {
 //		if((daoUsuario.buscarIdUsuario(tUsuario.getIdUsuario())) == null )
 //			return daoUsuario.altaUsuario(tUsuario);
 		}
-		return -1;
+		return id_usuario;
 	}
 
 	public int bajaUsuario(int idUsuario) {

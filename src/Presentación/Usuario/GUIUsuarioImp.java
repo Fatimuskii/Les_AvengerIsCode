@@ -250,6 +250,18 @@ public class GUIUsuarioImp extends GUIUsuario {
 		case Events.MODIFICAR_USUARIO_KO:
 			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_KO, res);
 			break;
+		case Events.LISTAR_USUARIO_OK:
+			GUI_ListarUsuarios.update(event, null);
+			break;
+		case Events.LISTAR_USUARIO_KO:
+			GUI_ListarUsuarios.update(event, null);
+			break;
+//		case Events.BUSCAR_USUARIO_OK:
+//			GUI_BuscarporIdUsuario.update(event, null);
+//			break;
+//		case Events.BUSCAR_USUARIO_KO:
+//			GUI_BuscarporIdUsuario.update(event, null);
+//			break;
 		}
 		
 	}
