@@ -173,7 +173,7 @@ public class DAOUsuarioImp implements DAOUsuario {
 		// end-user-code
 	}
 
-	public Integer modificarUsuario(TUsuario tUsuario){
+	public int modificarUsuario(TUsuario tUsuario){
 		
 		Integer idUsuario = 0;
 		ConexionDAO connectionDAO = ConexionDAO.getInstance();

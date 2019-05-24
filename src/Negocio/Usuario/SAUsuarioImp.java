@@ -5,48 +5,65 @@ package Negocio.Usuario;
 
 import java.util.ArrayList;
 
+import Integración.Factoria.FactoriaDAO;
+import Integración.Usuario.DAOUsuario;
+
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
- * @author Fatimuskii
+ * @author Stephani
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class SAUsuarioImp implements SAUsuario {
 
 	@Override
-	public Integer altaUsuario(TUsuario tUsuario) {
-		// TODO Apéndice de método generado automáticamente
-		return 0;
+	public int altaUsuario(TUsuario tUsuario) {
+		
+		DAOUsuario daoUsuario = FactoriaDAO.getInstance().generateDAOUsuario();
+		
+		if((daoUsuario.buscarIdUsuario(tUsuario.getIdUsuario())) == null )
+			return daoUsuario.altaUsuario(tUsuario);
+		
+		return -1;
 	}
 
-	@Override
-	public Integer bajaUsuario(Integer idUsuario) {
-		// TODO Apéndice de método generado automáticamente
-		return 0;
+	public int bajaUsuario(int idUsuario) {
+		
+		DAOUsuario daoUsuario = FactoriaDAO.getInstance().generateDAOUsuario();
+		
+		if(daoUsuario.buscarIdUsuario(idUsuario)!= null)
+			return daoUsuario.bajaUsuario(idUsuario);
+		
+		return -1;
 	}
 
-	@Override
-	public TUsuario buscarIdUsuario(Integer idUsuario) {
-		// TODO Apéndice de método generado automáticamente
-		return null;
+	public TUsuario buscarIdUsuario(int idUsuario) {
+	
+		DAOUsuario daoUsuario = FactoriaDAO.getInstance().generateDAOUsuario();		
+		
+		return daoUsuario.buscarIdUsuario(idUsuario);
 	}
 
-	@Override
 	public boolean acceso(TUsuario tUsuario) {
 		// TODO Apéndice de método generado automáticamente
 		return false;
 	}
 
-	@Override
-	public Integer modificarUsuario(TUsuario tUsuario) {
-		// TODO Apéndice de método generado automáticamente
-		return 0;
+	public int modificarUsuario(TUsuario tUsuario) {
+		DAOUsuario daoUsuario = FactoriaDAO.getInstance().generateDAOUsuario();
+		
+		if(daoUsuario.buscarIdUsuario(tUsuario.getIdUsuario())!=null)
+			return daoUsuario.modificarUsuario(tUsuario);		
+		
+		return -1;
 	}
 
-	@Override
 	public ArrayList<TUsuario> listarUsuarios() {
-		// TODO Apéndice de método generado automáticamente
-		return null;
+		
+		DAOUsuario daoUsuario = FactoriaDAO.getInstance().generateDAOUsuario();
+		ArrayList<TUsuario> tListaUsuarios = daoUsuario.listarUsuarios();
+				
+		return tListaUsuarios;
 	}
 	
 }

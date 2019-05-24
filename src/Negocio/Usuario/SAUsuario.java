@@ -22,7 +22,7 @@ public interface SAUsuario {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer altaUsuario(TUsuario tUsuario);
+	public int altaUsuario(TUsuario tUsuario);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -32,7 +32,7 @@ public interface SAUsuario {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Integer bajaUsuario(Integer idUsuario);
+	public int bajaUsuario(int idUsuario);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -42,7 +42,7 @@ public interface SAUsuario {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TUsuario buscarIdUsuario(Integer idUsuario);
+	public TUsuario buscarIdUsuario(int idUsuario);
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -65,5 +65,5 @@ public interface SAUsuario {
 	
 	public ArrayList<TUsuario> listarUsuarios();
 	
-	public Integer modificarUsuario(TUsuario tUsuario);
+	public int modificarUsuario(TUsuario tUsuario);
 }
