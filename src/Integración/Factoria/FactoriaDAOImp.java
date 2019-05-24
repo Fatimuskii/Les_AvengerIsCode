@@ -7,8 +7,6 @@ import Integración.Impresora.DAOImpresora;
 import Integración.Impresora.DAOImpresoraImp;
 import Integración.Local.DAOLocal;
 import Integración.Local.DAOLocalImpl;
-import Integración.Local.DAORepresentante;
-import Integración.Local.DAORepresentanteImp;
 import Integración.PedidoImpresion.DAOPedidoImpresion;
 import Integración.PedidoImpresion.DAOPedidoImpresionImp;
 import Integración.Plataforma.DAOPlataforma;
@@ -78,11 +76,6 @@ public class FactoriaDAOImp extends FactoriaDAO {
 		// begin-user-code
 		return new DAOLocalImpl();
 		// end-user-code
-	}
-
-	public DAORepresentante generateDAORepresentante(){
-		
-		return new DAORepresentanteImp();
 	}
 	/** 
 	 * (sin Javadoc)

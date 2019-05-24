@@ -13,7 +13,6 @@ import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
 
 import Negocio.Local.TLocal;
-import Negocio.Local.TRepresentante;
 import Presentación.GUIMensaje;
 import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
@@ -31,16 +30,14 @@ public class GUIModificarLocal extends JFrame {
 	private JTextPane locText;
 	private JTextPane cpText;
 	// Propietario
-	private TRepresentante tRepre;
 	private JTextPane namePropText;
 	private JTextPane telPropText;
 	private JTextPane emailPropText;
 
-	public GUIModificarLocal(TLocal local, TRepresentante repre) {
+	public GUIModificarLocal(TLocal local) {
 
 		super();
 		this.tLocal = local;
-		this.tRepre = repre;
 
 		contentPane = new JPanel();
 		initGUI();
@@ -126,14 +123,6 @@ public class GUIModificarLocal extends JFrame {
 		cpText.setBounds(77, 208, 67, 22);
 		contentPane.add(cpText);
 
-		JLabel lblIdPropietario = new JLabel("Id Propietario:");
-		lblIdPropietario.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblIdPropietario.setBounds(248, 36, 94, 16);
-		contentPane.add(lblIdPropietario);
-
-		JLabel IDPropietarioLabel = new JLabel("" + tRepre.getIdRepresentante());
-		IDPropietarioLabel.setBounds(356, 36, 46, 14);
-		contentPane.add(IDPropietarioLabel);
 
 		JLabel lblnombreProp = new JLabel("Nombre:");
 		lblnombreProp.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -144,23 +133,6 @@ public class GUIModificarLocal extends JFrame {
 		namePropText.setBounds(343, 64, 146, 22);
 		contentPane.add(namePropText);
 
-		JLabel label_8 = new JLabel("Tel\u00E9fono:");
-		label_8.setFont(new Font("Tahoma", Font.BOLD, 13));
-		label_8.setBounds(275, 91, 67, 16);
-		contentPane.add(label_8);
-
-		telPropText = new JTextPane();
-		telPropText.setBounds(343, 92, 146, 22);
-		contentPane.add(telPropText);
-
-		JLabel lblEmail = new JLabel("Email:");
-		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblEmail.setBounds(275, 120, 67, 16);
-		contentPane.add(lblEmail);
-
-		emailPropText = new JTextPane();
-		emailPropText.setBounds(343, 122, 146, 22);
-		contentPane.add(emailPropText);
 
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
@@ -172,18 +144,13 @@ public class GUIModificarLocal extends JFrame {
 				String dirLoc = dirText.getText();
 				int cpLoc = Integer.parseInt(cpText.getText());
 				String locLoc = locText.getText();
-				int IdRepresentante= tLocal.getRepresentante();
+				String nombreProp = namePropText.getText();
 
 				tLocal = new TLocal(idLoc, nombreLoc, telLoc, CIFLoc, dirLoc,
-						cpLoc, locLoc, IdRepresentante, true);
+						cpLoc, locLoc, nombreProp, true);
 				Controlador.getInstance().accion(Events.MODIFICAR_LOCAL, tLocal);
 				
-				String nombreProp = namePropText.getText();
-				int telP= Integer.parseInt(telPropText.getText());
-				String emailProp= emailPropText.getText();
-				tRepre = new TRepresentante(IdRepresentante, nombreProp, telP, emailProp);
-				//Controlador.getInstance().accion(
-						//Events.MODIFICAR_REPRESENTANTE, tRepre);
+				
 			}
 		});
 
@@ -201,19 +168,9 @@ public class GUIModificarLocal extends JFrame {
 			res_mensaje.showMessage(
 					"Se ha dado modificado correctamente al Local con id: "
 							+ (int) res, "MODIFICAR LOCAL", false);
-			Controlador.getInstance().accion(
-					Events.MODIFICAR_REPRESENTANTE, tRepre);
 			break;
 		case Events.MODIFICAR_LOCAL_KO:
 			res_mensaje.showMessage("Error en la modificación del Local:",
-					"MODIFICAR LOCAL", false);
-			break;
-		case Events.MODIFICAR_REPRESENTANTE_OK:
-			break;
-		case Events.MODIFICAR_REPRESENTANTE_KO:
-
-			res_mensaje.showMessage(
-					"Error en la modificación de los datos del Propietario:",
 					"MODIFICAR LOCAL", false);
 			break;
 		}

@@ -26,16 +26,6 @@ CREATE TABLE IF NOT EXISTS disenos(
 	PRIMARY KEY (idDiseno)
 );
 
---
--- Estructura de tabla para la tabla `representantes`
---
-CREATE TABLE IF NOT EXISTS representantes (
-  IdRepresentante int(11) NOT NULL AUTO_INCREMENT,
-  nombre varchar(20) NOT NULL,
-  telefono int(11) NOT NULL,
-  email varchar(30) NOT NULL,
-  PRIMARY KEY (IdRepresentante)
-);
 
 --
 -- Estructura de tabla para la tabla `locales`
@@ -50,9 +40,9 @@ CREATE TABLE IF NOT EXISTS locales (
   direccion varchar(30) NOT NULL,
   CP int(11) NOT NULL,
   localidad varchar(20) NOT NULL,
-  representante int(11) NOT NULL,
+  representante varchar(25) NOT NULL,
   activo tinyint(1) NOT NULL, 
-  PRIMARY KEY (IdLocal, representante)
+  PRIMARY KEY (IdLocal)
  
 );
 
@@ -77,8 +67,5 @@ CREATE TABLE IF NOT EXISTS usuario (
 );
 
 
-ALTER TABLE locales ADD CONSTRAINT representante_local_FK FOREIGN KEY (representante)
-	REFERENCES representantes (IdRepresentante)
-	ON DELETE CASCADE;
 --
 -- Ã�ndices para tablas volcadas

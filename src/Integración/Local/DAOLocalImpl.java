@@ -160,7 +160,7 @@ public class DAOLocalImpl implements DAOLocal {
 							resultSet.getString("direccion"),
 							resultSet.getInt("CP"),
 							resultSet.getString("localidad"),
-							resultSet.getInt("representante"),
+							resultSet.getString("representante"),
 							resultSet.getBoolean("activo"));
 				}
 				connection.close();
@@ -230,7 +230,7 @@ public class DAOLocalImpl implements DAOLocal {
 									resultSet.getString("direccion"),
 									resultSet.getInt("CP"),
 									resultSet.getString("localidad"),
-									resultSet.getInt("representante"),
+									resultSet.getString("representante"),
 									resultSet.getBoolean("activo"));
 						}
 						connection.close();

@@ -9,8 +9,6 @@ import Negocio.Impresora.SAImpresora;
 import Negocio.Impresora.SAImpresoraImp;
 import Negocio.Local.SALocal;
 import Negocio.Local.SALocalImp;
-import Negocio.Local.SARepresentante;
-import Negocio.Local.SARepresentanteImp;
 import Negocio.Usuario.SAUsuario;
 import Negocio.Usuario.SAUsuarioImp;
 import Negocio.Plataforma.SAPlataforma;
@@ -58,10 +56,7 @@ public class SAFactoriaImp extends SAFactoria {
 		return new SALocalImp();
 		// end-user-code
 	}
-	@Override
-	public SARepresentante generateSARepresentante() {
-		return new SARepresentanteImp();
-	}
+
 	/** 
 	 * (sin Javadoc)
 	 * @see SAFactoria#generateSAUsuario()

@@ -21,9 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
-import Negocio.Local.SARepresentante;
 import Negocio.Local.TLocal;
-import Negocio.Local.TRepresentante;
 import Presentación.GUIMensaje;
 import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
@@ -35,16 +33,13 @@ public class GUIAltaLocal extends GUILocalImp {
 	private JPanel contentPane;
 
 	private TLocal local;
-	private int IdRepresentante;
-	private TRepresentante repre;
-
-	
 	private JTextField nombre;
 	private JTextField telefono;
 	private JTextField CIF;
 	private JTextField direccion;
 	private JTextField CP;
 	private JTextField localidad;
+	private JTextField representante;
 	
 
 	public GUIAltaLocal(){
@@ -53,12 +48,6 @@ public class GUIAltaLocal extends GUILocalImp {
 		initGUI();
 	}
 
-	public int getIdRepresentante(){
-		return this.IdRepresentante;
-	}
-	public void setIdRepresentante(int id){
-		this.IdRepresentante = id;
-	}
 	
 	public void initGUI() {
 		setResizable(false);
@@ -134,6 +123,15 @@ public class GUIAltaLocal extends GUILocalImp {
 		localidad.setColumns(10);
 		localidad.setBounds(194, 303, 116, 22);
 		contentPane.add(localidad);
+		
+		JLabel lblNombreDelRepresentante = new JLabel("Nombre Representante:");
+		lblNombreDelRepresentante.setBounds(63, 327, 138, 29);
+		contentPane.add(lblNombreDelRepresentante);
+		
+		representante = new JTextField();
+		representante.setColumns(10);
+		representante.setBounds(194, 330, 175, 22);
+		contentPane.add(representante);
 
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
@@ -150,16 +148,17 @@ public class GUIAltaLocal extends GUILocalImp {
 				String dirLocal = direccion.getText();
 				int cpLocal = Integer.parseInt(CP.getText());
 				String locLocal = localidad.getText();
+				String repre = representante.getText();
 
 				local = new TLocal(nombreLocal, telLocal, cifLocal, dirLocal,
-						cpLocal, locLocal, getIdRepresentante(), true);
+						cpLocal, locLocal, repre, true);
 				Controlador.getInstance().accion(Events.ALTA_LOCAL, local);
 				dispose();
 
 			}
 		});
 		btnAceptar.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnAceptar.setBounds(341, 327, 116, 36);
+		btnAceptar.setBounds(343, 363, 116, 36);
 		contentPane.add(btnAceptar);
 
 		JLabel lblLogoaltalocal = new JLabel("logoAltaLocal");

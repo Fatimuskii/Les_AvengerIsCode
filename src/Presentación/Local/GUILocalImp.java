@@ -1,6 +1,5 @@
 package Presentación.Local;
 
-import java.awt.Event;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -15,7 +14,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Negocio.Local.TLocal;
-import Negocio.Local.TRepresentante;
 import Presentación.GUIMensaje;
 import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
@@ -26,14 +24,13 @@ public class GUILocalImp extends GUILocal {
 	// MENU DE LOCAL!
 
 	private GUIAltaLocal Gui_altaLocal;
-	private GUIAltaRepresentante Gui_altaRepre;
 	private GUIBajaLocal Gui_bajaLocal;
 	private GUIBuscarLocal Gui_buscarLocal;
 	private GUIModificarLocal Gui_modificarLocal;
 	private JTextField IdLocalText;
 
 	private JPanel contentPane;
-	private TRepresentante repre;
+
 
 	public GUILocalImp() {
 		super();
@@ -42,13 +39,6 @@ public class GUILocalImp extends GUILocal {
 		initGUI();
 	}
 
-	public void setRepre(TRepresentante repre) {
-		this.repre = repre;
-	}
-
-	public TRepresentante getRepre() {
-		return this.repre;
-	}
 
 	public void initGUI() {
 
@@ -113,8 +103,9 @@ public class GUILocalImp extends GUILocal {
 		JButton button = new JButton("Registrar local");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Gui_altaRepre = new GUIAltaRepresentante();
-				Gui_altaRepre.setVisible(true);
+				Gui_altaLocal = new GUIAltaLocal();
+				Gui_altaLocal.setVisible(true);
+				dispose();
 			}
 		});
 		button.setBounds(283, 264, 138, 34);
@@ -136,20 +127,13 @@ public class GUILocalImp extends GUILocal {
 		case Events.ALTA_LOCAL_KO:
 			Gui_altaLocal.update(event, res);
 			break;
-		case Events.ALTA_REPRESENTANTE_OK:
-			Gui_altaRepre.update(event, res);
-			Gui_altaLocal = new GUIAltaLocal();
-			Gui_altaLocal.setIdRepresentante((int) res);
-			Gui_altaLocal.setVisible(true);
-			break;
+
 		case Events.BAJA_LOCAL_OK:
 			Gui_bajaLocal.update(event, res);
 			break;
 		case Events.BAJA_LOCAL_KO:
 			Gui_bajaLocal.update(event, res);
 			break;
-		case Events.ALTA_REPRESENTANTE_KO:
-			Gui_altaRepre.update(event, res);
 
 		case Events.BAJA_DISEÑO_OK:
 			break;
@@ -161,12 +145,6 @@ public class GUILocalImp extends GUILocal {
 		case Events.MODIFICAR_LOCAL_KO:
 			Gui_buscarLocal.update(event, res);
 			break;
-		case Events.MODIFICAR_REPRESENTANTE_OK:
-			Gui_buscarLocal.update(event, res);
-			break;
-		case Events.MODIFICAR_REPRESENTANTE_KO:
-			Gui_buscarLocal.update(event, res);
-			break;
 			
 		case Events.BUSCAR_LOCAL_OK:
 			Gui_buscarLocal.update(event, res);
@@ -175,13 +153,6 @@ public class GUILocalImp extends GUILocal {
 		case Events.BUSCAR_LOCAL_KO:
 			Gui_buscarLocal.update(event, res);
 			//Gui_buscarLocal.dispose();
-			break;
-		case Events.BUSCAR_REPRESENTANTE_OK:
-			Gui_buscarLocal.update(event, res);
-			break;
-
-		case Events.BUSCAR_REPRESENTANTE_KO:
-			Gui_buscarLocal.update(event, res);
 			break;
 		}
 

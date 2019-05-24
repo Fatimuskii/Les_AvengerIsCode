@@ -53,12 +53,8 @@ public class TLocal {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private String localidad;
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	private int representante;
+	private String representante;
+
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
@@ -73,7 +69,7 @@ public class TLocal {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	
-	public TLocal(int IdLocal, String nombre,int telefono,int CIF, String direccion,int CP,String localidad,int representante,boolean activo){
+	public TLocal(int IdLocal, String nombre,int telefono,int CIF, String direccion,int CP,String localidad, String repre,boolean activo){
 		
 		this.IdLocal= IdLocal;
 		this.nombre= nombre;
@@ -82,11 +78,11 @@ public class TLocal {
 		this.direccion=direccion;
 		this.CP=CP;
 		this.localidad=localidad;
-		this.representante=representante;
+		this.representante= repre;
 		this.activo=activo;
 				
 	}
-public TLocal(String nombre,int telefono,int CIF, String direccion,int CP,String localidad,int representante,boolean activo){
+public TLocal(String nombre,int telefono,int CIF, String direccion,int CP,String localidad, String representante,boolean activo){
 		
 		this.nombre= nombre;
 		this.telefono=telefono;
@@ -94,7 +90,7 @@ public TLocal(String nombre,int telefono,int CIF, String direccion,int CP,String
 		this.direccion=direccion;
 		this.CP=CP;
 		this.localidad=localidad;
-		this.representante=representante;
+		this.representante= representante;
 		this.activo=activo;
 				
 	}
@@ -183,20 +179,10 @@ public TLocal(String nombre,int telefono,int CIF, String direccion,int CP,String
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @return
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public int getRepresentante() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
+	public String getRepresentante(){
 		return representante;
-		// end-user-code
 	}
-
-	/** 
+	/** ´
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
@@ -222,7 +208,7 @@ public TLocal(String nombre,int telefono,int CIF, String direccion,int CP,String
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public void setDatos(String nombre, int telefono, int CIF,
-			String direccion, int CP, String localidad, int representante) {
+			String direccion, int CP, String localidad, String representante) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
 			this.nombre = nombre;

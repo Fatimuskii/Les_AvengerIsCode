@@ -7,8 +7,6 @@ import java.util.ArrayList;
 
 import Negocio.Factoria.SAFactoria;
 import Negocio.Local.SALocal;
-import Negocio.Local.SARepresentante;
-import Negocio.Local.TRepresentante;
 import Negocio.Usuario.SAUsuario;
 import Negocio.Local.TLocal;
 import Negocio.PedidoImpresion.TPedidoImpresion;
@@ -43,7 +41,6 @@ public class ControladorImp extends Controlador {
 	 */
 
 	private SALocal SALocal;
-	private SARepresentante SARepresentante;
 	private SAUsuario SAUsuario;
 	private SADiseño SADiseño;
 	private SAImpresora SAImpresora;
@@ -55,7 +52,6 @@ public class ControladorImp extends Controlador {
 	public ControladorImp() {
 		SAFactoria factoriaSA = SAFactoria.getInstance();
 		SALocal = factoriaSA.generateSALocal();
-		SARepresentante = factoriaSA.generateSARepresentante();
 		SADiseño = factoriaSA.generateSADiseño();
 		SAImpresora = factoriaSA.generateSAImpresora();
 		SAPedidoImpresion = factoriaSA.generateSAPedidoImpresion();
@@ -65,7 +61,6 @@ public class ControladorImp extends Controlador {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
 		TLocal tlocal;
-		TRepresentante trepre;
 		TUsuario tUsuario;
 		TDiseño tDiseño;
 		TImpresora tImpresora;
@@ -101,19 +96,6 @@ public class ControladorImp extends Controlador {
 				GUILocal.getInstance().update(Events.ALTA_LOCAL_KO, res);
 			break;
 
-		case Events.ALTA_REPRESENTANTE:
-			trepre = (TRepresentante) datos;
-			res = this.SARepresentante.alta(trepre);
-			if (res > 0) {
-				GUILocal.getInstance()
-						.update(Events.ALTA_REPRESENTANTE_OK, res);
-				//GUIAltaLocal Gui_altaLocal= new GUIAltaLocal();
-				
-			} else
-				GUILocal.getInstance()
-						.update(Events.ALTA_REPRESENTANTE_KO, res);
-
-			break;
 		case Events.BUSCAR_LOCAL:
 			idLocal = (int)datos;
 			tlocal=this.SALocal.buscarPorId(idLocal);
@@ -123,14 +105,6 @@ public class ControladorImp extends Controlador {
 			}
 			else
 				GUILocal.getInstance().update(Events.BUSCAR_LOCAL_KO, tlocal);
-			break;
-		case Events.BUSCAR_REPRESENTANTE:
-			idRepre = (int)datos;
-			trepre = this.SARepresentante.buscarPorId(idRepre);
-			if(trepre!=null)
-				GUILocal.getInstance().update(Events.BUSCAR_REPRESENTANTE_OK, trepre);
-			else 
-				GUILocal.getInstance().update(Events.BUSCAR_REPRESENTANTE_KO, trepre);
 			break;
 			
 		case Events.MODIFICAR_LOCAL:
@@ -143,19 +117,6 @@ public class ControladorImp extends Controlador {
 				GUILocal.getInstance()
 						.update(Events.MODIFICAR_LOCAL_KO, res);
 			break;
-		case Events.MODIFICAR_REPRESENTANTE:
-			trepre= (TRepresentante) datos; 
-			res= this.SARepresentante.modificar(trepre);
-			if (res > 0) {
-				GUILocal.getInstance()
-						.update(Events.MODIFICAR_REPRESENTANTE_OK, res);			
-			} else
-				GUILocal.getInstance()
-						.update(Events.MODIFICAR_REPRESENTANTE_KO, res);
-			break;
-			
-			
-			/*USUARIO*/
 		case Events.OPEN_GUI_USUARIO_MENU:
 			GUIUsuario.getInstance();
 			break;
