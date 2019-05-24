@@ -16,7 +16,7 @@ public class TUsuario {
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Integer idUsuario;
+	private int idUsuario;
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
@@ -64,16 +64,16 @@ public class TUsuario {
 	
 	private String titularCuenta;
 	
-	private Integer numeroCuenta;
+	private double numeroCuenta;
 	
 	private Date fechaCaducidad;
 	
 	private ArrayList<TUsuario> arrayTUsuario = new ArrayList<>();
 
+	private boolean activo;
 	
-	
-	public TUsuario(Integer idUsuario, String nombre, String apellidos, String email, Date fechaNacimiento, String direccion, String contraseña, String titularCuenta, Integer numeroCuenta,
-			Date fechaCaducidad){
+	public TUsuario(int idUsuario, String nombre, String apellidos, String email, Date fechaNacimiento, String direccion, String contraseña, String titularCuenta, double numeroCuenta,
+			Date fechaCaducidad, boolean activo){
 		
 		this.idUsuario = idUsuario;
 		this.nombre = nombre;
@@ -85,11 +85,10 @@ public class TUsuario {
 		this.numeroCuenta = numeroCuenta;
 		this.email = email;
 		this.fechaCaducidad = fechaCaducidad;
-		
-		
+		this.activo = activo;
 	}
 	
-	public Integer getIdUsuario() {
+	public int getIdUsuario() {
 		return idUsuario;
 	}
 
@@ -158,7 +157,7 @@ public class TUsuario {
 	 * @param id
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setIdUsuario(Integer id) {
+	public void setIdUsuario(int id) {
 		this.idUsuario = id;
 	}
 
@@ -230,7 +229,7 @@ public class TUsuario {
 	}
 	
 	
-	public Integer getNumeroCuenta(){		
+	public double getNumeroCuenta(){		
 		return numeroCuenta;
 	}
 	
@@ -239,11 +238,16 @@ public class TUsuario {
 		
 	}
 	
+	public boolean getActivo() {
+		return this.activo;
+
+	}
+	
 	public void setTitularCuenta(String titularC){
 		this.titularCuenta = titularC;
 	}
 	
-	public void setNumeroCuenta(Integer cuentaB){
+	public void setNumeroCuenta(double cuentaB){
 		this.numeroCuenta = cuentaB;
 	}
 	
@@ -259,6 +263,9 @@ public class TUsuario {
 		this.email = email;
 	}
 	
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
 	
 	
 	

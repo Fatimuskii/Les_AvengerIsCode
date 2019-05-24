@@ -19,11 +19,15 @@ public class SAUsuarioImp implements SAUsuario {
 	@Override
 	public int altaUsuario(TUsuario tUsuario) {
 		
+		int id_usuario = -1;
+		
+		if(tUsuario != null){
 		DAOUsuario daoUsuario = FactoriaDAO.getInstance().generateDAOUsuario();
-		
-		if((daoUsuario.buscarIdUsuario(tUsuario.getIdUsuario())) == null )
-			return daoUsuario.altaUsuario(tUsuario);
-		
+		tUsuario.setActivo(true);
+		id_usuario = daoUsuario.altaUsuario(tUsuario);
+//		if((daoUsuario.buscarIdUsuario(tUsuario.getIdUsuario())) == null )
+//			return daoUsuario.altaUsuario(tUsuario);
+		}
 		return -1;
 	}
 

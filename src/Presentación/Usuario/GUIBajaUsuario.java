@@ -20,6 +20,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 
 /**
@@ -36,7 +37,7 @@ public class GUIBajaUsuario extends JFrame {
 	private JPasswordField passwordField;
 	private int id;
 
-	public GUIBajaUsuario(){
+	public GUIBajaUsuario() {
 		super();
 		this.contentPane = new JPanel();
 		this.textField = new JTextField();
@@ -83,7 +84,14 @@ public class GUIBajaUsuario extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				JOptionPane.showOptionDialog(new JFrame(), "¿Estás seguro?",
 						"Quit", JOptionPane.YES_NO_OPTION,
-						JOptionPane.YES_NO_OPTION, null, null, null);
+						JOptionPane.YES_NO_OPTION, null, null, null );
+				if(true){
+					//Desactivar de la BBDD
+				}
+				/*
+				 * 	Controlador.getInstance().accion(Events.BAJA_USUARIO,
+						tUsuario);
+						*/
 			}
 		});
 		btnConfirmarBaja.setBounds(152, 196, 123, 23);
@@ -93,16 +101,21 @@ public class GUIBajaUsuario extends JFrame {
 		passwordField.setBounds(135, 150, 162, 20);
 		panel.add(passwordField);
 	}
+
 	public void update(int event, Object res) {
-		switch(event){
+		switch (event) {
 		case Events.BAJA_USUARIO_OK:
-			JOptionPane.showMessageDialog(null,"Eliminado correctamente el usuario : "+ id, "", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null,
+					"Eliminado correctamente el usuario : " + id, "",
+					JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case Events.BAJA_USUARIO_KO:
-			JOptionPane.showMessageDialog(null,"Error al eliminar el usuario: " +id, "", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,
+					"Error al eliminar el usuario: " + id, "",
+					JOptionPane.ERROR_MESSAGE);
 			break;
 		}
-		
+
 	}
-	
+
 }

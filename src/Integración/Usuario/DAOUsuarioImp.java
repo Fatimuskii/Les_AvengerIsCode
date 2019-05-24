@@ -117,7 +117,8 @@ public class DAOUsuarioImp implements DAOUsuario {
 							resultSet.getString("contraseña"),
 							resultSet.getString("titularCuenta"),
 							resultSet.getInt("numeroCuenta"),
-							resultSet.getDate("fechaCaducidad")
+							resultSet.getDate("fechaCaducidad"),
+							resultSet.getBoolean("activo")
 							);
 				}
 			} catch (SQLException e) {
@@ -158,7 +159,8 @@ public class DAOUsuarioImp implements DAOUsuario {
 							resultSet.getString("contraseña"),
 							resultSet.getString("titularCuenta"),
 							resultSet.getInt("numeroCuenta"),
-							resultSet.getDate("fechaCaducidad")
+							resultSet.getDate("fechaCaducidad"),
+							resultSet.getBoolean("activo")
 							);
 				}
 					listaUsuarios.add(tUsuario);

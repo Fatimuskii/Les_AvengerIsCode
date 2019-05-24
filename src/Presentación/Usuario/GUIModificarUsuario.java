@@ -5,9 +5,7 @@ package Presentación.Usuario;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
-import java.awt.HeadlessException;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -364,7 +362,7 @@ public class GUIModificarUsuario extends JFrame {
 				}
 				String direccion = txtDireccin.getText();
 				String nombTarjeta = nombreTarjeta.getText();
-				int numeroTarjeta = Integer.parseInt(numTarjeta.getText());
+				double numeroTarjeta = Integer.parseInt(numTarjeta.getText());
 				// fecha de vencimiento
 				Date fechaVencimiento = null;
 				try {
@@ -377,7 +375,7 @@ public class GUIModificarUsuario extends JFrame {
 
 				TUsuario tUsuario = new TUsuario(id, nombre, apellidos, email,
 						fechaNacimiento, direccion, contraseña, nombTarjeta,
-						numeroTarjeta, fechaVencimiento); // TODO
+						numeroTarjeta, fechaVencimiento,true);
 				Controlador.getInstance().accion(Events.MODIFICAR_USUARIO,
 						tUsuario);
 			}

@@ -78,6 +78,8 @@ public class ControladorImp extends Controlador {
 		int idImpresora;
 		ArrayList<TDiseño> resultD;
 		ArrayList<TImpresora> resultI;
+		ArrayList<TUsuario> resultU;
+		boolean acceso;
 		int res;
 		switch (evento) {
 
@@ -153,12 +155,64 @@ public class ControladorImp extends Controlador {
 			break;
 			
 			
-			
+			/*USUARIO*/
 		case Events.OPEN_GUI_USUARIO_MENU:
 			GUIUsuario.getInstance();
 			break;
+		case Events.ALTA_USUARIO:
+			tUsuario =(TUsuario) datos;
+			res = this.SAUsuario.altaUsuario(tUsuario);
+			if (res > 0)
+				GUIUsuario.getInstance().update(Events.ALTA_USUARIO_OK, res);
+			else
+				GUIUsuario.getInstance().update(Events.ALTA_USUARIO_KO, res);
+			break;
+		case Events.BAJA_USUARIO:
+			idUsuario =(int) datos;
+			res = this.SAUsuario.bajaUsuario(idUsuario);
+			if (res > 0)
+				GUIUsuario.getInstance().update(Events.BAJA_USUARIO_OK, res);
+			else
+				GUIUsuario.getInstance().update(Events.BAJA_USUARIO_KO, res);
+			break;
 		case Events.MODIFICAR_USUARIO:
-			GUIUsuario.getInstance();
+			tUsuario =(TUsuario) datos;
+			res = this.SAUsuario.modificarUsuario(tUsuario);
+			if (res > 0)
+				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_OK, res);
+			else
+				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_KO, res);
+			break;
+		case Events.BUSCAR_USUARIO:
+			idUsuario =(int) datos;
+			tUsuario = this.SAUsuario.buscarIdUsuario(idUsuario);
+			if (tUsuario != null)
+				GUIUsuario.getInstance().update(Events.BUSCAR_USUARIO_OK, tUsuario);//tDiseño, tImpresora
+			else
+				GUIUsuario.getInstance().update(Events.BUSCAR_USUARIO_KO, tUsuario);
+			break;	
+		case Events.LISTAR_USUARIO:
+			resultU = this.SAUsuario.listarUsuarios();
+			if (resultU != null)
+				GUIUsuario.getInstance().update(Events.LISTAR_USUARIO_OK, resultU);
+			else
+				GUIUsuario.getInstance().update(Events.LISTAR_USUARIO_KO, resultU);
+			break;
+		case Events.ACCESO_USUARIO:
+			tUsuario =(TUsuario) datos;
+			acceso = this.SAUsuario.acceso(tUsuario);
+			if (acceso)
+				GUIUsuario.getInstance().update(Events.ACCESO_USUARIO_OK, acceso);
+			else
+				GUIUsuario.getInstance().update(Events.ACCESO_USUARIO_KO, acceso);
+			break;
+		case Events.MODIFICAR_USUARIO_COMPROBAR:
+			idUsuario = (int) datos;
+			tUsuario = this.SAUsuario.buscarIdUsuario(idUsuario);
+			if (tUsuario != null)
+				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_COMPROBAR, null);
+			else
+				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_COMPROBAR_KO, null);
 			break;
 		/*IMPRESORA*/
 		case Events.OPEN_GUI_IMPRESORA_MENU:
@@ -282,15 +336,6 @@ public class ControladorImp extends Controlador {
 				GUIDiseño.getInstance().update(Events.MODIFICAR_DISEÑO_COMPROBAR_OK, null);
 			else
 				GUIDiseño.getInstance().update(Events.MODIFICAR_DISEÑO_COMPROBAR_KO, null);
-			break;
-			
-		case Events.MODIFICAR_USUARIO_COMPROBAR:
-			idUsuario = (int) datos;
-			tUsuario = this.SAUsuario.buscarIdUsuario(idUsuario);
-			if (tUsuario != null)
-				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_COMPROBAR, null);
-			else
-				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_COMPROBAR_KO, null);
 			break;
 		case Events.ALTA_CARRITO:
 			break;

@@ -15,6 +15,10 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -41,6 +45,8 @@ import Presentación.Controlador.Events;
  */
 public class GUIAltaUsuario extends JFrame {
 
+	private TUsuario usuario;
+	
 	private JPanel contentPane;
 	private JTextField txtNombre;
 	private JTextField txtApellidos;
@@ -48,9 +54,11 @@ public class GUIAltaUsuario extends JFrame {
 	private JTextField txtContrasea;
 	private JLabel lblFechaDeNacimiento;
 	private JTextField txtConfirmarContrasea;
-	private JSpinner spinner;
-	private JSpinner spinner_1;
-	private JSpinner spinner_2;
+	private JSpinner dia;
+	private JSpinner mes;
+	private JSpinner anio;
+	private JSpinner mes_2;
+	private JSpinner anio_2;
 	private JTextField txtDireccin;
 	private JLabel lblDatosPersonales;
 	private JSeparator separator;
@@ -61,6 +69,8 @@ public class GUIAltaUsuario extends JFrame {
 	private JLabel label_3;
 	private JLabel label_4;
 	private JLabel label_5;
+	private SimpleDateFormat fechaNac;
+	private SimpleDateFormat fechaVenc;
 	
 	private JTextField numTarjeta;
 	private JTextField nombreTarjeta;
@@ -78,9 +88,13 @@ public class GUIAltaUsuario extends JFrame {
 		this.nombreTarjeta = new JTextField();
 		this.lblFechaDeNacimiento = new JLabel();
 		this.txtConfirmarContrasea = new JTextField();
-		this.spinner = new JSpinner();
-		this.spinner_1 = new JSpinner();
-		this.spinner_2 = new JSpinner();
+		this.dia = new JSpinner();
+		this.mes = new JSpinner();
+		this.anio = new JSpinner();
+		this.mes_2 = new JSpinner();
+		this.anio_2 = new JSpinner();
+		this.fechaNac = new SimpleDateFormat("dd/MM/yyyy");
+		this.fechaVenc = new SimpleDateFormat("MM/yyyy");
 		this.txtDireccin = new JTextField();
 		this.lblDatosPersonales = new JLabel();
 		this.separator = new JSeparator();
@@ -204,6 +218,18 @@ public class GUIAltaUsuario extends JFrame {
 		lblFechaDeNacimiento.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblFechaDeNacimiento.setBounds(28, 109, 124, 14);
 		panel.add(lblFechaDeNacimiento);
+		
+		dia.setModel(new SpinnerNumberModel(1, 1, 31, 1));
+		dia.setBounds(28, 134, 39, 20);
+		panel.add(dia);
+
+		mes.setModel(new SpinnerNumberModel(1, 1, 12, 1));
+		mes.setBounds(77, 134, 39, 20);
+		panel.add(mes);
+
+		anio.setModel(new SpinnerNumberModel(1900, 1900, 2001, 1));
+		anio.setBounds(126, 134, 65, 20);
+		panel.add(anio);
 
 		txtConfirmarContrasea = new JTextField();
 		txtConfirmarContrasea.addFocusListener(new FocusAdapter() {
@@ -228,20 +254,6 @@ public class GUIAltaUsuario extends JFrame {
 		panel.add(txtConfirmarContrasea);
 		txtConfirmarContrasea.setColumns(10);
 
-		spinner = new JSpinner();
-		spinner.setModel(new SpinnerNumberModel(1, 1, 31, 1));
-		spinner.setBounds(28, 134, 39, 20);
-		panel.add(spinner);
-
-		spinner_1 = new JSpinner();
-		spinner_1.setModel(new SpinnerNumberModel(1, 1, 12, 2));
-		spinner_1.setBounds(77, 134, 39, 20);
-		panel.add(spinner_1);
-
-		spinner_2 = new JSpinner();
-		spinner_2.setModel(new SpinnerNumberModel(1900, 1900, 2001, 4));
-		spinner_2.setBounds(126, 134, 65, 20);
-		panel.add(spinner_2);
 
 		txtDireccin = new JTextField();
 		txtDireccin.addFocusListener(new FocusAdapter() {
@@ -274,6 +286,70 @@ public class GUIAltaUsuario extends JFrame {
 		separator.setBounds(28, 381, 306, 2);
 		panel.add(separator);
 
+		JLabel label_6 = new JLabel("Datos bancarios");
+		label_6.setFont(new Font("Tahoma", Font.BOLD, 16));
+		label_6.setBounds(28, 211, 152, 23);
+		panel.add(label_6);
+
+	
+		numTarjeta.setText("N\u00FAmero de tarjeta");
+		numTarjeta.setForeground(Color.DARK_GRAY);
+		numTarjeta.setColumns(10);
+		numTarjeta.setBounds(28, 245, 152, 20);
+		numTarjeta.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				if (numTarjeta.getText().equals("N\u00FAmero de tarjeta")) {
+					numTarjeta.setText("");
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (numTarjeta.getText().equals("")) {
+					numTarjeta.setText("N\u00FAmero de tarjeta");
+				}
+			}
+		});
+		panel.add(numTarjeta);
+
+		
+		nombreTarjeta.setText("Nombre en la tarjeta");
+		nombreTarjeta.setForeground(Color.DARK_GRAY);
+		nombreTarjeta.setColumns(10);
+		nombreTarjeta.setBounds(28, 282, 152, 20);
+		nombreTarjeta.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				if (nombreTarjeta.getText().equals("Nombre en la tarjeta")) {
+					nombreTarjeta.setText("");
+				}
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (nombreTarjeta.getText().equals("")) {
+					nombreTarjeta.setText("Nombre en la tarjeta");
+				}
+			}
+		});
+		panel.add(nombreTarjeta);
+
+		JLabel label_7 = new JLabel("Fecha de vencimiento");
+		label_7.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_7.setBounds(29, 318, 138, 14);
+		panel.add(label_7);
+
+		
+		mes_2.setModel(new SpinnerNumberModel(1, 1, 12, 1));
+		mes_2.setBounds(28, 343, 46, 20);
+		panel.add(mes_2);
+
+		anio_2.setModel(new SpinnerNumberModel(new Integer(2019),
+				new Integer(2019), null, new Integer(1)));
+		anio_2.setBounds(86, 343, 66, 20);
+		panel.add(anio_2);
+		
 		btnFinalizar = new JButton("Finalizar");
 		btnFinalizar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -290,18 +366,35 @@ public class GUIAltaUsuario extends JFrame {
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
+					int id = generarId();
 					String nombre = txtNombre.getText();
 					String apellidos = txtApellidos.getText();
 					String email = txtEmail.getText();
 					//fecha de nacimiento
+					Date fechaNacimiento = null;
+					try {
+						fechaNacimiento = fechaNac.parse(dia.getValue().toString() + "/" + mes.getValue().toString() + "/"
+								+ anio.getValue().toString());
+					} catch (ParseException e2) {
+						e2.printStackTrace();
+					}
 					String direccion = txtDireccin.getText();
 					String nombTarjeta = nombreTarjeta.getText();
-					int numeroTarjeta = Integer.parseInt(numTarjeta.getText());
+					double numeroTarjeta = Double.valueOf(numTarjeta.getText());
+				
 					//fecha de vencimiento
+					Date fechaVencimiento = null;
+					try {
+						fechaVencimiento = fechaVenc.parse(mes_2.getValue().toString() + "/" + anio_2.getValue().toString());
+					} catch (ParseException e1) {
+						e1.printStackTrace();
+					}
 					String contraseña = txtContrasea.getText();
 					
-					//TUsuario tUsuario = new TUsuario(); //TODO
-					//Controlador.getInstance().accion(Events.OPEN_GUI_ALTA_USUARIO, tUsuario);
+					usuario = new TUsuario(id, nombre, apellidos, email,
+							fechaNacimiento, direccion, contraseña, nombTarjeta,
+							numeroTarjeta, fechaVencimiento,true);
+					Controlador.getInstance().accion(Events.ALTA_USUARIO, usuario);
 				}
 				catch(Exception ex){
 					JOptionPane.showMessageDialog(null, "Información Errónea", "Error", JOptionPane.ERROR_MESSAGE);
@@ -353,40 +446,7 @@ public class GUIAltaUsuario extends JFrame {
 		label_5.setBounds(20, 434, 17, 14);
 		panel.add(label_5);
 
-		JLabel label_6 = new JLabel("Datos bancarios");
-		label_6.setFont(new Font("Tahoma", Font.BOLD, 16));
-		label_6.setBounds(28, 211, 152, 23);
-		panel.add(label_6);
-
-	
-		numTarjeta.setText("N\u00FAmero de tarjeta");
-		numTarjeta.setForeground(Color.DARK_GRAY);
-		numTarjeta.setColumns(10);
-		numTarjeta.setBounds(28, 245, 152, 20);
-		panel.add(numTarjeta);
-
 		
-		nombreTarjeta.setText("Nombre en la tarjeta");
-		nombreTarjeta.setForeground(Color.DARK_GRAY);
-		nombreTarjeta.setColumns(10);
-		nombreTarjeta.setBounds(28, 282, 152, 20);
-		panel.add(nombreTarjeta);
-
-		JLabel label_7 = new JLabel("Fecha de vencimiento");
-		label_7.setFont(new Font("Tahoma", Font.BOLD, 11));
-		label_7.setBounds(29, 318, 138, 14);
-		panel.add(label_7);
-
-		JSpinner spinner_3 = new JSpinner();
-		spinner_3.setModel(new SpinnerNumberModel(1, 1, 12, 1));
-		spinner_3.setBounds(28, 343, 46, 20);
-		panel.add(spinner_3);
-
-		JSpinner spinner_4 = new JSpinner();
-		spinner_4.setModel(new SpinnerNumberModel(new Integer(2019),
-				new Integer(2019), null, new Integer(1)));
-		spinner_4.setBounds(86, 343, 66, 20);
-		panel.add(spinner_4);
 	}
 
 	private boolean datosObligatorios() {
@@ -410,10 +470,21 @@ public class GUIAltaUsuario extends JFrame {
 
 		return false;
 		}
-
-		
-		
 	}
+	
+	public int generarId(){
+		int[] randomNumbers = new int[6];
+		int randomId = -1;
+	    Random rn = new Random();
+	    for (int i = 0; i < randomNumbers.length; i++)
+	             randomId = rn.nextInt(30) + 1;
+	    return randomId;
+	}
+	
+	public void clearData(){
+		this.contentPane = new JPanel();
+	}
+	
 	public void update(int event, Object res){
 		switch (event) {
 		case Events.ALTA_USUARIO_OK:

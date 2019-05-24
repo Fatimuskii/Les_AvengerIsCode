@@ -39,7 +39,7 @@ public class GUIListarUsuarios extends JFrame {
 	private void initGUI(){
 		setTitle("Listar Usuarios");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 600, 300);
+		setBounds(100, 100, 900, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

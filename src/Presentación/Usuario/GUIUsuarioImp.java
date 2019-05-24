@@ -42,16 +42,18 @@ public class GUIUsuarioImp extends GUIUsuario {
 	private GUIModificarUsuario GUI_ModificarUsuario;
 	private GUIBajaUsuario GUI_BajaUsuario;
 	private GUIAltaUsuario GUI_AltaUsuario;
+	private GUIListarUsuarios GUI_ListarUsuarios;
 	private JLabel id_Usuario;
 	private boolean admin;
 
-	public GUIUsuarioImp() throws HeadlessException {
+	public GUIUsuarioImp(){
 		super();
 		this.contentPane = new JPanel();
 		this.GUI_ImpresoraImp = new GUIImpresoraImp();
 		this.GUI_ModificarUsuario = new GUIModificarUsuario();
 		this.GUI_BajaUsuario = new GUIBajaUsuario();
 		this.GUI_AltaUsuario = new GUIAltaUsuario();
+		this.GUI_ListarUsuarios = new GUIListarUsuarios();
 		initGUI();
 	}
 
@@ -158,8 +160,13 @@ public class GUIUsuarioImp extends GUIUsuario {
 
 		JButton button = new JButton("Mostrar todos");
 		button.setBounds(292, 195, 118, 23);
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GUI_ListarUsuarios.setVisible(true);
+			}
+		});
 		panel.add(button);
-		if(!admin)button.setEnabled(false);
+		if(admin)button.setEnabled(false);
 
 		JMenuBar menuBar_2 = new JMenuBar();
 		menuBar_2.setBounds(10, 134, 90, 21);
@@ -191,7 +198,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 			}
 		});
 		mnConfiguacin.add(mntmDarDeAlta);
-		if(!admin) mntmDarDeAlta.setEnabled(false);
+		if(admin) mntmDarDeAlta.setEnabled(false);
 
 		JMenuItem mntmCerrarSesin = new JMenuItem("Cerrar sesi\u00F3n");
 		mnConfiguacin.add(mntmCerrarSesin);

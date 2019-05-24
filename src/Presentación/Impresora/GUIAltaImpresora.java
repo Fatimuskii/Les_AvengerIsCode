@@ -96,19 +96,6 @@ public class GUIAltaImpresora extends JFrame{
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
-		btnFinalizar = new JButton("Finalizar");
-		btnFinalizar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (!datosObligatorios()) {
-					JOptionPane.showOptionDialog(new JFrame(), "Debes rellenar los campos obligatorios (*)", "Quit",
-							JOptionPane.OK_OPTION, JOptionPane.OK_OPTION, null, null, null);
-				}
-			}
-		});
-		btnFinalizar.setBounds(312, 358, 89, 23);
-		panel.add(btnFinalizar);
-
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(30, 50, 56, 21);
 		panel.add(menuBar);
@@ -240,6 +227,19 @@ public class GUIAltaImpresora extends JFrame{
 		label_3.setIcon(new ImageIcon("imagenes\\3d-printer-REDM-REDM.png"));
 		label_3.setBounds(229, 23, 156, 138);
 		panel.add(label_3);
+		
+		btnFinalizar = new JButton("Finalizar");
+		btnFinalizar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (!datosObligatorios()) {
+					JOptionPane.showOptionDialog(new JFrame(), "Debes rellenar los campos obligatorios (*)", "Quit",
+							JOptionPane.OK_OPTION, JOptionPane.OK_OPTION, null, null, null);
+				}
+			}
+		});
+		btnFinalizar.setBounds(312, 358, 89, 23);
+		panel.add(btnFinalizar);
 
 	}
 

@@ -107,10 +107,12 @@ public class GUIModificarImpresora extends JFrame {
 					}
 				}
 			});
-			txtIntroduceTuId.setForeground(Color.GRAY);
+			txtIntroduceTuId.setToolTipText("");
 			txtIntroduceTuId.setText("IdImpresora");
-			txtIntroduceTuId.setBounds(162, 11, 122, 20);
+			txtIntroduceTuId.setForeground(Color.DARK_GRAY);
+			txtIntroduceTuId.setFont(new Font("Tahoma", Font.PLAIN, 11));
 			txtIntroduceTuId.setColumns(10);
+			txtIntroduceTuId.setBounds(162, 11, 122, 20);
 			panel.add(txtIntroduceTuId);
 
 			
