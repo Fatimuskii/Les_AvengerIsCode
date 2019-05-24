@@ -69,14 +69,8 @@ public class GUIBuscarporIdUsuario extends JFrame{
 		scrollPane.setBounds(10, 101, 564, 120);
 		getContentPane().add(scrollPane);
 		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon(GUIBuscarporIdUsuario.class.getResource("/logo.png")));
 		
-		JLabel lblIdusuario = new JLabel("idUsuario");
-		lblIdusuario.setLocation(265, 80);
-		lblIdusuario.setFont(new Font("Tahoma", Font.BOLD, 11));
-		
-
+		table = new JTable();
 		scrollPane.setViewportView(table);
 		model = new DefaultTableModel() {
 			@Override
@@ -103,6 +97,7 @@ public class GUIBuscarporIdUsuario extends JFrame{
 		scrollPane_1.setBounds(10, 235, 564, 120);
 		getContentPane().add(scrollPane_1);
 		
+		table_1 = new JTable();
 		scrollPane_1.setViewportView(table_1);
 		model_1 = new DefaultTableModel() {
 			@Override
@@ -120,28 +115,38 @@ public class GUIBuscarporIdUsuario extends JFrame{
 		table_1.getColumnModel().getColumn(0).setPreferredWidth(15);
 		table_1.getColumnModel().getColumn(0).setMinWidth(7);
 		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("imagenes\\logo-REDM-REDM.png"));
+		
+		JLabel lblIdusuario = new JLabel("idUsuario");
+		lblIdusuario.setFont(new Font("Tahoma", Font.BOLD, 11));
+		
+		JLabel lblEmail = new JLabel("e-mail");
+		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(251)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(10)
-							.addComponent(lblIdusuario, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE))
-						.addComponent(label, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(245, Short.MAX_VALUE))
+					.addGap(28)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(label, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(lblIdusuario, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addGap(29)
+					.addComponent(lblEmail, GroupLayout.PREFERRED_SIZE, 156, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(318, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(label, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
+					.addComponent(label, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lblIdusuario, GroupLayout.PREFERRED_SIZE, 19, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(292, Short.MAX_VALUE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblIdusuario)
+						.addComponent(lblEmail, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(311, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(groupLayout);
 	}

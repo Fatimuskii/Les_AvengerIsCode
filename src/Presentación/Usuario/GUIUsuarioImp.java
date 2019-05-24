@@ -43,6 +43,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 	private GUIBajaUsuario GUI_BajaUsuario;
 	private GUIAltaUsuario GUI_AltaUsuario;
 	private GUIListarUsuarios GUI_ListarUsuarios;
+	private GUIBuscarporIdUsuario GUI_BuscarporIdUsuario;
 	private JLabel id_Usuario;
 	private boolean admin;
 
@@ -54,6 +55,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 		this.GUI_BajaUsuario = new GUIBajaUsuario();
 		this.GUI_AltaUsuario = new GUIAltaUsuario();
 		this.GUI_ListarUsuarios = new GUIListarUsuarios();
+		this.GUI_BuscarporIdUsuario = new GUIBuscarporIdUsuario();
 		initGUI();
 	}
 
@@ -156,6 +158,11 @@ public class GUIUsuarioImp extends GUIUsuario {
 
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.setBounds(183, 195, 89, 23);
+		btnBuscar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GUI_BuscarporIdUsuario.setVisible(true);
+			}
+		});
 		panel.add(btnBuscar);
 
 		JButton button = new JButton("Mostrar todos");
@@ -166,7 +173,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 			}
 		});
 		panel.add(button);
-		if(admin)button.setEnabled(false);
+		if(!admin)button.setEnabled(false);
 
 		JMenuBar menuBar_2 = new JMenuBar();
 		menuBar_2.setBounds(10, 134, 90, 21);
@@ -198,7 +205,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 			}
 		});
 		mnConfiguacin.add(mntmDarDeAlta);
-		if(admin) mntmDarDeAlta.setEnabled(false);
+		if(!admin) mntmDarDeAlta.setEnabled(false);
 
 		JMenuItem mntmCerrarSesin = new JMenuItem("Cerrar sesi\u00F3n");
 		mnConfiguacin.add(mntmCerrarSesin);
