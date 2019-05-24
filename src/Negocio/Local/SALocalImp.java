@@ -55,7 +55,6 @@ public class SALocalImp implements SALocal {
 		return -1;
 		
 		
-		
 		// end-user-code
 	}
 

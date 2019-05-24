@@ -124,7 +124,7 @@ public class GUIAltaLocal extends GUILocalImp {
 		localidad.setBounds(194, 303, 116, 22);
 		contentPane.add(localidad);
 		
-		JLabel lblNombreDelRepresentante = new JLabel("Nombre Representante:");
+		JLabel lblNombreDelRepresentante = new JLabel("Nombre Representante");
 		lblNombreDelRepresentante.setBounds(63, 327, 138, 29);
 		contentPane.add(lblNombreDelRepresentante);
 		

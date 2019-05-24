@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,10 +31,7 @@ public class GUIModificarLocal extends JFrame {
 	private JTextPane dirText;
 	private JTextPane locText;
 	private JTextPane cpText;
-	// Propietario
 	private JTextPane namePropText;
-	private JTextPane telPropText;
-	private JTextPane emailPropText;
 
 	public GUIModificarLocal(TLocal local) {
 
@@ -43,7 +42,6 @@ public class GUIModificarLocal extends JFrame {
 		initGUI();
 	}
 
-	@SuppressWarnings("rawtypes")
 	public void initGUI() {
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
@@ -123,8 +121,7 @@ public class GUIModificarLocal extends JFrame {
 		cpText.setBounds(77, 208, 67, 22);
 		contentPane.add(cpText);
 
-
-		JLabel lblnombreProp = new JLabel("Nombre:");
+		JLabel lblnombreProp = new JLabel("Propietario/a:");
 		lblnombreProp.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblnombreProp.setBounds(275, 62, 67, 16);
 		contentPane.add(lblnombreProp);
@@ -133,24 +130,61 @@ public class GUIModificarLocal extends JFrame {
 		namePropText.setBounds(343, 64, 146, 22);
 		contentPane.add(namePropText);
 
-
 		JButton btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				int idLoc= tLocal.getIdLocal();
-				String nombreLoc = nombreText.getText();
-				int telLoc = Integer.parseInt(telefonoText.getText());
-				int CIFLoc= tLocal.getCIF();
-				String dirLoc = dirText.getText();
-				int cpLoc = Integer.parseInt(cpText.getText());
-				String locLoc = locText.getText();
-				String nombreProp = namePropText.getText();
+				GUIMensaje res_mensaje = new GUIMensaje();
 
-				tLocal = new TLocal(idLoc, nombreLoc, telLoc, CIFLoc, dirLoc,
-						cpLoc, locLoc, nombreProp, true);
-				Controlador.getInstance().accion(Events.MODIFICAR_LOCAL, tLocal);
-				
-				
+				// dos atributos que no se pueden cambiar
+				int idLoc = tLocal.getIdLocal();
+				int CIFLoc = tLocal.getCIF();
+
+				try {
+
+					String nombreLoc = nombreText.getText();
+					if (nombreLoc.equals(""))
+						nombreLoc = tLocal.getNombreLocal();
+
+					int telLoc;
+					if (telefonoText.getText().equals(""))
+						telLoc = tLocal.getTelefono();
+					else
+						telLoc = Integer.parseInt(telefonoText.getText());
+
+					String locLoc = locText.getText();
+					if (locLoc.equals(""))
+						locLoc = tLocal.getLocalidad();
+
+					String nombreProp = namePropText.getText();
+					if (nombreProp.equals(""))
+						nombreProp = tLocal.getRepresentante();
+
+					String dirLoc = dirText.getText();
+					if (dirLoc.equals(""))
+						dirLoc = tLocal.getDireccion();
+
+					int cpLoc;
+					if (cpText.getText().equals(""))
+						cpLoc = tLocal.getCP();
+					else
+						cpLoc = Integer.parseInt(cpText.getText());
+
+					tLocal = new TLocal(idLoc, nombreLoc, telLoc, CIFLoc,
+							dirLoc, cpLoc, locLoc, nombreProp, true);
+
+					Controlador.getInstance().accion(Events.MODIFICAR_LOCAL,
+							tLocal);
+					dispose();
+
+				} catch (NumberFormatException e) {
+					// ventana de error de datos.
+					res_mensaje.showMessage(
+							"Error en Telefono y/o Código Postal:",
+							"MODIFICAR LOCAL", false);
+					telefonoText.setText("");
+					cpText.setText("");
+				}
+
 			}
 		});
 
@@ -168,12 +202,12 @@ public class GUIModificarLocal extends JFrame {
 			res_mensaje.showMessage(
 					"Se ha dado modificado correctamente al Local con id: "
 							+ (int) res, "MODIFICAR LOCAL", false);
+			
 			break;
 		case Events.MODIFICAR_LOCAL_KO:
 			res_mensaje.showMessage("Error en la modificación del Local:",
 					"MODIFICAR LOCAL", false);
 			break;
 		}
-		this.dispose();
 	}
 }

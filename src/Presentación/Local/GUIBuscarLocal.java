@@ -10,11 +10,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import Negocio.Local.TLocal;
 import Presentación.GUIMensaje;
+import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 
 @SuppressWarnings("serial")
@@ -28,23 +30,23 @@ public class GUIBuscarLocal extends JFrame {
 	private JTextField cpField;
 	private JTextField locField;
 	private JTextField repreField;
-	private GUIModificarLocal Gui_modificarLocal;
+	private JLabel lblActivo;
+	
+	private JButton btnEliminar;
+	private JButton btnModificar;
+	
+	GUIModificarLocal Gui_modificarLocal;
 
 	TLocal local;
-
-	// private JTextField activoField;
-	private int idLoc;
 	private JPanel contentPane;
 
 	public GUIBuscarLocal(int idLoc) {
 
 		super();
-		this.idLoc = idLoc;
 		contentPane = new JPanel();
 		initGUI();
 	}
 
-	@SuppressWarnings("rawtypes")
 	public void initGUI() {
 		// tabla con todos los datos del Local
 		// SALDRÁ BOTON EDITAR Y BORRAR.
@@ -133,26 +135,43 @@ public class GUIBuscarLocal extends JFrame {
 		lblDueo.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblDueo.setBounds(29, 227, 141, 16);
 		contentPane.add(lblDueo);
-		
+
 		repreField = new JTextField();
 		repreField.setBounds(116, 227, 141, 22);
 		contentPane.add(repreField);
 		repreField.setEditable(false);
+		
+		lblActivo = new JLabel("");
+		lblActivo.setFont(new Font("Showcard Gothic", Font.PLAIN, 13));
+		
+		lblActivo.setBounds(211, 30, 97, 14);
+		contentPane.add(lblActivo);
 
-		JButton btnModificar = new JButton("Modificar");
+		btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
 				Gui_modificarLocal = new GUIModificarLocal(local);
 				Gui_modificarLocal.setVisible(true);
+				dispose();
 			}
 		});
 		btnModificar.setBounds(323, 163, 97, 25);
 		contentPane.add(btnModificar);
 
-		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar = new JButton("Eliminar");
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int confirma = JOptionPane.showConfirmDialog(null,
+						"¿Desea dar de este local?", "Confirmar baja",
+						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+				if (confirma == JOptionPane.YES_OPTION){
+					Controlador.getInstance().accion(Events.BAJA_LOCAL,
+							local.getIdLocal());
+					dispose();
+				}
+				else
+					dispose();
 			}
 		});
 		btnEliminar.setForeground(Color.RED);
@@ -160,7 +179,6 @@ public class GUIBuscarLocal extends JFrame {
 		contentPane.add(btnEliminar);
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void update(int event, Object res) {
 		// TODO Apéndice de método generado automáticamente
 		GUIMensaje res_mensaje = new GUIMensaje();
@@ -176,13 +194,22 @@ public class GUIBuscarLocal extends JFrame {
 			cpField.setText("" + local.getCP());
 			locField.setText(local.getLocalidad());
 			repreField.setText(local.getRepresentante());
+			if (local.getActivo()){
+				lblActivo.setText("ACTIVO");
+				lblActivo.setForeground(Color.GREEN);
+					
+			}
+			else {
+				lblActivo.setText("NO ACTIVO");
+				lblActivo.setForeground(Color.RED);
+				btnEliminar.setEnabled(false);
+				btnModificar.setEnabled(false);
+			}
 
 			break;
 		case Events.BUSCAR_LOCAL_KO:
 			res_mensaje.showMessage("Error en la búsqueda del Local.",
 					"BUSCAR LOCAL", false);
-
-			dispose();
 			break;
 
 		case Events.MODIFICAR_LOCAL_OK:
@@ -191,7 +218,17 @@ public class GUIBuscarLocal extends JFrame {
 		case Events.MODIFICAR_LOCAL_KO:
 			Gui_modificarLocal.update(event, res);
 			break;
+			
+		case Events.BAJA_LOCAL_OK:
+			res_mensaje.showMessage("Se ha dado de baja correctamente el local.",
+					"DAR DE BAJA A LOCAL", false);
+			break;
+		case Events.BAJA_LOCAL_KO: 
+			res_mensaje.showMessage("Error en la baja del Local.",
+					"DAR DE BAJA A LOCAL", false);
+			break;
 		}
+		
 
 	}
 

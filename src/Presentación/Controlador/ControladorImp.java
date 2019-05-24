@@ -71,6 +71,7 @@ public class ControladorImp extends Controlador {
 		int idDiseño;
 		int idUsuario;
 		int idImpresora;
+		ArrayList<TLocal>resultL;
 		ArrayList<TDiseño> resultD;
 		ArrayList<TImpresora> resultI;
 		ArrayList<TUsuario> resultU;
@@ -96,6 +97,15 @@ public class ControladorImp extends Controlador {
 				GUILocal.getInstance().update(Events.ALTA_LOCAL_KO, res);
 			break;
 
+		case Events.BAJA_LOCAL:
+			idLocal = (int) datos;
+			res = this.SALocal.baja(idLocal);
+			if (res > 0)
+				GUILocal.getInstance().update(Events.BAJA_LOCAL_OK, res);
+			else
+				GUILocal.getInstance().update(Events.BAJA_LOCAL_KO, res);
+			break;
+			
 		case Events.BUSCAR_LOCAL:
 			idLocal = (int)datos;
 			tlocal=this.SALocal.buscarPorId(idLocal);
@@ -117,6 +127,14 @@ public class ControladorImp extends Controlador {
 				GUILocal.getInstance()
 						.update(Events.MODIFICAR_LOCAL_KO, res);
 			break;
+		case Events.LISTAR_LOCALES:
+			resultL = this.SALocal.listarTodos();
+			if (resultL != null)
+				GUILocal.getInstance().update(Events.LISTAR_LOCALES_OK, resultL);
+			else
+				GUILocal.getInstance().update(Events.LISTAR_LOCALES_KO, resultL);
+			break;
+			
 		case Events.OPEN_GUI_USUARIO_MENU:
 			GUIUsuario.getInstance();
 			break;

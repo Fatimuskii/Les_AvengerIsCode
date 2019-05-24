@@ -191,7 +191,7 @@ public class DAOLocalImpl implements DAOLocal {
 		if (connection != null) {
 			try {
 				Statement statement = connection.createStatement();
-				String query = "SELECT * FROM locales WHERE activo=1";
+				String query = "SELECT * FROM locales";
 				ResultSet resultSet = statement.executeQuery(query);
 				
 				while (resultSet.next()) {

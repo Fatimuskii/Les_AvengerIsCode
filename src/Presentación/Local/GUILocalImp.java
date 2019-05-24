@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Negocio.Diseño.TDiseño;
 import Negocio.Local.TLocal;
 import Presentación.GUIMensaje;
 import Presentación.Controlador.Controlador;
@@ -24,9 +26,8 @@ public class GUILocalImp extends GUILocal {
 	// MENU DE LOCAL!
 
 	private GUIAltaLocal Gui_altaLocal;
-	private GUIBajaLocal Gui_bajaLocal;
 	private GUIBuscarLocal Gui_buscarLocal;
-	private GUIModificarLocal Gui_modificarLocal;
+	private GUIListarLocales Gui_listarLocales;
 	private JTextField IdLocalText;
 
 	private JPanel contentPane;
@@ -35,7 +36,6 @@ public class GUILocalImp extends GUILocal {
 	public GUILocalImp() {
 		super();
 		contentPane = new JPanel();
-		// Gui_altaRepre = new GUIAltaRepresentante();
 		initGUI();
 	}
 
@@ -77,15 +77,17 @@ public class GUILocalImp extends GUILocal {
 
 					Gui_buscarLocal = new GUIBuscarLocal(idLoc);
 					Gui_buscarLocal.setVisible(true);
+					
 					Controlador.getInstance().accion(Events.BUSCAR_LOCAL,
 							idLoc);
-					
+					setVisible(false);
 
 				} else {
 					mensaje.showMessage("Debe introducir un Id",
 							"BUSCAR LOCAL", false);
 					IdLocalText.setText("");
 				}
+				dispose();
 			}
 		});
 
@@ -95,6 +97,9 @@ public class GUILocalImp extends GUILocal {
 		JButton btnMostrarLocales = new JButton("Mostrar todos");
 		btnMostrarLocales.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Gui_listarLocales = new GUIListarLocales();
+				Gui_listarLocales.setVisible(true);
+				Controlador.getInstance().accion(Events.LISTAR_LOCALES, null);
 			}
 		});
 		btnMostrarLocales.setBounds(386, 125, 124, 34);
@@ -105,7 +110,8 @@ public class GUILocalImp extends GUILocal {
 			public void actionPerformed(ActionEvent e) {
 				Gui_altaLocal = new GUIAltaLocal();
 				Gui_altaLocal.setVisible(true);
-				dispose();
+				
+		
 			}
 		});
 		button.setBounds(283, 264, 138, 34);
@@ -129,18 +135,15 @@ public class GUILocalImp extends GUILocal {
 			break;
 
 		case Events.BAJA_LOCAL_OK:
-			Gui_bajaLocal.update(event, res);
+			Gui_buscarLocal.update(event, res);
 			break;
 		case Events.BAJA_LOCAL_KO:
-			Gui_bajaLocal.update(event, res);
+			Gui_buscarLocal.update(event, res);
 			break;
 
-		case Events.BAJA_DISEÑO_OK:
-			break;
-		case Events.BAJA_DISEÑO_KO:
-			break;
 		case Events.MODIFICAR_LOCAL_OK:
 			Gui_buscarLocal.update(event, res);
+			setVisible(true);
 			break;
 		case Events.MODIFICAR_LOCAL_KO:
 			Gui_buscarLocal.update(event, res);
@@ -154,7 +157,15 @@ public class GUILocalImp extends GUILocal {
 			Gui_buscarLocal.update(event, res);
 			//Gui_buscarLocal.dispose();
 			break;
+		case Events.LISTAR_LOCALES_OK:
+			
+			Gui_listarLocales.update(event,(ArrayList<TLocal>) res);
+			break;
+		case Events.LISTAR_LOCALES_KO:
+			Gui_listarLocales.update(event,(ArrayList<TLocal>) res);
+			break;
 		}
+	
 
 	}
 
