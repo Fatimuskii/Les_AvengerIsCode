@@ -380,7 +380,7 @@ public class GUIAltaUsuario extends JFrame {
 					}
 					String direccion = txtDireccin.getText();
 					String nombTarjeta = nombreTarjeta.getText();
-					double numeroTarjeta = Double.valueOf(numTarjeta.getText());
+					String numeroTarjeta = numTarjeta.getText();
 				
 					//fecha de vencimiento
 					Date fechaVencimiento = null;

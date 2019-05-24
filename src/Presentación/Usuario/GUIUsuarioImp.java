@@ -190,7 +190,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 			}
 		});
 		panel.add(button);
-		if(!admin)button.setEnabled(false);
+		if(admin)button.setEnabled(false);
 
 		JMenuBar menuBar_2 = new JMenuBar();
 		menuBar_2.setBounds(10, 134, 90, 21);
@@ -222,7 +222,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 			}
 		});
 		mnConfiguacin.add(mntmDarDeAlta);
-		if(!admin) mntmDarDeAlta.setEnabled(false);
+		if(admin) mntmDarDeAlta.setEnabled(false);
 
 		JMenuItem mntmCerrarSesin = new JMenuItem("Cerrar sesi\u00F3n");
 		mnConfiguacin.add(mntmCerrarSesin);

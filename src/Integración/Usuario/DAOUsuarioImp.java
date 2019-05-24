@@ -34,7 +34,7 @@ public class DAOUsuarioImp implements DAOUsuario {
 		if(connection != null){
 			try{
 				Statement statement = connection.createStatement();
-				String query = "INSERT INTO usuario (nombre, apellidos, email, fechaNaciemiento, direccion, contraseña, datosBancarios)"
+				String query = "INSERT INTO usuario (nombre, apellidos, fechaNaciemiento, direccion, contrasenna, email, titularCuenta, cuentaBancaria, fechaCaducidad)"
 						+ "VALUES ('"
 						+ datos.getNombre()
 						+"','"
@@ -47,8 +47,6 @@ public class DAOUsuarioImp implements DAOUsuario {
 						+datos.getDireccion()
 						+"','"
 						+datos.getContraseña()
-						+"','"
-						+datos.getEmail()
 						+"','"
 						+datos.getTitularCuenta()
 						+"','"
@@ -116,7 +114,7 @@ public class DAOUsuarioImp implements DAOUsuario {
 							resultSet.getString("direccion"),
 							resultSet.getString("contraseña"),
 							resultSet.getString("titularCuenta"),
-							resultSet.getInt("numeroCuenta"),
+							resultSet.getString("numeroCuenta"),
 							resultSet.getDate("fechaCaducidad"),
 							resultSet.getBoolean("activo")
 							);
@@ -158,7 +156,7 @@ public class DAOUsuarioImp implements DAOUsuario {
 							resultSet.getString("direccion"),
 							resultSet.getString("contraseña"),
 							resultSet.getString("titularCuenta"),
-							resultSet.getInt("numeroCuenta"),
+							resultSet.getString("numeroCuenta"),
 							resultSet.getDate("fechaCaducidad"),
 							resultSet.getBoolean("activo")
 							);

@@ -64,7 +64,7 @@ public class TUsuario {
 	
 	private String titularCuenta;
 	
-	private double numeroCuenta;
+	private String numeroCuenta;
 	
 	private Date fechaCaducidad;
 	
@@ -72,7 +72,7 @@ public class TUsuario {
 
 	private boolean activo;
 	
-	public TUsuario(int idUsuario, String nombre, String apellidos, String email, Date fechaNacimiento, String direccion, String contraseña, String titularCuenta, double numeroCuenta,
+	public TUsuario(int idUsuario, String nombre, String apellidos, String email, Date fechaNacimiento, String direccion, String contraseña, String titularCuenta, String numeroCuenta,
 			Date fechaCaducidad, boolean activo){
 		
 		this.idUsuario = idUsuario;
@@ -229,7 +229,7 @@ public class TUsuario {
 	}
 	
 	
-	public double getNumeroCuenta(){		
+	public String getNumeroCuenta(){		
 		return numeroCuenta;
 	}
 	
@@ -247,7 +247,7 @@ public class TUsuario {
 		this.titularCuenta = titularC;
 	}
 	
-	public void setNumeroCuenta(double cuentaB){
+	public void setNumeroCuenta(String cuentaB){
 		this.numeroCuenta = cuentaB;
 	}
 	

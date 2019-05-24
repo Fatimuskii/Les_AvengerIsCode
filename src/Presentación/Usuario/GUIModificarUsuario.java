@@ -362,7 +362,7 @@ public class GUIModificarUsuario extends JFrame {
 				}
 				String direccion = txtDireccin.getText();
 				String nombTarjeta = nombreTarjeta.getText();
-				double numeroTarjeta = Integer.parseInt(numTarjeta.getText());
+				String numeroTarjeta = numTarjeta.getText();
 				// fecha de vencimiento
 				Date fechaVencimiento = null;
 				try {
