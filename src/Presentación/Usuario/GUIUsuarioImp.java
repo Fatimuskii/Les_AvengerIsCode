@@ -23,8 +23,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Presentación.GUIMensaje;
+import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 import Presentación.Impresora.GUIImpresoraImp;
+import Presentación.Local.GUIBuscarLocal;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
@@ -46,6 +49,9 @@ public class GUIUsuarioImp extends GUIUsuario {
 	private GUIBuscarporIdUsuario GUI_BuscarporIdUsuario;
 	private JLabel id_Usuario;
 	private boolean admin;
+	
+	private int id;
+	
 
 	public GUIUsuarioImp(){
 		super();
@@ -55,7 +61,6 @@ public class GUIUsuarioImp extends GUIUsuario {
 		this.GUI_BajaUsuario = new GUIBajaUsuario();
 		this.GUI_AltaUsuario = new GUIAltaUsuario();
 		this.GUI_ListarUsuarios = new GUIListarUsuarios();
-		this.GUI_BuscarporIdUsuario = new GUIBuscarporIdUsuario();
 		initGUI();
 	}
 
@@ -160,7 +165,19 @@ public class GUIUsuarioImp extends GUIUsuario {
 		btnBuscar.setBounds(183, 195, 89, 23);
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUI_BuscarporIdUsuario.setVisible(true);
+				GUIMensaje mensaje = new GUIMensaje();
+				if(!textField.getText().equals("Buscar usuario")){
+					id = Integer.parseInt(textField.getText());
+
+					GUI_BuscarporIdUsuario = new GUIBuscarporIdUsuario(id);
+					GUI_BuscarporIdUsuario.setVisible(true);
+					Controlador.getInstance().accion(Events.BUSCAR_USUARIO,
+							id);
+				}
+				else{
+					mensaje.showMessage("Debe introducir un Id",
+							"Buscar Usuario", false);
+				}
 			}
 		});
 		panel.add(btnBuscar);

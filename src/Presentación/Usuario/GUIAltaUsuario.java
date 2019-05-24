@@ -477,7 +477,7 @@ public class GUIAltaUsuario extends JFrame {
 		int randomId = -1;
 	    Random rn = new Random();
 	    for (int i = 0; i < randomNumbers.length; i++)
-	             randomId = rn.nextInt(30) + 1;
+	             randomId = rn.nextInt(30) + 10000;//5 digitos
 	    return randomId;
 	}
 	

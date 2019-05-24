@@ -48,10 +48,13 @@ public class GUIBuscarporIdUsuario extends JFrame{
 	private DefaultTableModel model;
 	private DefaultTableModel model_1;
 	
+	private int id;
 	
-	public GUIBuscarporIdUsuario(){
+	
+	public GUIBuscarporIdUsuario(int id){
 		this.table = new JTable();
 		this.table_1 = new JTable();
+		this.id = id;
 		initGUI();
 	}
 	
@@ -158,8 +161,9 @@ public class GUIBuscarporIdUsuario extends JFrame{
 		model_1.setRowCount(0);
 		table_1.setModel(model_1);
 	}
-
-	public void update(int event, ArrayList<TDiseño> res, ArrayList<TImpresora> res_1) {
+	//Diseño e impresora pedir a plataforma lista asociada id
+	//Utilizar parametro id
+	public void update(int event, ArrayList<TDiseño> res, ArrayList<TImpresora> res_1) {//TODO
 		switch (event) {
 		case Events.BUSCAR_USUARIO_OK:
 			model.setRowCount(0);

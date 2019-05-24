@@ -65,6 +65,8 @@ public class GUIMenuAdmin extends JFrame {
 		JButton btnPedidos = new JButton("PEDIDOS");
 		btnPedidos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Controlador.getInstance().accion(Events.OPEN_GUI_PEDIDO_IMPRESION_MENU,
+						null);
 			}
 		});
 		btnPedidos.setBounds(161, 186, 116, 37);

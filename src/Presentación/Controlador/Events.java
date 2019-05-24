@@ -116,6 +116,7 @@ public class Events {
 	public static final int OPEN_GUI_USUARIO_MENU = 105;	
 	public static final int OPEN_GUI_IMPRESORA_MENU = 106;	
 	public static final int OPEN_GUI_DISEÑO_MENU = 107;
+	public static final int OPEN_GUI_PEDIDO_IMPRESION_MENU = 108;
 	
 	/*public static final int OPEN_GUI_ALTA_LOCAL = 110;
 	public static final int OPEN_GUI_BAJA_LOCAL = 111;
