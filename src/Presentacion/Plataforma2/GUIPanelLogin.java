@@ -15,7 +15,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
 
-import Negocio.Plataforma.CTRLPlataforma;
+import Negocio.Plataforma.SAPlataforma;
 
 public class GUIPanelLogin extends JPanel {
 	/**
@@ -29,7 +29,7 @@ public class GUIPanelLogin extends JPanel {
 	 * Create the panel.
 	 * @return 
 	 */
-	public GUIPanelLogin(CTRLPlataforma ctrl, GUIVentanaPlataforma principal) {
+	public GUIPanelLogin(final SAPlataforma ctrl, final GUIVentanaPlataforma principal) {
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();

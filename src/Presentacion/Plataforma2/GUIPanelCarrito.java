@@ -67,10 +67,10 @@ public class GUIPanelCarrito extends JPanel {
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
 				TDiseño diseño = listaDiseños.getSelectedValue();
-				if (diseño != null)
+				/*if (diseño != null)
 					texto.setText(diseño.listaToString());
 				else
-					texto.setText("");
+					texto.setText("");*/
 			}
 		});
 		this.texto = new JTextArea(20, 50);

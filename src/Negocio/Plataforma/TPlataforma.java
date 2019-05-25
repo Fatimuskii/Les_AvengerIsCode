@@ -4,6 +4,7 @@
 package Negocio.Plataforma;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import Negocio.Diseño.TDiseño;
@@ -31,9 +32,13 @@ public class TPlataforma {
 		//listaCompra.add(new TDiseño("Diseño4","Material4"));
 	}
 	
-	/*public boolean logueo(String user, String pass) {
-		return this.usuarioLogueado.verificacion(user, pass);
-	}*/
+	public boolean logueo(String user, String pass) {
+		this.usuarioLogueado= new TUsuario(484444, "pepe", "sfdfs",
+				"asdfadsf", new Date(), "sdfsadf",
+				"asdfadfa", "sfadfa", "asfdfadf",
+				new Date(),true);
+		return true;
+	}
 	
 	public String getUsuarioLogueado(){
 		return usuarioLogueado.getNombre();

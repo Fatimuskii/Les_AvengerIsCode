@@ -13,15 +13,18 @@ import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import Negocio.Plataforma.CTRLPlataforma;
+import Negocio.Plataforma.SAPlataforma;
+import Presentación.Local.GUILocal;
+import Presentación.Local.GUILocalImp;
 
-public class GUIVentanaPlataforma extends JFrame {
+public class GUIVentanaPlataforma extends JPanel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private CTRLPlataforma ctrl;
+	private SAPlataforma ctrl;
+	
 	private JPanel contentPane;
 	private JPanel superiorPane;
 	private JPanel izquierdoPane;
@@ -44,27 +47,23 @@ public class GUIVentanaPlataforma extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GUIVentanaPlataforma(CTRLPlataforma ctrl) {
+	public GUIVentanaPlataforma(SAPlataforma ctrl) {
 		this.ctrl=ctrl;
-		setIconImage(Toolkit.getDefaultToolkit().getImage("resources/imagenes/plataforma/avengerisLOGO (Recortado).png"));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1071, 684);
+		this.setLayout(new BorderLayout(0, 0));
+		
 		contentPane = new JPanel();
-		setContentPane(contentPane);
+		this.add(contentPane, BorderLayout.CENTER);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(new BorderLayout(0, 0));
-		
 		superiorPane=new JPanel();
-		panel.add(superiorPane,BorderLayout.NORTH);
+		contentPane.add(superiorPane,BorderLayout.NORTH);
 		superiorPane.setLayout(new BorderLayout(0, 0));
 		
 		loginPane=new GUIPanelLogin(ctrl,this);
 		superiorPane.add(loginPane,BorderLayout.EAST);
 		
-		logueadoPane=new GUIPanelLogueado(ctrl);
+		//logueadoPane=new GUIPanelLogueado(ctrl);
 		
 		panelCarrito=new GUIPanelCarrito();
 		panelCarrito.setList(ctrl.getListaCompra());
@@ -73,24 +72,15 @@ public class GUIVentanaPlataforma extends JFrame {
 		superiorPane.add(imagenSuperior, BorderLayout.WEST);
 		
 		izquierdoPane = new JPanel();
-		panel.add(izquierdoPane, BorderLayout.WEST);
+		contentPane.add(izquierdoPane, BorderLayout.WEST);
 		izquierdoPane.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		layeredPane = new JLayeredPane();
-		panel.add(layeredPane, BorderLayout.CENTER);
+		contentPane.add(layeredPane, BorderLayout.CENTER);
 		layeredPane.setLayout(new BorderLayout(0, 0));
 		
-		logueadoPane.getBotonCarrito().addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				layeredPane.removeAll();
-				layeredPane.add(panelCarrito);
-				layeredPane.repaint();
-				layeredPane.revalidate();
-			}
-		});
-		
-		panel_1 = new JPanel();
-		panel_1.setBackground(Color.BLACK);
+		panel_1 = new GUILocalImp();
+		//panel_1.setBackground(Color.BLACK);
 		
 		panel_2 = new JPanel();
 		panel_2.setBackground(Color.BLUE);
@@ -111,6 +101,15 @@ public class GUIVentanaPlataforma extends JFrame {
 	}
 	
 	public void logueado() {
+		logueadoPane=new GUIPanelLogueado(ctrl);
+		logueadoPane.getBotonCarrito().addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				layeredPane.removeAll();
+				layeredPane.add(panelCarrito);
+				layeredPane.repaint();
+				layeredPane.revalidate();
+			}
+		});
 		superiorPane.remove(loginPane);
 		loginPane.setVisible(false);
 		superiorPane.add(logueadoPane,BorderLayout.EAST);
@@ -128,14 +127,14 @@ public class GUIVentanaPlataforma extends JFrame {
 		
 		vaciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.vaciarElementosCarrito();
+				//ctrl.vaciarElementosCarrito();
 				panelCarrito.setList(ctrl.getListaCompra());
 			}
 		});
 		
 		comprar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ctrl.comprarElementosCarrito();
+				//ctrl.comprarElementosCarrito();
 				panelCarrito.setList(ctrl.getListaCompra());
 			}
 		});

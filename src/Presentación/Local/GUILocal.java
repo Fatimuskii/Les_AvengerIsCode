@@ -12,10 +12,11 @@ package Presentación.Local;
 
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 //import Presentación.Factoria.GUI;
 
-public abstract class GUILocal extends JFrame{
+public abstract class GUILocal extends JPanel{
 	private static GUILocal instance;
 	
 	public abstract void update(int event, Object res);
@@ -24,7 +25,7 @@ public abstract class GUILocal extends JFrame{
 	public static GUILocal getInstance() {
 		if(instance == null)
 			instance = new GUILocalImp();
-		instance.setVisible(true);
+		//instance.setVisible(true);
 		return instance;
 	}
 }

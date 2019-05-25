@@ -3,6 +3,10 @@
  */
 package Negocio.Plataforma;
 
+import java.util.List;
+
+import Negocio.Diseño.TDiseño;
+
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
@@ -10,4 +14,33 @@ package Negocio.Plataforma;
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 public class SAPlataformaImp implements SAPlataforma {
+public TPlataforma plataforma;
+	
+	public SAPlataformaImp() {
+		this.plataforma= new TPlataforma();
+	}
+	
+	public boolean logueo(String user, String pass) {
+		return plataforma.logueo(user, pass);
+	}
+	
+	public String getUsuarioLogueado() {
+		return plataforma.getUsuarioLogueado();
+	}
+	
+	public List<TDiseño> getListaCompra(){
+		return plataforma.getListaCompra();
+	}
+	
+	public void eliminarElementoCarrito(TDiseño aEliminar) {
+		plataforma.eliminarElementoCarrito(aEliminar);
+	}
+	
+	public void vaciarElementosCarrito() {
+		plataforma.vaciarElementosCarrito();
+	}
+	
+	public void comprarElementosCarrito() {
+		plataforma.comprarElementosCarrito();
+	}
 }

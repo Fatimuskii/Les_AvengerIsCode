@@ -71,7 +71,7 @@ public class SAImpresoraImp implements SAImpresora {
 		
 		//Comprobar que el usuario existe y está activo
 		DAOUsuario usuarioDAO = FactoriaDAO.getInstance().generateDAOUsuario();
-		TUsuario usu = usuarioDAO.buscarId(idUsuario);
+		TUsuario usu = usuarioDAO.buscarIdUsuario(idUsuario);
 		if(usu != null){
 			if(usu.getActivo()){
 				DAOImpresora impresoraDAO = FactoriaDAO.getInstance().generateDAOImpresora();

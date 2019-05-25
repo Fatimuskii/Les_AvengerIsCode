@@ -9,7 +9,7 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
-import Negocio.Plataforma.CTRLPlataforma;
+import Negocio.Plataforma.SAPlataforma;
 
 public class GUIPanelLogueado extends JPanel{
 	/**
@@ -22,7 +22,7 @@ public class GUIPanelLogueado extends JPanel{
 	 */
 	private JButton btnCarrito;
 	
-	public GUIPanelLogueado(CTRLPlataforma ctrl) {
+	public GUIPanelLogueado(SAPlataforma ctrl) {
 		setLayout(new BorderLayout(0, 0));
 		
 		JTextPane txtpnBienvenido = new JTextPane();

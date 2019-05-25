@@ -17,10 +17,15 @@ import Negocio.Impresora.SAImpresora;
 import Negocio.Impresora.TImpresora;
 import Negocio.PedidoImpresion.SAPedidoImpresion;
 import Negocio.PedidoImpresion.TPedidoImpresion;
+import Negocio.Plataforma.SAPlataforma;
+import Presentacion.Plataforma2.GUIPlataformaF;
 import Presentación.Impresora.GUIImpresora;
 import Presentación.Local.GUILocal;
 import Presentación.PedidoImpresion.GUIPedidoImpresion;
+import Presentación.Plataforma.GUIPlataforma;
 import Presentación.Plataforma.GUIPlataformaImp;
+import Presentacion.Plataforma2.GUIPlataformaF;
+import Presentacion.Plataforma2.GUIPlataformaFimp;
 import Presentación.Usuario.GUIUsuario;
 import Presentación.Diseño.GUIDiseño;
 
@@ -45,6 +50,7 @@ public class ControladorImp extends Controlador {
 	private SADiseño SADiseño;
 	private SAImpresora SAImpresora;
 	private SAPedidoImpresion SAPedidoImpresion;
+	private SAPlataforma SAPlataforma;
 	
 
 	// AQUI VENDRIAN EL RESTO DE SA
@@ -56,6 +62,7 @@ public class ControladorImp extends Controlador {
 		SAImpresora = factoriaSA.generateSAImpresora();
 		SAUsuario = factoriaSA.generateSAUsuario();
 		SAPedidoImpresion = factoriaSA.generateSAPedidoImpresion();
+		SAPlataforma = factoriaSA.generateSAPlataforma();
 	}
 
 	public void accion(int evento, Object datos) {
@@ -80,6 +87,7 @@ public class ControladorImp extends Controlador {
 		switch (evento) {
 
 		case Events.GUI:
+			//GUIPlataformaFimp.getInstance();
 			GUIPlataformaImp.getInstance();
 			break;
 		/* Eventos de Local & Representante */
@@ -178,14 +186,14 @@ public class ControladorImp extends Controlador {
 			else
 				GUIUsuario.getInstance().update(Events.LISTAR_USUARIO_KO, resultU);
 			break;
-		case Events.ACCESO_USUARIO:
+		/*case Events.ACCESO_USUARIO:
 			tUsuario =(TUsuario) datos;
 			acceso = this.SAUsuario.acceso(tUsuario);
 			if (acceso)
 				GUIUsuario.getInstance().update(Events.ACCESO_USUARIO_OK, acceso);
 			else
 				GUIUsuario.getInstance().update(Events.ACCESO_USUARIO_KO, acceso);
-			break;
+			break;*/
 		case Events.MODIFICAR_USUARIO_COMPROBAR:
 			idUsuario = (int) datos;
 			tUsuario = this.SAUsuario.buscarIdUsuario(idUsuario);
@@ -316,6 +324,8 @@ public class ControladorImp extends Controlador {
 				GUIDiseño.getInstance().update(Events.MODIFICAR_DISEÑO_COMPROBAR_OK, null);
 			else
 				GUIDiseño.getInstance().update(Events.MODIFICAR_DISEÑO_COMPROBAR_KO, null);
+			break;
+		case Events.ACCESO_USUARIO:
 			break;
 		case Events.ALTA_CARRITO:
 			break;

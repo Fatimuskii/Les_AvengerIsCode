@@ -1,5 +1,6 @@
 package Presentación.Local;
 
+import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -36,21 +37,25 @@ public class GUILocalImp extends GUILocal {
 	public GUILocalImp() {
 		super();
 		contentPane = new JPanel();
+		this.setLayout(new BorderLayout());
+		contentPane.setLayout(new BorderLayout());
+		this.add(contentPane,BorderLayout.CENTER);
 		initGUI();
 	}
 
 
 	public void initGUI() {
 
-		setResizable(false);
+		/*setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage("imagenes\\local.png"));
 		setTitle("Local");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 631, 376);
+		setBounds(100, 100, 631, 376);*/
 
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		//setContentPane(contentPane);
+		this.add(contentPane);
 		contentPane.setLayout(null);
 
 		JButton btnSalir = new JButton("Salir");
@@ -59,7 +64,7 @@ public class GUILocalImp extends GUILocal {
 		contentPane.add(btnSalir);
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
+				//dispose();
 			}
 		});
 
@@ -87,7 +92,7 @@ public class GUILocalImp extends GUILocal {
 							"BUSCAR LOCAL", false);
 					IdLocalText.setText("");
 				}
-				dispose();
+				//dispose();
 			}
 		});
 

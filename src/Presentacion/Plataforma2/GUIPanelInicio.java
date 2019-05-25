@@ -6,6 +6,9 @@ import javax.swing.JButton;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import Presentación.Controlador.Controlador;
+import Presentación.Controlador.Events;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
