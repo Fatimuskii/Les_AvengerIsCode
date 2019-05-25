@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS disenos(
 --
 CREATE TABLE IF NOT EXISTS impresora(
 	idImpresora int(11) NOT NULL AUTO_INCREMENT,
-	nombre varchar(20) NOT NULL,
+	material varchar(20) NOT NULL,
 	alto float NOT NULL,
 	ancho float NOT NULL,
 	profundidad float NOT NULL,

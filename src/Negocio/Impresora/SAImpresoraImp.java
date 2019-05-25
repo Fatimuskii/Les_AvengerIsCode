@@ -5,11 +5,9 @@ package Negocio.Impresora;
 
 import java.util.ArrayList;
 
-import Integración.Diseño.DAODiseño;
 import Integración.Factoria.FactoriaDAO;
 import Integración.Impresora.DAOImpresora;
 import Integración.Usuario.DAOUsuario;
-import Negocio.Diseño.TDiseño;
 import Negocio.Usuario.TUsuario;
 
 /** 

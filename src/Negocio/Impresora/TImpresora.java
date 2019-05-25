@@ -3,6 +3,7 @@
  */
 package Negocio.Impresora;
 
+import Negocio.Impresora.Material;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -63,10 +64,9 @@ public class TImpresora {
 	 */
 	private boolean activo;
 
-	public TImpresora(int idImpresora, String nombre, String material, float alto,
-			float ancho, float profundidad, int usuario, boolean activo) {
+	public TImpresora(int idImpresora, Material material, float alto, float ancho, 
+			float profundidad, int usuario, boolean activo) {
 		this.Id_impresora=idImpresora;
-		this.nombre=nombre;
 		this.material=material;
 		this.alto = alto;
 		this.ancho=ancho;
@@ -75,14 +75,13 @@ public class TImpresora {
 		this.activo=activo;
 	}
 	
-	public TImpresora(String nombre, String material, float alto, float ancho,
+	public TImpresora(Material material, float alto, float ancho,
 			float profundidad, int usuario, boolean activo) {
-		this.nombre=nombre;
 		this.material=material;
 		this.alto = alto;
 		this.ancho=ancho;
 		this.profundidad=profundidad;
-		this.usuario=usuario;
+		this.usuario = usuario;
 		this.activo=activo;
 	}
 
@@ -143,7 +142,7 @@ public class TImpresora {
 	public Material getMaterial() {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-		return null;
+		return this.material;
 		// end-user-code
 	}
 
@@ -156,7 +155,7 @@ public class TImpresora {
 	public void setMaterial(Material material) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
-
+		this.material = material;
 		// end-user-code
 	}
 
@@ -246,7 +245,6 @@ public class TImpresora {
 	 */
 	public int getUsuario() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		return this.usuario;
 		// end-user-code
 	}

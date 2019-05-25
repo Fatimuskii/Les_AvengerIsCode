@@ -6,8 +6,8 @@ package Presentación.Impresora;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,10 +15,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 
 /** 
@@ -36,16 +36,12 @@ import Presentación.Controlador.Events;
 public class GUIBajaImpresora extends JFrame {
 	
 	private JPanel contentPane;
-	private JTextField textField;
-	private JPasswordField passwordField;
-	private JTextField textField_1;
+	private JTextField textIdImpresora;
 	private int id;
 	
 	public GUIBajaImpresora() {
 		super();
 		this.contentPane = new JPanel();
-		this.textField = new JTextField();
-		this.passwordField = new JPasswordField();
 		initGUI();
 	}
 
@@ -65,45 +61,39 @@ public class GUIBajaImpresora extends JFrame {
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
-		JLabel lblEmail = new JLabel("IdUsuario");
-		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblEmail.setBounds(52, 120, 63, 14);
-		panel.add(lblEmail);
-		
-		textField = new JTextField();
-		textField.setBounds(135, 117, 162, 20);
-		panel.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
-		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblContrasea.setBounds(52, 153, 73, 14);
-		panel.add(lblContrasea);
-		
 		JButton btnConfirmarBaja = new JButton("Confirmar baja");
-		btnConfirmarBaja.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showOptionDialog(new JFrame(), "¿Estás seguro?" , "Quit",
-						JOptionPane.YES_NO_OPTION, JOptionPane.YES_NO_OPTION, null, null, null);
+		btnConfirmarBaja.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+					id = Integer.parseInt(textIdImpresora.getText());
+				
+					int confirma = JOptionPane.showConfirmDialog(null, "¿Desea dar de baja el diseño?", "Confirmar baja de Diseño", 
+							JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+					if(confirma == JOptionPane.YES_OPTION) {
+						Controlador.getInstance().accion(Events.BAJA_IMPRESORA, id);
+					}
+					else {
+						dispose();
+					}
+				}
+				catch(Exception ex){
+					JOptionPane.showMessageDialog(null, "Introduzca un id correcto (número)", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				
 			}
 		});
 		btnConfirmarBaja.setBounds(152, 196, 123, 23);
 		panel.add(btnConfirmarBaja);
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(135, 150, 162, 20);
-		panel.add(passwordField);
 		
 		JLabel lblIdimpresora = new JLabel("IdImpresora");
 		lblIdimpresora.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblIdimpresora.setBounds(52, 86, 73, 14);
 		panel.add(lblIdimpresora);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(135, 83, 162, 20);
-		panel.add(textField_1);
+		textIdImpresora = new JTextField();
+		textIdImpresora.setColumns(10);
+		textIdImpresora.setBounds(135, 83, 162, 20);
+		panel.add(textIdImpresora);
 		
 		JLabel lblNewLabel = new JLabel("");
 		
@@ -112,15 +102,22 @@ public class GUIBajaImpresora extends JFrame {
 		panel.add(lblNewLabel);
 	}
 
+
+	public void clearData() {
+		textIdImpresora.setText("");
+	}
+	
 	public void update(int event, Object res) {
 		switch(event){
 		case Events.BAJA_IMPRESORA_OK:
 			JOptionPane.showMessageDialog(null,"Eliminado correctamente la impresora : "+ id, "", JOptionPane.INFORMATION_MESSAGE);
+			dispose();
 			break;
 		case Events.BAJA_IMPRESORA_KO:
-			JOptionPane.showMessageDialog(null,"Error al eliminar el diseño: " +id, "", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null,"Error al eliminar el diseño: " +id, "Eliminar Impresora", JOptionPane.ERROR_MESSAGE);
 			break;
 		}
 		
 	}
+
 }

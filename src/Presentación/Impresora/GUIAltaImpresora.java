@@ -12,30 +12,26 @@ import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
 import javax.swing.ImageIcon;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import javax.swing.JRadioButton;
 
-import Negocio.Diseño.TDiseño;
+import Negocio.Impresora.Material;
+import Negocio.Impresora.TImpresora;
+import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -54,25 +50,14 @@ public class GUIAltaImpresora extends JFrame{
 
 	private JButton btnFinalizar;
 	private JTextField txtIntroduceTuId;
-	private JRadioButton mntmPal;
-	private JRadioButton mntmAbs;
-	private JRadioButton mntmPetg;
-	private JRadioButton mntmNylon;
-	private JSpinner spinner_3;
-	private JSpinner spinner_4;
-	private JSpinner spinner_5;
+	private JTextField textFieldAlto;
+	private JTextField textFieldAncho;
+	private JTextField textFieldProfundidad;
+	private JComboBox<Material> comboBox;
 
 	public GUIAltaImpresora() {
 		super();
 		this.contentPane = new JPanel();
-		this.btnFinalizar = new JButton();
-		this.mntmPal = new JRadioButton();
-		this.mntmAbs = new JRadioButton();
-		this.mntmPetg = new JRadioButton();
-		this.mntmNylon = new JRadioButton();
-		this.spinner_3 = new JSpinner();
-		this.spinner_4 = new JSpinner();
-		this.spinner_5 = new JSpinner();
 		this.setFocusable(true);
 		initGUI();
 	}
@@ -81,7 +66,6 @@ public class GUIAltaImpresora extends JFrame{
 	 * Create the frame.
 	 */
 	public void initGUI() {
-
 		setResizable(false);
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\3d-printer.png"));
@@ -96,72 +80,12 @@ public class GUIAltaImpresora extends JFrame{
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(30, 50, 56, 21);
-		panel.add(menuBar);
+		
 
-		JMenu mnMaterial = new JMenu("Material");
-		menuBar.add(mnMaterial);
-
-		mntmPal = new JRadioButton("PAL");
-		mntmPal.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				mntmAbs.setSelected(false);
-				mntmPetg.setSelected(false);
-				mntmNylon.setSelected(false);
-			}
-		});
-		mnMaterial.add(mntmPal);
-
-		mntmAbs = new JRadioButton("ABS");
-		mntmAbs.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				mntmPal.setSelected(false);
-				mntmPetg.setSelected(false);
-				mntmNylon.setSelected(false);
-			}
-		});
-		mnMaterial.add(mntmAbs);
-
-		mntmPetg = new JRadioButton("PETG");
-		mntmPetg.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				mntmPal.setSelected(false);
-				mntmAbs.setSelected(false);
-				mntmNylon.setSelected(false);
-			}
-		});
-		mnMaterial.add(mntmPetg);
-
-		mntmNylon = new JRadioButton("Nylon");
-		mntmNylon.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				mntmPal.setSelected(false);
-				mntmAbs.setSelected(false);
-				mntmPetg.setSelected(false);
-			}
-		});
-		mnMaterial.add(mntmNylon);
-
-		JLabel lblTamao = new JLabel(" Tama\u00F1o");
+		JLabel lblTamao = new JLabel(" Tamaño");
 		lblTamao.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblTamao.setBounds(28, 182, 56, 14);
+		lblTamao.setBounds(28, 182, 71, 14);
 		panel.add(lblTamao);
-
-		spinner_3 = new JSpinner();
-		spinner_3.setModel(new SpinnerNumberModel(8, 8, 1600, 1));
-		spinner_3.setBounds(109, 179, 58, 20);
-		panel.add(spinner_3);
-
-		spinner_4 = new JSpinner();
-		spinner_4.setModel(new SpinnerNumberModel(8, 8, 900, 1));
-		spinner_4.setBounds(195, 179, 58, 20);
-		panel.add(spinner_4);
-
-		spinner_5 = new JSpinner();
-		spinner_5.setModel(new SpinnerNumberModel(8, 8, 250, 1));
-		spinner_5.setBounds(280, 179, 58, 20);
-		panel.add(spinner_5);
 
 		JLabel lblX = new JLabel("x");
 		lblX.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -175,7 +99,7 @@ public class GUIAltaImpresora extends JFrame{
 
 		JLabel lblIdUsuario = new JLabel("Id usuario");
 		lblIdUsuario.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblIdUsuario.setBounds(28, 293, 67, 14);
+		lblIdUsuario.setBounds(32, 293, 71, 14);
 		panel.add(lblIdUsuario);
 
 		txtIntroduceTuId = new JTextField();
@@ -196,7 +120,7 @@ public class GUIAltaImpresora extends JFrame{
 		});
 		txtIntroduceTuId.setForeground(Color.GRAY);
 		txtIntroduceTuId.setText("Introduce tu Id");
-		txtIntroduceTuId.setBounds(109, 290, 95, 20);
+		txtIntroduceTuId.setBounds(113, 290, 95, 20);
 		panel.add(txtIntroduceTuId);
 		txtIntroduceTuId.setColumns(10);
 
@@ -220,7 +144,7 @@ public class GUIAltaImpresora extends JFrame{
 		JLabel label_2 = new JLabel("*");
 		label_2.setForeground(Color.RED);
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_2.setBounds(97, 293, 17, 14);
+		label_2.setBounds(20, 292, 17, 14);
 		panel.add(label_2);
 
 		JLabel label_3 = new JLabel("");
@@ -228,33 +152,83 @@ public class GUIAltaImpresora extends JFrame{
 		label_3.setBounds(229, 23, 156, 138);
 		panel.add(label_3);
 		
+		comboBox = new JComboBox<Material>();
+		comboBox.setModel(new DefaultComboBoxModel<Material>(Material.values()));
+		comboBox.setBounds(109, 43, 107, 30);
+		panel.add(comboBox);
+		
+		textFieldAlto = new JTextField();
+		textFieldAlto.setBounds(111, 179, 56, 20);
+		panel.add(textFieldAlto);
+		textFieldAlto.setColumns(10);
+		
+		JLabel lblMaterial = new JLabel("Material");
+		lblMaterial.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblMaterial.setBounds(30, 51, 69, 14);
+		panel.add(lblMaterial);
+		
+		textFieldAncho = new JTextField();
+		textFieldAncho.setBounds(197, 179, 56, 20);
+		panel.add(textFieldAncho);
+		textFieldAncho.setColumns(10);
+		
+		textFieldProfundidad = new JTextField();
+		textFieldProfundidad.setBounds(281, 179, 58, 20);
+		panel.add(textFieldProfundidad);
+		textFieldProfundidad.setColumns(10);
+		
+		JLabel lblalto = new JLabel("(alto)");
+		lblalto.setBounds(113, 201, 54, 14);
+		panel.add(lblalto);
+		
+		JLabel lblancho = new JLabel("(ancho)");
+		lblancho.setBounds(203, 201, 58, 14);
+		panel.add(lblancho);
+		
+		JLabel lblprofundidad = new JLabel("(profundidad)");
+		lblprofundidad.setBounds(279, 201, 89, 14);
+		panel.add(lblprofundidad);
+		
 		btnFinalizar = new JButton("Finalizar");
 		btnFinalizar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (!datosObligatorios()) {
-					JOptionPane.showOptionDialog(new JFrame(), "Debes rellenar los campos obligatorios (*)", "Quit",
-							JOptionPane.OK_OPTION, JOptionPane.OK_OPTION, null, null, null);
+				if (datosObligatorios()) {
+					JOptionPane.showMessageDialog(new JFrame(), "Debes rellenar los campos obligatorios (*)", "Error",JOptionPane.ERROR_MESSAGE);
+				}
+				else{
+					try{
+						float alto =Float.parseFloat(textFieldAlto.getText());
+						float ancho =Float.parseFloat(textFieldAncho.getText());
+						float profundidad = Float.parseFloat(textFieldProfundidad.getText());
+						int idUsuario = Integer.parseInt(txtIntroduceTuId.getText());
+						
+						TImpresora tImpresora = new TImpresora((Material) comboBox.getSelectedItem(), alto,
+								ancho, profundidad, idUsuario, true);
+						Controlador.getInstance().accion(Events.ALTA_IMPRESORA, tImpresora);
+					}
+					catch(Exception ex){
+						JOptionPane.showMessageDialog(null, "Datos erróneos", "Error", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		});
 		btnFinalizar.setBounds(312, 358, 89, 23);
 		panel.add(btnFinalizar);
-
 	}
 
 	private boolean datosObligatorios() {
-		if ((!mntmAbs.isSelected() && !mntmPetg.isSelected() && !mntmNylon.isSelected() && !mntmPal.isSelected())
-				|| txtIntroduceTuId.getText().equals("Introduce tu Id"))
-			return false;
-		return true;
+		return textFieldAlto.getText().equals("") || textFieldAncho.getText().equals("") || 
+				textFieldProfundidad.getText().equals("") || 
+				txtIntroduceTuId.getText().equals("Introduce tu Id");
 	}
+	
 	
 	public void update(int event, Object res){
 		switch (event) {
 		case Events.ALTA_IMPRESORA_OK:
-			JOptionPane.showMessageDialog(null,"Éxito al crear la impresora");
 			dispose();
+			JOptionPane.showMessageDialog(null,"Creada correctamente la impresora: " + res, "Crear Impresora", JOptionPane.INFORMATION_MESSAGE);
 			break;
 		case Events.ALTA_IMPRESORA_KO:
 			JOptionPane.showMessageDialog(null, "Error al crear la impresora", "Error Alta Impresora", JOptionPane.ERROR_MESSAGE);

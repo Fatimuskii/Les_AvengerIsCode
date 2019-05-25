@@ -33,7 +33,7 @@ import Presentación.Controlador.Events;
 public class GUIListarImpresora extends JFrame {
 
 	private JPanel contentPane;
-	private String[] columnNames = { "#", "Id", "Nombre", "Propietario", "Dimensiones", "Materiales" };
+	private String[] columnNames = { "#", "Id", "Usuario", "Dimensiones", "Material" };
 	private DefaultTableModel tableModel;
 	private JTable table;
 
@@ -124,11 +124,10 @@ public class GUIListarImpresora extends JFrame {
 				tableModel.insertRow(i, new Object[] {
 						i + 1,
 						res.get(i).getId_impresora(),
-						res.get(i).getNombre(),
 						res.get(i).getUsuario(),
 						res.get(i).getAlto() + "x" + res.get(i).getAncho()
 								+ "x" + res.get(i).getProfundidad(),
-						res.get(i).getMaterial()//TODOS
+						res.get(i).getMaterial()
 						});
 			table.setModel(tableModel);
 			break;

@@ -4,9 +4,8 @@
 package Integración.Impresora;
 
 import Integración.Conexion.ConexionDAO;
-import Integración.Factoria.FactoriaDAO;
-import Negocio.Diseño.TDiseño;
 import Negocio.Impresora.TImpresora;
+import Negocio.Impresora.Material;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -37,10 +36,8 @@ public class DAOImpresoraImp implements DAOImpresora {
 		if(connection != null){
 			try{
 				Statement statement = connection.createStatement();
-				String query = "INSERT INTO impresora (nombre, material, alto, ancho, profundidad, usuario, activo)"
+				String query = "INSERT INTO impresora (material, alto, ancho, profundidad, usuario, activo)"
 						+ "VALUES ('"
-						+ tImpresora.getNombre()
-						+ "', '"
 						+ tImpresora.getMaterial()
 						+ "', '"
 						+ tImpresora.getAlto()
@@ -62,7 +59,6 @@ public class DAOImpresoraImp implements DAOImpresora {
 				connection.close();
 			}
 			catch(SQLException e){
-				e.printStackTrace();
 				idImpresora = -100;
 			}
 		}
@@ -90,8 +86,7 @@ public class DAOImpresoraImp implements DAOImpresora {
 				if(resultSet.next()) {
 					tImpresora = new TImpresora(
 							idImpresora,
-							resultSet.getString("nombre"),
-							resultSet.getString("material"),
+							Material.parse(resultSet.getString("material")),
 							resultSet.getFloat("alto"),
 							resultSet.getFloat("ancho"),
 							resultSet.getFloat("profundidad"),
@@ -128,8 +123,7 @@ public class DAOImpresoraImp implements DAOImpresora {
 				while(resultSet.next()) {
 					tImpresora = new TImpresora(
 							resultSet.getInt("idImpresora"),
-							resultSet.getString("nombre"),
-							resultSet.getString("material"),
+							Material.parse(resultSet.getString("material")),
 							resultSet.getFloat("alto"),
 							resultSet.getFloat("ancho"),
 							resultSet.getFloat("profundidad"),
@@ -139,7 +133,6 @@ public class DAOImpresoraImp implements DAOImpresora {
 					listaImpresoras.add(tImpresora);
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
 				listaImpresoras = null;
 			}
 		}
@@ -168,8 +161,7 @@ public class DAOImpresoraImp implements DAOImpresora {
 				while(resultSet.next()) {
 					tImpresora = new TImpresora(
 							resultSet.getInt("idImpresora"),
-							resultSet.getString("nombre"),
-							resultSet.getString("material"),
+							Material.parse(resultSet.getString("material")),
 							resultSet.getFloat("alto"),
 							resultSet.getFloat("ancho"),
 							resultSet.getFloat("profundidad"),
@@ -179,7 +171,6 @@ public class DAOImpresoraImp implements DAOImpresora {
 					listaImpresoras.add(tImpresora);
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
 				listaImpresoras = null;
 			}
 		}
@@ -203,7 +194,6 @@ public class DAOImpresoraImp implements DAOImpresora {
 			try {
 				Statement statement = connection.createStatement();
 				String query = "UPDATE impresora SET "
-						+ "nombre='" + tImpresora.getNombre()+ "', "
 						+ "material='"+tImpresora.getMaterial() + "', "
 						+ "alto='" +  tImpresora.getAlto() + "', "
 						+ "ancho='" +  tImpresora.getAncho() + "', "
@@ -242,7 +232,6 @@ public class DAOImpresoraImp implements DAOImpresora {
 				id = idImpresora;
 				connection.close();
 			} catch (SQLException e) {
-				e.printStackTrace();
 				id = -100;
 			}
 		}

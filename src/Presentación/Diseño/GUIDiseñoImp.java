@@ -157,7 +157,7 @@ public class GUIDiseñoImp extends GUIDiseño {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					if(txtListarIdusuario.getText().equals("(idUsuario)")){
-						throw new Exception("Introduzca una palabra clave");
+						throw new Exception("Introduzca un Usuario");
 					}
 					int usuario = Integer.parseInt(txtListarIdusuario.getText());
 					
@@ -197,7 +197,7 @@ public class GUIDiseñoImp extends GUIDiseño {
 		btnBuscarDiseoPor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					if(txtBuscarId.getText().equals("(palabra clave)")){
+					if(txtBuscarPalabraClave.getText().equals("(palabra clave)")){
 						throw new Exception("Introduzca una palabra clave");
 					}
 					String palabra = txtBuscarPalabraClave.getText();
@@ -486,16 +486,16 @@ public class GUIDiseñoImp extends GUIDiseño {
 			gUIBuscarPalabraDiseño.update(event, (ArrayList<TDiseño>) res);
 			break;
 		case Events.MODIFICAR_DISEÑO_OK:
-			gUIModificarDiseño.update(Events.MODIFICAR_DISEÑO_OK, res);
+			gUIModificarDiseño.update(event, res);
 			break;
 		case Events.MODIFICAR_DISEÑO_KO:
-			gUIModificarDiseño.update(Events.MODIFICAR_DISEÑO_KO, res);
+			gUIModificarDiseño.update(event, res);
 			break;
 		case Events.MODIFICAR_DISEÑO_COMPROBAR_OK:
-			gUIModificarDiseño.update(Events.MODIFICAR_DISEÑO_COMPROBAR_OK, res);
+			gUIModificarDiseño.update(event, res);
 			break;
 		case Events.MODIFICAR_DISEÑO_COMPROBAR_KO:
-			gUIModificarDiseño.update(Events.MODIFICAR_DISEÑO_COMPROBAR_KO, res);
+			gUIModificarDiseño.update(event, res);
 			break;
 		}
 		

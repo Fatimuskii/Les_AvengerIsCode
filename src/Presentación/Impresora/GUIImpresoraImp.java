@@ -23,6 +23,8 @@ import java.awt.Color;
 import javax.swing.JButton;
 
 import Negocio.Diseño.TDiseño;
+import Negocio.Impresora.TImpresora;
+import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 import Presentación.Diseño.GUIAltaDiseño;
 import Presentación.Diseño.GUIBajaDiseño;
@@ -57,8 +59,6 @@ public class GUIImpresoraImp extends GUIImpresora {
 	private GUIListarImpresora gUIListarImpresora;
 	private GUIBuscarIdImpresora gUIBuscarIdImpresora;
 	private GUIBuscarUsuarioImpresora gUIBuscarUsuarioImpresora;
-	private GUIBajaImpresora GUI_BajaImpresora;	
-	private GUIAltaImpresora GUI_AltaImpresora;
 	
 	private JPanel contentPane;
 	private JTextField txtBuscar;
@@ -70,11 +70,11 @@ public class GUIImpresoraImp extends GUIImpresora {
 		setTitle("Menu Impresora");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\3d-printer.png"));
 		this.contentPane = new JPanel();
-		this.txtBuscar = new JTextField();
-		this.txtBuscarIdusuarioImpresor = new JTextField();
-		this.GUI_BajaImpresora = new GUIBajaImpresora();
+		this.gUIBajaImpresora = new GUIBajaImpresora();
 		this.gUIModificarImpresora = new GUIModificarImpresora();
-		this.GUI_AltaImpresora = new GUIAltaImpresora();
+		this.gUIAltaImpresora = new GUIAltaImpresora();
+		this.gUIListarImpresora = new GUIListarImpresora();
+		this.gUIBuscarIdImpresora = new GUIBuscarIdImpresora();
 		this.setFocusable(true);
 		initGUI();
 	}
@@ -115,7 +115,8 @@ public class GUIImpresoraImp extends GUIImpresora {
 		JMenuItem mntmDarDeBaja = new JMenuItem("Dar de baja");
 		mntmDarDeBaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUI_BajaImpresora.setVisible(true);
+				gUIBajaImpresora.clearData();
+				gUIBajaImpresora.setVisible(true);
 			}
 		});
 		mnConfiguracin.add(mntmDarDeBaja);
@@ -131,7 +132,7 @@ public class GUIImpresoraImp extends GUIImpresora {
 		JMenuItem mntmAltaImpresora = new JMenuItem("Dar de alta");
 		mntmAltaImpresora.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUI_AltaImpresora.setVisible(true);
+				gUIAltaImpresora.setVisible(true);
 			}
 		});
 		mnConfiguracin.add(mntmAltaImpresora);
@@ -184,6 +185,14 @@ public class GUIImpresoraImp extends GUIImpresora {
 		panel.add(btnBuscar);
 		
 		JButton btnMostrarTodos = new JButton("Mostrar todos");
+		btnMostrarTodos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				gUIListarImpresora.clearData();
+				gUIListarImpresora.setVisible(true);
+				Controlador.getInstance().accion(Events.LISTAR_IMPRESORAS, null);
+				gUIListarImpresora.toFront();
+			}
+		});
 		btnMostrarTodos.setBounds(309, 145, 115, 23);
 		panel.add(btnMostrarTodos);
 		
@@ -213,10 +222,10 @@ public class GUIImpresoraImp extends GUIImpresora {
 	public void update(int event, Object res){
 		switch (event) {
 		case Events.ALTA_IMPRESORA_OK:
-			gUIAltaImpresora.update(event, null);
+			gUIAltaImpresora.update(event, res);
 			break;
 		case Events.ALTA_IMPRESORA_KO:
-			gUIAltaImpresora.update(event, null);
+			gUIAltaImpresora.update(event, res);
 			break;
 		case Events.BAJA_IMPRESORA_OK:
 			gUIBajaImpresora.update(event, res);
@@ -225,10 +234,16 @@ public class GUIImpresoraImp extends GUIImpresora {
 			gUIBajaImpresora.update(event, res);
 			break;
 		case Events.MODIFICAR_IMPRESORA_OK:
-			gUIModificarImpresora.update(Events.MODIFICAR_DISEÑO_OK, res);
+			gUIModificarImpresora.update(event, res);
 			break;
 		case Events.MODIFICAR_IMPRESORA_KO:
-			gUIModificarImpresora.update(Events.MODIFICAR_DISEÑO_KO, res);
+			gUIModificarImpresora.update(event, res);
+			break;
+		case Events.LISTAR_IMPRESORAS_OK:
+			gUIListarImpresora.update(event, (ArrayList<TImpresora>) res);
+			break;
+		case Events.LISTAR_IMPRESORAS_KO:
+			gUIListarImpresora.update(event, (ArrayList<TImpresora>) res);
 			break;
 		}
 	}
