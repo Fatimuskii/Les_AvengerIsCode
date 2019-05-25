@@ -39,8 +39,8 @@ public class GUIBuscarporIdDiseño extends JFrame{
 	private JTextPane textPane;
 	private JLabel lblDimensiones;
 	private JTextField textDimensiones;
-	private JLabel lblPuntuacin;
-	private JTextField textPuntuacion;
+	private JLabel lblPropietario;
+	private JTextField textPropietario;
 	private JButton btnAceptar;
 	
 
@@ -82,16 +82,16 @@ public class GUIBuscarporIdDiseño extends JFrame{
 		textDimensiones.setEditable(false);
 		textDimensiones.setColumns(10);
 		
-		lblPuntuacin = new JLabel("Puntuación:");
+		lblPropietario = new JLabel("Propietario:");
 		
 		textPane = new JTextPane();
 		textPane.setBackground(SystemColor.menu);
 		textPane.setEditable(false);
 		scrollPane.setViewportView(textPane);
 		
-		textPuntuacion = new JTextField();
-		textPuntuacion.setEditable(false);
-		textPuntuacion.setColumns(10);
+		textPropietario = new JTextField();
+		textPropietario.setEditable(false);
+		textPropietario.setColumns(10);
 		
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
@@ -131,9 +131,9 @@ public class GUIBuscarporIdDiseño extends JFrame{
 					.addComponent(lblaltoXAncho, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(10)
-					.addComponent(lblPuntuacin, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lblPropietario, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
 					.addGap(20)
-					.addComponent(textPuntuacion, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+					.addComponent(textPropietario, GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
 					.addGap(95)
 					.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
 					.addGap(5))
@@ -169,8 +169,8 @@ public class GUIBuscarporIdDiseño extends JFrame{
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(3)
-							.addComponent(lblPuntuacin))
-						.addComponent(textPuntuacion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(lblPropietario))
+						.addComponent(textPropietario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addGap(16)
 							.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)))
@@ -189,7 +189,7 @@ public class GUIBuscarporIdDiseño extends JFrame{
 		textDiseño.setText("");
 		textNombre.setText("");
 		textDimensiones.setText("");
-		textPuntuacion.setText("");
+		textPropietario.setText("");
 		textPane.setText("");
 		// end-user-code
 	}
@@ -200,13 +200,13 @@ public class GUIBuscarporIdDiseño extends JFrame{
 			textDiseño.setText("" + res.getId_diseño());
 			textNombre.setText("" + res.getNombre());
 			textDimensiones.setText("" + res.getAlto() + "x" + res.getAncho() + "x" + res.getProfundidad());
-			textPuntuacion.setText("" + res.getPropietario());
+			textPropietario.setText("" + res.getPropietario());
 			textPane.setText("" + res.getDescripcion());
 			
 			textDiseño.setEnabled(true);
 			textNombre.setEnabled(true);
 			textDimensiones.setEnabled(true);
-			textPuntuacion.setEnabled(true);
+			textPropietario.setEnabled(true);
 			textPane.setEnabled(true);
 			break;
 		case Events.BUSCAR_DISEÑO_ID_KO:
