@@ -46,7 +46,7 @@ import Presentación.Controlador.Events;
 public class GUIAltaUsuario extends JFrame {
 
 	private TUsuario usuario;
-	
+
 	private JPanel contentPane;
 	private JTextField txtNombre;
 	private JTextField txtApellidos;
@@ -71,7 +71,7 @@ public class GUIAltaUsuario extends JFrame {
 	private JLabel label_5;
 	private SimpleDateFormat fechaNac;
 	private SimpleDateFormat fechaVenc;
-	
+
 	private JTextField numTarjeta;
 	private JTextField nombreTarjeta;
 
@@ -80,32 +80,6 @@ public class GUIAltaUsuario extends JFrame {
 	public GUIAltaUsuario() {
 		super();
 		this.contentPane = new JPanel();
-		this.txtNombre = new JTextField();
-		this.txtApellidos = new JTextField();
-		this.txtEmail = new JTextField();
-		this.txtContrasea = new JTextField();
-		this.numTarjeta = new JTextField();
-		this.nombreTarjeta = new JTextField();
-		this.lblFechaDeNacimiento = new JLabel();
-		this.txtConfirmarContrasea = new JTextField();
-		this.dia = new JSpinner();
-		this.mes = new JSpinner();
-		this.anio = new JSpinner();
-		this.mes_2 = new JSpinner();
-		this.anio_2 = new JSpinner();
-		this.fechaNac = new SimpleDateFormat("dd/MM/yyyy");
-		this.fechaVenc = new SimpleDateFormat("MM/yyyy");
-		this.txtDireccin = new JTextField();
-		this.lblDatosPersonales = new JLabel();
-		this.separator = new JSeparator();
-		this.lblNewLabel = new JLabel();
-		this.label = new JLabel();
-		this.label_1 = new JLabel();
-		this.label_2 = new JLabel();
-		this.label_3 = new JLabel();
-		this.label_4 = new JLabel();
-		this.label_5 = new JLabel();
-		this.btnFinalizar = new JButton();
 		this.setFocusable(true);
 		initGUI();
 	}
@@ -218,15 +192,18 @@ public class GUIAltaUsuario extends JFrame {
 		lblFechaDeNacimiento.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblFechaDeNacimiento.setBounds(28, 109, 124, 14);
 		panel.add(lblFechaDeNacimiento);
-		
+
+		dia = new JSpinner();
 		dia.setModel(new SpinnerNumberModel(1, 1, 31, 1));
 		dia.setBounds(28, 134, 39, 20);
 		panel.add(dia);
 
+		mes = new JSpinner();
 		mes.setModel(new SpinnerNumberModel(1, 1, 12, 1));
 		mes.setBounds(77, 134, 39, 20);
 		panel.add(mes);
 
+		anio = new JSpinner();
 		anio.setModel(new SpinnerNumberModel(1900, 1900, 2001, 1));
 		anio.setBounds(126, 134, 65, 20);
 		panel.add(anio);
@@ -253,7 +230,6 @@ public class GUIAltaUsuario extends JFrame {
 		txtConfirmarContrasea.setBounds(28, 434, 139, 20);
 		panel.add(txtConfirmarContrasea);
 		txtConfirmarContrasea.setColumns(10);
-
 
 		txtDireccin = new JTextField();
 		txtDireccin.addFocusListener(new FocusAdapter() {
@@ -291,7 +267,7 @@ public class GUIAltaUsuario extends JFrame {
 		label_6.setBounds(28, 211, 152, 23);
 		panel.add(label_6);
 
-	
+		numTarjeta = new JTextField();
 		numTarjeta.setText("N\u00FAmero de tarjeta");
 		numTarjeta.setForeground(Color.DARK_GRAY);
 		numTarjeta.setColumns(10);
@@ -313,7 +289,7 @@ public class GUIAltaUsuario extends JFrame {
 		});
 		panel.add(numTarjeta);
 
-		
+		nombreTarjeta = new JTextField();
 		nombreTarjeta.setText("Nombre en la tarjeta");
 		nombreTarjeta.setForeground(Color.DARK_GRAY);
 		nombreTarjeta.setColumns(10);
@@ -340,69 +316,77 @@ public class GUIAltaUsuario extends JFrame {
 		label_7.setBounds(29, 318, 138, 14);
 		panel.add(label_7);
 
-		
+		mes_2 = new JSpinner();
 		mes_2.setModel(new SpinnerNumberModel(1, 1, 12, 1));
 		mes_2.setBounds(28, 343, 46, 20);
 		panel.add(mes_2);
 
-		anio_2.setModel(new SpinnerNumberModel(new Integer(2019),
-				new Integer(2019), null, new Integer(1)));
+		anio_2 = new JSpinner();
+		anio_2.setModel(new SpinnerNumberModel(new Integer(2019), new Integer(
+				2019), null, new Integer(1)));
 		anio_2.setBounds(86, 343, 66, 20);
 		panel.add(anio_2);
-		
+
 		btnFinalizar = new JButton("Finalizar");
-		/*btnFinalizar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (!datosObligatorios()) {
-					JOptionPane.showOptionDialog(new JFrame(),
-							"Debes rellenar los campos obligatorios (*)",
-							"Quit", JOptionPane.OK_OPTION,
-							JOptionPane.OK_OPTION, null, null, null);
-				}
-				contraseñaErr();
-			}
-		});*/
+		/*
+		 * btnFinalizar.addMouseListener(new MouseAdapter() {
+		 * 
+		 * @Override public void mouseClicked(MouseEvent e) { if
+		 * (!datosObligatorios()) { JOptionPane.showOptionDialog(new JFrame(),
+		 * "Debes rellenar los campos obligatorios (*)", "Quit",
+		 * JOptionPane.OK_OPTION, JOptionPane.OK_OPTION, null, null, null); }
+		 * contraseñaErr(); 
+		 * cuentaBancariaOK();
+		 * } });
+		 */
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
-		
-				
-				try{
-					int id = generarId();
+
+				try {
 					String nombre = txtNombre.getText();
 					String apellidos = txtApellidos.getText();
 					String email = txtEmail.getText();
-					//fecha de nacimiento
+					// fecha de nacimiento
 					Date fechaNacimiento = null;
+					fechaNac = new SimpleDateFormat("dd/MM/yyyy");
 					try {
-						fechaNacimiento = fechaNac.parse(dia.getValue().toString() + "/" + mes.getValue().toString() + "/"
-								+ anio.getValue().toString());
+						fechaNacimiento = fechaNac.parse(dia.getValue()
+								.toString()
+								+ "/"
+								+ mes.getValue().toString()
+								+ "/" + anio.getValue().toString());
 					} catch (ParseException e2) {
 						e2.printStackTrace();
 					}
 					String direccion = txtDireccin.getText();
 					String nombTarjeta = nombreTarjeta.getText();
 					String numeroTarjeta = numTarjeta.getText();
-				
-					//fecha de vencimiento
+
+					// fecha de vencimiento
 					Date fechaVencimiento = null;
+					fechaVenc = new SimpleDateFormat("MM/yyyy");
 					try {
-						fechaVencimiento = fechaVenc.parse(mes_2.getValue().toString() + "/" + anio_2.getValue().toString());
+						fechaVencimiento = fechaVenc.parse(mes_2.getValue()
+								.toString()
+								+ "/"
+								+ anio_2.getValue().toString());
 					} catch (ParseException e1) {
 						e1.printStackTrace();
 					}
 					String contraseña = txtContrasea.getText();
-				
+
 					usuario = new TUsuario(nombre, apellidos, email,
-							fechaNacimiento,direccion ,contraseña, nombTarjeta,numeroTarjeta,fechaVencimiento,true);
-					Controlador.getInstance().accion(Events.ALTA_USUARIO, usuario);
-				}
-				catch(Exception ex){
-					JOptionPane.showMessageDialog(null, "Información Errónea", "Error", JOptionPane.ERROR_MESSAGE);
+							fechaNacimiento, direccion, contraseña,
+							nombTarjeta, numeroTarjeta, fechaVencimiento, true);
+					Controlador.getInstance().accion(Events.ALTA_USUARIO,
+							usuario);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Información Errónea",
+							"Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
+		
 		btnFinalizar.setBounds(318, 467, 89, 23);
 		panel.add(btnFinalizar);
 
@@ -448,56 +432,71 @@ public class GUIAltaUsuario extends JFrame {
 		label_5.setBounds(20, 434, 17, 14);
 		panel.add(label_5);
 
-		
 	}
 
 	private boolean datosObligatorios() {
-		if (txtNombre.getText().equals("Nombre") || txtApellidos.getText().equals("Apellido(s)") || txtEmail.getText().equals("E-mail")
-				|| txtContrasea.getText().equals("Contraseña") || txtConfirmarContrasea.getText().equals("Confirmar contraseña")
+		if (txtNombre.getText().equals("Nombre")
+				|| txtApellidos.getText().equals("Apellido(s)")
+				|| txtEmail.getText().equals("E-mail")
+				|| txtContrasea.getText().equals("Contraseña")
+				|| txtConfirmarContrasea.getText().equals(
+						"Confirmar contraseña")
 				|| txtDireccin.getText().equals("Dirección"))
 			return false;
 		return true;
 	}
 
 	private boolean contraseñaErr() {
-		if (!this.txtConfirmarContrasea.getText().equals(this.txtContrasea.getText())) {
+		if (!this.txtConfirmarContrasea.getText().equals(
+				this.txtContrasea.getText())) {
 			txtContrasea.setBackground(Color.red);
 			txtConfirmarContrasea.setBackground(Color.red);
-			JOptionPane.showMessageDialog(new JFrame(), "La contraseña no coincide");
+			JOptionPane.showMessageDialog(new JFrame(),
+					"La contraseña no coincide");
+			return true;
+		} else if (this.txtConfirmarContrasea.getText().length() < 8) {
+			txtContrasea.setBackground(Color.red);
+			txtConfirmarContrasea.setBackground(Color.red);
+			JOptionPane.showMessageDialog(new JFrame(),
+					"La contraseña debe contener al menos 8 caracteres");
 			return true;
 		}
+
 		else {
 			txtContrasea.setBackground(Color.white);
 			txtConfirmarContrasea.setBackground(Color.white);
 
-		return false;
+			return false;
 		}
 	}
 	
-	public int generarId(){
-		int[] randomNumbers = new int[6];
-		int randomId = -1;
-	    Random rn = new Random();
-	    for (int i = 0; i < randomNumbers.length; i++)
-	             randomId = rn.nextInt(30) + 10000;//5 digitos
-	    return randomId;
+	private boolean cuentaBancariaOK(){
+		if(numTarjeta.getText().length() != 16){
+			numTarjeta.setBackground(Color.red);
+			JOptionPane.showMessageDialog(new JFrame(),
+					"El número de tarjeta deben ser 16 dígitos");
+			return false;
+		}
+		else numTarjeta.setBackground(Color.white);
+		return true;
 	}
-	
-	public void clearData(){
+
+	public void clearData() {
 		this.contentPane = new JPanel();
 	}
-	
-	public void update(int event, Object res){
+
+	public void update(int event, Object res) {
 		switch (event) {
 		case Events.ALTA_USUARIO_OK:
-			JOptionPane.showMessageDialog(null,"Éxito al crear el usuario");
+			JOptionPane.showMessageDialog(null, "Éxito al crear el usuario");
 			dispose();
 			break;
 		case Events.ALTA_USUARIO_KO:
-			JOptionPane.showMessageDialog(null, "Error al crear el usuario", "Error Alta Usuario", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Error al crear el usuario",
+					"Error Alta Usuario", JOptionPane.ERROR_MESSAGE);
 			break;
 		}
-		
+
 	}
 	// GENERAR ID ALEATORIO TODO
 }

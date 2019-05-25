@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -47,7 +48,7 @@ public class GUIBuscarporIdUsuario extends JFrame{
 	private JTable table_1;
 	private DefaultTableModel model;
 	private DefaultTableModel model_1;
-	
+
 	private int id;
 	
 	
@@ -161,42 +162,43 @@ public class GUIBuscarporIdUsuario extends JFrame{
 		model_1.setRowCount(0);
 		table_1.setModel(model_1);
 	}
+	
 	//Diseño e impresora pedir a plataforma lista asociada id
 	//Utilizar parametro id
-	public void update(int event, ArrayList<TDiseño> res, ArrayList<TImpresora> res_1) {//TODO
-		switch (event) {
-		case Events.BUSCAR_USUARIO_OK:
-			model.setRowCount(0);
-			for (int i = 0; i < res.size(); i++)
-				model.insertRow(i, new Object[] {
-						i + 1,
-						res.get(i).getId_diseño(),
-						res.get(i).getNombre(),
-						res.get(i).getDescripcion(),
-						res.get(i).getAlto() + "x" + res.get(i).getAncho()
-								+ "x" + res.get(i).getProfundidad(),
-						res.get(i).getPrecio()
-						});
-			table.setModel(model);
-			
-			model_1.setRowCount(0);
-			for (int i = 0; i < res_1.size(); i++)
-				model_1.insertRow(i, new Object[] {
-						i + 1,
-						res_1.get(i).getId_impresora(),
-						res_1.get(i).getNombre(),
-						res_1.get(i).getAlto() + "x" + res.get(i).getAncho()
-								+ "x" + res.get(i).getProfundidad(),
-						res_1.get(i).getPrecio()
-						});
-			table_1.setModel(model_1);
-			break;
-		case Events.BUSCAR_USUARIO_KO:
-			JOptionPane.showMessageDialog(null,
-					"Error al buscar el usuario", "Error Buscar",
-					JOptionPane.ERROR_MESSAGE);
-			break;
-		}
-
-	}
+//	public void update(int event, ?) {//TODO
+//		switch (event) {
+//		case Events.BUSCAR_USUARIO_OK:
+//			model.setRowCount(0);
+//			for (int i = 0; i < res.size(); i++)
+//				model.insertRow(i, new Object[] {
+//						i + 1,
+//						res.get(i).getId_diseño(),
+//						res.get(i).getNombre(),
+//						res.get(i).getDescripcion(),
+//						res.get(i).getAlto() + "x" + res.get(i).getAncho()
+//								+ "x" + res.get(i).getProfundidad(),
+//						res.get(i).getPrecio()
+//						});
+//			table.setModel(model);
+//			
+//			model_1.setRowCount(0);
+//			for (int i = 0; i < res_1.size(); i++)
+//				model_1.insertRow(i, new Object[] {
+//						i + 1,
+//						res_1.get(i).getId_impresora(),
+//						res_1.get(i).getNombre(),
+//						res_1.get(i).getAlto() + "x" + res.get(i).getAncho()
+//								+ "x" + res.get(i).getProfundidad(),
+//						res_1.get(i).getPrecio()
+//						});
+//			table_1.setModel(model_1);
+//			break;
+//		case Events.BUSCAR_USUARIO_KO:
+//			JOptionPane.showMessageDialog(null,
+//					"Error al buscar el usuario", "Error Buscar",
+//					JOptionPane.ERROR_MESSAGE);
+//			break;
+//		}
+//
+//	}
 }

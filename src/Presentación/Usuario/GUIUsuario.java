@@ -23,5 +23,5 @@ public abstract class GUIUsuario extends JFrame{
 		return instance;
 	}
 	
-	public abstract void update(int event, Object res);//Object res_1
+	public abstract void update(int event, Object res);
 }

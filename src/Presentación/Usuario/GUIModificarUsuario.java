@@ -31,6 +31,7 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
 import javax.swing.JSpinner;
+import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
@@ -47,6 +48,7 @@ import Presentación.Controlador.Events;
  * @generated 
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
+@SuppressWarnings("serial")
 public class GUIModificarUsuario extends JFrame {
 
 	private JPanel contentPane;
@@ -75,28 +77,11 @@ public class GUIModificarUsuario extends JFrame {
 	private SimpleDateFormat fechaVenc;
 
 	private int id;
+	
 
 	public GUIModificarUsuario() {
 		super();
 		this.contentPane = new JPanel();
-		this.txtNombre = new JTextField();
-		this.numTarjeta = new JTextField();
-		this.nombreTarjeta = new JTextField();
-		this.txtApellidos = new JTextField();
-		this.txtEmail = new JTextField();
-		this.txtIdusuario = new JTextField();
-		this.txtContrasea = new JTextField();
-		this.txtConfirmarContrasea = new JTextField();
-		this.dia = new JSpinner();
-		this.mes = new JSpinner();
-		this.anio = new JSpinner();
-		this.mes_2 = new JSpinner();
-		this.anio_2 = new JSpinner();
-		this.txtDireccin = new JTextField();
-		this.separator = new JSeparator();
-		this.btnFinalizar = new JButton();
-		this.fechaNac = new SimpleDateFormat("dd/MM/yyyy");
-		this.fechaVenc = new SimpleDateFormat("MM/yyyy");
 		this.setFocusable(true);
 		initGUI();
 	}
@@ -113,7 +98,8 @@ public class GUIModificarUsuario extends JFrame {
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		
+
+		txtIdusuario = new JTextField();
 		txtIdusuario.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
@@ -268,6 +254,7 @@ public class GUIModificarUsuario extends JFrame {
 		lblFechaDeNacimiento.setBounds(28, 171, 124, 14);
 		panel.add(lblFechaDeNacimiento);
 
+		dia = new JSpinner();
 		dia.setModel(new SpinnerNumberModel(1, 1, 31, 1));
 		dia.setBounds(28, 196, 39, 20);
 		panel.add(dia);
@@ -318,13 +305,13 @@ public class GUIModificarUsuario extends JFrame {
 		lblDatosBancarios.setBounds(28, 258, 152, 23);
 		panel.add(lblDatosBancarios);
 
-		numTarjeta.setText("N\u00FAmero de tarjeta");
+		numTarjeta = new JTextField("N\u00FAmero de tarjeta");
 		numTarjeta.setForeground(Color.DARK_GRAY);
 		numTarjeta.setColumns(10);
 		numTarjeta.setBounds(28, 292, 152, 20);
 		panel.add(numTarjeta);
 
-		nombreTarjeta.setText("Nombre en la tarjeta");
+		nombreTarjeta = new JTextField("Nombre en la tarjeta");
 		nombreTarjeta.setForeground(Color.DARK_GRAY);
 		nombreTarjeta.setColumns(10);
 		nombreTarjeta.setBounds(28, 323, 152, 20);
@@ -335,10 +322,12 @@ public class GUIModificarUsuario extends JFrame {
 		lblFechaVencimiento.setBounds(28, 354, 138, 14);
 		panel.add(lblFechaVencimiento);
 
+		mes_2 = new JSpinner();
 		mes_2.setModel(new SpinnerNumberModel(1, 1, 12, 1));
 		mes_2.setBounds(28, 379, 46, 20);
 		panel.add(mes_2);
 
+		anio_2 = new JSpinner();
 		anio_2.setModel(new SpinnerNumberModel(new Integer(2019), new Integer(
 				2019), null, new Integer(1)));
 		anio_2.setBounds(86, 379, 66, 20);
@@ -351,31 +340,29 @@ public class GUIModificarUsuario extends JFrame {
 				String nombre = txtNombre.getText();
 				String apellidos = txtApellidos.getText();
 				String email = txtEmail.getText();
-				// fecha de nacimiento
 				Date fechaNacimiento = null;
+				fechaNac = new SimpleDateFormat("dd/MM/yyyy");
 				try {
 					fechaNacimiento = fechaNac.parse(dia + "/" + mes + "/"
 							+ anio);
 				} catch (ParseException e2) {
-					// TODO Bloque catch generado automáticamente
 					e2.printStackTrace();
 				}
 				String direccion = txtDireccin.getText();
 				String nombTarjeta = nombreTarjeta.getText();
 				String numeroTarjeta = numTarjeta.getText();
-				// fecha de vencimiento
 				Date fechaVencimiento = null;
+				fechaVenc = new SimpleDateFormat("MM/yyyy");
 				try {
 					fechaVencimiento = fechaVenc.parse(mes_2 + "/" + anio_2);
 				} catch (ParseException e1) {
-					// TODO Bloque catch generado automáticamente
 					e1.printStackTrace();
 				}
 				String contraseña = txtContrasea.getText();
 
 				TUsuario tUsuario = new TUsuario(id, nombre, apellidos, email,
 						fechaNacimiento, direccion, contraseña, nombTarjeta,
-						numeroTarjeta, fechaVencimiento,true);
+						numeroTarjeta, fechaVencimiento, true);
 				Controlador.getInstance().accion(Events.MODIFICAR_USUARIO,
 						tUsuario);
 			}
@@ -387,10 +374,42 @@ public class GUIModificarUsuario extends JFrame {
 		separator_1.setBounds(28, 60, 306, 2);
 		panel.add(separator_1);
 	}
+	
+	public void clearData(){
+		txtNombre.setText("");
+		txtApellidos.setText("");
+		txtApellidos.setText("");
+		txtContrasea.setText("");
+		txtConfirmarContrasea.setText("");
+		txtDireccin.setText("");
+		numTarjeta.setText("");
+		nombreTarjeta.setText("");
+		txtEmail.setText("");
+		dia.setValue(0);
+		mes.setValue(0);
+		anio.setValue(0);
+		mes_2.setValue(0);
+		anio_2.setValue(0);
+		
+		txtNombre.setEditable(false);
+		txtApellidos.setEditable(false);
+		txtApellidos.setEditable(false);
+		txtContrasea.setEditable(false);
+		txtConfirmarContrasea.setEditable(false);
+		txtDireccin.setEditable(false);
+		numTarjeta.setEditable(false);
+		nombreTarjeta.setEditable(false);
+		((DefaultEditor) dia.getEditor()).getTextField().setEditable(false);
+		((DefaultEditor) mes.getEditor()).getTextField().setEditable(false);
+		((DefaultEditor) anio.getEditor()).getTextField().setEditable(false);
+		((DefaultEditor) mes_2.getEditor()).getTextField().setEditable(false);
+		((DefaultEditor) anio_2.getEditor()).getTextField().setEditable(false);
+		txtEmail.setEditable(false);
+	}
 
 	public void update(int events, Object res) {
 		switch (events) {
-		case Events.MODIFICAR_USUARIO:
+		case Events.MODIFICAR_USUARIO_OK:
 			JOptionPane.showMessageDialog(null,
 					"Éxito al modificar el usuario id: " + id);
 			dispose();
@@ -400,6 +419,37 @@ public class GUIModificarUsuario extends JFrame {
 					"Error al modificar el usuario id: " + id, "Error Usuario",
 					JOptionPane.ERROR_MESSAGE);
 			break;
+		case Events.MODIFICAR_USUARIO:
+			txtNombre.setEditable(true);
+			txtApellidos.setEditable(true);
+			txtApellidos.setEditable(true);
+			txtContrasea.setEditable(true);
+			txtConfirmarContrasea.setEditable(true);
+			txtDireccin.setEditable(true);
+			numTarjeta.setEditable(true);
+			nombreTarjeta.setEditable(true);
+			((DefaultEditor) dia.getEditor()).getTextField().setEditable(true);
+			((DefaultEditor) mes.getEditor()).getTextField().setEditable(true);
+			((DefaultEditor) anio.getEditor()).getTextField().setEditable(true);
+			((DefaultEditor) mes_2.getEditor()).getTextField().setEditable(true);
+			((DefaultEditor) anio_2.getEditor()).getTextField().setEditable(true);
+			txtEmail.setEditable(true);
+			
+			txtNombre.setEnabled(true);
+			txtApellidos.setEnabled(true);
+			txtApellidos.setEnabled(true);
+			txtContrasea.setEnabled(true);
+			txtConfirmarContrasea.setEnabled(true);
+			txtDireccin.setEnabled(true);
+			numTarjeta.setEnabled(true);
+			nombreTarjeta.setEnabled(true);
+			txtEmail.setEnabled(true);
+			dia.setEnabled(true);
+			mes.setEnabled(true);
+			anio.setEnabled(true);
+			mes_2.setEnabled(true);
+			anio_2.setEnabled(true);
+			break;	
 		}
 	}
 }

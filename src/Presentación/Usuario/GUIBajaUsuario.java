@@ -7,6 +7,8 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.HeadlessException;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -33,15 +35,13 @@ import Presentación.Controlador.Events;
 public class GUIBajaUsuario extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField textId;
 	private JPasswordField passwordField;
 	private int id;
 
 	public GUIBajaUsuario() {
 		super();
 		this.contentPane = new JPanel();
-		this.textField = new JTextField();
-		this.passwordField = new JPasswordField();
 		initGUI();
 	}
 
@@ -68,10 +68,15 @@ public class GUIBajaUsuario extends JFrame {
 		lblEmail.setBounds(62, 120, 46, 14);
 		panel.add(lblEmail);
 
-		textField = new JTextField();
-		textField.setBounds(135, 117, 162, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		textId = new JTextField();
+		textId.setBounds(135, 117, 162, 20);
+		panel.add(textId);
+		textId.setColumns(10);
+		
+		passwordField = new JPasswordField();
+		passwordField = new JPasswordField();
+		passwordField.setBounds(135, 150, 162, 20);
+		panel.add(passwordField);
 
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
 		lblContrasea.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -79,27 +84,18 @@ public class GUIBajaUsuario extends JFrame {
 		panel.add(lblContrasea);
 
 		JButton btnConfirmarBaja = new JButton("Confirmar baja");
-		btnConfirmarBaja.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		btnConfirmarBaja.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				id = Integer.parseInt(textId.getText());
 				JOptionPane.showOptionDialog(new JFrame(), "¿Estás seguro?",
 						"Quit", JOptionPane.YES_NO_OPTION,
 						JOptionPane.YES_NO_OPTION, null, null, null );
-				if(true){
-					//Desactivar de la BBDD
-				}
-				/*
-				 * 	Controlador.getInstance().accion(Events.BAJA_USUARIO,
-						tUsuario);
-						*/
+				if(true) Controlador.getInstance().accion(Events.BAJA_USUARIO, id);
+				else dispose();
 			}
 		});
 		btnConfirmarBaja.setBounds(152, 196, 123, 23);
 		panel.add(btnConfirmarBaja);
-
-		passwordField = new JPasswordField();
-		passwordField.setBounds(135, 150, 162, 20);
-		panel.add(passwordField);
 	}
 
 	public void update(int event, Object res) {

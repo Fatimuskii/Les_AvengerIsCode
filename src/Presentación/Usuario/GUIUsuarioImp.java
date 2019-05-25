@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,6 +24,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import Negocio.Diseño.TDiseño;
+import Negocio.Usuario.TUsuario;
 import Presentación.GUIMensaje;
 import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
@@ -57,10 +60,10 @@ public class GUIUsuarioImp extends GUIUsuario {
 		super();
 		this.contentPane = new JPanel();
 		this.GUI_ImpresoraImp = new GUIImpresoraImp();
-		this.GUI_ModificarUsuario = new GUIModificarUsuario();
 		this.GUI_BajaUsuario = new GUIBajaUsuario();
 		this.GUI_AltaUsuario = new GUIAltaUsuario();
 		this.GUI_ListarUsuarios = new GUIListarUsuarios();
+		this.GUI_ModificarUsuario = new GUIModificarUsuario();
 		initGUI();
 	}
 
@@ -202,6 +205,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 		JMenuItem mntmModificarUsuario = new JMenuItem("Modificar usuario");
 		mntmModificarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				GUI_ModificarUsuario.clearData();
 				GUI_ModificarUsuario.setVisible(true);
 			}
 		});
@@ -229,14 +233,15 @@ public class GUIUsuarioImp extends GUIUsuario {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void update(int event, Object res) {
 		switch (event) {
 		case Events.ALTA_USUARIO_OK:
-			GUI_AltaUsuario.update(event, null);
+			GUI_AltaUsuario.update(event, res);
 			break;
 		case Events.ALTA_USUARIO_KO:
-			GUI_AltaUsuario.update(event, null);
+			GUI_AltaUsuario.update(event, res);
 			break;
 		case Events.BAJA_USUARIO_OK:
 			GUI_BajaUsuario.update(event, res);
@@ -251,10 +256,10 @@ public class GUIUsuarioImp extends GUIUsuario {
 			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_KO, res);
 			break;
 		case Events.LISTAR_USUARIO_OK:
-			GUI_ListarUsuarios.update(event, null);
+			GUI_ListarUsuarios.update(event, (ArrayList<TUsuario>) res);
 			break;
 		case Events.LISTAR_USUARIO_KO:
-			GUI_ListarUsuarios.update(event, null);
+			GUI_ListarUsuarios.update(event, (ArrayList<TUsuario>) res);
 			break;
 //		case Events.BUSCAR_USUARIO_OK:
 //			GUI_BuscarporIdUsuario.update(event, null);

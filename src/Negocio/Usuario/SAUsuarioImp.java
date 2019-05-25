@@ -57,11 +57,11 @@ public class SAUsuarioImp implements SAUsuario {
 	}
 
 	public int modificarUsuario(TUsuario tUsuario) {
-		DAOUsuario daoUsuario = FactoriaDAO.getInstance().generateDAOUsuario();
-
-		if (daoUsuario.buscarIdUsuario(tUsuario.getIdUsuario()) != null)
-			return daoUsuario.modificarUsuario(tUsuario);
-
+		if (tUsuario != null) {
+			DAOUsuario daoUsuario = FactoriaDAO.getInstance().generateDAOUsuario();
+			if (daoUsuario.buscarIdUsuario(tUsuario.getIdUsuario()) != null)
+				return daoUsuario.modificarUsuario(tUsuario);
+		}
 		return -1;
 	}
 
