@@ -87,18 +87,10 @@ public class TDiseño {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Object imagen;
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
 	private boolean activo;
 	
 	public TDiseño(int id, String nombre, String descripcion, int idUsuario, float alto,
-			float ancho, float profundidad, float precio, String archivo, /*Object imagen,*/
-			boolean activo) {
+			float ancho, float profundidad, float precio, String archivo, boolean activo) {
 		this.id_diseño = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -108,13 +100,11 @@ public class TDiseño {
 		this.profundidad = profundidad;
 		this.precio = precio;
 		this.archivo = archivo;
-		//this.imagen = imagen;
 		this.activo = activo;
 	}
 	
 	public TDiseño(String nombre, String descripcion, int idUsuario, float alto,
-			float ancho, float profundidad, float precio, String archivo,/* Object imagen,*/
-			boolean activo) {
+			float ancho, float profundidad, float precio, String archivo, boolean activo) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.propietario = idUsuario;
@@ -220,7 +210,7 @@ public class TDiseño {
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
-	 * @param dimensiones
+	 * @param alto
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
@@ -246,7 +236,7 @@ public class TDiseño {
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
-	 * @param dimensiones
+	 * @param ancho
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
@@ -272,7 +262,7 @@ public class TDiseño {
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
-	 * @param dimensiones
+	 * @param profundidad
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
@@ -385,32 +375,6 @@ public class TDiseño {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
 		this.archivo = archivo;
-		// end-user-code
-	}
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public Object getImagen() {
-		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return this.imagen;
-		// end-user-code
-	}
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @param imagen
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void setImagen(Object imagen) {
-		// begin-user-code
-		this.imagen = imagen;
 		// end-user-code
 	}
 

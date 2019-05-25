@@ -42,7 +42,7 @@ public class GUIBuscarPalabraDiseño extends JFrame{
 	}
 	
 	private void initGUI(){
-		setTitle("Listar Diseños por Palabra");
+		setTitle("Listar Diseños por Palabra Clave");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 600, 300);
 		contentPane = new JPanel();

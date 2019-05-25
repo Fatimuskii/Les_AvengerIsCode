@@ -287,11 +287,19 @@ public class ControladorImp extends Controlador {
 			break;
 		case Events.LISTAR_DISEÑOS_USU:
 			idUsuario = (int) datos;
-			resultD = this.SADiseño.listarPorUsuario(idUsuario);
-			if (resultD != null)
-				GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_USU_OK, resultD);
-			else
-				GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_USU_KO, resultD);
+			
+			tUsuario = this.SAUsuario.buscarIdUsuario(idUsuario);
+			
+			if(tUsuario != null){
+				resultD = this.SADiseño.listarPorUsuario(idUsuario);
+				if (resultD != null)
+					GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_USU_OK, resultD);
+				else
+					GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_USU_KO, resultD);
+			}
+			else{
+				GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_USU_KO, null);
+			}
 			break;
 		case Events.BUSCAR_DISEÑO_ID:
 			idDiseño = (int) datos;

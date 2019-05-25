@@ -60,20 +60,20 @@ public class GUIBajaDiseño extends JFrame{
 		JButton btnDarDeBaja = new JButton("Dar de Baja");
 		btnDarDeBaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try{
+					id = Integer.parseInt(textId.getText());
 				
-				//Comprobar si el ID es correcto
-				id = Integer.parseInt(textId.getText());
-				//Comprobar si existe el ID del diseño
-				
-				int confirma = JOptionPane.showConfirmDialog(null, "¿Desea dar de baja el diseño?", "Confirmar baja de Diseño", 
-						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-				if(confirma == JOptionPane.YES_OPTION) {
-					Controlador.getInstance().accion(Events.BAJA_DISEÑO, id);
+					int confirma = JOptionPane.showConfirmDialog(null, "¿Desea dar de baja el diseño?", "Confirmar baja de Diseño", 
+							JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+					if(confirma == JOptionPane.YES_OPTION) {
+						Controlador.getInstance().accion(Events.BAJA_DISEÑO, id);
+					}
+					else {
+						dispose();
+					}
 				}
-				else {
-					dispose();
-					//No dar de baja el diseño
-					//¿Volver a Menú o a la GUI de baja?
+				catch(Exception ex){
+					JOptionPane.showMessageDialog(null, "Introduzca un id correcto (número)", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -97,7 +97,7 @@ public class GUIBajaDiseño extends JFrame{
 		switch (event) {
 		case Events.BAJA_DISEÑO_OK:
 			JOptionPane.showMessageDialog(null,"Eliminado correctamente el diseño: "+ id, "", JOptionPane.INFORMATION_MESSAGE);
-			//this.setVisible(false);
+			dispose();
 			break;
 		case Events.BAJA_DISEÑO_KO:
 			JOptionPane.showMessageDialog(null,"Error al eliminar el diseño: " +id, "", JOptionPane.ERROR_MESSAGE);

@@ -26,6 +26,19 @@ CREATE TABLE IF NOT EXISTS disenos(
 	PRIMARY KEY (idDiseno)
 );
 
+--
+-- Estructura de tabla para la tabla `impresora`
+--
+CREATE TABLE IF NOT EXISTS impresora(
+	idImpresora int(11) NOT NULL AUTO_INCREMENT,
+	nombre varchar(20) NOT NULL,
+	alto float NOT NULL,
+	ancho float NOT NULL,
+	profundidad float NOT NULL,
+	usuario int(11) NOT NULL,
+	activo tinyint(1) NOT NULL,
+	PRIMARY KEY (idImpresora)
+);
 
 --
 -- Estructura de tabla para la tabla `locales`

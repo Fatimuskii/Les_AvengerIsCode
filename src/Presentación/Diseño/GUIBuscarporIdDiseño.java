@@ -51,7 +51,7 @@ public class GUIBuscarporIdDiseño extends JFrame{
 	}
 	
 	private void initGUI(){
-		setTitle("Diseño id:IDDiseño");
+		setTitle("Buscar Diseño");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 320);
 		contentPane = new JPanel();
@@ -96,7 +96,6 @@ public class GUIBuscarporIdDiseño extends JFrame{
 		btnAceptar = new JButton("Aceptar");
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				dispose();
 			}
 		});
@@ -211,7 +210,8 @@ public class GUIBuscarporIdDiseño extends JFrame{
 			textPane.setEnabled(true);
 			break;
 		case Events.BUSCAR_DISEÑO_ID_KO:
-			JOptionPane.showMessageDialog(null,"Error al crear el producto");
+			this.dispose();
+			JOptionPane.showMessageDialog(null, "Error al buscar el diseño");
 			break;
 		}
 		

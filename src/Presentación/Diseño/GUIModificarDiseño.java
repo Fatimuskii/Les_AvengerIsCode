@@ -131,19 +131,29 @@ public class GUIModificarDiseño extends JFrame{
 		btnModificar.setBounds(288, 346, 112, 34);
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				id = Integer.parseInt(textID.getText());
-				String nombre = textNombre.getText();
-				String descripcion = textPane.getText();
-				float precio = Float.parseFloat(textPrecio.getText());
-				float alto = Float.parseFloat(textAlto.getText());
-				float ancho = Float.parseFloat(textAncho.getText());
-				float profundidad = Float.parseFloat(textProfundidad.getText());
-				String archivo = textArchivo.getText();
+				try{
+					id = Integer.parseInt(textID.getText());
+					String nombre = textNombre.getText();
+					String descripcion = textPane.getText();
+					float precio = Float.parseFloat(textPrecio.getText());
+					float alto = Float.parseFloat(textAlto.getText());
+					float ancho = Float.parseFloat(textAncho.getText());
+					float profundidad = Float.parseFloat(textProfundidad.getText());
+					String archivo = textArchivo.getText();
 				
-				TDiseño tDiseño = new TDiseño (id, nombre, descripcion,1, alto, ancho, profundidad,precio, archivo,true); 
+					if(nombre.equals("") || textAlto.getText().equals("") || textAncho.getText().equals("")||
+							textProfundidad.getText().equals("") || textPrecio.getText().equals("") || 
+							textArchivo.getText().equals("")){
+						throw new Exception();
+					}
+						
+					TDiseño tDiseño = new TDiseño (id, nombre, descripcion,1, alto, ancho, profundidad,precio, archivo,true); 
 				
-				Controlador.getInstance().accion(Events.MODIFICAR_DISEÑO, tDiseño);
-				
+					Controlador.getInstance().accion(Events.MODIFICAR_DISEÑO, tDiseño);
+				}
+				catch(Exception ex){
+					JOptionPane.showMessageDialog(null, "Introduzca todos los datos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		

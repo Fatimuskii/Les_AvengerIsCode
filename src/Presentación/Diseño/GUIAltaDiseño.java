@@ -111,11 +111,17 @@ public class GUIAltaDiseño extends JFrame{
 					//¿String?
 					String archivo = textArchivo.getText();
 					
+					if(nombre.equals("") || textAltura.getText().equals("") || textAncho.getText().equals("")||
+							textProfundidad.getText().equals("") || textPrecio.getText().equals("") ||
+							textArchivo.getText().equals("")){
+						throw new Exception();
+					}
+					
 					diseño = new TDiseño(nombre, descripcion, 1, altura, ancho, profundidad, precio, archivo, true);
 					Controlador.getInstance().accion(Events.ALTA_DISEÑO, diseño);
 				}
 				catch(Exception ex){
-					JOptionPane.showMessageDialog(null, "Información Errónea", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Introduzca todos los datos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -293,6 +299,7 @@ public class GUIAltaDiseño extends JFrame{
 			break;
 		case Events.ALTA_DISEÑO_KO:
 			JOptionPane.showMessageDialog(null, "Error al crear el diseño");
+			this.toFront();
 			break;
 		}
 		

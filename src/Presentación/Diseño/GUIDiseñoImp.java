@@ -149,15 +149,27 @@ public class GUIDiseñoImp extends GUIDiseño {
 			public void actionPerformed(ActionEvent e) {
 				gUIModificarDiseño.clearData();
 				gUIModificarDiseño.setVisible(true);
-
 			}
 		});
 
 		JButton btnListarDiseosPor = new JButton("Listar Diseños por usuario");
 		btnListarDiseosPor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				gUIListarporUsuarioDiseño.clearData();
-				gUIListarporUsuarioDiseño.setVisible(true);
+				try{
+					if(txtListarIdusuario.getText().equals("(idUsuario)")){
+						throw new Exception("Introduzca una palabra clave");
+					}
+					int usuario = Integer.parseInt(txtListarIdusuario.getText());
+					
+					gUIListarporUsuarioDiseño.clearData();
+					gUIListarporUsuarioDiseño.setVisible(true);
+					
+					Controlador.getInstance().accion(Events.LISTAR_DISEÑOS_USU, usuario);
+					gUIBuscarPalabraDiseño.toFront();
+				}
+				catch(Exception ex){
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 
@@ -165,20 +177,18 @@ public class GUIDiseñoImp extends GUIDiseño {
 		btnBuscarDiseo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gUIBuscarporIdDiseño.clearData();
-				int id = Integer.parseInt(txtBuscarId.getText());
-				
-				gUIBuscarporIdDiseño.setVisible(true);
-				
-				
 				try {
-					Controlador.getInstance().accion(Events.BUSCAR_DISEÑO_ID, id);
-				} catch (Exception ex) {
-					JOptionPane.showMessageDialog(new JFrame(),
-							"Información Errónea", "Error",
-							JOptionPane.ERROR_MESSAGE);
-				}
+					if(txtBuscarId.getText().equals("(id)")){
+						throw new Exception("Introduzca un id");
+					}
+					int id = Integer.parseInt(txtBuscarId.getText());
+					gUIBuscarporIdDiseño.setVisible(true);
 				
-				gUIBuscarporIdDiseño.toFront();
+					Controlador.getInstance().accion(Events.BUSCAR_DISEÑO_ID, id);
+					gUIBuscarporIdDiseño.toFront();
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null,ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 
@@ -186,11 +196,19 @@ public class GUIDiseñoImp extends GUIDiseño {
 				"Buscar Diseños por Palabra Clave");
 		btnBuscarDiseoPor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String palabra = txtBuscarPalabraClave.getText();
-				gUIBuscarPalabraDiseño.clearData();
-				gUIBuscarPalabraDiseño.setVisible(true);
-				Controlador.getInstance().accion(Events.BUSCAR_DISEÑO_PALABRA_CLAVE, palabra);
-				gUIBuscarPalabraDiseño.toFront();
+				try{
+					if(txtBuscarId.getText().equals("(palabra clave)")){
+						throw new Exception("Introduzca una palabra clave");
+					}
+					String palabra = txtBuscarPalabraClave.getText();
+					gUIBuscarPalabraDiseño.clearData();
+					gUIBuscarPalabraDiseño.setVisible(true);
+					Controlador.getInstance().accion(Events.BUSCAR_DISEÑO_PALABRA_CLAVE, palabra);
+					gUIBuscarPalabraDiseño.toFront();
+				}
+				catch(Exception ex){
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 
@@ -428,7 +446,7 @@ public class GUIDiseñoImp extends GUIDiseño {
 		contentPane.setLayout(gl_contentPane);
 				// end-user-code
 	}
-
+	
 	/** 
 	 * (sin Javadoc)
 	 * @see GUIDiseño#update(int event, Object res)

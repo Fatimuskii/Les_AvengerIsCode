@@ -29,12 +29,27 @@ public class TImpresora {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private Material material;
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Dimension tamaño;
+	private float alto;
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	private float ancho;
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	private float profundidad;
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
@@ -145,29 +160,81 @@ public class TImpresora {
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
 	 * @return
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Dimension getTamaño() {
+	public float getAlto() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return this.tamaño;
+		return this.alto;
 		// end-user-code
 	}
 
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @param tamaño
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @param alto
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setTamaño(Dimension tamaño) {
+	public void setAlto(float alto) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-
+		this.alto = alto;
+		// end-user-code
+	}
+	
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @return
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public float getAncho() {
+		// begin-user-code
+		return this.ancho;
+		// end-user-code
+	}
+	
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @param ancho
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public void setAncho(float ancho) {
+		// begin-user-code
+		this.ancho = ancho;
+		// end-user-code
+	}
+	
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @return
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public float getProfundidad() {
+		// begin-user-code
+		return this.profundidad;
+		// end-user-code
+	}
+	
+	/**
+	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
+	 * 
+	 * @param profundidad
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 */
+	public void setProfundidad(float profundidad) {
+		// begin-user-code
+		this.profundidad = profundidad;
 		// end-user-code
 	}
 

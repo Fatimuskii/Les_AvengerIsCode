@@ -50,8 +50,6 @@ public class DAODiseñoImp implements DAODiseño {
 						+ tDiseño.getPrecio()
 						+ "', '"
 						+ tDiseño.getArchivo()
-						/*+ "', '"
-						+ tDiseño.getImagen()*/
 						+ "', '"
 						+ (tDiseño.getActivo() ? 1 : 0)
 						+ "');";
@@ -64,7 +62,6 @@ public class DAODiseñoImp implements DAODiseño {
 				connection.close();
 			}
 			catch(SQLException e){
-				e.printStackTrace();
 				idDiseño = -100;
 			}
 		}
@@ -92,7 +89,6 @@ public class DAODiseñoImp implements DAODiseño {
 				connection.close();
 			}
 			catch(SQLException e){
-				e.printStackTrace();
 				result =-100;
 			}
 		}
@@ -123,7 +119,6 @@ public class DAODiseñoImp implements DAODiseño {
 						+ "profundidad='" +  tDiseño.getProfundidad() + "', "
 						+ "precio='" + tDiseño.getPrecio() + "', "
 						+ "archivo='" + tDiseño.getArchivo() + "', "
-						//+ "imagen='" + tDiseño.getImagen() + "', "
 						+ "activo=" + (tDiseño.getActivo() ? 1 : 0) + " "
 						+ "WHERE idDiseno=" + tDiseño.getId_diseño();
 				statement.executeUpdate(query);
@@ -151,9 +146,11 @@ public class DAODiseñoImp implements DAODiseño {
 		if(connection!=null) {
 			try {
 				Statement statement = connection.createStatement();
-				String query = "SELECT * FROM disenos WHERE idDiseno=" + idDiseño;
+				String query = "SELECT * FROM disenos WHERE idDiseno=" + idDiseño +" AND activo = 1";
 				ResultSet resultSet = statement.executeQuery(query);
+				System.out.println("BUSCANDO DISEÑO 0");
 				if(resultSet.next()) {
+					System.out.println("BUSCANDO DISEÑO");
 					tDiseño = new TDiseño(
 							idDiseño,
 							resultSet.getString("nombre"),
@@ -164,11 +161,11 @@ public class DAODiseñoImp implements DAODiseño {
 							resultSet.getFloat("profundidad"),
 							resultSet.getFloat("precio"),
 							resultSet.getString("archivo"),
-						//	resultSet.getObject("imagen"),
 							resultSet.getBoolean("activo")
 							);
 				}
 			} catch (SQLException e) {
+				System.out.println("ERROR BUSCAR DISEÑO");
 				tDiseño = null;
 			}
 		}
@@ -192,7 +189,7 @@ public class DAODiseñoImp implements DAODiseño {
 		if(connection!=null) {
 			try {
 				Statement statement = connection.createStatement();
-				String query = "SELECT * FROM disenos WHERE nombre LIKE '%"+ palabraClave + "%'";
+				String query = "SELECT * FROM disenos WHERE nombre LIKE '%"+ palabraClave + "%'"  + " AND activo = 1";
 				ResultSet resultSet = statement.executeQuery(query);
 				while(resultSet.next()) {
 					tDiseño = new TDiseño(
@@ -205,7 +202,6 @@ public class DAODiseñoImp implements DAODiseño {
 							resultSet.getFloat("profundidad"),
 							resultSet.getFloat("precio"),
 							resultSet.getString("archivo"),
-							//resultSet.getObject("imagen"),
 							resultSet.getBoolean("activo")
 							);
 					listaDiseños.add(tDiseño);
@@ -247,13 +243,11 @@ public class DAODiseñoImp implements DAODiseño {
 							resultSet.getFloat("profundidad"),
 							resultSet.getFloat("precio"),
 							resultSet.getString("archivo"),
-							//resultSet.getObject("imagen"),
 							resultSet.getBoolean("activo")
 							);
 					listaDiseños.add(tDiseño);
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
 				listaDiseños = null;
 			}
 		}
@@ -277,7 +271,7 @@ public class DAODiseñoImp implements DAODiseño {
 		if(connection!=null) {
 			try {
 				Statement statement = connection.createStatement();
-				String query = "SELECT * FROM disenos WHERE propietario="+idUsuario;
+				String query = "SELECT * FROM disenos WHERE propietario="+idUsuario + " AND activo = 1";
 				ResultSet resultSet = statement.executeQuery(query);
 				TDiseño tDiseño;
 				while(resultSet.next()) {
@@ -291,13 +285,11 @@ public class DAODiseñoImp implements DAODiseño {
 							resultSet.getFloat("profundidad"),
 							resultSet.getFloat("precio"),
 							resultSet.getString("archivo"),
-							//resultSet.getObject("imagen"),
 							resultSet.getBoolean("activo")
 							);
 					listaDiseños.add(tDiseño);
 				}
 			} catch (SQLException e) {
-				e.printStackTrace();
 				listaDiseños = null;
 			}
 		}
