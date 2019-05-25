@@ -351,7 +351,7 @@ public class GUIAltaUsuario extends JFrame {
 		panel.add(anio_2);
 		
 		btnFinalizar = new JButton("Finalizar");
-		btnFinalizar.addMouseListener(new MouseAdapter() {
+		/*btnFinalizar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (!datosObligatorios()) {
@@ -362,9 +362,12 @@ public class GUIAltaUsuario extends JFrame {
 				}
 				contraseñaErr();
 			}
-		});
+		});*/
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			
+		
+				
 				try{
 					int id = generarId();
 					String nombre = txtNombre.getText();
@@ -390,10 +393,9 @@ public class GUIAltaUsuario extends JFrame {
 						e1.printStackTrace();
 					}
 					String contraseña = txtContrasea.getText();
-					
-					usuario = new TUsuario(id, nombre, apellidos, email,
-							fechaNacimiento, direccion, contraseña, nombTarjeta,
-							numeroTarjeta, fechaVencimiento,true);
+				
+					usuario = new TUsuario(nombre, apellidos, email,
+							fechaNacimiento,direccion ,contraseña, nombTarjeta,numeroTarjeta,fechaVencimiento,true);
 					Controlador.getInstance().accion(Events.ALTA_USUARIO, usuario);
 				}
 				catch(Exception ex){

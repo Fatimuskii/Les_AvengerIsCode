@@ -54,6 +54,7 @@ public class ControladorImp extends Controlador {
 		SALocal = factoriaSA.generateSALocal();
 		SADiseño = factoriaSA.generateSADiseño();
 		SAImpresora = factoriaSA.generateSAImpresora();
+		SAUsuario = factoriaSA.generateSAUsuario();
 		SAPedidoImpresion = factoriaSA.generateSAPedidoImpresion();
 	}
 
@@ -67,7 +68,6 @@ public class ControladorImp extends Controlador {
 		TPedidoImpresion tPedidoImpresion;
 		
 		int idLocal;
-		int idRepre;
 		int idDiseño;
 		int idUsuario;
 		int idImpresora;
@@ -139,13 +139,14 @@ public class ControladorImp extends Controlador {
 			GUIUsuario.getInstance();
 			break;
 		case Events.ALTA_USUARIO:
-			tUsuario =(TUsuario) datos;
+			tUsuario =(TUsuario)datos;
 			res = this.SAUsuario.altaUsuario(tUsuario);
 			if (res > 0)
 				GUIUsuario.getInstance().update(Events.ALTA_USUARIO_OK, res);
 			else
 				GUIUsuario.getInstance().update(Events.ALTA_USUARIO_KO, res);
 			break;
+			
 		case Events.BAJA_USUARIO:
 			idUsuario =(int) datos;
 			res = this.SAUsuario.bajaUsuario(idUsuario);

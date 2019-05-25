@@ -59,8 +59,9 @@ CREATE TABLE IF NOT EXISTS usuario (
   direccion varchar(40) NOT NULL,
   contrasenna varchar(25) NOT NULL,
   titularCuenta varchar (25) NOT NULL,
-  cuentaBancaria double(16) NOT NULL,
+  cuentaBancaria varchar(16) NOT NULL,
   fechaCaducidad date NOT NULL,
+  activo tinyint(1) NOT NULL, 
   PRIMARY KEY(idUsuario)
   
   
