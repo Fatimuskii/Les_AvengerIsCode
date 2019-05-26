@@ -122,7 +122,7 @@ public class GUIBuscarporIdUsuario extends JFrame{
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon("imagenes\\logo-REDM-REDM.png"));
 		
-		JLabel lblIdusuario = new JLabel("idUsuario");
+		JLabel lblIdusuario = new JLabel(String.valueOf(id));
 		lblIdusuario.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		JLabel lblEmail = new JLabel("e-mail");

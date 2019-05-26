@@ -7,6 +7,9 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import javax.swing.JOptionPane;
+
 import Negocio.Usuario.TUsuario;
 
 import Integración.Conexion.ConexionDAO;
@@ -39,9 +42,11 @@ public class DAOUsuarioImp implements DAOUsuario {
 			try {
 				Statement statement = connection.createStatement();
 				String pattern = "YYYY-MM-DD";
-		        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
-		        String mysqlFechaNac= formatter.format(datos.getFechaNacimiento());
-		        String mysqlFechaCad= formatter.format(datos.getFechaCaducidad());
+				SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+				String mysqlFechaNac = formatter.format(datos
+						.getFechaNacimiento());
+				String mysqlFechaCad = formatter.format(datos
+						.getFechaCaducidad());
 				String query = "INSERT INTO usuario (nombre, apellidos, email, fechaNacimiento, direccion, contrasenna, titularCuenta, cuentaBancaria, fechaCaducidad, activo)"
 						+ " VALUES ('"
 						+ datos.getNombre()
@@ -61,8 +66,7 @@ public class DAOUsuarioImp implements DAOUsuario {
 						+ datos.getNumeroCuenta()
 						+ "', '"
 						+ mysqlFechaCad
-						+ "', '"
-						+ (datos.getActivo() ? 1 : 0) + "');";
+						+ "', '" + (datos.getActivo() ? 1 : 0) + "');";
 
 				statement.executeUpdate(query);
 				query = "SELECT last_insert_id() as last_id from usuario";
@@ -70,7 +74,7 @@ public class DAOUsuarioImp implements DAOUsuario {
 				if (resultSet.next()) {
 					idUsuario = resultSet.getInt("last_id");
 				}
-				//connection.close();
+				// connection.close();
 
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -122,9 +126,9 @@ public class DAOUsuarioImp implements DAOUsuario {
 							resultSet.getString("email"),
 							resultSet.getDate("fechaNacimiento"),
 							resultSet.getString("direccion"),
-							resultSet.getString("contraseña"),
+							resultSet.getString("contrasenna"),
 							resultSet.getString("titularCuenta"),
-							resultSet.getString("numeroCuenta"),
+							resultSet.getString("cuentaBancaria"),
 							resultSet.getDate("fechaCaducidad"),
 							resultSet.getBoolean("activo"));
 				}
@@ -161,9 +165,9 @@ public class DAOUsuarioImp implements DAOUsuario {
 							resultSet.getString("email"),
 							resultSet.getDate("fechaNacimiento"),
 							resultSet.getString("direccion"),
-							resultSet.getString("contraseña"),
+							resultSet.getString("contrasenna"),
 							resultSet.getString("titularCuenta"),
-							resultSet.getString("numeroCuenta"),
+							resultSet.getString("cuentaBancaria"),
 							resultSet.getDate("fechaCaducidad"),
 							resultSet.getBoolean("activo"));
 				}
@@ -181,30 +185,38 @@ public class DAOUsuarioImp implements DAOUsuario {
 
 	public int modificarUsuario(TUsuario tUsuario) {
 
-		Integer idUsuario = 0;
+		Integer idUsuario = -100;
 		ConexionDAO connectionDAO = ConexionDAO.getInstance();
 		Connection conect = connectionDAO.getConexion();
-
+		String pattern = "YYYY-MM-DD";
+		SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+		String mysqlFechaNac = formatter.format(tUsuario.getFechaNacimiento());
+		String mysqlFechaCad = formatter.format(tUsuario.getFechaCaducidad());
 		if (conect != null) {
 
 			try {
 				Statement statement = conect.createStatement();
-				String query = "UPDATE usuario SET " + "nombre='"
-						+ tUsuario.getNombre() + "', " + "apellidos='"
-						+ tUsuario.getApellidos() + "', " + "direccion='"
-						+ tUsuario.getDireccion() + "', " + "fechaNacimiento='"
-						+ tUsuario.getFechaNacimiento() + "', " + "email='"
-						+ tUsuario.getEmail() + "', " + "titularCuenta='"
-						+ tUsuario.getTitularCuenta() + ",' " + "numerCuenta='"
-						+ tUsuario.getNumeroCuenta() + ",' "
-						+ "fechaCaducidad='" + tUsuario.getFechaCaducidad()
-						+ "WHERE idDiseño=" + tUsuario.getIdUsuario();
+				String query = "UPDATE usuario SET " 
+						+ "nombre='" + tUsuario.getNombre() + "', "
+						+ "apellidos='" + tUsuario.getApellidos() + "', "
+						+ "email='" + tUsuario.getEmail() + "', "
+						+ "fechaNacimiento='" + mysqlFechaNac + "', "
+						+ "direccion='" + tUsuario.getDireccion() + "', "
+						+ "contrasenna='" + tUsuario.getContraseña() + "', "
+						+ "titularCuenta='" + tUsuario.getTitularCuenta() + "', "
+						+ "cuentaBancaria='" + tUsuario.getNumeroCuenta() + "', "
+						+ "fechaCaducidad='" + mysqlFechaCad + "', "
+						+ "activo=" + (tUsuario.getActivo() ? 1 : 0) + " "
+						+ "WHERE idUsuario=" + tUsuario.getIdUsuario();
 
-				statement.executeUpdate(query);
+				statement.executeUpdate(query);// *
 				idUsuario = tUsuario.getIdUsuario();
 
 			} catch (SQLException e) {
-				idUsuario = -1;
+				JOptionPane.showMessageDialog(null,
+						"Error: " + e.getMessage(), "Error Usuario",
+						JOptionPane.ERROR_MESSAGE);
+				idUsuario = -100;
 			}
 
 		}

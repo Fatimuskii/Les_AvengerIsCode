@@ -198,7 +198,7 @@ public class ControladorImp extends Controlador {
 			idUsuario = (int) datos;
 			tUsuario = this.SAUsuario.buscarIdUsuario(idUsuario);
 			if (tUsuario != null)
-				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_COMPROBAR, null);
+				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_COMPROBAR_OK, null);
 			else
 				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_COMPROBAR_KO, null);
 			break;

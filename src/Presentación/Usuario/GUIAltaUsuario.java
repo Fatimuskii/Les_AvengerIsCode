@@ -335,9 +335,7 @@ public class GUIAltaUsuario extends JFrame {
 		 * (!datosObligatorios()) { JOptionPane.showOptionDialog(new JFrame(),
 		 * "Debes rellenar los campos obligatorios (*)", "Quit",
 		 * JOptionPane.OK_OPTION, JOptionPane.OK_OPTION, null, null, null); }
-		 * contraseñaErr(); 
-		 * cuentaBancariaOK();
-		 * } });
+		 * contraseñaErr(); cuentaBancariaOK(); } });
 		 */
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -386,7 +384,7 @@ public class GUIAltaUsuario extends JFrame {
 				}
 			}
 		});
-		
+
 		btnFinalizar.setBounds(318, 467, 89, 23);
 		panel.add(btnFinalizar);
 
@@ -469,15 +467,15 @@ public class GUIAltaUsuario extends JFrame {
 			return false;
 		}
 	}
-	
-	private boolean cuentaBancariaOK(){
-		if(numTarjeta.getText().length() != 16){
+
+	private boolean cuentaBancariaOK() {
+		if (numTarjeta.getText().length() != 16) {
 			numTarjeta.setBackground(Color.red);
 			JOptionPane.showMessageDialog(new JFrame(),
 					"El número de tarjeta deben ser 16 dígitos");
 			return false;
-		}
-		else numTarjeta.setBackground(Color.white);
+		} else
+			numTarjeta.setBackground(Color.white);
 		return true;
 	}
 

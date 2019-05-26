@@ -176,6 +176,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 					GUI_BuscarporIdUsuario.setVisible(true);
 					Controlador.getInstance().accion(Events.BUSCAR_USUARIO,
 							id);
+					GUI_BuscarporIdUsuario.toFront();
 				}
 				else{
 					mensaje.showMessage("Debe introducir un Id",
@@ -260,6 +261,12 @@ public class GUIUsuarioImp extends GUIUsuario {
 			break;
 		case Events.LISTAR_USUARIO_KO:
 			GUI_ListarUsuarios.update(event, (ArrayList<TUsuario>) res);
+			break;
+		case Events.MODIFICAR_USUARIO_COMPROBAR_OK:
+			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_COMPROBAR_OK, res);
+			break;
+		case Events.MODIFICAR_USUARIO_COMPROBAR_KO:
+			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_COMPROBAR_KO, res);
 			break;
 //		case Events.BUSCAR_USUARIO_OK:
 //			GUI_BuscarporIdUsuario.update(event, null);
