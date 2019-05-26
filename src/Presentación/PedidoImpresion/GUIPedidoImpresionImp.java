@@ -30,6 +30,7 @@ import Negocio.Diseño.TDiseño;
 import Negocio.Impresora.TImpresora;
 import Negocio.Local.TLocal;
 import Negocio.Usuario.TUsuario;
+import Presentación.GUIMensaje;
 import Presentación.Controlador.Events;
 
 import java.awt.Font;
@@ -45,6 +46,8 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 	private TDiseño diseño;
 	private TLocal local;
 	
+	private GUIMensaje res_mensaje;
+	
 	
 
 	/**
@@ -53,6 +56,7 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 	public GUIPedidoImpresionImp() {
 		super();
 		this.contentPane = new JPanel();
+		this.res_mensaje = new GUIMensaje();
 		//guiAltaPedidoImpresion = new GUIAltaPedidoImpresion();
 		initGUI();
 	}
@@ -117,10 +121,8 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 		JMenuItem mntmBaja = new JMenuItem("Cancelar pedido\r\n");
 		mntmBaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUIBajaPedidoImpresion baja; // declaro el nombre
-				baja = new GUIBajaPedidoImpresion(); // creo caja de dialogo
-				baja.setVisible(true);
-				// dispose();
+				res_mensaje.showMessage("Opción no implementada. ",
+						"CANCELAR PEDIDO", false);
 			}
 		});
 		mnAlta.add(mntmBaja);
@@ -128,10 +130,8 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 		JMenuItem mntmBuscar = new JMenuItem("Buscar pedido\r\n");
 		mntmBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUIBuscarPedido buscar;
-				buscar = new GUIBuscarPedido();
-				buscar.setVisible(true);
-				// dispose();
+				res_mensaje.showMessage("Opción no implementada. ",
+						"BUSCAR PEDIDO", false);
 			}
 		});
 		mnAlta.add(mntmBuscar);
@@ -142,10 +142,8 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 		JMenuItem mntmPedidoImpresion = new JMenuItem("Pedido impresion");
 		mntmPedidoImpresion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUIModificarPedido modificar;
-				modificar = new GUIModificarPedido();
-				modificar.setVisible(true);
-				// dispose();
+				res_mensaje.showMessage("Opción no implementada. ",
+						"MODIFICAR PEDIDO", false);
 			}
 		});
 		mnModificar.add(mntmPedidoImpresion);
@@ -153,9 +151,8 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 		JMenuItem mntmEnvio = new JMenuItem("Envio");
 		mntmEnvio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUIModificarEnvio envio;
-				envio = new GUIModificarEnvio();
-				envio.setVisible(true);
+				res_mensaje.showMessage("Opción no implementada. ",
+						"ENVIO PEDIDO", false);
 				// dispose();
 			}
 		});
@@ -187,10 +184,8 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 		JButton btnBajaPedido = new JButton("CANCELAR PEDIDO\r\n");
 		btnBajaPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUIBajaPedidoImpresion baja;
-				baja = new GUIBajaPedidoImpresion();
-				baja.setVisible(true);
-				// dispose();
+				res_mensaje.showMessage("Opción no implementada. ",
+						"CANCELAR PEDIDO", false);
 			}
 		});
 		btnBajaPedido.setBounds(312, 131, 263, 65);
@@ -200,10 +195,8 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 		JButton btnModificarPedido = new JButton("MODIFICAR PEDIDO\r\n");
 		btnModificarPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUIModificar mod;
-				mod = new GUIModificar();
-				mod.setVisible(true);
-				// dispose();
+				res_mensaje.showMessage("Opción no implementada. ",
+						"MODIFICAR PEDIDO", false);
 			}
 		});
 		btnModificarPedido.setBounds(312, 292, 263, 65);
@@ -213,10 +206,8 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 		JButton btnBuscarPedido = new JButton("BUSCAR PEDIDO\r\n");
 		btnBuscarPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUIBuscarPedido buscar;
-				buscar = new GUIBuscarPedido();
-				buscar.setVisible(true);
-				// dispose();
+				res_mensaje.showMessage("Opción no implementada. ",
+						"BUSCAR PEDIDO", false);
 			}
 		});
 		btnBuscarPedido.setBounds(312, 214, 263, 65);

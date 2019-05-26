@@ -2,6 +2,7 @@ package Presentación.PedidoImpresion;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Image;
 
 import javax.swing.JFrame;
@@ -10,11 +11,14 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenu;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JMenuBar;
 import javax.swing.JLabel;
 import javax.swing.JPopupMenu;
+import javax.swing.SpinnerNumberModel;
+
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -35,38 +39,52 @@ import java.awt.event.FocusEvent;
 import javax.swing.JTextPane;
 
 import Negocio.Diseño.TDiseño;
+import Negocio.Impresora.Material;
 import Negocio.Impresora.TImpresora;
 import Negocio.Local.TLocal;
+import Negocio.PedidoImpresion.EstadoPedido;
 import Negocio.PedidoImpresion.TPedidoImpresion;
 import Negocio.Usuario.TUsuario;
+import Presentación.GUIMensaje;
 import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 
 @SuppressWarnings("serial")
 public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp {
 	private JPanel contentPane;
-	private JTextField txtNombre;
-	private JTextField txtApellidos;
+	private JSpinner spinnerCantidad;
+	private JLabel lblUsuario;
+	private JLabel lblImpresora;
+	private JLabel lblDiseño;
+	private JLabel lblFecha;
+	private JLabel lblCantidad;
+	private JLabel lblMaterial;
+	private JLabel lblLocal;
 
 	private TUsuario usuarioSol;
 	private TImpresora impresora;
 	private TDiseño diseño;
 	private TLocal local;
 
+	private GUIMensaje mensaje;
+
 	/**
 	 * Launch the application.
-	 * @param local 
-	 * @param diseño 
-	 * @param impresora 
-	 * @param usuarioSol 
+	 * 
+	 * @param local
+	 * @param diseño
+	 * @param impresora
+	 * @param usuarioSol
 	 */
-	public GUIAltaPedidoImpresion(TUsuario usuarioSol, TImpresora impresora, TDiseño diseño, TLocal local) {
-		
+	public GUIAltaPedidoImpresion(TUsuario usuarioSol, TImpresora impresora,
+			TDiseño diseño, TLocal local) {
+
 		contentPane = new JPanel();
-		this.usuarioSol= usuarioSol;
-		this.impresora=impresora;
-		this.diseño=diseño;
-		this.local=local;
+		this.usuarioSol = usuarioSol;
+		this.impresora = impresora;
+		this.diseño = diseño;
+		this.local = local;
+		this.mensaje = new GUIMensaje();
 		initGUI();
 	}
 
@@ -74,10 +92,9 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp {
 	 * Create the frame.
 	 */
 	public void initGUI() {
-		setIconImage(Toolkit
-				.getDefaultToolkit()
-				.getImage(
-						"imagenes\\logoUsu.png"));
+
+		setIconImage(Toolkit.getDefaultToolkit().getImage(
+				"imagenes\\logoUsu.png"));
 		setTitle("ALTA PEDIDO IMPRESION");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 681, 470);
@@ -101,16 +118,13 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp {
 		JMenuItem mntmSalir = new JMenuItem("Salir");
 		mntmSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				dispose();
 			}
 		});
 
 		JMenuItem mntmVolverAlMenu = new JMenuItem("Volver al menu");
 		mntmVolverAlMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUIPedidoImpresionImp imp;
-				imp = new GUIPedidoImpresionImp();
-				imp.setVisible(true);
 				dispose();
 			}
 		});
@@ -120,24 +134,11 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp {
 		JMenu mnPedidoimpresion = new JMenu("PedidoImpresion");
 		menuBar.add(mnPedidoimpresion);
 
-		JMenuItem mntmAlta = new JMenuItem("Alta");
-		mntmAlta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//GUIAltaPedidoImpresion alta; // declaro el nombre
-				//alta = new GUIAltaPedidoImpresion(); // creo caja de dialogo
-				//alta.setVisible(true); // hace visible la caja
-				//dispose();
-			}
-		});
-		mnPedidoimpresion.add(mntmAlta);
-
 		JMenuItem mntmBaja = new JMenuItem("Baja");
 		mntmBaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUIBajaPedidoImpresion baja;
-				baja = new GUIBajaPedidoImpresion();
-				baja.setVisible(true);
-				dispose();
+				mensaje.showMessage("Opción no implementada...", "BAJA PEDIDO",
+						false);
 			}
 		});
 		mnPedidoimpresion.add(mntmBaja);
@@ -145,10 +146,8 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp {
 		JMenuItem mntmBuscar = new JMenuItem("Buscar");
 		mntmBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUIBuscarPedido buscar;
-				buscar = new GUIBuscarPedido();
-				buscar.setVisible(true);
-				dispose();
+				mensaje.showMessage("Opción no implementada...",
+						"BUSCAR PEDIDO", false);
 			}
 		});
 		mnPedidoimpresion.add(mntmBuscar);
@@ -159,10 +158,9 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp {
 		JMenuItem mntmPedidoImpresion = new JMenuItem("Pedido impresion");
 		mntmPedidoImpresion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUIModificarPedido modificar;
-				modificar = new GUIModificarPedido();
-				modificar.setVisible(true);
-				dispose();
+				mensaje.showMessage("Opción no implementada...",
+						"MODIFICAR PEDIDO - Pedido impresion", false);
+
 			}
 		});
 		mnModificar.add(mntmPedidoImpresion);
@@ -170,69 +168,86 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp {
 		JMenuItem mntmEnvio = new JMenuItem("Envio");
 		mntmEnvio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUIModificarEnvio envio;
-				envio = new GUIModificarEnvio();
-				envio.setVisible(true);
-				dispose();
+				mensaje.showMessage("Opción no implementada...",
+						"MODIFICAR PEDIDO - Envio", false);
 			}
 		});
 		mnModificar.add(mntmEnvio);
 
 		JLabel lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon(
-				"C:\\Users\\Paula\\IBM\\rationalsdp\\workspace\\Les_AvengerIsCode\\imagenes\\logoUsu.png"));
+		lblLogo.setIcon(new ImageIcon("imagenes\\logoUsu.png"));
 		menuBar.add(lblLogo);
 
 		JLabel lblCompra = new JLabel("");
 		lblCompra.setBounds(35, 69, 160, 155);
 		panel.add(lblCompra);
-		ImageIcon fot1 = new ImageIcon(
-				"C:\\Users\\Paula\\IBM\\rationalsdp\\workspace\\Les_AvengerIsCode\\imagenes\\commerce-and-shopping.png");
+		ImageIcon fot1 = new ImageIcon("imagenes\\commerce-and-shopping.png");
 		Icon icono1 = new ImageIcon(fot1.getImage().getScaledInstance(
 				lblCompra.getWidth(), lblCompra.getHeight(),
 				Image.SCALE_DEFAULT));
 		lblCompra.setIcon(icono1);
 
-		txtNombre = new JTextField();
-		txtNombre.setText("NOMBRE\r\n");
-		txtNombre.setForeground(Color.BLACK);
-		/*
-		 * txtNombre.addFocusListener(new FocusAdapter() {
-		 * 
-		 * @Override public void focusGained(FocusEvent arg0) { if
-		 * (txtNombre.getText().equals("")){ txtNombre.setText("Nombre"); } }
-		 * 
-		 * @Override public void focusLost(FocusEvent e) { if
-		 * (txtNombre.getText().equals("")){ txtNombre.setText("Nombre"); } }
-		 * });
-		 */
-		txtNombre.setBounds(237, 68, 193, 22);
-		panel.add(txtNombre);
-		txtNombre.setColumns(10);
-
-		txtApellidos = new JTextField();
-		txtApellidos.setText("APELLIDOS");
-		txtApellidos.setBounds(237, 103, 311, 22);
-		panel.add(txtApellidos);
-		txtApellidos.setColumns(10);
-
-		JTextPane txtpnListaDeDiseos = new JTextPane();
-		txtpnListaDeDiseos.setText("LISTA DE DISE\u00D1OS");
-		txtpnListaDeDiseos.setBounds(237, 140, 311, 240);
-		panel.add(txtpnListaDeDiseos);
-
-		JButton btnContinuar = new JButton("Continuar");
+		JButton btnContinuar = new JButton("Aceptar");
 		btnContinuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String fecha = "2019-06-24";
+				int cantidad = (int) spinnerCantidad.getValue();
+				Material material = impresora.getMaterial();
+				boolean tipoenvio = false;
+				if (local != null)
+					tipoenvio = true;
+				EstadoPedido estadoPed = EstadoPedido.PEN;
 
-				
-				//TPedidoImpresion tpedido = new TPedidoImpresion()
-				Controlador.getInstance().accion(Events.ALTA_PEDIDO_IMPRESION, tpedido);
+				TPedidoImpresion tpedido = new TPedidoImpresion(usuarioSol,
+						diseño, impresora, fecha, estadoPed, cantidad,
+						material, tipoenvio, local);
+				Controlador.getInstance().accion(Events.ALTA_PEDIDO_IMPRESION,
+						tpedido);
 			}
 		});
-		btnContinuar.setBounds(57, 269, 126, 40);
+		btnContinuar.setBounds(497, 345, 126, 40);
 		panel.add(btnContinuar);
 
+		lblUsuario = new JLabel("Usuario:");
+		lblUsuario.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblUsuario.setBounds(246, 92, 84, 25);
+		panel.add(lblUsuario);
+
+		lblImpresora = new JLabel("Impresora:");
+		lblImpresora.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblImpresora.setBounds(246, 150, 113, 25);
+		panel.add(lblImpresora);
+
+		lblDiseño = new JLabel("Dise\u00F1o:");
+		lblDiseño.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblDiseño.setBounds(246, 121, 75, 25);
+		panel.add(lblDiseño);
+
+		 lblFecha = new JLabel("Fecha:");
+		lblFecha.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblFecha.setBounds(246, 179, 67, 25);
+		panel.add(lblFecha);
+
+		lblCantidad = new JLabel("Cantidad:");
+		lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblCantidad.setBounds(246, 208, 97, 25);
+		panel.add(lblCantidad);
+
+		lblMaterial = new JLabel("Material de impresi\u00F3n:");
+		lblMaterial.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblMaterial.setBounds(246, 237, 227, 25);
+		panel.add(lblMaterial);
+
+		spinnerCantidad = new JSpinner();
+		spinnerCantidad.setFont(new Font("Tahoma", Font.BOLD, 13));
+		spinnerCantidad.setModel(new SpinnerNumberModel(1, null, 5, 1));
+		spinnerCantidad.setBounds(375, 212, 75, 22);
+		panel.add(spinnerCantidad);
+
+		lblLocal = new JLabel("Local: ");
+		lblLocal.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblLocal.setBounds(246, 266, 65, 25);
+		panel.add(lblLocal);
 		this.repaint();
 	}
 
@@ -262,10 +277,10 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp {
 		// TODO Apéndice de método generado automáticamente
 		switch (event) {
 		case Events.ALTA_PEDIDO_IMPRESION_OK:
-			
+
 			break;
 		case Events.ALTA_DISEÑO_KO:
-			
+
 			break;
 		}
 	}
