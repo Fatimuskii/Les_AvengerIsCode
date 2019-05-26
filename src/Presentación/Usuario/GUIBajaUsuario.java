@@ -72,7 +72,7 @@ public class GUIBajaUsuario extends JFrame {
 		textId.setBounds(135, 117, 162, 20);
 		panel.add(textId);
 		textId.setColumns(10);
-		
+
 		passwordField = new JPasswordField();
 		passwordField = new JPasswordField();
 		passwordField.setBounds(135, 150, 162, 20);
@@ -86,12 +86,19 @@ public class GUIBajaUsuario extends JFrame {
 		JButton btnConfirmarBaja = new JButton("Confirmar baja");
 		btnConfirmarBaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				id = Integer.parseInt(textId.getText());
-				JOptionPane.showOptionDialog(new JFrame(), "¿Estás seguro?",
-						"Quit", JOptionPane.YES_NO_OPTION,
-						JOptionPane.YES_NO_OPTION, null, null, null );
-				if(true) Controlador.getInstance().accion(Events.BAJA_USUARIO, id);
-				else dispose();
+				try {
+					id = Integer.parseInt(textId.getText());
+					int option = JOptionPane.showOptionDialog(new JFrame(),
+							"¿Estás seguro?", "Quit",
+							JOptionPane.YES_NO_OPTION,
+							JOptionPane.YES_NO_OPTION, null, null, null);
+					if (option == JOptionPane.YES_OPTION)
+						Controlador.getInstance().accion(Events.BAJA_USUARIO,
+								id);
+					else dispose();
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, "Introduzca un id correcto (número)", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		btnConfirmarBaja.setBounds(152, 196, 123, 23);

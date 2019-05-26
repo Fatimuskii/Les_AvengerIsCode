@@ -31,13 +31,13 @@ public interface DAOUsuario {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	public TUsuario buscarIdUsuario(int idUsuario);
-
+	//public int buscarNombre(String nombre);
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public TUsuario acceso(TUsuario tUsuario); // CAMBIO basandome en fatima y marina.
+	public int acceso(String nombre); // CAMBIO basandome en fatima y marina.
 	
 	public ArrayList<TUsuario> listarUsuarios();	
 	

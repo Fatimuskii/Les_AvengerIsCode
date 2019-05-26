@@ -68,12 +68,12 @@ CREATE TABLE IF NOT EXISTS usuario (
   nombre varchar(20) NOT NULL,
   apellidos varchar(40) NOT NULL,
   email varchar(40) NOT NULL,
-  fechaNacimiento date NOT NULL,
+  fechaNacimiento varchar (15) NOT NULL,
   direccion varchar(40) NOT NULL,
   contrasenna varchar(25) NOT NULL,
   titularCuenta varchar (25) NOT NULL,
   cuentaBancaria varchar(16) NOT NULL,
-  fechaCaducidad date NOT NULL,
+  fechaCaducidad varchar (15) NOT NULL,
   activo tinyint(1) NOT NULL, 
   PRIMARY KEY(idUsuario)
   

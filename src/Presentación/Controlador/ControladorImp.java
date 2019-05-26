@@ -73,6 +73,8 @@ public class ControladorImp extends Controlador {
 		int idDiseño;
 		int idUsuario;
 		int idImpresora;
+		int idUsuarioLogueado;
+		String nombre;
 		ArrayList<TLocal>resultL;
 		ArrayList<TDiseño> resultD;
 		ArrayList<TImpresora> resultI;
@@ -193,8 +195,9 @@ public class ControladorImp extends Controlador {
 		case Events.MODIFICAR_USUARIO_COMPROBAR:
 			idUsuario = (int) datos;
 			tUsuario = this.SAUsuario.buscarIdUsuario(idUsuario);
-			if (tUsuario != null)
-				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_COMPROBAR_OK, null);
+			if (tUsuario != null)//****
+				
+				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_COMPROBAR_OK, tUsuario);
 			else
 				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_COMPROBAR_KO, null);
 			break;
@@ -342,6 +345,12 @@ public class ControladorImp extends Controlador {
 				GUIDiseño.getInstance().update(Events.MODIFICAR_DISEÑO_COMPROBAR_KO, null);
 			break;
 		case Events.ACCESO_USUARIO:
+			nombre = String.valueOf(datos.toString());
+			idUsuarioLogueado = this.SAUsuario.acceso(nombre);
+			if (idUsuarioLogueado > 0)
+				GUIUsuario.getInstance().update(Events.ACCESO_USUARIO_OK, idUsuarioLogueado);
+			else
+				GUIUsuario.getInstance().update(Events.ACCESO_USUARIO_KO, null);
 			break;
 		case Events.ALTA_CARRITO:
 			break;

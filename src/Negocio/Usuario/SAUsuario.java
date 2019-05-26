@@ -52,7 +52,7 @@ public interface SAUsuario {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public boolean acceso(TUsuario tUsuario); ///?
+	public int acceso(String nombre); ///?
 
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->

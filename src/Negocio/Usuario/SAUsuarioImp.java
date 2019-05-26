@@ -51,9 +51,14 @@ public class SAUsuarioImp implements SAUsuario {
 		return daoUsuario.buscarIdUsuario(idUsuario);
 	}
 
-	public boolean acceso(TUsuario tUsuario) {
-		// TODO Apéndice de método generado automáticamente
-		return false;
+	public int acceso(String nombre ) {
+		if(nombre!=null){
+			DAOUsuario daoUsuario = FactoriaDAO.getInstance().generateDAOUsuario();
+			int idUsu = daoUsuario.acceso(nombre);
+			if (idUsu > 0)
+				return idUsu;
+		}
+		return -1;
 	}
 
 	public int modificarUsuario(TUsuario tUsuario) {

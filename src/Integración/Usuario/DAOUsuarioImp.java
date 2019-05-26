@@ -4,9 +4,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.swing.JOptionPane;
 
@@ -40,13 +41,14 @@ public class DAOUsuarioImp implements DAOUsuario {
 
 		if (connection != null) {
 			try {
-				Statement statement = connection.createStatement();
-				String pattern = "YYYY-MM-DD";
-				SimpleDateFormat formatter = new SimpleDateFormat(pattern);
-				String mysqlFechaNac = formatter.format(datos
-						.getFechaNacimiento());
-				String mysqlFechaCad = formatter.format(datos
-						.getFechaCaducidad());
+				Statement statement = connection.createStatement();				
+//				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+//				SimpleDateFormat formatter_1 = new SimpleDateFormat("MM/yyyy");
+//				String mysqlFechaNac = formatter.format(datos
+//						.getFechaNacimiento());
+//				String mysqlFechaCad = formatter_1.format(datos
+//						.getFechaCaducidad());
+				
 				String query = "INSERT INTO usuario (nombre, apellidos, email, fechaNacimiento, direccion, contrasenna, titularCuenta, cuentaBancaria, fechaCaducidad, activo)"
 						+ " VALUES ('"
 						+ datos.getNombre()
@@ -55,7 +57,7 @@ public class DAOUsuarioImp implements DAOUsuario {
 						+ "', '"
 						+ datos.getEmail()
 						+ "', '"
-						+ mysqlFechaNac
+						+ datos.getFechaNacimiento()
 						+ "', '"
 						+ datos.getDireccion()
 						+ "', '"
@@ -65,7 +67,7 @@ public class DAOUsuarioImp implements DAOUsuario {
 						+ "', '"
 						+ datos.getNumeroCuenta()
 						+ "', '"
-						+ mysqlFechaCad
+						+ datos.getFechaCaducidad()
 						+ "', '" + (datos.getActivo() ? 1 : 0) + "');";
 
 				statement.executeUpdate(query);
@@ -77,6 +79,7 @@ public class DAOUsuarioImp implements DAOUsuario {
 				// connection.close();
 
 			} catch (SQLException e) {
+				JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
 				e.printStackTrace();
 				idUsuario = -100;
 			}
@@ -124,12 +127,12 @@ public class DAOUsuarioImp implements DAOUsuario {
 							resultSet.getString("nombre"),
 							resultSet.getString("apellidos"),
 							resultSet.getString("email"),
-							resultSet.getDate("fechaNacimiento"),
+							resultSet.getString("fechaNacimiento"),
 							resultSet.getString("direccion"),
 							resultSet.getString("contrasenna"),
 							resultSet.getString("titularCuenta"),
 							resultSet.getString("cuentaBancaria"),
-							resultSet.getDate("fechaCaducidad"),
+							resultSet.getString("fechaCaducidad"),
 							resultSet.getBoolean("activo"));
 				}
 			} catch (SQLException e) {
@@ -140,9 +143,27 @@ public class DAOUsuarioImp implements DAOUsuario {
 		return tUsuario;
 	}
 
-	public TUsuario acceso(TUsuario tUsuario) {
+	public int acceso(String nombre) {
+		int idUsu = -100;
+		ConexionDAO connectionDAO = ConexionDAO.getInstance();
+		Connection connection = connectionDAO.getConexion();
 
-		return tUsuario;
+		if (connection != null) {
+			try {
+				Statement statement = connection.createStatement();
+				String query = "SELECT idUsuario FROM usuario WHERE nombre="
+						+ "'"+nombre+"'";
+				ResultSet resultSet = statement.executeQuery(query);
+				if (resultSet.next()) {
+					idUsu = Integer.parseInt(resultSet.getString("idUsuario"));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+				idUsu = -100;
+			}
+		}
+
+		return idUsu;
 	}
 
 	public ArrayList<TUsuario> listarUsuarios() {
@@ -163,12 +184,12 @@ public class DAOUsuarioImp implements DAOUsuario {
 							resultSet.getString("nombre"),
 							resultSet.getString("apellidos"),
 							resultSet.getString("email"),
-							resultSet.getDate("fechaNacimiento"),
+							resultSet.getString("fechaNacimiento"),
 							resultSet.getString("direccion"),
 							resultSet.getString("contrasenna"),
 							resultSet.getString("titularCuenta"),
 							resultSet.getString("cuentaBancaria"),
-							resultSet.getDate("fechaCaducidad"),
+							resultSet.getString("fechaCaducidad"),
 							resultSet.getBoolean("activo"));
 				}
 				listaUsuarios.add(tUsuario);
@@ -188,10 +209,10 @@ public class DAOUsuarioImp implements DAOUsuario {
 		Integer idUsuario = -100;
 		ConexionDAO connectionDAO = ConexionDAO.getInstance();
 		Connection conect = connectionDAO.getConexion();
-		String pattern = "YYYY-MM-DD";
-		SimpleDateFormat formatter = new SimpleDateFormat(pattern);
-		String mysqlFechaNac = formatter.format(tUsuario.getFechaNacimiento());
-		String mysqlFechaCad = formatter.format(tUsuario.getFechaCaducidad());
+//		String pattern = "YYYY-MM-DD";
+//		SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+//		String mysqlFechaNac = formatter.format(tUsuario.getFechaNacimiento());
+//		String mysqlFechaCad = formatter.format(tUsuario.getFechaCaducidad());
 		if (conect != null) {
 
 			try {
@@ -200,12 +221,12 @@ public class DAOUsuarioImp implements DAOUsuario {
 						+ "nombre='" + tUsuario.getNombre() + "', "
 						+ "apellidos='" + tUsuario.getApellidos() + "', "
 						+ "email='" + tUsuario.getEmail() + "', "
-						+ "fechaNacimiento='" + mysqlFechaNac + "', "
+						+ "fechaNacimiento='" + tUsuario.getFechaNacimiento() + "', "
 						+ "direccion='" + tUsuario.getDireccion() + "', "
 						+ "contrasenna='" + tUsuario.getContraseña() + "', "
 						+ "titularCuenta='" + tUsuario.getTitularCuenta() + "', "
 						+ "cuentaBancaria='" + tUsuario.getNumeroCuenta() + "', "
-						+ "fechaCaducidad='" + mysqlFechaCad + "', "
+						+ "fechaCaducidad='" + tUsuario.getFechaCaducidad() + "', "
 						+ "activo=" + (tUsuario.getActivo() ? 1 : 0) + " "
 						+ "WHERE idUsuario=" + tUsuario.getIdUsuario();
 
@@ -213,9 +234,6 @@ public class DAOUsuarioImp implements DAOUsuario {
 				idUsuario = tUsuario.getIdUsuario();
 
 			} catch (SQLException e) {
-				JOptionPane.showMessageDialog(null,
-						"Error: " + e.getMessage(), "Error Usuario",
-						JOptionPane.ERROR_MESSAGE);
 				idUsuario = -100;
 			}
 

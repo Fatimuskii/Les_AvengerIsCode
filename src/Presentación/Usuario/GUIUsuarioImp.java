@@ -55,15 +55,20 @@ public class GUIUsuarioImp extends GUIUsuario {
 	
 	private int id;
 	
+	private GUIAccesoUsuario GUI_AccesoUsuario;
 
 	public GUIUsuarioImp(){
 		super();
+		this.admin = true;//************************* pasar como parametro
 		this.contentPane = new JPanel();
 		this.GUI_ImpresoraImp = new GUIImpresoraImp();
 		this.GUI_BajaUsuario = new GUIBajaUsuario();
 		this.GUI_AltaUsuario = new GUIAltaUsuario();
 		this.GUI_ListarUsuarios = new GUIListarUsuarios();
-		this.GUI_ModificarUsuario = new GUIModificarUsuario();
+		this.GUI_ModificarUsuario = new GUIModificarUsuario(admin,id);
+		
+		
+		this.GUI_AccesoUsuario = new GUIAccesoUsuario();
 		initGUI();
 	}
 
@@ -194,7 +199,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 			}
 		});
 		panel.add(button);
-		if(admin)button.setEnabled(false);
+		if(!admin)button.setEnabled(false);
 
 		JMenuBar menuBar_2 = new JMenuBar();
 		menuBar_2.setBounds(10, 134, 90, 21);
@@ -206,7 +211,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 		JMenuItem mntmModificarUsuario = new JMenuItem("Modificar usuario");
 		mntmModificarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUI_ModificarUsuario.clearData();
+				if (admin) GUI_ModificarUsuario.clearData();
 				GUI_ModificarUsuario.setVisible(true);
 			}
 		});
@@ -227,7 +232,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 			}
 		});
 		mnConfiguacin.add(mntmDarDeAlta);
-		if(admin) mntmDarDeAlta.setEnabled(false);
+		if(!admin) mntmDarDeAlta.setEnabled(false);
 
 		JMenuItem mntmCerrarSesin = new JMenuItem("Cerrar sesi\u00F3n");
 		mnConfiguacin.add(mntmCerrarSesin);
@@ -251,10 +256,10 @@ public class GUIUsuarioImp extends GUIUsuario {
 			GUI_BajaUsuario.update(event, res);
 			break;
 		case Events.MODIFICAR_USUARIO_OK:
-			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_OK, res);
+			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_OK, (TUsuario)res);
 			break;
 		case Events.MODIFICAR_USUARIO_KO:
-			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_KO, res);
+			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_KO, (TUsuario)res);
 			break;
 		case Events.LISTAR_USUARIO_OK:
 			GUI_ListarUsuarios.update(event, (ArrayList<TUsuario>) res);
@@ -263,10 +268,10 @@ public class GUIUsuarioImp extends GUIUsuario {
 			GUI_ListarUsuarios.update(event, (ArrayList<TUsuario>) res);
 			break;
 		case Events.MODIFICAR_USUARIO_COMPROBAR_OK:
-			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_COMPROBAR_OK, res);
+			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_COMPROBAR_OK,(TUsuario)res);
 			break;
 		case Events.MODIFICAR_USUARIO_COMPROBAR_KO:
-			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_COMPROBAR_KO, res);
+			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_COMPROBAR_KO, (TUsuario)res);
 			break;
 //		case Events.BUSCAR_USUARIO_OK:
 //			GUI_BuscarporIdUsuario.update(event, null);

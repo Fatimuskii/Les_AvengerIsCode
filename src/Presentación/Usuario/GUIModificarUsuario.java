@@ -73,14 +73,17 @@ public class GUIModificarUsuario extends JFrame {
 	private JTextField numTarjeta;
 	private JTextField nombreTarjeta;
 	private JTextField txtIdusuario;
-	private SimpleDateFormat fechaNac;
-	private SimpleDateFormat fechaVenc;
+//	private SimpleDateFormat fechaNac;
+//	private SimpleDateFormat fechaVenc;
 
 	private int id;
+	private boolean admin;
 
-	public GUIModificarUsuario() {
+	public GUIModificarUsuario(boolean admin, int id) {
 		super();
 		this.contentPane = new JPanel();
+		this.admin = admin;
+		this.id = id;
 		this.setFocusable(true);
 		initGUI();
 	}
@@ -99,23 +102,28 @@ public class GUIModificarUsuario extends JFrame {
 		panel.setLayout(null);
 
 		txtIdusuario = new JTextField();
-		txtIdusuario.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				if (txtIdusuario.getText().equals("idUsuario")) {
-					txtIdusuario.setText("");
+		if (admin) {
+			txtIdusuario.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent arg0) {
+					if (txtIdusuario.getText().equals("idUsuario")) {
+						txtIdusuario.setText("");
+					}
 				}
-			}
 
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (txtIdusuario.getText().equals("")) {
-					txtIdusuario.setText("idUsuario");
+				@Override
+				public void focusLost(FocusEvent e) {
+					if (txtIdusuario.getText().equals("")) {
+						txtIdusuario.setText("idUsuario");
+					}
 				}
-			}
-		});
+			});
+			txtIdusuario.setText("idUsuario");
+		} else {
+			txtIdusuario.setText(String.valueOf(id));
+			txtIdusuario.setEditable(false);
+		}
 		txtIdusuario.setToolTipText("");
-		txtIdusuario.setText("idUsuario");
 		txtIdusuario.setForeground(Color.DARK_GRAY);
 		txtIdusuario.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtIdusuario.setColumns(10);
@@ -124,14 +132,17 @@ public class GUIModificarUsuario extends JFrame {
 
 		JButton btnComprobar = new JButton("Comprobar");
 		btnComprobar.setBounds(193, 28, 89, 23);
-		btnComprobar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				id = Integer.parseInt(txtIdusuario.getText());
-				Controlador.getInstance().accion(
-						Events.MODIFICAR_USUARIO_COMPROBAR, id);
-				toFront();
-			}
-		});
+		if (admin) {
+			btnComprobar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					id = Integer.parseInt(txtIdusuario.getText());
+					Controlador.getInstance().accion(
+							Events.MODIFICAR_USUARIO_COMPROBAR, id);
+					toFront();
+				}
+			});
+		}
+		else btnComprobar.setEnabled(false);
 		panel.add(btnComprobar);
 
 		txtNombre = new JTextField();
@@ -365,35 +376,39 @@ public class GUIModificarUsuario extends JFrame {
 		btnFinalizar = new JButton("Finalizar");
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(admin)
 				id = Integer.parseInt(txtIdusuario.getText());
 				String nombre = txtNombre.getText();
 				String apellidos = txtApellidos.getText();
 				String email = txtEmail.getText();
-				Date fechaNacimiento = null;
-				fechaNac = new SimpleDateFormat("dd/MM/yyyy");
-				try {
-					fechaNacimiento = fechaNac.parse(dia.getValue()
-							.toString()
-							+ "/"
-							+ mes.getValue().toString()
-							+ "/" + anio.getValue().toString());
-				} catch (ParseException e2) {
-					e2.printStackTrace();
-				}
+				String fechaNacimiento = dia.getValue() + "/"
+						+ mes.getValue() + "/" + anio.getValue();
+				
+//				Date fechaNacimiento = null;
+//				fechaNac = new SimpleDateFormat("dd/MM/yyyy");
+//				try {
+//					fechaNacimiento = fechaNac.parse(dia.getValue().toString()
+//							+ "/" + mes.getValue().toString() + "/"
+//							+ anio.getValue().toString());
+//				} catch (ParseException e2) {
+//					e2.printStackTrace();
+//				}
 				String direccion = txtDireccin.getText();
 				String nombTarjeta = nombreTarjeta.getText();
 				String numeroTarjeta = numTarjeta.getText();
+				String fechaVencimiento = mes_2.getValue() + "/"
+						+ anio_2.getValue();
 				
-				Date fechaVencimiento = null;
-				fechaVenc = new SimpleDateFormat("MM/yyyy");
-				try {
-					fechaVencimiento = fechaVenc.parse(mes_2.getValue()
-							.toString()
-							+ "/"
-							+ anio_2.getValue().toString());
-				} catch (ParseException e1) {
-					e1.printStackTrace();
-				}
+//				Date fechaVencimiento = null;
+//				fechaVenc = new SimpleDateFormat("MM/yyyy");
+//				try {
+//					fechaVencimiento = fechaVenc.parse(mes_2.getValue()
+//							.toString() + "/" + anio_2.getValue().toString());
+//				} catch (ParseException e1) {
+//					e1.printStackTrace();
+//				}
+				
+				
 				String contraseña = txtContrasea.getText();
 
 				TUsuario tUsuario = new TUsuario(id, nombre, apellidos, email,
@@ -443,7 +458,8 @@ public class GUIModificarUsuario extends JFrame {
 		txtEmail.setEditable(false);
 	}
 
-	public void update(int events, Object res) {
+	@SuppressWarnings("deprecation")
+	public void update(int events, TUsuario res) {
 		switch (events) {
 		case Events.MODIFICAR_USUARIO_OK:
 			JOptionPane.showMessageDialog(null,
@@ -472,20 +488,20 @@ public class GUIModificarUsuario extends JFrame {
 			((DefaultEditor) anio_2.getEditor()).getTextField().setEditable(
 					true);
 			txtEmail.setEditable(true);
-
-			txtNombre.setText("Nombre");
-			txtApellidos.setText("Apellido(s)");
-			txtContrasea.setText("Contraseña");
-			txtConfirmarContrasea.setText("Confirmar contraseña");
-			txtDireccin.setText("Dirección");
-			numTarjeta.setText("Número de tarjeta");
-			nombreTarjeta.setText("Nombre en la tarjeta");
-			txtEmail.setText("E-mail");
-			dia.setValue(1);
-			mes.setValue(1);
-			anio.setValue(1900);
-			mes_2.setValue(1);
-			anio_2.setValue(2019);
+			
+			txtNombre.setText(res.getNombre());
+			txtApellidos.setText(res.getApellidos());
+			txtContrasea.setText(res.getContraseña());
+			txtConfirmarContrasea.setText(res.getContraseña());
+			txtDireccin.setText(res.getDireccion());
+			numTarjeta.setText(res.getNumeroCuenta());
+			nombreTarjeta.setText(res.getNumeroCuenta());
+			txtEmail.setText(res.getEmail());
+//			dia.setValue(res.getFechaNacimiento().substring(0, 2));
+//			mes.setValue(res.getFechaNacimiento().substring(3, 5));
+//			anio.setValue(res.getFechaNacimiento().substring(6, 9));
+//			mes_2.setValue(res.getFechaCaducidad().substring(0, 2));
+//			anio_2.setValue(res.getFechaCaducidad().substring(4, 7));
 
 			txtNombre.setEnabled(true);
 			txtApellidos.setEnabled(true);

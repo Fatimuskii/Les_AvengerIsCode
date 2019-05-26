@@ -35,14 +35,15 @@ public class GUIAccesoUsuario extends JFrame {
 
 	private JPanel contentPane;
 	private JPasswordField passwordField;
-	private JTextField textField;
-	private TUsuario tUsuario;
+	private JTextField nombre;
 
+	
 	public GUIAccesoUsuario() {
 		super();
 		this.contentPane = new JPanel();
 		this.passwordField = new JPasswordField();
-		this.textField = new JTextField();
+		this.nombre = new JTextField();
+
 		initGUI();
 	}
 
@@ -73,10 +74,10 @@ public class GUIAccesoUsuario extends JFrame {
 		lblUsuario.setBounds(70, 113, 46, 14);
 		panel.add(lblUsuario);
 
-		textField = new JTextField();
-		textField.setBounds(153, 110, 135, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		nombre = new JTextField();
+		nombre.setBounds(153, 110, 135, 20);
+		panel.add(nombre);
+		nombre.setColumns(10);
 
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("imagenes\\logo.png"));
@@ -88,10 +89,23 @@ public class GUIAccesoUsuario extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Controlador.getInstance().accion(Events.ACCESO_USUARIO,
-						tUsuario);
+				Controlador.getInstance().accion(Events.ACCESO_USUARIO, nombre.getText());
 			}
 		});
 		panel.add(btnLogin);
 	}
+
+	public void update(int events, Object res) {
+		switch (events) {
+		case Events.ACCESO_USUARIO_OK:
+			JOptionPane.showMessageDialog(null, "Bienvenido " + nombre);
+			dispose();
+			break;
+		case Events.ACCESO_USUARIO_KO:
+			JOptionPane.showMessageDialog(null, "Error en el acceso",
+					"Error Acceso", JOptionPane.ERROR_MESSAGE);
+			break;
+		}
+	}
+	
 }

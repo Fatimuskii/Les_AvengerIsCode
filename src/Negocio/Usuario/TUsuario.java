@@ -52,7 +52,7 @@ public class TUsuario {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private Date fechaNacimiento;
+	private String fechaNacimiento;
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
@@ -74,16 +74,16 @@ public class TUsuario {
 
 	private String numeroCuenta;
 
-	private Date fechaCaducidad;
+	private String fechaCaducidad;
 
 	//private ArrayList<TUsuario> arrayTUsuario = new ArrayList<>();
 
 	private boolean activo;
 
 	public TUsuario(int idUsuario, String nombre, String apellidos,
-			String email, Date fechaNacimiento, String direccion,
+			String email, String fechaNacimiento, String direccion,
 			String contraseña, String titularCuenta, String numeroCuenta,
-			Date fechaCaducidad, boolean activo) {
+			String fechaCaducidad, boolean activo) {
 
 		this.idUsuario = idUsuario;
 		this.nombre = nombre;
@@ -99,10 +99,9 @@ public class TUsuario {
 	}
 
 	public TUsuario(String nombre, String apellidos, String email,
-			Date fechaNacimiento, String direccion, String contraseña,
-			String titularCuenta, String numeroCuenta, Date fechaCaducidad,
+			String fechaNacimiento, String direccion, String contraseña,
+			String titularCuenta, String numeroCuenta, String fechaCaducidad,
 			boolean activo) {
-
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.fechaNacimiento = fechaNacimiento;
@@ -112,21 +111,6 @@ public class TUsuario {
 		this.numeroCuenta = numeroCuenta;
 		this.email = email;
 		this.fechaCaducidad = fechaCaducidad;
-		this.activo = activo;
-	}
-
-	public TUsuario(String nombre, String apellidos, String email,
-			String direccion, String contraseña, String titularCuenta,
-			String numeroCuenta, boolean activo) {
-		this.nombre = nombre;
-		this.apellidos = apellidos;
-
-		this.direccion = direccion;
-		this.contraseña = contraseña;
-		this.titularCuenta = titularCuenta;
-		this.numeroCuenta = numeroCuenta;
-		this.email = email;
-
 		this.activo = activo;
 
 	}
@@ -186,7 +170,7 @@ public class TUsuario {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public Date getFechaNacimiento() {
+	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
@@ -265,7 +249,7 @@ public class TUsuario {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
@@ -289,7 +273,7 @@ public class TUsuario {
 		return numeroCuenta;
 	}
 
-	public Date getFechaCaducidad() {
+	public String getFechaCaducidad() {
 		return fechaCaducidad;
 
 	}
@@ -307,7 +291,7 @@ public class TUsuario {
 		this.numeroCuenta = cuentaB;
 	}
 
-	public void setFechaCaducidad(Date fechaC) {
+	public void setFechaCaducidad(String fechaC) {
 		this.fechaCaducidad = fechaC;
 	}
 

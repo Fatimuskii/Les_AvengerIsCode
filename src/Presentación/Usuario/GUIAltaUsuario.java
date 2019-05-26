@@ -344,33 +344,32 @@ public class GUIAltaUsuario extends JFrame {
 					String nombre = txtNombre.getText();
 					String apellidos = txtApellidos.getText();
 					String email = txtEmail.getText();
-					// fecha de nacimiento
-					Date fechaNacimiento = null;
-					fechaNac = new SimpleDateFormat("dd/MM/yyyy");
-					try {
-						fechaNacimiento = fechaNac.parse(dia.getValue()
-								.toString()
-								+ "/"
-								+ mes.getValue().toString()
-								+ "/" + anio.getValue().toString());
-					} catch (ParseException e2) {
-						e2.printStackTrace();
-					}
+					String fechaNacimiento = dia.getValue() + "/"
+							+ mes.getValue() + "/" + anio.getValue();
+					// // fecha de nacimiento
+					// Date fechaNacimiento = null;
+					// fechaNac = new SimpleDateFormat("dd/MM/yyyy");
+					// fechaNacimiento = fechaNac.parse(dia.getValue()
+					// + "/"
+					// + mes.getValue()
+					// + "/" + anio.getValue());
 					String direccion = txtDireccin.getText();
 					String nombTarjeta = nombreTarjeta.getText();
 					String numeroTarjeta = numTarjeta.getText();
 
-					// fecha de vencimiento
-					Date fechaVencimiento = null;
-					fechaVenc = new SimpleDateFormat("MM/yyyy");
-					try {
-						fechaVencimiento = fechaVenc.parse(mes_2.getValue()
-								.toString()
-								+ "/"
-								+ anio_2.getValue().toString());
-					} catch (ParseException e1) {
-						e1.printStackTrace();
-					}
+					// // fecha de vencimiento
+					// Date fechaVencimiento = null;
+					// fechaVenc = new SimpleDateFormat("MM/yyyy");
+					// try {
+					// fechaVencimiento = fechaVenc.parse(mes_2.getValue()
+					// .toString()
+					// + "/"
+					// + anio_2.getValue().toString());
+					// } catch (ParseException e1) {
+					// e1.printStackTrace();
+					// }
+					String fechaVencimiento = mes_2.getValue() + "/"
+							+ anio_2.getValue();
 					String contraseña = txtContrasea.getText();
 
 					usuario = new TUsuario(nombre, apellidos, email,
@@ -496,5 +495,4 @@ public class GUIAltaUsuario extends JFrame {
 		}
 
 	}
-	// GENERAR ID ALEATORIO TODO
 }

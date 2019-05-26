@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 public abstract class GUIUsuario extends JFrame{
 	private static GUIUsuario instance;
 	public abstract void initGUI();
-	
+
 	public static GUIUsuario getInstance() {
 		if(instance == null)
 			instance = new GUIUsuarioImp();
