@@ -13,7 +13,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Estructura de tabla para la tabla `disenos`
 --
 CREATE TABLE IF NOT EXISTS disenos(
-	idDiseno int(11) NOT NULL AUTO_INCREMENT,
+	idDiseno int(5) NOT NULL AUTO_INCREMENT,
 	nombre varchar(20) NOT NULL,
 	descripcion varchar(200),
 	propietario int(11) NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS disenos(
 -- Estructura de tabla para la tabla `impresora`
 --
 CREATE TABLE IF NOT EXISTS impresora(
-	idImpresora int(11) NOT NULL AUTO_INCREMENT,
+	idImpresora int(5) NOT NULL AUTO_INCREMENT,
 	material varchar(20) NOT NULL,
 	alto float NOT NULL,
 	ancho float NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS impresora(
 
 
 CREATE TABLE IF NOT EXISTS locales (
-  IdLocal int(11) NOT NULL AUTO_INCREMENT,
+  IdLocal int(5) NOT NULL AUTO_INCREMENT,
   nombre varchar(20) NOT NULL,
   telefono int(11) NOT NULL,
   CIF int(11) NOT NULL,
@@ -82,17 +82,19 @@ CREATE TABLE IF NOT EXISTS usuario (
 
 --
 -- Estructura de tabla para la tabla 'Pedidos de Impresiones' 
+-- idLocal puede ser nula, en caso de no hacer pedido por Local...
 
 CREATE TABLE IF NOT EXISTS pedidoImpresion (
   IdPedidoImpresion int(5) NOT NULL AUTO_INCREMENT, 
-  usuarioSol varchar(20) REFERENCES Usuario(idUsuario),
-  disenio int(11) REFERENCES disenio(idDiseno),
-  impresora int(11) REFERENCES impresora(idImpresora),
+  usuarioSol int(5) REFERENCES Usuario(idUsuario),
+  disenio int(5) REFERENCES disenio(idDiseno),
+  impresora int(5) REFERENCES impresora(idImpresora),
   fecha date NOT NULL,
   estadoPedido int(1) NOT NULL,
   cantidad int(2) NOT NULL,
   material int (1) NOT NULL,
   tipoenvio tinyint(1) NOT NULL,
+  idLocal int(5),
   
   CHECK (cantidad >0),
   CHECK (material >=0 AND material <=3),

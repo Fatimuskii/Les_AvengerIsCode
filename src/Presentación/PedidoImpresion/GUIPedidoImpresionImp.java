@@ -26,6 +26,10 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import Negocio.Diseño.TDiseño;
+import Negocio.Impresora.TImpresora;
+import Negocio.Local.TLocal;
+import Negocio.Usuario.TUsuario;
 import Presentación.Controlador.Events;
 
 import java.awt.Font;
@@ -35,6 +39,13 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 
 	private JPanel contentPane;
 	private GUIAltaPedidoImpresion guiAlta;
+	
+	private TUsuario usuarioSol; 
+	private TImpresora impresora;
+	private TDiseño diseño;
+	private TLocal local;
+	
+	
 
 	/**
 	 * Create the frame.
@@ -45,7 +56,23 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 		//guiAltaPedidoImpresion = new GUIAltaPedidoImpresion();
 		initGUI();
 	}
+	
+	// Plataforma me pasara: TUsuario usuario, TImpresora impresora, TDiseño diseño, TLocal local
+	
+	public void setUsurio(TUsuario user){
+		this.usuarioSol= user;
+	}
 
+	public void setImpresora(TImpresora impresora){
+		this.impresora= impresora;
+	}
+	public void setDiseño(TDiseño diseño){
+		this.diseño=diseño;
+	}
+	
+	public void setLocal(TLocal local){
+		this.local = local;
+	}
 	private void initGUI() {
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
@@ -80,11 +107,9 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 		JMenuItem mntmAlta = new JMenuItem("Hacer pedido\r\n");
 		mntmAlta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				guiAlta = new GUIAltaPedidoImpresion(); // creo caja de dialogo
-				guiAlta.setVisible(true); // hace visible la caja
-				// dispose(); //para cerrar la ventana anterior y dejar solo a
-				// la que llama
-
+				guiAlta = new GUIAltaPedidoImpresion(usuarioSol,impresora,diseño,local);
+				
+				guiAlta.setVisible(true);
 			}
 		});
 		mnAlta.add(mntmAlta);
@@ -151,10 +176,8 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 		JButton btnHacerPedido = new JButton("HACER PEDIDO");
 		btnHacerPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUIAltaPedidoImpresion alta; // declaro el nombre
-				alta = new GUIAltaPedidoImpresion(); // creo caja de dialogo
-				alta.setVisible(true); // hace visible la caja
-				// dispose();
+				guiAlta = new GUIAltaPedidoImpresion(usuarioSol,impresora,diseño,local); 
+				guiAlta.setVisible(true); 
 			}
 		});
 		btnHacerPedido.setBounds(312, 53, 263, 65);

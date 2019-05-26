@@ -363,7 +363,7 @@ public class ControladorImp extends Controlador {
 			GUIPedidoImpresion.getInstance();
 			break;
 			
-		/*case Events.ALTA_PEDIDO_IMPRESION:
+		case Events.ALTA_PEDIDO_IMPRESION:
 			tPedidoImpresion = (TPedidoImpresion) datos;
 			res = this.SAPedidoImpresion.alta(tPedidoImpresion);
 
@@ -371,7 +371,7 @@ public class ControladorImp extends Controlador {
 				GUIPedidoImpresion.getInstance().update(Events.ALTA_PEDIDO_IMPRESION_OK, res);
 			else
 				GUIPedidoImpresion.getInstance().update(Events.ALTA_PEDIDO_IMPRESION_KO, res);
-			break;*/
+			break;
 			
 		// end-user-code
 			

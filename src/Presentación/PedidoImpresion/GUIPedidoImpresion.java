@@ -5,6 +5,11 @@ package Presentación.PedidoImpresion;
 
 import javax.swing.JFrame;
 
+import Negocio.Diseño.TDiseño;
+import Negocio.Impresora.TImpresora;
+import Negocio.Local.TLocal;
+import Negocio.Usuario.TUsuario;
+
 /** 
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
@@ -18,6 +23,7 @@ private static GUIPedidoImpresion instance;
 	
 	public abstract void update(int event, Object res);
 	//public abstract void initGUI();
+	
 	
 	public static GUIPedidoImpresion getInstance() {
 		if(instance == null)

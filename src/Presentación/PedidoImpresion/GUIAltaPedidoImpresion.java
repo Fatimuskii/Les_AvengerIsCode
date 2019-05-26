@@ -1,4 +1,5 @@
 package Presentación.PedidoImpresion;
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -33,18 +34,39 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JTextPane;
 
+import Negocio.Diseño.TDiseño;
+import Negocio.Impresora.TImpresora;
+import Negocio.Local.TLocal;
+import Negocio.PedidoImpresion.TPedidoImpresion;
+import Negocio.Usuario.TUsuario;
+import Presentación.Controlador.Controlador;
+import Presentación.Controlador.Events;
+
 @SuppressWarnings("serial")
-public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp{
+public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp {
 	private JPanel contentPane;
 	private JTextField txtNombre;
 	private JTextField txtApellidos;
-	
+
+	private TUsuario usuarioSol;
+	private TImpresora impresora;
+	private TDiseño diseño;
+	private TLocal local;
 
 	/**
 	 * Launch the application.
+	 * @param local 
+	 * @param diseño 
+	 * @param impresora 
+	 * @param usuarioSol 
 	 */
-	public GUIAltaPedidoImpresion(){
-		contentPane= new JPanel();
+	public GUIAltaPedidoImpresion(TUsuario usuarioSol, TImpresora impresora, TDiseño diseño, TLocal local) {
+		
+		contentPane = new JPanel();
+		this.usuarioSol= usuarioSol;
+		this.impresora=impresora;
+		this.diseño=diseño;
+		this.local=local;
 		initGUI();
 	}
 
@@ -52,7 +74,10 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp{
 	 * Create the frame.
 	 */
 	public void initGUI() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Paula\\IBM\\rationalsdp\\workspace\\Les_AvengerIsCode\\imagenes\\logoUsu.png"));
+		setIconImage(Toolkit
+				.getDefaultToolkit()
+				.getImage(
+						"imagenes\\logoUsu.png"));
 		setTitle("ALTA PEDIDO IMPRESION");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 681, 470);
@@ -60,155 +85,157 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JPanel panel = new JPanel();
 		panel.setForeground(new Color(0, 0, 0));
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 653, 40);
 		panel.add(menuBar);
-		
+
 		JMenu mnArchivo = new JMenu("Archivo");
 		menuBar.add(mnArchivo);
-		
+
 		JMenuItem mntmSalir = new JMenuItem("Salir");
 		mntmSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		
+
 		JMenuItem mntmVolverAlMenu = new JMenuItem("Volver al menu");
 		mntmVolverAlMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				 GUIPedidoImpresionImp imp; 
-				imp= new  GUIPedidoImpresionImp(); 
-				imp.setVisible(true); 
+				GUIPedidoImpresionImp imp;
+				imp = new GUIPedidoImpresionImp();
+				imp.setVisible(true);
 				dispose();
 			}
 		});
 		mnArchivo.add(mntmVolverAlMenu);
 		mnArchivo.add(mntmSalir);
-		
+
 		JMenu mnPedidoimpresion = new JMenu("PedidoImpresion");
 		menuBar.add(mnPedidoimpresion);
-		
+
 		JMenuItem mntmAlta = new JMenuItem("Alta");
 		mntmAlta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUIAltaPedidoImpresion alta; //declaro el nombre
-				alta= new GUIAltaPedidoImpresion(); //creo caja de dialogo
-				alta.setVisible(true); //hace visible la caja
-				dispose();
+				//GUIAltaPedidoImpresion alta; // declaro el nombre
+				//alta = new GUIAltaPedidoImpresion(); // creo caja de dialogo
+				//alta.setVisible(true); // hace visible la caja
+				//dispose();
 			}
 		});
 		mnPedidoimpresion.add(mntmAlta);
-		
+
 		JMenuItem mntmBaja = new JMenuItem("Baja");
 		mntmBaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUIBajaPedidoImpresion baja; 
-				baja= new GUIBajaPedidoImpresion(); 
+				GUIBajaPedidoImpresion baja;
+				baja = new GUIBajaPedidoImpresion();
 				baja.setVisible(true);
 				dispose();
 			}
 		});
 		mnPedidoimpresion.add(mntmBaja);
-		
+
 		JMenuItem mntmBuscar = new JMenuItem("Buscar");
 		mntmBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GUIBuscarPedido buscar;
-				buscar= new GUIBuscarPedido(); 
+				buscar = new GUIBuscarPedido();
 				buscar.setVisible(true);
 				dispose();
 			}
 		});
 		mnPedidoimpresion.add(mntmBuscar);
-		
+
 		JMenu mnModificar = new JMenu("Modificar");
 		mnPedidoimpresion.add(mnModificar);
-		
+
 		JMenuItem mntmPedidoImpresion = new JMenuItem("Pedido impresion");
 		mntmPedidoImpresion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GUIModificarPedido modificar;
-				modificar= new GUIModificarPedido(); 
+				modificar = new GUIModificarPedido();
 				modificar.setVisible(true);
 				dispose();
 			}
 		});
 		mnModificar.add(mntmPedidoImpresion);
-		
+
 		JMenuItem mntmEnvio = new JMenuItem("Envio");
 		mntmEnvio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				GUIModificarEnvio envio;
-				envio= new GUIModificarEnvio(); 
+				envio = new GUIModificarEnvio();
 				envio.setVisible(true);
 				dispose();
 			}
 		});
 		mnModificar.add(mntmEnvio);
-		
+
 		JLabel lblLogo = new JLabel("");
-		lblLogo.setIcon(new ImageIcon("C:\\Users\\Paula\\IBM\\rationalsdp\\workspace\\Les_AvengerIsCode\\imagenes\\logoUsu.png"));
+		lblLogo.setIcon(new ImageIcon(
+				"C:\\Users\\Paula\\IBM\\rationalsdp\\workspace\\Les_AvengerIsCode\\imagenes\\logoUsu.png"));
 		menuBar.add(lblLogo);
-		
+
 		JLabel lblCompra = new JLabel("");
 		lblCompra.setBounds(35, 69, 160, 155);
 		panel.add(lblCompra);
-		ImageIcon fot1 = new ImageIcon("C:\\Users\\Paula\\IBM\\rationalsdp\\workspace\\Les_AvengerIsCode\\imagenes\\commerce-and-shopping.png");
-		Icon icono1 = new ImageIcon(fot1.getImage().getScaledInstance(lblCompra.getWidth(), lblCompra.getHeight(), Image.SCALE_DEFAULT));
+		ImageIcon fot1 = new ImageIcon(
+				"C:\\Users\\Paula\\IBM\\rationalsdp\\workspace\\Les_AvengerIsCode\\imagenes\\commerce-and-shopping.png");
+		Icon icono1 = new ImageIcon(fot1.getImage().getScaledInstance(
+				lblCompra.getWidth(), lblCompra.getHeight(),
+				Image.SCALE_DEFAULT));
 		lblCompra.setIcon(icono1);
-		
+
 		txtNombre = new JTextField();
 		txtNombre.setText("NOMBRE\r\n");
 		txtNombre.setForeground(Color.BLACK);
-		/*txtNombre.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				if (txtNombre.getText().equals("")){
-					txtNombre.setText("Nombre");
-				}
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (txtNombre.getText().equals("")){
-					txtNombre.setText("Nombre");
-				}
-			}	
-		});*/
+		/*
+		 * txtNombre.addFocusListener(new FocusAdapter() {
+		 * 
+		 * @Override public void focusGained(FocusEvent arg0) { if
+		 * (txtNombre.getText().equals("")){ txtNombre.setText("Nombre"); } }
+		 * 
+		 * @Override public void focusLost(FocusEvent e) { if
+		 * (txtNombre.getText().equals("")){ txtNombre.setText("Nombre"); } }
+		 * });
+		 */
 		txtNombre.setBounds(237, 68, 193, 22);
 		panel.add(txtNombre);
 		txtNombre.setColumns(10);
-		
-		
+
 		txtApellidos = new JTextField();
 		txtApellidos.setText("APELLIDOS");
 		txtApellidos.setBounds(237, 103, 311, 22);
 		panel.add(txtApellidos);
 		txtApellidos.setColumns(10);
-		
+
 		JTextPane txtpnListaDeDiseos = new JTextPane();
 		txtpnListaDeDiseos.setText("LISTA DE DISE\u00D1OS");
 		txtpnListaDeDiseos.setBounds(237, 140, 311, 240);
 		panel.add(txtpnListaDeDiseos);
-		
+
 		JButton btnContinuar = new JButton("Continuar");
 		btnContinuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+
 				
+				//TPedidoImpresion tpedido = new TPedidoImpresion()
+				Controlador.getInstance().accion(Events.ALTA_PEDIDO_IMPRESION, tpedido);
 			}
 		});
 		btnContinuar.setBounds(57, 269, 126, 40);
 		panel.add(btnContinuar);
-		
+
 		this.repaint();
 	}
-	
+
 	@SuppressWarnings("unused")
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
@@ -217,17 +244,29 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp{
 					showMenu(e);
 				}
 			}
+
 			public void mouseReleased(MouseEvent e) {
 				if (e.isPopupTrigger()) {
 					showMenu(e);
 				}
 			}
+
 			private void showMenu(MouseEvent e) {
 				popup.show(e.getComponent(), e.getX(), e.getY());
 			}
 		});
 	}
-	
-	
-}
 
+	@Override
+	public void update(int event, Object res) {
+		// TODO Apéndice de método generado automáticamente
+		switch (event) {
+		case Events.ALTA_PEDIDO_IMPRESION_OK:
+			
+			break;
+		case Events.ALTA_DISEÑO_KO:
+			
+			break;
+		}
+	}
+}
