@@ -29,17 +29,17 @@ public class SADiseñoImp implements SADiseño {
 		int id_diseño = -1;
 		
 		if (tDiseño != null) {	
-			/*		DAOUsuario usuarioDAO = FactoriaDAO.getInstance().generateDAOUsuario();
+			DAOUsuario usuarioDAO = FactoriaDAO.getInstance().generateDAOUsuario();
 
 			TUsuario usuario = usuarioDAO.buscarIdUsuario(tDiseño.getPropietario());
 			if(usuario != null){
-				if(usuario.getActivo()){*/
+				if(usuario.getActivo()){
 					DAODiseño diseñoDAO = FactoriaDAO.getInstance().generateDAODiseño();
 					tDiseño.setActivo(true);
 					id_diseño = diseñoDAO.alta(tDiseño);
 				}
-			//}
-		//}
+			}
+		}
 		
 		return id_diseño;
 		// end-user-code

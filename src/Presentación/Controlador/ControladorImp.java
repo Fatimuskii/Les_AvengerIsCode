@@ -232,7 +232,19 @@ public class ControladorImp extends Controlador {
 				GUIImpresora.getInstance().update(Events.BUSCAR_IMPRESORA_KO, tImpresora);
 			break;	
 		case Events.BUSCAR_USUARIO_IMPRESORA:
-			GUIImpresora.getInstance();
+			idUsuario = (int) datos;
+			
+			tUsuario = this.SAUsuario.buscarIdUsuario(idUsuario);
+			if(tUsuario != null){
+				resultI = this.SAImpresora.buscarPorUsuario(idUsuario);
+				if (resultI != null)
+					GUIImpresora.getInstance().update(Events.BUSCAR_USUARIO_IMPRESORA_OK, resultI);
+				else
+					GUIImpresora.getInstance().update(Events.BUSCAR_USUARIO_IMPRESORA_KO, resultI);
+			}
+			else{
+				GUIImpresora.getInstance().update(Events.BUSCAR_USUARIO_IMPRESORA_KO, null);
+			}
 			break;
 		case Events.LISTAR_IMPRESORAS:
 			resultI = this.SAImpresora.listarTodo();

@@ -18,6 +18,7 @@ import java.awt.event.FocusEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -75,6 +76,7 @@ public class GUIImpresoraImp extends GUIImpresora {
 		this.gUIAltaImpresora = new GUIAltaImpresora();
 		this.gUIListarImpresora = new GUIListarImpresora();
 		this.gUIBuscarIdImpresora = new GUIBuscarIdImpresora();
+		this.gUIBuscarUsuarioImpresora = new GUIBuscarUsuarioImpresora();
 		this.setFocusable(true);
 		initGUI();
 	}
@@ -197,6 +199,26 @@ public class GUIImpresoraImp extends GUIImpresora {
 		panel.add(btnMostrarTodos);
 		
 		JButton button = new JButton("Buscar");
+		button.addActionListener(new ActionListener (){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try{
+					if(txtBuscarIdusuarioImpresor.getText().equals("Buscar IdUsuario impresor")){
+						throw new Exception("Introduzca un idUsuario");
+					}
+					int idUsuario = Integer.parseInt(txtBuscarIdusuarioImpresor.getText());
+					gUIBuscarUsuarioImpresora.clearData();
+					gUIBuscarUsuarioImpresora.setVisible(true);
+					Controlador.getInstance().accion(Events.BUSCAR_USUARIO_IMPRESORA, idUsuario);
+					gUIBuscarUsuarioImpresora.toFront();
+				}
+				catch(Exception ex){
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			
+		});
 		button.setBounds(264, 202, 85, 23);
 		panel.add(button);
 		
@@ -244,6 +266,12 @@ public class GUIImpresoraImp extends GUIImpresora {
 			break;
 		case Events.LISTAR_IMPRESORAS_KO:
 			gUIListarImpresora.update(event, (ArrayList<TImpresora>) res);
+			break;
+		case Events.BUSCAR_USUARIO_IMPRESORA_OK:
+			gUIBuscarUsuarioImpresora.update(event, (ArrayList<TImpresora>)res);
+			break;
+		case Events.BUSCAR_USUARIO_IMPRESORA_KO:
+			gUIBuscarUsuarioImpresora.update(event, (ArrayList<TImpresora>)res);
 			break;
 		}
 	}

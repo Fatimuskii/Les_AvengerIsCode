@@ -117,7 +117,7 @@ public class DAOImpresoraImp implements DAOImpresora {
 		if(connection != null) {
 			try {
 				Statement statement = connection.createStatement();
-				String query = "SELECT * FROM impresora WHERE usuario="+idUsuario;
+				String query = "SELECT * FROM impresora WHERE usuario="+idUsuario + " AND activo = 1";
 				ResultSet resultSet = statement.executeQuery(query);
 				TImpresora tImpresora;
 				while(resultSet.next()) {

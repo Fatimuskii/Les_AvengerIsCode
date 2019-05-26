@@ -497,6 +497,13 @@ public class GUIDiseñoImp extends GUIDiseño {
 		case Events.MODIFICAR_DISEÑO_COMPROBAR_KO:
 			gUIModificarDiseño.update(event, res);
 			break;
+		case Events.LISTAR_DISEÑOS_USU_OK:
+			gUIListarporUsuarioDiseño.update(event, (ArrayList<TDiseño>) res);
+			break;
+		case Events.LISTAR_DISEÑOS_USU_KO:
+			gUIListarporUsuarioDiseño.update(event, (ArrayList<TDiseño>) res);
+			break;
+			
 		}
 		
 		

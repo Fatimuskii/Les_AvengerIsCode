@@ -133,7 +133,7 @@ public class GUIListarImpresora extends JFrame {
 			break;
 		case Events.LISTAR_IMPRESORAS_KO:
 			JOptionPane.showMessageDialog(null,
-					"Error al listar las impresora", "Error Listar",
+					"Error al listar las impresoras", "Error Listar",
 					JOptionPane.ERROR_MESSAGE);
 			break;
 		}
