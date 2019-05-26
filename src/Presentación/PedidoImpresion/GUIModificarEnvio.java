@@ -27,7 +27,7 @@ public class GUIModificarEnvio extends GUIPedidoImpresionImp {
 	}
 	
 	public void initGUI() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Paula\\IBM\\rationalsdp\\workspace\\Les_AvengerIsCode\\imagenes\\logoUsu.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\logoUsu.png"));
 		setTitle("MODIFICAR ENVIO");
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 549, 348);
@@ -63,7 +63,7 @@ public class GUIModificarEnvio extends GUIPedidoImpresionImp {
 		mnArchivo.add(mntmSalir);
 		
 		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\Paula\\IBM\\rationalsdp\\workspace\\Les_AvengerIsCode\\imagenes\\logoUsu.png"));
+		label.setIcon(new ImageIcon("imagenes\\logoUsu.png"));
 		menuBar.add(label);
 		
 		textField = new JTextField();

@@ -61,6 +61,7 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp {
 	private JLabel lblMaterial;
 	private JLabel lblLocal;
 
+	private TPedidoImpresion pedidoImpr;
 	private TUsuario usuarioSol;
 	private TImpresora impresora;
 	private TDiseño diseño;
@@ -198,42 +199,47 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp {
 					tipoenvio = true;
 				EstadoPedido estadoPed = EstadoPedido.PEN;
 
-				TPedidoImpresion tpedido = new TPedidoImpresion(usuarioSol,
+				// prueba:
+				// usuarioSol = new TUsuario(1,"pepe");
+
+				pedidoImpr = new TPedidoImpresion(usuarioSol,
 						diseño, impresora, fecha, estadoPed, cantidad,
 						material, tipoenvio, local);
 				Controlador.getInstance().accion(Events.ALTA_PEDIDO_IMPRESION,
-						tpedido);
+						pedidoImpr);
 			}
 		});
 		btnContinuar.setBounds(497, 345, 126, 40);
 		panel.add(btnContinuar);
 
-		lblUsuario = new JLabel("Usuario:");
+		lblUsuario = new JLabel("Usuario: " + usuarioSol.getNombre() + " "
+				+ usuarioSol.getApellidos() + " (" + usuarioSol.getIdUsuario()
+				+ ")");
 		lblUsuario.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblUsuario.setBounds(246, 92, 84, 25);
 		panel.add(lblUsuario);
 
-		lblImpresora = new JLabel("Impresora:");
+		lblImpresora = new JLabel("Impresora: " + impresora.getId_impresora());
 		lblImpresora.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblImpresora.setBounds(246, 150, 113, 25);
 		panel.add(lblImpresora);
 
-		lblDiseño = new JLabel("Dise\u00F1o:");
+		lblDiseño = new JLabel("Dise\u00F1o: " + diseño.getNombre() +" (" + diseño.getId_diseño()+")" );
 		lblDiseño.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblDiseño.setBounds(246, 121, 75, 25);
 		panel.add(lblDiseño);
 
-		 lblFecha = new JLabel("Fecha:");
+		lblFecha = new JLabel("Fecha: " + pedidoImpr.getFecha() );
 		lblFecha.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblFecha.setBounds(246, 179, 67, 25);
 		panel.add(lblFecha);
 
-		lblCantidad = new JLabel("Cantidad:");
+		lblCantidad = new JLabel("Cantidad: ");
 		lblCantidad.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblCantidad.setBounds(246, 208, 97, 25);
 		panel.add(lblCantidad);
 
-		lblMaterial = new JLabel("Material de impresi\u00F3n:");
+		lblMaterial = new JLabel("Material de impresi\u00F3n: " + pedidoImpr.getMaterial().toString());
 		lblMaterial.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblMaterial.setBounds(246, 237, 227, 25);
 		panel.add(lblMaterial);
@@ -244,7 +250,7 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp {
 		spinnerCantidad.setBounds(375, 212, 75, 22);
 		panel.add(spinnerCantidad);
 
-		lblLocal = new JLabel("Local: ");
+		lblLocal = new JLabel("Local: " + local.getNombreLocal() + " ("+ local.getIdLocal()+")");
 		lblLocal.setFont(new Font("Tahoma", Font.BOLD, 20));
 		lblLocal.setBounds(246, 266, 65, 25);
 		panel.add(lblLocal);
