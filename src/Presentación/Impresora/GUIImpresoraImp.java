@@ -183,6 +183,27 @@ public class GUIImpresoraImp extends GUIImpresora {
 		txtBuscarIdusuarioImpresor.setColumns(10);
 		
 		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new ActionListener (){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try{
+					if(txtBuscar.getText().equals("Buscar Id impresora")){
+						throw new Exception();
+					}
+					int idImpresora = Integer.parseInt(txtBuscar.getText());
+					gUIBuscarIdImpresora.clearData();
+					gUIBuscarIdImpresora.setVisible(true);
+					Controlador.getInstance().accion(Events.BUSCAR_IMPRESORA, idImpresora);
+					gUIBuscarIdImpresora.toFront();
+				}
+				catch(Exception ex){
+					JOptionPane.showMessageDialog(null, "Introduzca un idImpresora válido", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+			}
+			
+		});
+		
 		btnBuscar.setBounds(216, 145, 85, 23);
 		panel.add(btnBuscar);
 		
@@ -272,6 +293,12 @@ public class GUIImpresoraImp extends GUIImpresora {
 			break;
 		case Events.BUSCAR_USUARIO_IMPRESORA_KO:
 			gUIBuscarUsuarioImpresora.update(event, (ArrayList<TImpresora>)res);
+			break;
+		case Events.BUSCAR_IMPRESORA_OK:
+			gUIBuscarIdImpresora.update(event,(TImpresora) res);
+			break;
+		case Events.BUSCAR_IMPRESORA_KO:
+			gUIBuscarIdImpresora.update(event, (TImpresora) res);
 			break;
 		}
 	}
