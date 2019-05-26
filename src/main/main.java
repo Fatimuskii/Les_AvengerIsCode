@@ -1,3 +1,5 @@
+package main;
+
 import java.awt.Dimension;
 
 import Presentación.Controlador.Controlador;
@@ -13,7 +15,6 @@ public class main {
 		
 		public static void main(String[] args) {
 			Controlador.getInstance().accion(Events.GUI, null);
-			//Controlador.getInstance().accion(Events.OPEN_GUI_LOCAL_MENU, null);
 		}
 
 }

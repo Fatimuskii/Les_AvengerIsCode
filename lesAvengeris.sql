@@ -83,17 +83,21 @@ CREATE TABLE IF NOT EXISTS usuario (
 --
 -- Estructura de tabla para la tabla 'Pedidos de Impresiones' 
 
-CREATE TABLE IF NOT EXISTS usuario (
-  IdPedidoImpresion int(5) NOT NULL AUTO_INCREMENT, -- id
-  usuarioSol varchar(20) NOT NULL, --user q hace pedido
-  disenio int(11) NOT NULL, -- disenio 
-  impresora int(11) NOT NULL, --impresora
+CREATE TABLE IF NOT EXISTS pedidoImpresion (
+  IdPedidoImpresion int(5) NOT NULL AUTO_INCREMENT, 
+  usuarioSol varchar(20) REFERENCES Usuario(idUsuario),
+  disenio int(11) REFERENCES disenio(idDiseno),
+  impresora int(11) REFERENCES impresora(idImpresora),
   fecha date NOT NULL,
   estadoPedido int(1) NOT NULL,
   cantidad int(2) NOT NULL,
   material int (1) NOT NULL,
-  PRIMARY KEY(IdPedidoImpresion)
+  tipoenvio tinyint(1) NOT NULL,
   
+  CHECK (cantidad >0),
+  CHECK (material >=0 AND material <=3),
+  PRIMARY KEY(IdPedidoImpresion, usuarioSol,disenio,impresora)
+ 
   
 );
 --
