@@ -33,6 +33,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JTextPane;
 
+@SuppressWarnings("serial")
 public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp{
 	private JPanel contentPane;
 	private JTextField txtNombre;
@@ -43,7 +44,7 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp{
 	 * Launch the application.
 	 */
 	public GUIAltaPedidoImpresion(){
-		this.contentPane= new JPanel();
+		contentPane= new JPanel();
 		initGUI();
 	}
 
@@ -208,6 +209,7 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp{
 		this.repaint();
 	}
 	
+	@SuppressWarnings("unused")
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
@@ -225,5 +227,7 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp{
 			}
 		});
 	}
+	
+	
 }
 

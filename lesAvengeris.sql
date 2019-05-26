@@ -80,6 +80,21 @@ CREATE TABLE IF NOT EXISTS usuario (
   
 );
 
+--
+-- Estructura de tabla para la tabla 'Pedidos de Impresiones' 
 
+CREATE TABLE IF NOT EXISTS usuario (
+  IdPedidoImpresion int(5) NOT NULL AUTO_INCREMENT, -- id
+  usuarioSol varchar(20) NOT NULL, --user q hace pedido
+  disenio int(11) NOT NULL, -- disenio 
+  impresora int(11) NOT NULL, --impresora
+  fecha date NOT NULL,
+  estadoPedido int(1) NOT NULL,
+  cantidad int(2) NOT NULL,
+  material int (1) NOT NULL,
+  PRIMARY KEY(IdPedidoImpresion)
+  
+  
+);
 --
 -- Ã�ndices para tablas volcadas

@@ -1,8 +1,5 @@
 package Presentación.Plataforma;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -37,7 +34,8 @@ public class GUIMenuAdmin extends JFrame {
 		JButton btnDiseños = new JButton("DISEÑOS");
 		btnDiseños.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controlador.getInstance().accion(Events.OPEN_GUI_DISEÑO_MENU, null);
+				Controlador.getInstance().accion(Events.OPEN_GUI_DISEÑO_MENU,
+						null);
 			}
 		});
 		btnDiseños.setBounds(33, 70, 116, 37);
@@ -46,7 +44,8 @@ public class GUIMenuAdmin extends JFrame {
 		JButton btnImpresoras = new JButton("IMPRESORAS");
 		btnImpresoras.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controlador.getInstance().accion(Events.OPEN_GUI_IMPRESORA_MENU, null);
+				Controlador.getInstance().accion(
+						Events.OPEN_GUI_IMPRESORA_MENU, null);
 			}
 		});
 		btnImpresoras.setBounds(161, 70, 116, 37);
@@ -65,8 +64,8 @@ public class GUIMenuAdmin extends JFrame {
 		JButton btnPedidos = new JButton("PEDIDOS");
 		btnPedidos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controlador.getInstance().accion(Events.OPEN_GUI_PEDIDO_IMPRESION_MENU,
-						null);
+				Controlador.getInstance().accion(
+						Events.OPEN_GUI_PEDIDO_IMPRESION_MENU, null);
 			}
 		});
 		btnPedidos.setBounds(161, 186, 116, 37);

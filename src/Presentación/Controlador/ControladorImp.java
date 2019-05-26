@@ -16,16 +16,11 @@ import Negocio.Diseño.TDiseño;
 import Negocio.Impresora.SAImpresora;
 import Negocio.Impresora.TImpresora;
 import Negocio.PedidoImpresion.SAPedidoImpresion;
-import Negocio.PedidoImpresion.TPedidoImpresion;
 import Negocio.Plataforma.SAPlataforma;
-import Presentacion.Plataforma2.GUIPlataformaF;
 import Presentación.Impresora.GUIImpresora;
 import Presentación.Local.GUILocal;
 import Presentación.PedidoImpresion.GUIPedidoImpresion;
-import Presentación.Plataforma.GUIPlataforma;
 import Presentación.Plataforma.GUIPlataformaImp;
-import Presentacion.Plataforma2.GUIPlataformaF;
-import Presentacion.Plataforma2.GUIPlataformaFimp;
 import Presentación.Usuario.GUIUsuario;
 import Presentación.Diseño.GUIDiseño;
 
@@ -90,7 +85,8 @@ public class ControladorImp extends Controlador {
 			//GUIPlataformaFimp.getInstance();
 			GUIPlataformaImp.getInstance();
 			break;
-		/* Eventos de Local & Representante */
+		/* Eventos de Local */
+			
 		case Events.OPEN_GUI_LOCAL_MENU:
 			GUILocal.getInstance();
 			// GUILocal.getInstance().update
@@ -353,6 +349,11 @@ public class ControladorImp extends Controlador {
 			break;
 		case Events.BAJA_CARRITO:
 			break;
+		/*EVENTOS DE PEDIDO IMPRESION*/
+		case Events.OPEN_GUI_PEDIDO_IMPRESION_MENU:
+			GUIPedidoImpresion.getInstance();
+			break;
+			
 		/*case Events.ALTA_PEDIDO_IMPRESION:
 			tPedidoImpresion = (TPedidoImpresion) datos;
 			res = this.SAPedidoImpresion.alta(tPedidoImpresion);
