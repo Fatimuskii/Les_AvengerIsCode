@@ -4,6 +4,7 @@
 package Presentación.PedidoImpresion;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import Negocio.Diseño.TDiseño;
 import Negocio.Impresora.TImpresora;
@@ -17,7 +18,7 @@ import Negocio.Usuario.TUsuario;
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 @SuppressWarnings("serial")
-public abstract class GUIPedidoImpresion extends JFrame{
+public abstract class GUIPedidoImpresion extends JPanel{
 	
 private static GUIPedidoImpresion instance;
 	

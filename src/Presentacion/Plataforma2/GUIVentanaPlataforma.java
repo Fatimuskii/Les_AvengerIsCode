@@ -20,6 +20,7 @@ import Presentación.Controlador.Events;
 import Presentación.Diseño.GUIDiseño;
 import Presentación.Local.GUILocal;
 import Presentación.Local.GUILocalImp;
+import Presentación.PedidoImpresion.GUIPedidoImpresion;
 import Presentación.Usuario.GUIUsuario;
 
 public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma {
@@ -88,8 +89,7 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 		
 		panel_1 = GUIDiseño.getInstance();
 		
-		panel_2 = new JPanel();
-		panel_2.setBackground(Color.BLUE);
+		panel_2 = GUIPedidoImpresion.getInstance();
 		
 		panel_3 = GUILocal.getInstance();
 		

@@ -10,6 +10,7 @@ package Presentación.PedidoImpresion;
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 
+import java.awt.BorderLayout;
 import java.awt.Image;
 
 import javax.swing.JFrame;
@@ -79,17 +80,18 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 	}
 	private void initGUI() {
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(
+		/*setIconImage(Toolkit.getDefaultToolkit().getImage(
 				"imagenes\\logoUsu.png"));
 		setTitle("MENU PEDIDO IMPRESION");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 605, 429);
+		setBounds(100, 100, 605, 429);*/
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		//setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		this.setLayout(new BorderLayout());
+		this.add(contentPane,BorderLayout.CENTER);
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 587, 40);
 		contentPane.add(menuBar);

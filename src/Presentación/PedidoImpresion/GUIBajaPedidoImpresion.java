@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.JTextField;
 
-public class GUIBajaPedidoImpresion extends GUIPedidoImpresionImp {
+public class GUIBajaPedidoImpresion extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNombre;

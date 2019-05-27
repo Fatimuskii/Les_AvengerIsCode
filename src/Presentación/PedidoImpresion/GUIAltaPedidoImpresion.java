@@ -50,7 +50,7 @@ import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 
 @SuppressWarnings("serial")
-public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp {
+public class GUIAltaPedidoImpresion extends JFrame {
 	private JPanel contentPane;
 	private JSpinner spinnerCantidad;
 	private JLabel lblUsuario;
@@ -278,7 +278,6 @@ public class GUIAltaPedidoImpresion extends GUIPedidoImpresionImp {
 		});
 	}
 
-	@Override
 	public void update(int event, Object res) {
 		// TODO Apéndice de método generado automáticamente
 		switch (event) {

@@ -48,6 +48,8 @@ public class ControladorImp extends Controlador {
 	private SAPedidoImpresion SAPedidoImpresion;
 	private SAPlataforma SAPlataforma;
 	
+	private TUsuario uLogueado;
+	
 
 	// AQUI VENDRIAN EL RESTO DE SA
 
@@ -349,9 +351,11 @@ public class ControladorImp extends Controlador {
 			//logguear en usuario
 			TUsuario user;
 			user=SAPlataforma.logueo(((TUsuario)datos).getNombre(), ((TUsuario)datos).getContraseña());
-			if(user!=null)
+			if(user!=null){
 				//GUIPlataformaF.getInstance().update(Events.ACCESO_USUARIO_OK, user);
+				this.uLogueado=(TUsuario)datos;
 				GUIPlataformaF.getInstance().update(Events.ACCESO_USUARIO_OK, (TUsuario)datos);
+			}
 			else
 				GUIPlataformaF.getInstance().update(Events.ACCESO_USUARIO_KO, null);
 			nombre = String.valueOf(datos.toString());

@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import java.awt.Toolkit;
 
-public class GUIModificarEnvio extends GUIPedidoImpresionImp {
+public class GUIModificarEnvio extends JFrame {
 	
 	private JPanel contentPane;
 	private JTextField textField;

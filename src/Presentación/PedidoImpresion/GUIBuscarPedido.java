@@ -35,7 +35,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import javax.swing.JTextPane;
 
-public class GUIBuscarPedido extends GUIPedidoImpresionImp{
+public class GUIBuscarPedido extends JFrame{
 	
 	private JPanel contentPane;
 	

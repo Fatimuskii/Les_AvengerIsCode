@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import java.awt.Toolkit;
 
 
-public class GUIModificarPedido extends GUIPedidoImpresionImp {
+public class GUIModificarPedido extends JFrame {
 	
 	private JPanel contentPane;
 	private JTextField txtSePuedeModificar;

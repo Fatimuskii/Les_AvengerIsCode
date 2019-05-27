@@ -19,7 +19,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
 
-public class GUIModificar extends GUIPedidoImpresionImp{
+public class GUIModificar extends JFrame{
 
 	private JPanel contentPane;
 	
