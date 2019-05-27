@@ -5,6 +5,7 @@ package Presentación.Usuario;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -381,18 +382,10 @@ public class GUIModificarUsuario extends JFrame {
 				String nombre = txtNombre.getText();
 				String apellidos = txtApellidos.getText();
 				String email = txtEmail.getText();
-				String fechaNacimiento = dia.getValue() + "/"
-						+ mes.getValue() + "/" + anio.getValue();
+				String fechaNacimiento = dia.getValue().toString() + "/"
+						+ mes.getValue().toString() + "/" + anio.getValue().toString();
 				
-//				Date fechaNacimiento = null;
-//				fechaNac = new SimpleDateFormat("dd/MM/yyyy");
-//				try {
-//					fechaNacimiento = fechaNac.parse(dia.getValue().toString()
-//							+ "/" + mes.getValue().toString() + "/"
-//							+ anio.getValue().toString());
-//				} catch (ParseException e2) {
-//					e2.printStackTrace();
-//				}
+
 				String direccion = txtDireccin.getText();
 				String nombTarjeta = nombreTarjeta.getText();
 				String numeroTarjeta = numTarjeta.getText();
@@ -495,13 +488,13 @@ public class GUIModificarUsuario extends JFrame {
 			txtConfirmarContrasea.setText(res.getContraseña());
 			txtDireccin.setText(res.getDireccion());
 			numTarjeta.setText(res.getNumeroCuenta());
-			nombreTarjeta.setText(res.getNumeroCuenta());
+			nombreTarjeta.setText(res.getTitularCuenta());
 			txtEmail.setText(res.getEmail());
-//			dia.setValue(res.getFechaNacimiento().substring(0, 2));
-//			mes.setValue(res.getFechaNacimiento().substring(3, 5));
-//			anio.setValue(res.getFechaNacimiento().substring(6, 9));
-//			mes_2.setValue(res.getFechaCaducidad().substring(0, 2));
-//			anio_2.setValue(res.getFechaCaducidad().substring(4, 7));
+			dia.setValue(res.getFechaNacimiento().substring(0, 2));
+			mes.setValue(res.getFechaNacimiento().substring(3, 5));
+			anio.setValue(res.getFechaNacimiento().substring(6, 9));
+			mes_2.setValue(res.getFechaCaducidad().substring(0, 2));
+			anio_2.setValue(res.getFechaCaducidad().substring(4, 7));
 
 			txtNombre.setEnabled(true);
 			txtApellidos.setEnabled(true);

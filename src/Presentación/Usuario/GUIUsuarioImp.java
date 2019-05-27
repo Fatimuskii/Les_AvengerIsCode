@@ -198,7 +198,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				GUI_ListarUsuarios.setVisible(true);
-			}
+				Controlador.getInstance().accion(Events.LISTAR_USUARIO,null);}
 		});
 		panel.add(button);
 		if(!admin)button.setEnabled(false);

@@ -314,4 +314,5 @@ public class TUsuario {
 		this.activo = activo;
 	}
 
+
 }

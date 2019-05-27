@@ -25,7 +25,7 @@ import Presentación.Controlador.Events;
 public class GUIListarUsuarios extends JFrame {
 	
 	private JPanel contentPane;
-	private String[] columnNames = { "#", "Id", "Nombre","Apellidos","Direccion","Fecha de Nacimiento","E-mail"," Titular Cuenta", "Numero de Cuenta"}; 
+	private String[] columnNames = { "#", "Id", "Nombre","Apellidos","E-mail","Direccion","Fecha de Nacimiento","Titular Cuenta", "Numero de Cuenta"}; 
 	private DefaultTableModel tableModel;
 	private JTable table;
 	
@@ -39,7 +39,7 @@ public class GUIListarUsuarios extends JFrame {
 	private void initGUI(){
 		setTitle("Listar Usuarios");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 900, 300);
+		setBounds(100, 100, 999, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -48,6 +48,7 @@ public class GUIListarUsuarios extends JFrame {
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
+				
 			}
 		});
 		
@@ -104,8 +105,8 @@ public class GUIListarUsuarios extends JFrame {
 			 tableModel.setRowCount(0);
 			 for (int i = 0; i < usu.size(); i++) 
 				 tableModel.insertRow(i, new Object[] 
-						 { i+1, usu.get(i).getIdUsuario(), usu.get(i).getNombre(), usu.get(i).getApellidos(), 
-						 usu.get(i).getDireccion(), usu.get(i).getEmail(), usu.get(i).getFechaNacimiento(), usu.get(i).getTitularCuenta(),
+						 { i+1, usu.get(i).getIdUsuario(), usu.get(i).getNombre(), usu.get(i).getApellidos(), usu.get(i).getEmail(), 
+						 usu.get(i).getDireccion(), usu.get(i).getFechaNacimiento(), usu.get(i).getTitularCuenta(),
 						 usu.get(i).getNumeroCuenta(), usu.get(i).getFechaCaducidad()});
 			 table.setModel(tableModel);
 			break;

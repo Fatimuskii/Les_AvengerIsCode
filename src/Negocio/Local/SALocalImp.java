@@ -24,6 +24,7 @@ public class SALocalImp implements SALocal {
 	public int alta(TLocal datos) {
 		// begin-user-code
 		// TODO Apéndice de método generado automáticamente
+		
 		TLocal tLeido; 
 		DAOLocal localDAO = FactoriaDAO.getInstance().generateDAOLocal();
 		if ( (tLeido = localDAO.buscarPorNombre(datos.getNombreLocal()))== null ) {

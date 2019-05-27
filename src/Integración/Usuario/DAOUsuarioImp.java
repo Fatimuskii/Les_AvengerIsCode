@@ -191,8 +191,9 @@ public class DAOUsuarioImp implements DAOUsuario {
 							resultSet.getString("cuentaBancaria"),
 							resultSet.getString("fechaCaducidad"),
 							resultSet.getBoolean("activo"));
+					listaUsuarios.add(tUsuario);
 				}
-				listaUsuarios.add(tUsuario);
+				
 
 			} catch (SQLException e) {
 				e.printStackTrace();
