@@ -49,7 +49,6 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 	private JButton comprar;
 	private JButton annadirCarrito;
 	
-	private boolean log;
 	
 
 	/**
@@ -108,9 +107,6 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 		annadirCarrito=panelCompras.getBotonComprar();
 		this.initBotonesPCarrito();
 		this.initBotonesPCompras();
-	}
-	public boolean getLog(){
-		return this.log;
 	}
 	public void logueado(TUsuario usuario) {
 		inicioPane.update(0, null);
