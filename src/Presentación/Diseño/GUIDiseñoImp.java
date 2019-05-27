@@ -3,6 +3,7 @@
  */
 package Presentación.Diseño;
 
+import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -101,17 +102,19 @@ public class GUIDiseñoImp extends GUIDiseño {
 	 */
 	private void initGUI() {
 		// begin-user-code
-		setTitle("Menú Diseños");
+		/*setTitle("Menú Diseños");
 		setIconImage(Toolkit
 				.getDefaultToolkit()
 				.getImage(
 						"imagenes\\graphic-tools.png"));
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 536, 338);
+		setBounds(100, 100, 536, 338);*/
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		//setContentPane(contentPane);
+		this.setLayout(new BorderLayout());
+		this.add(contentPane);
 
 		JLabel lblIconoDiseño = new JLabel("");
 		lblIconoDiseño

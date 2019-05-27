@@ -9,6 +9,9 @@ import java.util.List;
 
 import Negocio.Diseño.TDiseño;
 import Negocio.Usuario.TUsuario;
+import Presentacion.Plataforma2.GUIPlataformaF;
+import Presentación.Controlador.Events;
+import Presentación.Plataforma.GUIPlataforma;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -26,18 +29,18 @@ public class TPlataforma {
 		//this.usuarioLogueado=new TUsuario();
 		diseñosComprados=new ArrayList<TDiseño>();
 		listaCompra=new ArrayList<TDiseño>();
-		//listaCompra.add(new TDiseño("Diseño1","Material1"));
-		//listaCompra.add(new TDiseño("Diseño2","Material2"));
-		//listaCompra.add(new TDiseño("Diseño3","Material3"));
-		//listaCompra.add(new TDiseño("Diseño4","Material4"));
+		listaCompra.add(new TDiseño(0, "Diseño1","Material1", 0, 0, 0, 0, 0, null, false));
+		listaCompra.add(new TDiseño(0, "Diseño3","Material3", 0, 0, 0, 0, 0, null, false));
+		listaCompra.add(new TDiseño(0, "Diseño4","Material4", 0, 0, 0, 0, 0, null, false));
+		GUIPlataformaF.getInstance().update(Events.MODIFICAR_CARRITO_ANNADIR, listaCompra);
 	}
 	
-	public boolean logueo(String user, String pass) {
+	public TUsuario logueo(String user, String pass) {
 		this.usuarioLogueado= new TUsuario(484444, "pepe", "sfdfs",
 				"asdfadsf", new Date(), "sdfsadf",
 				"asdfadfa", "sfadfa", "asfdfadf",
 				new Date(),true);
-		return true;
+		return this.usuarioLogueado;
 	}
 	
 	public String getUsuarioLogueado(){
@@ -50,11 +53,12 @@ public class TPlataforma {
 	
 	public void eliminarElementoCarrito(TDiseño aEliminar) {
 		listaCompra.remove(aEliminar);
+		GUIPlataformaF.getInstance().update(Events.MODIFICAR_CARRITO_ANNADIR, listaCompra);
 	}
 	
 	public void vaciarElementosCarrito() {
-		//listaCompra.removeAll(listaCompra);
 		listaCompra=new ArrayList<TDiseño>();
+		GUIPlataformaF.getInstance().update(Events.MODIFICAR_CARRITO_ANNADIR, listaCompra);
 	}
 	
 	public void comprarElementosCarrito() {
@@ -66,5 +70,10 @@ public class TPlataforma {
 	
 	public void guardarDatosCompra() {
 		
+	}
+
+	public void annadirElementoCarrito(TDiseño aAnnadir) {
+		// TODO Auto-generated method stub
+		listaCompra.add(aAnnadir);
 	}
 }

@@ -27,7 +27,7 @@ import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 
 @SuppressWarnings("serial")
-public class GUIAltaLocal extends GUILocalImp {
+public class GUIAltaLocal extends JFrame {
 
 	
 	private JPanel contentPane;

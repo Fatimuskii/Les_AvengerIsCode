@@ -16,8 +16,11 @@ import java.awt.event.FocusEvent;
 import java.awt.event.ActionEvent;
 
 import Negocio.Plataforma.SAPlataforma;
+import Negocio.Usuario.TUsuario;
+import Presentación.Controlador.Controlador;
+import Presentación.Controlador.Events;
 
-public class GUIPanelLogin extends JPanel {
+public class GUIPanelLogin extends JPanel implements GUIEventoPlataforma {
 	/**
 	 * 
 	 */
@@ -29,7 +32,11 @@ public class GUIPanelLogin extends JPanel {
 	 * Create the panel.
 	 * @return 
 	 */
-	public GUIPanelLogin(final SAPlataforma ctrl, final GUIVentanaPlataforma principal) {
+	public GUIPanelLogin( final GUIVentanaPlataforma principal) {
+		init();
+	}
+	
+	public void init() {
 		setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
@@ -63,15 +70,18 @@ public class GUIPanelLogin extends JPanel {
 		JButton btnNewButton_1 = new JButton("Registrarse");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(ctrl.logueo(user.getText(), String.valueOf(pass.getPassword()))==true) {
-					principal.logueado();
-				}
+				Controlador.getInstance().accion(Events.ACCESO_USUARIO, new TUsuario(1, user.getText(),"","", "", null, String.copyValueOf(pass.getPassword()), "", "", null, true));
 			}
 		});
 		panel_1.add(btnNewButton);
 		
 		panel_1.add(btnNewButton_1);
+	}
 
+	@Override
+	public void update(int evento, Object objeto) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

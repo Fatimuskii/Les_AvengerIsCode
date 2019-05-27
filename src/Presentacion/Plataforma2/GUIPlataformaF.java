@@ -16,7 +16,7 @@ public abstract class GUIPlataformaF extends JFrame {
 
 	public static GUIPlataformaF getInstance() {
 		if (instance == null)
-			instance = new GUIPlataformaFimp(new SAPlataformaImp());
+			instance = new GUIPlataformaFimp();
 		instance.setVisible(true);
 		return instance;
 	}

@@ -16,12 +16,12 @@ import Presentación.Plataforma.GUILogin;
 public class GUIPlataformaFimp extends GUIPlataformaF {
 
 	private GUILogin loginGui;
-	private JPanel contentPane;
+	private GUIVentanaPlataforma contentPane;
 	
-	public GUIPlataformaFimp(SAPlataforma ctrl){
+	public GUIPlataformaFimp(){
 		super();
 		//loginGui= new GUILogin();
-		contentPane=new GUIVentanaPlataforma(ctrl);
+		contentPane=new GUIVentanaPlataforma();
 		this.setContentPane(contentPane);
 		this.setVisible(true);
 		initGUI();
@@ -42,7 +42,7 @@ public class GUIPlataformaFimp extends GUIPlataformaF {
 
 	@Override
 	public void update(int event, Object res) {
-		// TODO Apéndice de método generado automáticamente
+		contentPane.update(event, res);
 		
 	}
 }

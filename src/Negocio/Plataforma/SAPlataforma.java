@@ -6,6 +6,7 @@ package Negocio.Plataforma;
 import java.util.List;
 
 import Negocio.Diseño.TDiseño;
+import Negocio.Usuario.TUsuario;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -16,7 +17,7 @@ import Negocio.Diseño.TDiseño;
 public interface SAPlataforma {
 	
 	
-	boolean logueo(String user, String pass);
+	public TUsuario logueo(String user, String pass);
 	
 	
 	public String getUsuarioLogueado();
@@ -32,4 +33,7 @@ public interface SAPlataforma {
 	
 	
 	public void comprarElementosCarrito();
+	
+	
+	public void annadirElementoCarrito(TDiseño aAnnadir);
 }

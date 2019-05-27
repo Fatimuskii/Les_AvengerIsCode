@@ -5,6 +5,7 @@ package Presentación.Diseño;
 
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -13,7 +14,7 @@ import javax.swing.JFrame;
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 @SuppressWarnings("serial")
-public abstract class GUIDiseño extends JFrame{
+public abstract class GUIDiseño extends JPanel{
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->

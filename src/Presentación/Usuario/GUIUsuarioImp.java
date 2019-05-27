@@ -73,14 +73,16 @@ public class GUIUsuarioImp extends GUIUsuario {
 	}
 
 	public void initGUI() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\logo.png"));
+		/*setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\logo.png"));
 		setTitle("Perfil Usuario");
-		setBounds(100, 100, 521, 300);
+		setBounds(100, 100, 521, 300);*/
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-
+		//setContentPane(contentPane);
+		this.setLayout(new BorderLayout());
+		this.add(contentPane);
+		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);

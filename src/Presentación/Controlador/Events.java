@@ -128,6 +128,7 @@ public class Events {
 	public static final int ACCESO_USUARIO = 701;
 	public static final int ALTA_CARRITO = 702;
 	public static final int MODIFICAR_CARRITO = 703;
+	public static final int MODIFICAR_CARRITO_ANNADIR = 707;
 	public static final int BAJA_CARRITO = 704;
 	public static final int ACCESO_USUARIO_OK = 705;
 	public static final int ACCESO_USUARIO_KO = 706;

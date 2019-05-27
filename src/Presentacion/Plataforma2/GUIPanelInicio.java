@@ -12,7 +12,7 @@ import Presentación.Controlador.Events;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class GUIPanelInicio extends JPanel{
+public class GUIPanelInicio extends JPanel implements GUIEventoPlataforma{
 	/**
 	 * 
 	 */
@@ -25,20 +25,29 @@ public class GUIPanelInicio extends JPanel{
 	private JPanel panelPedImpresion;
 	private JPanel panelLocal;
 	private JPanel panelUsuarios;
+	private JPanel panelCompras;
 	
-	public GUIPanelInicio(JLayeredPane layered,JPanel panelDiseños, JPanel panelPedImpresion, JPanel panelLocal, JPanel panelUsuarios) {
+	private JButton btnNewButton;
+	private JButton btnNewButton_1;
+	private JButton btnNewButton_2;
+	private JButton btnNewButton_3;
+	private JButton btnNewButton_4;
+	
+	public GUIPanelInicio(GUIVentanaPlataforma guiVentanaPlataforma, JLayeredPane layered,JPanel panelDiseños, JPanel panelPedImpresion, JPanel panelLocal, JPanel panelUsuarios, JPanel panelCompras) {
 		this.layered=layered;
 		this.panelDiseños=panelDiseños;
 		this.panelPedImpresion=panelPedImpresion;
 		this.panelLocal=panelLocal;
 		this.panelUsuarios=panelUsuarios;
-	
-		setLayout(new GridLayout(4, 1, 0, 0));
+		this.panelCompras=panelCompras;
+		
+		setLayout(new GridLayout(5, 1, 0, 0));
 		init();
 	}
 	
 	private void init() {
-		JButton btnNewButton = new JButton("Diseños");
+		btnNewButton = new JButton("Diseños");
+		btnNewButton.setEnabled(false);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layered.removeAll();
@@ -49,7 +58,8 @@ public class GUIPanelInicio extends JPanel{
 		});
 		add(btnNewButton);
 		
-		JButton btnNewButton_1 = new JButton("Pedido de impresion");
+		btnNewButton_1 = new JButton("Pedido de impresion");
+		btnNewButton_1.setEnabled(false);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layered.removeAll();
@@ -60,7 +70,8 @@ public class GUIPanelInicio extends JPanel{
 		});
 		add(btnNewButton_1);
 		
-		JButton btnNewButton_2 = new JButton("Local");
+		btnNewButton_2 = new JButton("Local");
+		btnNewButton_2.setEnabled(false);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layered.removeAll();
@@ -71,7 +82,8 @@ public class GUIPanelInicio extends JPanel{
 		});
 		add(btnNewButton_2);
 		
-		JButton btnNewButton_3 = new JButton("Usuarios");
+		btnNewButton_3 = new JButton("Usuarios");
+		btnNewButton_3.setEnabled(false);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layered.removeAll();
@@ -82,7 +94,31 @@ public class GUIPanelInicio extends JPanel{
 			
 		});
 		add(btnNewButton_3);
+		
+		btnNewButton_4 = new JButton("Comprar");
+		btnNewButton_4.setEnabled(false);
+		btnNewButton_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				layered.removeAll();
+				layered.add(panelCompras);
+				layered.repaint();
+				layered.revalidate();
+			}
+			
+		});
+		add(btnNewButton_4);
 
 	}
+
+	@Override
+	public void update(int evento, Object objeto) {
+		// TODO Apéndice de método generado automáticamente
+		btnNewButton.setEnabled(true);
+		btnNewButton_1.setEnabled(true);
+		btnNewButton_2.setEnabled(true);
+		btnNewButton_3.setEnabled(true);
+		btnNewButton_4.setEnabled(true);
+	}
+	
 
 }

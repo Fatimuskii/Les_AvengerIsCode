@@ -6,6 +6,7 @@ package Negocio.Plataforma;
 import java.util.List;
 
 import Negocio.Diseño.TDiseño;
+import Negocio.Usuario.TUsuario;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -20,7 +21,7 @@ public TPlataforma plataforma;
 		this.plataforma= new TPlataforma();
 	}
 	
-	public boolean logueo(String user, String pass) {
+	public TUsuario logueo(String user, String pass) {
 		return plataforma.logueo(user, pass);
 	}
 	
@@ -42,5 +43,11 @@ public TPlataforma plataforma;
 	
 	public void comprarElementosCarrito() {
 		plataforma.comprarElementosCarrito();
+	}
+
+	@Override
+	public void annadirElementoCarrito(TDiseño aAnnadir) {
+		// TODO Auto-generated method stub
+		plataforma.annadirElementoCarrito(aAnnadir);
 	}
 }

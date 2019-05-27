@@ -115,6 +115,13 @@ public class TUsuario {
 
 	}
 
+	public TUsuario(int idUsuario2, String nombre2, String apellidos2,
+			String email2, Date date, String direccion2, String contraseña2,
+			String titularCuenta2, String numeroCuenta2, Date date2,
+			boolean activo2) {
+		// TODO Apéndice de constructor generado automáticamente
+	}
+
 	public int getIdUsuario() {
 		return idUsuario;
 	}

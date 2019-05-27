@@ -403,4 +403,20 @@ public class TDiseño {
 		this.activo = activo;
 		// end-user-code
 	}
+	public String listaToString() {
+		String text="";
+		text+=String.valueOf(this.id_diseño)+System.lineSeparator();
+		text+=this.nombre+System.lineSeparator();
+		text+=this.descripcion+System.lineSeparator();
+		text+=this.alto+System.lineSeparator();
+		text+=this.ancho+System.lineSeparator();
+		text+=this.profundidad+System.lineSeparator();
+		text+=this.precio+System.lineSeparator();
+		return text;
+				
+	}
+	
+	public String toString() {
+		return String.valueOf(this.id_diseño);
+	}
 }
