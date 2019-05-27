@@ -55,7 +55,6 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 	 * Create the frame.
 	 */
 	public GUIVentanaPlataforma() {
-		log=false;
 		init();
 	}
 	
