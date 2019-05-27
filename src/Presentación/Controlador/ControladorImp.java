@@ -17,10 +17,11 @@ import Negocio.Impresora.SAImpresora;
 import Negocio.Impresora.TImpresora;
 import Negocio.PedidoImpresion.SAPedidoImpresion;
 import Negocio.Plataforma.SAPlataforma;
+import Presentacion.Plataforma2.GUIPlataformaF;
+import Presentacion.Plataforma2.GUIPlataformaFimp;
 import Presentación.Impresora.GUIImpresora;
 import Presentación.Local.GUILocal;
 import Presentación.PedidoImpresion.GUIPedidoImpresion;
-import Presentación.Plataforma.GUIPlataformaImp;
 import Presentación.Usuario.GUIUsuario;
 import Presentación.Diseño.GUIDiseño;
 
@@ -84,8 +85,8 @@ public class ControladorImp extends Controlador {
 		switch (evento) {
 
 		case Events.GUI:
-			//GUIPlataformaFimp.getInstance();
-			GUIPlataformaImp.getInstance();
+			GUIPlataformaFimp.getInstance();
+			//GUIPlataformaImp.getInstance();
 			break;
 		/* Eventos de Local */
 			
@@ -345,6 +346,14 @@ public class ControladorImp extends Controlador {
 				GUIDiseño.getInstance().update(Events.MODIFICAR_DISEÑO_COMPROBAR_KO, null);
 			break;
 		case Events.ACCESO_USUARIO:
+			//logguear en usuario
+			TUsuario user;
+			user=SAPlataforma.logueo(((TUsuario)datos).getNombre(), ((TUsuario)datos).getContraseña());
+			if(user!=null)
+				//GUIPlataformaF.getInstance().update(Events.ACCESO_USUARIO_OK, user);
+				GUIPlataformaF.getInstance().update(Events.ACCESO_USUARIO_OK, (TUsuario)datos);
+			else
+				GUIPlataformaF.getInstance().update(Events.ACCESO_USUARIO_KO, null);
 			nombre = String.valueOf(datos.toString());
 			idUsuarioLogueado = this.SAUsuario.acceso(nombre);
 			if (idUsuarioLogueado > 0)
@@ -355,8 +364,13 @@ public class ControladorImp extends Controlador {
 		case Events.ALTA_CARRITO:
 			break;
 		case Events.MODIFICAR_CARRITO:
+			SAPlataforma.eliminarElementoCarrito((TDiseño)datos);
+			break;
+		case Events.MODIFICAR_CARRITO_ANNADIR:
+			SAPlataforma.annadirElementoCarrito((TDiseño)datos);
 			break;
 		case Events.BAJA_CARRITO:
+			SAPlataforma.vaciarElementosCarrito();
 			break;
 		/*EVENTOS DE PEDIDO IMPRESION*/
 		case Events.OPEN_GUI_PEDIDO_IMPRESION_MENU:
