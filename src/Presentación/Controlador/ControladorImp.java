@@ -17,8 +17,8 @@ import Negocio.Impresora.SAImpresora;
 import Negocio.Impresora.TImpresora;
 import Negocio.PedidoImpresion.SAPedidoImpresion;
 import Negocio.Plataforma.SAPlataforma;
-import Presentacion.Plataforma2.GUIPlataformaF;
-import Presentacion.Plataforma2.GUIPlataformaFimp;
+import Presentación.Plataforma.GUIPlataforma;
+import Presentación.Plataforma.GUIPlataformaImp;
 import Presentación.Impresora.GUIImpresora;
 import Presentación.Local.GUILocal;
 import Presentación.PedidoImpresion.GUIPedidoImpresion;
@@ -87,7 +87,7 @@ public class ControladorImp extends Controlador {
 		switch (evento) {
 
 		case Events.GUI:
-			GUIPlataformaFimp.getInstance();
+			GUIPlataformaImp.getInstance();
 			//GUIPlataformaImp.getInstance();
 			break;
 		/* Eventos de Local */
@@ -354,10 +354,10 @@ public class ControladorImp extends Controlador {
 			if(user!=null){
 				//GUIPlataformaF.getInstance().update(Events.ACCESO_USUARIO_OK, user);
 				this.uLogueado=(TUsuario)datos;
-				GUIPlataformaF.getInstance().update(Events.ACCESO_USUARIO_OK, (TUsuario)datos);
+				GUIPlataforma.getInstance().update(Events.ACCESO_USUARIO_OK, (TUsuario)datos);
 			}
 			else
-				GUIPlataformaF.getInstance().update(Events.ACCESO_USUARIO_KO, null);
+				GUIPlataforma.getInstance().update(Events.ACCESO_USUARIO_KO, null);
 			nombre = String.valueOf(datos.toString());
 			idUsuarioLogueado = this.SAUsuario.acceso(nombre);
 			if (idUsuarioLogueado > 0)

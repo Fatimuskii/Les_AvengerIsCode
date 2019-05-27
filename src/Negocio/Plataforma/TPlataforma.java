@@ -9,9 +9,8 @@ import java.util.List;
 
 import Negocio.Diseño.TDiseño;
 import Negocio.Usuario.TUsuario;
-import Presentacion.Plataforma2.GUIPlataformaF;
-import Presentación.Controlador.Events;
 import Presentación.Plataforma.GUIPlataforma;
+import Presentación.Controlador.Events;
 
 /** 
  * <!-- begin-UML-doc -->
@@ -21,6 +20,7 @@ import Presentación.Plataforma.GUIPlataforma;
  */
 public class TPlataforma {
 	private TUsuario usuarioLogueado;
+	@SuppressWarnings("unused")
 	private ArrayList<TDiseño> diseños;
 	private List<TDiseño> listaCompra;
 	private ArrayList<TDiseño> diseñosComprados;
@@ -32,7 +32,7 @@ public class TPlataforma {
 		listaCompra.add(new TDiseño(0, "Diseño1","Material1", 0, 0, 0, 0, 0, null, false));
 		listaCompra.add(new TDiseño(0, "Diseño3","Material3", 0, 0, 0, 0, 0, null, false));
 		listaCompra.add(new TDiseño(0, "Diseño4","Material4", 0, 0, 0, 0, 0, null, false));
-		GUIPlataformaF.getInstance().update(Events.MODIFICAR_CARRITO_ANNADIR, listaCompra);
+		GUIPlataforma.getInstance().update(Events.MODIFICAR_CARRITO_ANNADIR, listaCompra);
 	}
 	
 	public TUsuario logueo(String user, String pass) {
@@ -53,12 +53,12 @@ public class TPlataforma {
 	
 	public void eliminarElementoCarrito(TDiseño aEliminar) {
 		listaCompra.remove(aEliminar);
-		GUIPlataformaF.getInstance().update(Events.MODIFICAR_CARRITO_ANNADIR, listaCompra);
+		GUIPlataforma.getInstance().update(Events.MODIFICAR_CARRITO_ANNADIR, listaCompra);
 	}
 	
 	public void vaciarElementosCarrito() {
 		listaCompra=new ArrayList<TDiseño>();
-		GUIPlataformaF.getInstance().update(Events.MODIFICAR_CARRITO_ANNADIR, listaCompra);
+		GUIPlataforma.getInstance().update(Events.MODIFICAR_CARRITO_ANNADIR, listaCompra);
 	}
 	
 	public void comprarElementosCarrito() {

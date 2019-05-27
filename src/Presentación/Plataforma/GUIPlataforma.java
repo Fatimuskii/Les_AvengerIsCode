@@ -1,23 +1,13 @@
-/**
- * 
- */
 package Presentación.Plataforma;
 
 import javax.swing.JFrame;
 
-import Presentación.Local.GUILocal;
-import Presentación.Local.GUILocalImp;
-
-/**
- * <!-- begin-UML-doc --> <!-- end-UML-doc -->
- * 
- * @author Fatimuskii
- * @generated 
- *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
- */
 public abstract class GUIPlataforma extends JFrame {
-
 	private static GUIPlataforma instance;
+	
+	public GUIPlataforma(){
+		super();
+	}
 
 	public static GUIPlataforma getInstance() {
 		if (instance == null)
@@ -27,6 +17,4 @@ public abstract class GUIPlataforma extends JFrame {
 	}
 	public abstract void update(int event, Object res);
 	public abstract void initGUI();
-	
-
 }
