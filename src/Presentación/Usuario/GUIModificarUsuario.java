@@ -392,16 +392,6 @@ public class GUIModificarUsuario extends JFrame {
 				String fechaVencimiento = mes_2.getValue() + "/"
 						+ anio_2.getValue();
 				
-//				Date fechaVencimiento = null;
-//				fechaVenc = new SimpleDateFormat("MM/yyyy");
-//				try {
-//					fechaVencimiento = fechaVenc.parse(mes_2.getValue()
-//							.toString() + "/" + anio_2.getValue().toString());
-//				} catch (ParseException e1) {
-//					e1.printStackTrace();
-//				}
-				
-				
 				String contraseña = txtContrasea.getText();
 
 				TUsuario tUsuario = new TUsuario(id, nombre, apellidos, email,
@@ -429,11 +419,11 @@ public class GUIModificarUsuario extends JFrame {
 		numTarjeta.setText("");
 		nombreTarjeta.setText("");
 		txtEmail.setText("");
-		dia.setValue(0);
-		mes.setValue(0);
-		anio.setValue(0);
-		mes_2.setValue(0);
-		anio_2.setValue(0);
+		dia.setValue(1);
+		mes.setValue(1);
+		anio.setValue(1900);
+		mes_2.setValue(1);
+		anio_2.setValue(2019);
 
 		txtNombre.setEditable(false);
 		txtApellidos.setEditable(false);
@@ -490,11 +480,19 @@ public class GUIModificarUsuario extends JFrame {
 			numTarjeta.setText(res.getNumeroCuenta());
 			nombreTarjeta.setText(res.getTitularCuenta());
 			txtEmail.setText(res.getEmail());
-			dia.setValue(res.getFechaNacimiento().substring(0, 2));
-			mes.setValue(res.getFechaNacimiento().substring(3, 5));
-			anio.setValue(res.getFechaNacimiento().substring(6, 9));
-			mes_2.setValue(res.getFechaCaducidad().substring(0, 2));
-			anio_2.setValue(res.getFechaCaducidad().substring(4, 7));
+//			dia.setValue(res.getFechaNacimiento().substring(0, 2));
+//			mes.setValue(res.getFechaNacimiento().substring(3, 5));
+//			anio.setValue(res.getFechaNacimiento().substring(6, 9));
+//			mes_2.setValue(res.getFechaCaducidad().substring(0, 2));
+//			anio_2.setValue(res.getFechaCaducidad().substring(4, 7));
+			
+
+			
+			dia.setValue(Integer.valueOf(res.getFechaNacimiento().substring(0, 1)));
+			mes.setValue(Integer.valueOf(res.getFechaNacimiento().substring(2, 4)));
+			anio.setValue(Integer.valueOf(res.getFechaNacimiento().substring(5, 9)));
+			mes_2.setValue(Integer.valueOf(res.getFechaCaducidad().substring(0, 1)));
+			anio_2.setValue(Integer.valueOf(res.getFechaCaducidad().substring(2, 6)));
 
 			txtNombre.setEnabled(true);
 			txtApellidos.setEnabled(true);

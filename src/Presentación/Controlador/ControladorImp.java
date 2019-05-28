@@ -167,13 +167,15 @@ public class ControladorImp extends Controlador {
 			break;
 		case Events.MODIFICAR_USUARIO:
 			tUsuario = (TUsuario) datos;
-			res = this.SAUsuario.modificarUsuario(tUsuario);
-			if (res > 0)
+
+			tUsuario = this.SAUsuario.modificarUsuario(tUsuario);
+			if (tUsuario != null)
 				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_OK,
-						res);
+						tUsuario);
 			else
 				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_KO,
-						res);
+						tUsuario);
+
 			break;
 		case Events.BUSCAR_USUARIO:
 			idUsuario = (int) datos;

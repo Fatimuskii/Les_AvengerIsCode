@@ -205,9 +205,9 @@ public class DAOUsuarioImp implements DAOUsuario {
 		// end-user-code
 	}
 
-	public int modificarUsuario(TUsuario tUsuario) {
+	public TUsuario modificarUsuario(TUsuario tUsuario) {
 
-		Integer idUsuario = -100;
+		//Integer idUsuario = -100;
 		ConexionDAO connectionDAO = ConexionDAO.getInstance();
 		Connection conect = connectionDAO.getConexion();
 //		String pattern = "YYYY-MM-DD";
@@ -232,14 +232,15 @@ public class DAOUsuarioImp implements DAOUsuario {
 						+ "WHERE idUsuario=" + tUsuario.getIdUsuario();
 
 				statement.executeUpdate(query);// *
-				idUsuario = tUsuario.getIdUsuario();
+				//idUsuario = tUsuario.getIdUsuario();
 
 			} catch (SQLException e) {
-				idUsuario = -100;
+				//idUsuario = -100;
+				tUsuario = null;
 			}
 
 		}
 
-		return idUsuario;
+		return tUsuario;
 	}
 }

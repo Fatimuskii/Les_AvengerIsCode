@@ -41,5 +41,5 @@ public interface DAOUsuario {
 	
 	public ArrayList<TUsuario> listarUsuarios();	
 	
-	public int modificarUsuario(TUsuario tUsuario); 
+	public TUsuario modificarUsuario(TUsuario tUsuario); 
 }

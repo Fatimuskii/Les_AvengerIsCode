@@ -60,6 +60,7 @@ public class GUIBuscarporIdUsuario extends JFrame{
 	}
 	
 	
+	@SuppressWarnings("serial")
 	public void initGUI(){
 		setTitle("Buscar Usuario");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -165,8 +166,9 @@ public class GUIBuscarporIdUsuario extends JFrame{
 	
 	//Diseño e impresora pedir a plataforma lista asociada id
 	//Utilizar parametro id
-//	public void update(int event, ?) {//TODO
+//	public void update(int event, ) {//TODO
 //		switch (event) {
+//		//Events.LISTAR_DISEÑOS_USU
 //		case Events.BUSCAR_USUARIO_OK:
 //			model.setRowCount(0);
 //			for (int i = 0; i < res.size(); i++)
