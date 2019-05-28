@@ -104,12 +104,24 @@ public class Events {
 	public static final int BUSCAR_USUARIO_KO = 133;
 	public static final int LISTAR_USUARIO_OK = 134;
 	public static final int LISTAR_USUARIO_KO = 135;
+	
+	
 	// PEDIDO IMPRESION
 
-	public static final int ALTA_PEDIDO_IMPRESION = 601;
+	public static final int ALTA_PEDIDO_IMPRESION_LISTAIMPRESORAS=601;
+	public static final int ALTA_PEDIDO_IMPRESION_LISTAIMPRESORAS_OK=601;
+	public static final int ALTA_PEDIDO_IMPRESION_LISTAIMPRESORAS_KO=602;
+	public static final int ALTA_PEDIDO_IMPRESION_LISTADISENIOS=603;
+	public static final int ALTA_PEDIDO_IMPRESION_LISTADISENIOS_OK=604;
+	public static final int ALTA_PEDIDO_IMPRESION_LISTADISENIOS_KO=605;
+	public static final int ALTA_PEDIDO_IMPRESION_LISTALOCALES=606;
+	public static final int ALTA_PEDIDO_IMPRESION_LISTALOCALES_OK=606;
+	public static final int ALTA_PEDIDO_IMPRESION_LISTALOCALES_KO=607;
+	
+	public static final int ALTA_PEDIDO_IMPRESION = 608;
 
-	public static final int ALTA_PEDIDO_IMPRESION_OK = 602;
-	public static final int ALTA_PEDIDO_IMPRESION_KO = 603;
+	public static final int ALTA_PEDIDO_IMPRESION_OK = 609;
+	public static final int ALTA_PEDIDO_IMPRESION_KO = 6010;
 
 	/* EVENTOS PARA LAS VISTAS */
 	public static final int GUI = 100; // LA INICIAL DEL PROGRAMA

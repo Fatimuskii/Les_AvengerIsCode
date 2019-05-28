@@ -98,11 +98,13 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 		mntmAlta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				Controlador.getInstance().accion(Events.LISTAR_DISEÑOS_USU, usuarioSol.getIdUsuario());
-				Controlador.getInstance().accion(Events.LISTAR_IMPRESORAS, null);
-				Controlador.getInstance().accion(Events.LISTAR_LOCALES, null);
 				GUIDatos = new GUIAltaPedidoImpresionSeleccion();
 				GUIDatos.setVisible(true);
+				
+				Controlador.getInstance().accion(Events.ALTA_PEDIDO_IMPRESION_LISTADISENIOS, usuarioSol.getIdUsuario());
+				Controlador.getInstance().accion(Events.ALTA_PEDIDO_IMPRESION_LISTAIMPRESORAS,null);
+				Controlador.getInstance().accion(Events.ALTA_PEDIDO_IMPRESION_LISTALOCALES, null);
+				
 			}
 		});
 		mnAlta.add(mntmAlta);
@@ -164,6 +166,11 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 			public void actionPerformed(ActionEvent arg0) {
 				GUIDatos = new GUIAltaPedidoImpresionSeleccion();
 				GUIDatos.setVisible(true);
+				
+				Controlador.getInstance().accion(Events.ALTA_PEDIDO_IMPRESION_LISTADISENIOS, usuarioSol.getIdUsuario());
+				Controlador.getInstance().accion(Events.ALTA_PEDIDO_IMPRESION_LISTAIMPRESORAS,null);
+				Controlador.getInstance().accion(Events.ALTA_PEDIDO_IMPRESION_LISTALOCALES, null);
+				
 			}
 		});
 		btnHacerPedido.setBounds(312, 53, 263, 65);
@@ -206,26 +213,28 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 
 	}
 
+	
+	
 	@Override
 	public void update(int event, Object res) {
 		// TODO Apéndice de método generado automáticamente
 		switch (event) {
-		case Events.LISTAR_DISEÑOS_USU_OK:
+		case Events.ALTA_PEDIDO_IMPRESION_LISTADISENIOS_OK:
 			GUIDatos.update(event, (ArrayList<TDiseño>) res);
 			break;
-		case Events.LISTAR_DISEÑOS_USU_KO:
+		case Events.ALTA_PEDIDO_IMPRESION_LISTADISENIOS_KO:
 			GUIDatos.update(event, (ArrayList<TDiseño>) res);
 			break;
-		case Events.LISTAR_IMPRESORAS_OK:
+		case Events.ALTA_PEDIDO_IMPRESION_LISTAIMPRESORAS_OK:
 			GUIDatos.update(event, (ArrayList<TImpresora>) res);
 			break;
-		case Events.LISTAR_IMPRESORAS_KO:
+		case Events.ALTA_PEDIDO_IMPRESION_LISTAIMPRESORAS_KO:
 			GUIDatos.update(event, (ArrayList<TImpresora>) res);
 			break;
-		case Events.LISTAR_LOCALES_OK:
+		case Events.ALTA_PEDIDO_IMPRESION_LISTALOCALES_OK:
 			GUIDatos.update(event, (ArrayList<TLocal>) res);
 			break;
-		case Events.LISTAR_LOCALES_KO:
+		case Events.ALTA_PEDIDO_IMPRESION_LISTALOCALES_KO:
 			GUIDatos.update(event, (ArrayList<TLocal>) res);
 			break;
 		}

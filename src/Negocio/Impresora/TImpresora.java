@@ -18,12 +18,7 @@ public class TImpresora {
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private int Id_impresora;
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	private String nombre;
+	
 	/** 
 	 * <!-- begin-UML-doc -->
 	 * <!-- end-UML-doc -->
@@ -106,30 +101,6 @@ public class TImpresora {
 	public void setId_impresora(int id) {
 		// begin-user-code
 		this.Id_impresora = id;
-		// end-user-code
-	}
-
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @return
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public String getNombre() {
-		// begin-user-code
-		return this.nombre;
-		// end-user-code
-	}
-
-	/** 
-	 * <!-- begin-UML-doc -->
-	 * <!-- end-UML-doc -->
-	 * @param nombre
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void setNombre(String nombre) {
-		// begin-user-code
-		this.nombre = nombre;
 		// end-user-code
 	}
 
@@ -283,5 +254,9 @@ public class TImpresora {
 		// begin-user-code
 		this.activo = activo;
 		// end-user-code
+	}
+	
+	public String toString(){
+		return "Id: " + String.valueOf(this.Id_impresora);
 	}
 }

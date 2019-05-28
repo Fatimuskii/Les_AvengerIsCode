@@ -384,7 +384,7 @@ public class TDiseño {
 	}
 	
 	public String toString() {
-		return String.valueOf(this.id_diseño);
+		return getNombre();
 	}
 	
 	//Para Pedido Impresion

@@ -243,4 +243,8 @@ public class TLocal {
 		this.representante = representante;
 		// end-user-code
 	}
+	
+	public String toString(){
+		return getNombreLocal();
+	}
 }

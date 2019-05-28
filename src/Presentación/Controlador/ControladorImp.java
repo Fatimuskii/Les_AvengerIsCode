@@ -47,9 +47,11 @@ public class ControladorImp extends Controlador {
 	private SAImpresora SAImpresora;
 	private SAPedidoImpresion SAPedidoImpresion;
 	private SAPlataforma SAPlataforma;
-	
-	//private TUsuario uLogueado;
-	private TUsuario uLogueado= new TUsuario(2,"Fatima", "Garcia Delgado", "fatima@gmail.com","24/06/1990","calle pepinno, 52","fatima","Fatima","123456789E","25/05/2023", true);
+
+	// private TUsuario uLogueado;
+	private TUsuario uLogueado = new TUsuario(2, "Fatima", "Garcia Delgado",
+			"fatima@gmail.com", "24/06/1990", "calle pepinno, 52", "fatima",
+			"Fatima", "123456789E", "25/05/2023", true);
 
 	// AQUI VENDRIAN EL RESTO DE SA
 
@@ -71,14 +73,14 @@ public class ControladorImp extends Controlador {
 		TDiseño tDiseño;
 		TImpresora tImpresora;
 		TPedidoImpresion tPedidoImpresion;
-		
+
 		int idLocal;
 		int idDiseño;
 		int idUsuario;
 		int idImpresora;
 		int idUsuarioLogueado;
 		String nombre;
-		ArrayList<TLocal>resultL;
+		ArrayList<TLocal> resultL;
 		ArrayList<TDiseño> resultD;
 		ArrayList<TImpresora> resultI;
 		ArrayList<TUsuario> resultU;
@@ -88,10 +90,10 @@ public class ControladorImp extends Controlador {
 
 		case Events.GUI:
 			GUIPlataformaImp.getInstance();
-			//GUIPlataformaImp.getInstance();
+			// GUIPlataformaImp.getInstance();
 			break;
 		/* Eventos de Local */
-			
+
 		case Events.OPEN_GUI_LOCAL_MENU:
 			GUILocal.getInstance();
 			// GUILocal.getInstance().update
@@ -114,50 +116,49 @@ public class ControladorImp extends Controlador {
 			else
 				GUILocal.getInstance().update(Events.BAJA_LOCAL_KO, res);
 			break;
-			
+
 		case Events.BUSCAR_LOCAL:
-			idLocal = (int)datos;
-			tlocal=this.SALocal.buscarPorId(idLocal);
-			
-			if(tlocal!=null){
+			idLocal = (int) datos;
+			tlocal = this.SALocal.buscarPorId(idLocal);
+
+			if (tlocal != null) {
 				GUILocal.getInstance().update(Events.BUSCAR_LOCAL_OK, tlocal);
-			}
-			else
+			} else
 				GUILocal.getInstance().update(Events.BUSCAR_LOCAL_KO, tlocal);
 			break;
-			
+
 		case Events.MODIFICAR_LOCAL:
 			tlocal = (TLocal) datos;
 			res = this.SALocal.modificar(tlocal);
 			if (res > 0) {
-				GUILocal.getInstance()
-						.update(Events.MODIFICAR_LOCAL_OK, res);
+				GUILocal.getInstance().update(Events.MODIFICAR_LOCAL_OK, res);
 			} else
-				GUILocal.getInstance()
-						.update(Events.MODIFICAR_LOCAL_KO, res);
+				GUILocal.getInstance().update(Events.MODIFICAR_LOCAL_KO, res);
 			break;
 		case Events.LISTAR_LOCALES:
 			resultL = this.SALocal.listarTodos();
 			if (resultL != null)
-				GUILocal.getInstance().update(Events.LISTAR_LOCALES_OK, resultL);
+				GUILocal.getInstance()
+						.update(Events.LISTAR_LOCALES_OK, resultL);
 			else
-				GUILocal.getInstance().update(Events.LISTAR_LOCALES_KO, resultL);
+				GUILocal.getInstance()
+						.update(Events.LISTAR_LOCALES_KO, resultL);
 			break;
-			
+
 		case Events.OPEN_GUI_USUARIO_MENU:
 			GUIUsuario.getInstance();
 			break;
 		case Events.ALTA_USUARIO:
-			tUsuario =(TUsuario)datos;
+			tUsuario = (TUsuario) datos;
 			res = this.SAUsuario.altaUsuario(tUsuario);
 			if (res > 0)
 				GUIUsuario.getInstance().update(Events.ALTA_USUARIO_OK, res);
 			else
 				GUIUsuario.getInstance().update(Events.ALTA_USUARIO_KO, res);
 			break;
-			
+
 		case Events.BAJA_USUARIO:
-			idUsuario =(int) datos;
+			idUsuario = (int) datos;
 			res = this.SAUsuario.bajaUsuario(idUsuario);
 			if (res > 0)
 				GUIUsuario.getInstance().update(Events.BAJA_USUARIO_OK, res);
@@ -165,113 +166,134 @@ public class ControladorImp extends Controlador {
 				GUIUsuario.getInstance().update(Events.BAJA_USUARIO_KO, res);
 			break;
 		case Events.MODIFICAR_USUARIO:
-			tUsuario =(TUsuario) datos;
+			tUsuario = (TUsuario) datos;
 			res = this.SAUsuario.modificarUsuario(tUsuario);
 			if (res > 0)
-				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_OK, res);
+				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_OK,
+						res);
 			else
-				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_KO, res);
+				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_KO,
+						res);
 			break;
 		case Events.BUSCAR_USUARIO:
-			idUsuario =(int) datos;
+			idUsuario = (int) datos;
 			tUsuario = this.SAUsuario.buscarIdUsuario(idUsuario);
 			if (tUsuario != null)
-				GUIUsuario.getInstance().update(Events.BUSCAR_USUARIO_OK, tUsuario);//tDiseño, tImpresora
+				GUIUsuario.getInstance().update(Events.BUSCAR_USUARIO_OK,
+						tUsuario);// tDiseño, tImpresora
 			else
-				GUIUsuario.getInstance().update(Events.BUSCAR_USUARIO_KO, tUsuario);
-			break;	
+				GUIUsuario.getInstance().update(Events.BUSCAR_USUARIO_KO,
+						tUsuario);
+			break;
 		case Events.LISTAR_USUARIO:
 			resultU = this.SAUsuario.listarUsuarios();
 			if (resultU != null)
-				GUIUsuario.getInstance().update(Events.LISTAR_USUARIO_OK, resultU);
+				GUIUsuario.getInstance().update(Events.LISTAR_USUARIO_OK,
+						resultU);
 			else
-				GUIUsuario.getInstance().update(Events.LISTAR_USUARIO_KO, resultU);
+				GUIUsuario.getInstance().update(Events.LISTAR_USUARIO_KO,
+						resultU);
 			break;
-		/*case Events.ACCESO_USUARIO:
-			tUsuario =(TUsuario) datos;
-			acceso = this.SAUsuario.acceso(tUsuario);
-			if (acceso)
-				GUIUsuario.getInstance().update(Events.ACCESO_USUARIO_OK, acceso);
-			else
-				GUIUsuario.getInstance().update(Events.ACCESO_USUARIO_KO, acceso);
-			break;*/
+		/*
+		 * case Events.ACCESO_USUARIO: tUsuario =(TUsuario) datos; acceso =
+		 * this.SAUsuario.acceso(tUsuario); if (acceso)
+		 * GUIUsuario.getInstance().update(Events.ACCESO_USUARIO_OK, acceso);
+		 * else GUIUsuario.getInstance().update(Events.ACCESO_USUARIO_KO,
+		 * acceso); break;
+		 */
 		case Events.MODIFICAR_USUARIO_COMPROBAR:
 			idUsuario = (int) datos;
 			tUsuario = this.SAUsuario.buscarIdUsuario(idUsuario);
-			if (tUsuario != null)//****
-				
-				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_COMPROBAR_OK, tUsuario);
+			if (tUsuario != null)// ****
+
+				GUIUsuario.getInstance().update(
+						Events.MODIFICAR_USUARIO_COMPROBAR_OK, tUsuario);
 			else
-				GUIUsuario.getInstance().update(Events.MODIFICAR_USUARIO_COMPROBAR_KO, null);
+				GUIUsuario.getInstance().update(
+						Events.MODIFICAR_USUARIO_COMPROBAR_KO, null);
 			break;
-		/*IMPRESORA*/
+		/* IMPRESORA */
 		case Events.OPEN_GUI_IMPRESORA_MENU:
 			GUIImpresora.getInstance();
-			break;	
+			break;
 		case Events.ALTA_IMPRESORA:
 			tImpresora = (TImpresora) datos;
 			res = this.SAImpresora.alta(tImpresora);
 
 			if (res > 0)
-				GUIImpresora.getInstance().update(Events.ALTA_IMPRESORA_OK, res);
+				GUIImpresora.getInstance()
+						.update(Events.ALTA_IMPRESORA_OK, res);
 			else
-				GUIImpresora.getInstance().update(Events.ALTA_IMPRESORA_KO, res);
+				GUIImpresora.getInstance()
+						.update(Events.ALTA_IMPRESORA_KO, res);
 			break;
 		case Events.BAJA_IMPRESORA:
 			idImpresora = (int) datos;
 			res = this.SAImpresora.baja(idImpresora);
 			if (res > 0)
-				GUIImpresora.getInstance().update(Events.BAJA_IMPRESORA_OK, res);
+				GUIImpresora.getInstance()
+						.update(Events.BAJA_IMPRESORA_OK, res);
 			else
-				GUIImpresora.getInstance().update(Events.BAJA_IMPRESORA_KO, res);
-			break;	
+				GUIImpresora.getInstance()
+						.update(Events.BAJA_IMPRESORA_KO, res);
+			break;
 		case Events.BUSCAR_IMPRESORA:
 			idImpresora = (int) datos;
 			tImpresora = this.SAImpresora.buscarId(idImpresora);
 			if (tImpresora != null)
-				GUIImpresora.getInstance().update(Events.BUSCAR_IMPRESORA_OK, tImpresora);
+				GUIImpresora.getInstance().update(Events.BUSCAR_IMPRESORA_OK,
+						tImpresora);
 			else
-				GUIImpresora.getInstance().update(Events.BUSCAR_IMPRESORA_KO, tImpresora);
-			break;	
+				GUIImpresora.getInstance().update(Events.BUSCAR_IMPRESORA_KO,
+						tImpresora);
+			break;
 		case Events.BUSCAR_USUARIO_IMPRESORA:
 			idUsuario = (int) datos;
-			
+
 			tUsuario = this.SAUsuario.buscarIdUsuario(idUsuario);
-			if(tUsuario != null){
+			if (tUsuario != null) {
 				resultI = this.SAImpresora.buscarPorUsuario(idUsuario);
 				if (resultI != null)
-					GUIImpresora.getInstance().update(Events.BUSCAR_USUARIO_IMPRESORA_OK, resultI);
+					GUIImpresora.getInstance().update(
+							Events.BUSCAR_USUARIO_IMPRESORA_OK, resultI);
 				else
-					GUIImpresora.getInstance().update(Events.BUSCAR_USUARIO_IMPRESORA_KO, resultI);
-			}
-			else{
-				GUIImpresora.getInstance().update(Events.BUSCAR_USUARIO_IMPRESORA_KO, null);
+					GUIImpresora.getInstance().update(
+							Events.BUSCAR_USUARIO_IMPRESORA_KO, resultI);
+			} else {
+				GUIImpresora.getInstance().update(
+						Events.BUSCAR_USUARIO_IMPRESORA_KO, null);
 			}
 			break;
 		case Events.LISTAR_IMPRESORAS:
 			resultI = this.SAImpresora.listarTodo();
 			if (resultI != null)
-				GUIImpresora.getInstance().update(Events.LISTAR_IMPRESORAS_OK, resultI);
+				GUIImpresora.getInstance().update(Events.LISTAR_IMPRESORAS_OK,
+						resultI);
 			else
-				GUIImpresora.getInstance().update(Events.LISTAR_IMPRESORAS_KO, resultI);
+				GUIImpresora.getInstance().update(Events.LISTAR_IMPRESORAS_KO,
+						resultI);
 			break;
 		case Events.MODIFICAR_IMPRESORA:
 			tImpresora = (TImpresora) datos;
 			res = this.SAImpresora.modificar(tImpresora);
 			if (res > 0)
-				GUIImpresora.getInstance().update(Events.MODIFICAR_IMPRESORA_OK, res);
+				GUIImpresora.getInstance().update(
+						Events.MODIFICAR_IMPRESORA_OK, res);
 			else
-				GUIImpresora.getInstance().update(Events.MODIFICAR_IMPRESORA_KO, res);
+				GUIImpresora.getInstance().update(
+						Events.MODIFICAR_IMPRESORA_KO, res);
 			break;
 		case Events.MODIFICAR_IMPRESORA_COMPROBAR:
 			idImpresora = (int) datos;
 			tImpresora = this.SAImpresora.buscarId(idImpresora);
 			if (tImpresora != null)
-				GUIImpresora.getInstance().update(Events.MODIFICAR_IMPRESORA_COMPROBAR_OK, null);
+				GUIImpresora.getInstance().update(
+						Events.MODIFICAR_IMPRESORA_COMPROBAR_OK, null);
 			else
-				GUIImpresora.getInstance().update(Events.MODIFICAR_IMPRESORA_COMPROBAR_KO, null);
+				GUIImpresora.getInstance().update(
+						Events.MODIFICAR_IMPRESORA_COMPROBAR_KO, null);
 			break;
-			/*DISEÑO*/
+		/* DISEÑO */
 		case Events.OPEN_GUI_DISEÑO_MENU:
 			GUIDiseño.getInstance();
 			break;
@@ -295,41 +317,49 @@ public class ControladorImp extends Controlador {
 		case Events.LISTAR_DISEÑOS:
 			resultD = this.SADiseño.listarTodos();
 			if (resultD != null)
-				GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_OK, resultD);
+				GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_OK,
+						resultD);
 			else
-				GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_KO, resultD);
+				GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_KO,
+						resultD);
 			break;
 		case Events.LISTAR_DISEÑOS_USU:
 			idUsuario = (int) datos;
-			
+
 			tUsuario = this.SAUsuario.buscarIdUsuario(idUsuario);
-			
-			if(tUsuario != null){
+
+			if (tUsuario != null) {
 				resultD = this.SADiseño.listarPorUsuario(idUsuario);
 				if (resultD != null)
-					GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_USU_OK, resultD);
+					GUIDiseño.getInstance().update(
+							Events.LISTAR_DISEÑOS_USU_OK, resultD);
 				else
-					GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_USU_KO, resultD);
-			}
-			else{
-				GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_USU_KO, null);
+					GUIDiseño.getInstance().update(
+							Events.LISTAR_DISEÑOS_USU_KO, resultD);
+			} else {
+				GUIDiseño.getInstance().update(Events.LISTAR_DISEÑOS_USU_KO,
+						null);
 			}
 			break;
 		case Events.BUSCAR_DISEÑO_ID:
 			idDiseño = (int) datos;
 			tDiseño = this.SADiseño.buscarPorId(idDiseño);
 			if (tDiseño != null)
-				GUIDiseño.getInstance().update(Events.BUSCAR_DISEÑO_ID_OK, tDiseño);
+				GUIDiseño.getInstance().update(Events.BUSCAR_DISEÑO_ID_OK,
+						tDiseño);
 			else
-				GUIDiseño.getInstance().update(Events.BUSCAR_DISEÑO_ID_KO, tDiseño);
+				GUIDiseño.getInstance().update(Events.BUSCAR_DISEÑO_ID_KO,
+						tDiseño);
 			break;
 		case Events.BUSCAR_DISEÑO_PALABRA_CLAVE:
 			String palabra = (String) datos;
 			resultD = this.SADiseño.buscarPorPalabraClave(palabra);
 			if (resultD != null)
-				GUIDiseño.getInstance().update(Events.BUSCAR_DISEÑO_PALABRA_CLAVE_OK, resultD);
+				GUIDiseño.getInstance().update(
+						Events.BUSCAR_DISEÑO_PALABRA_CLAVE_OK, resultD);
 			else
-				GUIDiseño.getInstance().update(Events.BUSCAR_DISEÑO_PALABRA_CLAVE_KO, resultD);
+				GUIDiseño.getInstance().update(
+						Events.BUSCAR_DISEÑO_PALABRA_CLAVE_KO, resultD);
 			break;
 		case Events.MODIFICAR_DISEÑO:
 			tDiseño = (TDiseño) datos;
@@ -343,56 +373,105 @@ public class ControladorImp extends Controlador {
 			idDiseño = (int) datos;
 			tDiseño = this.SADiseño.buscarPorId(idDiseño);
 			if (tDiseño != null)
-				GUIDiseño.getInstance().update(Events.MODIFICAR_DISEÑO_COMPROBAR_OK, null);
+				GUIDiseño.getInstance().update(
+						Events.MODIFICAR_DISEÑO_COMPROBAR_OK, null);
 			else
-				GUIDiseño.getInstance().update(Events.MODIFICAR_DISEÑO_COMPROBAR_KO, null);
+				GUIDiseño.getInstance().update(
+						Events.MODIFICAR_DISEÑO_COMPROBAR_KO, null);
 			break;
 		case Events.ACCESO_USUARIO:
-			//logguear en usuario
+			// logguear en usuario
 			TUsuario user;
-			user=SAPlataforma.logueo(((TUsuario)datos).getNombre(), ((TUsuario)datos).getContraseña());
-			if(user!=null){
-				//GUIPlataformaF.getInstance().update(Events.ACCESO_USUARIO_OK, user);
-				this.uLogueado=(TUsuario)datos;
-				GUIPlataforma.getInstance().update(Events.ACCESO_USUARIO_OK, (TUsuario)datos);
-			}
-			else
-				GUIPlataforma.getInstance().update(Events.ACCESO_USUARIO_KO, null);
+			user = SAPlataforma.logueo(((TUsuario) datos).getNombre(),
+					((TUsuario) datos).getContraseña());
+			if (user != null) {
+				// GUIPlataformaF.getInstance().update(Events.ACCESO_USUARIO_OK,
+				// user);
+				this.uLogueado = (TUsuario) datos;
+				GUIPlataforma.getInstance().update(Events.ACCESO_USUARIO_OK,
+						(TUsuario) datos);
+			} else
+				GUIPlataforma.getInstance().update(Events.ACCESO_USUARIO_KO,
+						null);
 			nombre = String.valueOf(datos.toString());
 			idUsuarioLogueado = this.SAUsuario.acceso(nombre);
 			if (idUsuarioLogueado > 0)
-				GUIUsuario.getInstance().update(Events.ACCESO_USUARIO_OK, idUsuarioLogueado);
+				GUIUsuario.getInstance().update(Events.ACCESO_USUARIO_OK,
+						idUsuarioLogueado);
 			else
 				GUIUsuario.getInstance().update(Events.ACCESO_USUARIO_KO, null);
 			break;
 		case Events.ALTA_CARRITO:
 			break;
 		case Events.MODIFICAR_CARRITO:
-			SAPlataforma.eliminarElementoCarrito((TDiseño)datos);
+			SAPlataforma.eliminarElementoCarrito((TDiseño) datos);
 			break;
 		case Events.MODIFICAR_CARRITO_ANNADIR:
-			SAPlataforma.annadirElementoCarrito((TDiseño)datos);
+			SAPlataforma.annadirElementoCarrito((TDiseño) datos);
 			break;
 		case Events.BAJA_CARRITO:
 			SAPlataforma.vaciarElementosCarrito();
 			break;
-		/*EVENTOS DE PEDIDO IMPRESION*/
+		/* EVENTOS DE PEDIDO IMPRESION */
 		case Events.OPEN_GUI_PEDIDO_IMPRESION_MENU:
 			GUIPedidoImpresion.getInstance(uLogueado);
 			break;
-			
+		case Events.ALTA_PEDIDO_IMPRESION_LISTAIMPRESORAS:
+			resultI = this.SAImpresora.listarTodo();
+			if (resultI != null)
+				GUIPedidoImpresion.getInstance(uLogueado).update(
+						Events.ALTA_PEDIDO_IMPRESION_LISTAIMPRESORAS_OK,
+						resultI);
+			else
+				GUIPedidoImpresion.getInstance(uLogueado).update(
+						Events.ALTA_PEDIDO_IMPRESION_LISTAIMPRESORAS_KO,
+						resultI);
+
+			break;
+		case Events.ALTA_PEDIDO_IMPRESION_LISTADISENIOS:
+			idUsuario = (int) datos;
+
+			tUsuario = this.SAUsuario.buscarIdUsuario(idUsuario);
+
+			if (tUsuario != null) {
+				resultD = this.SADiseño.listarPorUsuario(idUsuario);
+				if (resultD != null)
+					GUIPedidoImpresion.getInstance(uLogueado).update(
+							Events.ALTA_PEDIDO_IMPRESION_LISTADISENIOS_OK,
+							resultD);
+				else
+					GUIPedidoImpresion.getInstance(uLogueado).update(
+							Events.ALTA_PEDIDO_IMPRESION_LISTADISENIOS_KO,
+							resultD);
+			} else {
+				GUIPedidoImpresion.getInstance(uLogueado).update(
+						Events.ALTA_PEDIDO_IMPRESION_LISTADISENIOS_KO, null);
+			}
+			break;
+
+		case Events.ALTA_PEDIDO_IMPRESION_LISTALOCALES:
+			resultL = this.SALocal.listarTodos();
+			if (resultL != null)
+				GUIPedidoImpresion.getInstance(uLogueado).update(
+						Events.ALTA_PEDIDO_IMPRESION_LISTALOCALES_OK, resultL);
+			else
+				GUIPedidoImpresion.getInstance(uLogueado).update(
+						Events.ALTA_PEDIDO_IMPRESION_LISTALOCALES_KO, resultL);
+			break;
 		case Events.ALTA_PEDIDO_IMPRESION:
 			tPedidoImpresion = (TPedidoImpresion) datos;
 			res = this.SAPedidoImpresion.alta(tPedidoImpresion);
 
 			if (res > 0)
-				GUIPedidoImpresion.getInstance(uLogueado).update(Events.ALTA_PEDIDO_IMPRESION_OK, res);
+				GUIPedidoImpresion.getInstance(uLogueado).update(
+						Events.ALTA_PEDIDO_IMPRESION_OK, res);
 			else
-				GUIPedidoImpresion.getInstance(uLogueado).update(Events.ALTA_PEDIDO_IMPRESION_KO, res);
+				GUIPedidoImpresion.getInstance(uLogueado).update(
+						Events.ALTA_PEDIDO_IMPRESION_KO, res);
 			break;
-			
+
 		// end-user-code
-			
+
 		}
 
 	}

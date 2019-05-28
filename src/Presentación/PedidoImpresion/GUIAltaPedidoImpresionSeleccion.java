@@ -79,13 +79,11 @@ public class GUIAltaPedidoImpresionSeleccion extends JFrame{
 			public void valueChanged(ListSelectionEvent e) {
 				TDiseño diseño = listaDiseños.getSelectedValue();
 				if (diseño != null)
-					texto.setText(diseño.toStringNameID());
+					textIdDiseñoSelect.setText(diseño.toStringNameID());
 				else
-					texto.setText("");
+					textIdDiseñoSelect.setText("");
 			}
 		});
-		this.texto = new JTextArea(20, 50);
-		this.texto.setEditable(false);
 		
 		JLabel lblListaImpresoras = new JLabel("LISTA IMPRESORAS");
 		lblListaImpresoras.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -160,12 +158,18 @@ public class GUIAltaPedidoImpresionSeleccion extends JFrame{
 	//Diseños
 	public void setListD(List<TDiseño> diseños) {
 		this.listaModeloD.setList(diseños);
+		listaDiseños= new JList<TDiseño>(this.listaModeloD);
+		//this.listaDiseños.setListData(listaModeloD);
 		if(diseños.isEmpty()) {
-			texto.setText("");
+			this.listaModeloD.clear();
 		}
 		else {
-			
+			//this.listaModeloD.set
 		}
+	}
+	
+	public TDiseño getSelectedItem() {
+		return this.listaDiseños.getSelectedValue();
 	}
 	//Impresoras
 	public void setListI(List<TImpresora> impresoras) {
@@ -192,24 +196,24 @@ public class GUIAltaPedidoImpresionSeleccion extends JFrame{
 		// TODO Apéndice de método generado automáticamente
 		GUIMensaje res_mensaje = new GUIMensaje();
 		switch (event) {
-		case Events.LISTAR_DISEÑOS_USU_OK:
+		case Events.ALTA_PEDIDO_IMPRESION_LISTADISENIOS_OK:
 			this.setListD((List<TDiseño>)res);
 			break;
-		case Events.LISTAR_DISEÑOS_USU_KO:
+		case Events.ALTA_PEDIDO_IMPRESION_LISTADISENIOS_KO:
 			JOptionPane.showMessageDialog(null,"Error al listar los diseños");
 			break;
-		case Events.LISTAR_IMPRESORAS_OK:
+		case Events.ALTA_PEDIDO_IMPRESION_LISTAIMPRESORAS_OK:
 			this.setListI((List<TImpresora>)res);
 			break;
 			
-		case Events.LISTAR_IMPRESORAS_KO:
+		case Events.ALTA_PEDIDO_IMPRESION_LISTAIMPRESORAS_KO:
 			JOptionPane.showMessageDialog(null,"Error al listar los diseños");
 			break;
 			
-		case Events.LISTAR_LOCALES_OK:
+		case Events.ALTA_PEDIDO_IMPRESION_LISTALOCALES_OK:
 			this.setListL((List<TLocal>)res);
 			break;
-		case Events.LISTAR_LOCALES_KO:
+		case Events.ALTA_PEDIDO_IMPRESION_LISTALOCALES_KO:
 			JOptionPane.showMessageDialog(null,"Error al listar los diseños");
 			break;
 		}
