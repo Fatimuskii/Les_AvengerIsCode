@@ -3,6 +3,8 @@
  */
 package Negocio.Diseño;
 
+import javax.swing.JLabel;
+
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->
  * 
@@ -81,9 +83,10 @@ public class TDiseño {
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	private boolean activo;
-	
-	public TDiseño(int id, String nombre, String descripcion, int idUsuario, float alto,
-			float ancho, float profundidad, double precio, String archivo, boolean activo) {
+
+	public TDiseño(int id, String nombre, String descripcion, int idUsuario,
+			float alto, float ancho, float profundidad, double precio,
+			String archivo, boolean activo) {
 		this.id_diseño = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -95,9 +98,10 @@ public class TDiseño {
 		this.archivo = archivo;
 		this.activo = activo;
 	}
-	
-	public TDiseño(String nombre, String descripcion, int idUsuario, float alto,
-			float ancho, float profundidad, double precio, String archivo, boolean activo) {
+
+	public TDiseño(String nombre, String descripcion, int idUsuario,
+			float alto, float ancho, float profundidad, double precio,
+			String archivo, boolean activo) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.propietario = idUsuario;
@@ -212,7 +216,7 @@ public class TDiseño {
 		this.alto = alto;
 		// end-user-code
 	}
-	
+
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
@@ -225,7 +229,7 @@ public class TDiseño {
 		return this.ancho;
 		// end-user-code
 	}
-	
+
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
@@ -238,7 +242,7 @@ public class TDiseño {
 		this.ancho = ancho;
 		// end-user-code
 	}
-	
+
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
@@ -251,7 +255,7 @@ public class TDiseño {
 		return this.profundidad;
 		// end-user-code
 	}
-	
+
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
@@ -368,29 +372,29 @@ public class TDiseño {
 		this.activo = activo;
 		// end-user-code
 	}
-	
-	//Para Carrito de Plataforma
+
+	// Para Carrito de Plataforma
 	public String listaToString() {
-		String text="";
-		text+=String.valueOf(this.id_diseño)+System.lineSeparator();
-		text+=this.nombre+System.lineSeparator();
-		text+=this.descripcion+System.lineSeparator();
-		text+=this.alto+System.lineSeparator();
-		text+=this.ancho+System.lineSeparator();
-		text+=this.profundidad+System.lineSeparator();
-		text+=this.precio+System.lineSeparator();
+		String text = "";
+		text += String.valueOf(this.id_diseño) + System.lineSeparator();
+		text += this.nombre + System.lineSeparator();
+		text += this.descripcion + System.lineSeparator();
+		text += this.alto + System.lineSeparator();
+		text += this.ancho + System.lineSeparator();
+		text += this.profundidad + System.lineSeparator();
+		text += this.precio + System.lineSeparator();
 		return text;
-				
+
 	}
-	
+
 	public String toString() {
 		return getNombre();
 	}
-	
-	//Para Pedido Impresion
-	public String toStringNameID(){
+
+	// Para Pedido Impresion
+	public String toStringNameID() {
 		String text = "";
-		text+= "(" + String.valueOf(this.id_diseño) + ")" + getNombre();
+		text += "(" + String.valueOf(this.id_diseño) + ")" + getNombre();
 		return text;
 	}
 }

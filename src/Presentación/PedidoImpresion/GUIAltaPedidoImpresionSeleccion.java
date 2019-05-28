@@ -18,6 +18,8 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -29,197 +31,237 @@ import Presentación.Controlador.Events;
 import Presentación.Plataforma.GUIListaModelo;
 
 @SuppressWarnings("serial")
-public class GUIAltaPedidoImpresionSeleccion extends JFrame{
+public class GUIAltaPedidoImpresionSeleccion extends JFrame {
 	private JPanel contentPane;
-	
+
 	private JTextField textIdDiseñoSelect;
 	private JTextField textIdImpresoraSelect;
-	private JTextField textIdLocalSelect; // puede ser nulo 
+	private JTextField textIdLocalSelect; // puede ser nulo
 	private GUIListaModelo<TDiseño> listaModeloD;
-	private GUIListaModelo<TImpresora>listaModeloI;
-	private GUIListaModelo<TLocal>listaModeloL;
+	private GUIListaModelo<TImpresora> listaModeloI;
+	private GUIListaModelo<TLocal> listaModeloL;
 	private JList<TDiseño> listaDiseños;
-	private JList<TImpresora>listaImpresoras;
-	private JList<TLocal>listaLocales;
+	private JList<TImpresora> listaImpresoras;
+	private JList<TLocal> listaLocales;
 	private JTextArea texto;
-	
+
+	private JCheckBox chckbxRecogerDomicilio;
 	private JButton botonContinuar;
-	
-	public GUIAltaPedidoImpresionSeleccion(){
+
+	public GUIAltaPedidoImpresionSeleccion() {
 		super();
-		
+
 		initGUI();
-		
+
 	}
-	
-	public void initGUI(){
+
+	public void initGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 398);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		
+
 		JLabel lblListaDiseos = new JLabel("LISTA DISE\u00D1OS");
 		lblListaDiseos.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblListaDiseos.setBounds(203, 24, 127, 20);
 		contentPane.add(lblListaDiseos);
-		
+
 		this.listaModeloD = new GUIListaModelo<TDiseño>();
-		listaDiseños= new JList<TDiseño>(this.listaModeloD);
+		listaDiseños = new JList<TDiseño>(this.listaModeloD);
 		listaDiseños.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaDiseños.setBounds(202, 53, 159, 236);
-		listaDiseños.add(new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED));
-		contentPane.add(listaDiseños);
-		
+		listaDiseños.add(new JScrollPane(
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED));
 		listaDiseños.addListSelectionListener(new ListSelectionListener() {
-			
+
 			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				TDiseño diseño = listaDiseños.getSelectedValue();
-				if (diseño != null)
-					textIdDiseñoSelect.setText(diseño.toStringNameID());
-				else
-					textIdDiseñoSelect.setText("");
+			public void valueChanged(ListSelectionEvent arg0) {
+				// TODO Apéndice de método generado automáticamente
+				TDiseño dis =listaDiseños.getSelectedValue();
+				
+				if (dis != null) {
+					textIdDiseñoSelect.setText(dis.toStringNameID());
+				}
 			}
+
 		});
-		
+		contentPane.add(listaDiseños);
+
+
 		JLabel lblListaImpresoras = new JLabel("LISTA IMPRESORAS");
 		lblListaImpresoras.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblListaImpresoras.setBounds(374, 24, 164, 20);
 		contentPane.add(lblListaImpresoras);
-		
+
 		this.listaModeloI = new GUIListaModelo<TImpresora>();
-		listaImpresoras= new JList<TImpresora>(this.listaModeloI);
+		listaImpresoras = new JList<TImpresora>(this.listaModeloI);
 		listaImpresoras.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaImpresoras.setBounds(384, 53, 159, 236);
 		contentPane.add(listaImpresoras);
-		
+
+		listaImpresoras.addListSelectionListener(new ListSelectionListener() {
+
+			@Override
+			public void valueChanged(ListSelectionEvent arg0) {
+				// TODO Apéndice de método generado automáticamente
+				TImpresora dis =listaImpresoras.getSelectedValue();
+				
+				if (dis != null) {
+					textIdImpresoraSelect.setText(dis.toString());
+				}
+			}
+
+		});
 		JLabel lblListaLocales = new JLabel("LISTA LOCALES:");
 		lblListaLocales.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblListaLocales.setBounds(568, 24, 164, 20);
 		contentPane.add(lblListaLocales);
-		
+
 		this.listaModeloL = new GUIListaModelo<TLocal>();
 		listaLocales = new JList<TLocal>(this.listaModeloL);
 		listaLocales.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listaLocales.setBounds(568, 53, 159, 236);
 		contentPane.add(listaLocales);
-		
+		listaLocales.addListSelectionListener(new ListSelectionListener() {
+
+			@Override
+			public void valueChanged(ListSelectionEvent arg0) {
+				// TODO Apéndice de método generado automáticamente
+				TLocal dis =listaLocales.getSelectedValue();
+				
+				if (dis != null) {
+					textIdLocalSelect.setText(dis.toString());
+				}
+			}
+
+		});
+
 		JLabel lblDiseoSeleccionado = new JLabel("Dise\u00F1o seleccionado:");
 		lblDiseoSeleccionado.setBounds(744, 66, 120, 16);
 		contentPane.add(lblDiseoSeleccionado);
 		
-		
-		textIdDiseñoSelect= new JTextField();
+		textIdDiseñoSelect = new JTextField();
 		textIdDiseñoSelect.setBounds(744, 95, 116, 22);
-		contentPane.add(textIdDiseñoSelect);
 		textIdDiseñoSelect.setColumns(10);
+		textIdDiseñoSelect.setEditable(false);
+		contentPane.add(textIdDiseñoSelect);
 		
+
 		JLabel lblImpresoraSeleccionada = new JLabel("Impresora seleccionada:");
 		lblImpresoraSeleccionada.setBounds(744, 130, 141, 16);
 		contentPane.add(lblImpresoraSeleccionada);
-		
+
 		textIdImpresoraSelect = new JTextField();
 		textIdImpresoraSelect.setColumns(10);
 		textIdImpresoraSelect.setBounds(744, 152, 116, 22);
+		textIdImpresoraSelect.setEditable(false);
 		contentPane.add(textIdImpresoraSelect);
-		
+
 		JLabel lblLocalSeleccionado = new JLabel("Local seleccionado:");
 		lblLocalSeleccionado.setBounds(749, 187, 141, 16);
 		contentPane.add(lblLocalSeleccionado);
-		
+
 		textIdLocalSelect = new JTextField();
 		textIdLocalSelect.setColumns(10);
 		textIdLocalSelect.setBounds(744, 216, 116, 22);
+		textIdLocalSelect.setEditable(false);
 		contentPane.add(textIdLocalSelect);
-		
-		JCheckBox chckbxRecogerDomicilio = new JCheckBox("Env\u00EDo a domicilio");
+
+		chckbxRecogerDomicilio = new JCheckBox(
+				"Env\u00EDo a domicilio");
 		chckbxRecogerDomicilio.setBounds(755, 266, 123, 25);
+		chckbxRecogerDomicilio.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				if (chckbxRecogerDomicilio.isSelected()){
+				listaLocales.setEnabled(false);
+				textIdLocalSelect.setText("");
+				}
+				else{
+					listaLocales.setEnabled(true);
+				}
+			}
+		});
 		contentPane.add(chckbxRecogerDomicilio);
-		if (chckbxRecogerDomicilio.isSelected()){
-			listaLocales.setEnabled(false);
-			textIdLocalSelect.setEditable(false);
-		}
-		else
-			listaLocales.setEnabled(true);
 		
-		botonContinuar=new JButton("CONTINUAR");
+
+		botonContinuar = new JButton("CONTINUAR");
 		botonContinuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				
 			}
 		});
 		botonContinuar.setFont(new Font("Tahoma", Font.BOLD, 16));
 		botonContinuar.setBounds(755, 300, 133, 29);
 		contentPane.add(botonContinuar);
-			
+
 	}
-	//Diseños
+
+	// Diseños
 	public void setListD(List<TDiseño> diseños) {
 		this.listaModeloD.setList(diseños);
-		listaDiseños= new JList<TDiseño>(this.listaModeloD);
-		//this.listaDiseños.setListData(listaModeloD);
-		if(diseños.isEmpty()) {
+		//listaDiseños = new JList<TDiseño>(this.listaModeloD);
+		// this.listaDiseños.setListData(listaModeloD);
+		if (diseños.isEmpty()) {
 			this.listaModeloD.clear();
-		}
-		else {
-			//this.listaModeloD.set
+		} else {
+			// this.listaModeloD.set
 		}
 	}
-	
+
 	public TDiseño getSelectedItem() {
 		return this.listaDiseños.getSelectedValue();
 	}
-	//Impresoras
+
+	// Impresoras
 	public void setListI(List<TImpresora> impresoras) {
 		this.listaModeloI.setList(impresoras);
-		if(impresoras.isEmpty()) {
+		if (impresoras.isEmpty()) {
 			texto.setText("");
-		}
-		else {
-			
+		} else {
+
 		}
 	}
-	//Locales
+
+	// Locales
 	public void setListL(List<TLocal> locales) {
 		this.listaModeloL.setList(locales);
-		if(locales.isEmpty()) {
+		if (locales.isEmpty()) {
 			texto.setText("");
-		}
-		else {
-			
+		} else {
+
 		}
 	}
-	
+
 	public void update(int event, Object res) {
 		// TODO Apéndice de método generado automáticamente
-		GUIMensaje res_mensaje = new GUIMensaje();
+		// GUIMensaje res_mensaje = new GUIMensaje();
 		switch (event) {
 		case Events.ALTA_PEDIDO_IMPRESION_LISTADISENIOS_OK:
-			this.setListD((List<TDiseño>)res);
+			this.setListD((List<TDiseño>) res);
 			break;
 		case Events.ALTA_PEDIDO_IMPRESION_LISTADISENIOS_KO:
-			JOptionPane.showMessageDialog(null,"Error al listar los diseños");
+			JOptionPane.showMessageDialog(null, "Error al listar los diseños");
 			break;
 		case Events.ALTA_PEDIDO_IMPRESION_LISTAIMPRESORAS_OK:
-			this.setListI((List<TImpresora>)res);
+			this.setListI((List<TImpresora>) res);
 			break;
-			
+
 		case Events.ALTA_PEDIDO_IMPRESION_LISTAIMPRESORAS_KO:
-			JOptionPane.showMessageDialog(null,"Error al listar los diseños");
+			JOptionPane.showMessageDialog(null, "Error al listar los diseños");
 			break;
-			
+
 		case Events.ALTA_PEDIDO_IMPRESION_LISTALOCALES_OK:
-			this.setListL((List<TLocal>)res);
+			this.setListL((List<TLocal>) res);
 			break;
 		case Events.ALTA_PEDIDO_IMPRESION_LISTALOCALES_KO:
-			JOptionPane.showMessageDialog(null,"Error al listar los diseños");
+			JOptionPane.showMessageDialog(null, "Error al listar los diseños");
 			break;
 		}
-		
+
 	}
-	
-	
-	
+
 }
