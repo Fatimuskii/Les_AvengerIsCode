@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 import Negocio.Diseño.TDiseño;
 import Presentación.Controlador.Controlador;
@@ -41,6 +42,7 @@ public class GUIAltaDiseño extends JFrame{
 	private JTextField textPrecio;
 	private JTextField textArchivo;
 	private JTextField textProfundidad;
+	private JTextField textPropietario;
 	private JTextArea textAreaDescripcion;
 
 	private TDiseño diseño;
@@ -108,19 +110,20 @@ public class GUIAltaDiseño extends JFrame{
 					float profundidad = Float.parseFloat(textProfundidad.getText());
 					double precio = Float.parseFloat(textPrecio.getText());
 					String descripcion = textAreaDescripcion.getText();
-					//int idUsuario = Integer.parseInt(textUsuario.getText());
+					int idUsuario = Integer.parseInt(textPropietario.getText());
 					//¿String?
 					String archivo = textArchivo.getText();
 					
 					if(nombre.equals("") || textAltura.getText().equals("") || textAncho.getText().equals("")||
 							textProfundidad.getText().equals("") || textPrecio.getText().equals("") ||
-							textArchivo.getText().equals("") /*|| textUsuario.equals("")*/){
+							textArchivo.getText().equals("") || textPropietario.equals("")){
 						throw new Exception();
 					}
-					if(!archivo.split(".").equals("stf")){
-						
+					String[] a = archivo.split("\\.");
+					if(!a[0].equals("stf")){
+						throw new Exception("La extensión del archivo no es válida");
 					}
-					diseño = new TDiseño(nombre, descripcion, /*idUsuario*/1, altura, ancho, profundidad, precio, archivo, true);
+					diseño = new TDiseño(nombre, descripcion, idUsuario, altura, ancho, profundidad, precio, archivo, true);
 					Controlador.getInstance().accion(Events.ALTA_DISEÑO, diseño);
 				}
 				catch(Exception ex){
@@ -146,6 +149,15 @@ public class GUIAltaDiseño extends JFrame{
 		
 		JLabel label_5 = new JLabel("*");
 		label_5.setForeground(Color.RED);
+
+		JLabel lblPropietario = new JLabel("Propietario:");
+		
+		textPropietario = new JTextField();
+		textPropietario.setColumns(10);
+		
+		JLabel label_6 = new JLabel("*");
+		label_6.setForeground(Color.RED);
+		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -196,16 +208,24 @@ public class GUIAltaDiseño extends JFrame{
 					.addComponent(textPrecio, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
 					.addGap(151))
 				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(10)
+							.addComponent(label_5))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addContainerGap()
+							.addComponent(label_6, GroupLayout.PREFERRED_SIZE, 6, GroupLayout.PREFERRED_SIZE)))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(lblPropietario, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(lblArchivo, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE))
 					.addGap(10)
-					.addComponent(label_5)
-					.addGap(6)
-					.addComponent(lblArchivo, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(textArchivo, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-					.addGap(151))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(254)
-					.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addComponent(textPropietario, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+						.addComponent(textArchivo, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+					.addGap(41)
+					.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -220,11 +240,11 @@ public class GUIAltaDiseño extends JFrame{
 							.addComponent(lblNombre))
 						.addComponent(textNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblDescripción))
-						.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE))
+							.addComponent(lblDescripción)
+							.addGap(75))
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE))
 					.addGap(16)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -270,9 +290,17 @@ public class GUIAltaDiseño extends JFrame{
 							.addGap(3)
 							.addComponent(lblArchivo))
 						.addComponent(textArchivo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(4)
-					.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-					.addGap(11))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(29)
+							.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(18)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+								.addComponent(lblPropietario)
+								.addComponent(textPropietario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(label_6))))
+					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
@@ -290,8 +318,8 @@ public class GUIAltaDiseño extends JFrame{
 		textPrecio.setText("");
 		textArchivo.setText("");
 		textProfundidad.setText("");
+		textPropietario.setText("");
 		textAreaDescripcion.setText("");
-		//textUsuario.setText("");
 		// end-user-code
 	}
 	
@@ -306,8 +334,6 @@ public class GUIAltaDiseño extends JFrame{
 			this.toFront();
 			break;
 		}
-		
-		
 	}
 
 	

@@ -67,9 +67,17 @@ public class GUIModificarDiseño extends JFrame{
 		btnComprobar.setBounds(290, 16, 110, 23);
 		btnComprobar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				id = Integer.parseInt(textID.getText());
-				Controlador.getInstance().accion(Events.MODIFICAR_DISEÑO_COMPROBAR, id);
-				toFront();
+				try{
+					if(textID.getText().equals("")){
+						throw new Exception();
+					}
+					id = Integer.parseInt(textID.getText());
+					Controlador.getInstance().accion(Events.MODIFICAR_DISEÑO_COMPROBAR, id);
+					toFront();
+				}
+				catch(Exception e){
+					JOptionPane.showMessageDialog(null, "Introduzca un ID válido", "Error", JOptionPane.ERROR_MESSAGE);	
+				}
 			}
 		});
 		
@@ -213,7 +221,7 @@ public class GUIModificarDiseño extends JFrame{
 		// end-user-code
 	}
 	
-	public void update(int event, Object res){
+	public void update(int event, TDiseño res){
 		switch (event) {
 		case Events.MODIFICAR_DISEÑO_OK:
 			JOptionPane.showMessageDialog(null,"Éxito al modificar el diseño id: "+ id);
@@ -230,6 +238,7 @@ public class GUIModificarDiseño extends JFrame{
 			textArchivo.setEditable(true);
 			textPrecio.setEditable(true);
 			textPane.setEditable(true);
+			
 			textPane.setBackground(SystemColor.text);
 			textNombre.setEnabled(true);
 			textAlto.setEnabled(true);
@@ -238,6 +247,16 @@ public class GUIModificarDiseño extends JFrame{
 			textArchivo.setEnabled(true);
 			textPrecio.setEnabled(true);
 			textPane.setEnabled(true);
+			
+			
+			textNombre.setText(res.getNombre());
+			textAlto.setText(res.getAlto()+"");
+			textAncho.setText(res.getAncho()+"");
+			textProfundidad.setText(res.getProfundidad()+"");
+			textArchivo.setText(res.getArchivo());
+			textPrecio.setText(res.getPrecio()+"");
+			textPane.setText(res.getDescripcion());
+			
 			break;
 		case Events.MODIFICAR_DISEÑO_COMPROBAR_KO:
 			JOptionPane.showMessageDialog(null,"El diseño con el id: " + id + " no existe.","Error Diseño",JOptionPane.ERROR_MESSAGE);

@@ -4,8 +4,6 @@
 package Presentación.Diseño;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
@@ -15,7 +13,6 @@ import java.util.ArrayList;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -105,7 +102,6 @@ public class GUIDiseñoImp extends GUIDiseño {
 		// begin-user-code
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		//setContentPane(contentPane);
 		this.setLayout(new BorderLayout());
 		this.add(contentPane);
 
@@ -375,16 +371,16 @@ public class GUIDiseñoImp extends GUIDiseño {
 			gUIBuscarPalabraDiseño.update(event, (ArrayList<TDiseño>) res);
 			break;
 		case Events.MODIFICAR_DISEÑO_OK:
-			gUIModificarDiseño.update(event, res);
+			gUIModificarDiseño.update(event, (TDiseño)res);
 			break;
 		case Events.MODIFICAR_DISEÑO_KO:
-			gUIModificarDiseño.update(event, res);
+			gUIModificarDiseño.update(event, (TDiseño)res);
 			break;
 		case Events.MODIFICAR_DISEÑO_COMPROBAR_OK:
-			gUIModificarDiseño.update(event, res);
+			gUIModificarDiseño.update(event, (TDiseño)res);
 			break;
 		case Events.MODIFICAR_DISEÑO_COMPROBAR_KO:
-			gUIModificarDiseño.update(event, res);
+			gUIModificarDiseño.update(event, (TDiseño)res);
 			break;
 		case Events.LISTAR_DISEÑOS_USU_OK:
 			gUIListarporUsuarioDiseño.update(event, (ArrayList<TDiseño>) res);
