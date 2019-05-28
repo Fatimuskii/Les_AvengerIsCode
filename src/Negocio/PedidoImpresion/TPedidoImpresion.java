@@ -155,7 +155,11 @@ public class TPedidoImpresion {
 	}
 
 	public int getIdLocal() {
-		return this.local.getIdLocal();
+		if (this.local != null){
+			return this.local.getIdLocal();
+		}
+		else 
+			return 0;
 	}
 	
 	public void setEstadoPedido(EstadoPedido nuevoEstado){

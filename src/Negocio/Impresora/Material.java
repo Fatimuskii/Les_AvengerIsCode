@@ -19,5 +19,11 @@ public enum Material {
 		return null;
 	}
 	
+	public String getString(){
+		return parameterName;
+		
+	}
+	
+	
 	
 }

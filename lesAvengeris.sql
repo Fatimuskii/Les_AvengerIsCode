@@ -89,10 +89,10 @@ CREATE TABLE IF NOT EXISTS pedidoImpresion (
   usuarioSol int(5) REFERENCES Usuario(idUsuario),
   disenio int(5) REFERENCES disenio(idDiseno),
   impresora int(5) REFERENCES impresora(idImpresora),
-  fecha date NOT NULL,
-  estadoPedido int(1) NOT NULL,
+  fecha varchar (15) NOT NULL,
+  estadoPedido varchar(20) NOT NULL,
   cantidad int(2) NOT NULL,
-  material int (1) NOT NULL,
+  material varchar(20) NOT NULL,
   tipoenvio tinyint(1) NOT NULL,
   idLocal int(5),
   

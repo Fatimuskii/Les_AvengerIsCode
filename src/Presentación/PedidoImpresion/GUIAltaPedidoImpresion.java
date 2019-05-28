@@ -36,6 +36,10 @@ import java.awt.Color;
 import javax.swing.border.BevelBorder;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.swing.JTextPane;
 
 import Negocio.Diseño.TDiseño;
@@ -66,6 +70,8 @@ public class GUIAltaPedidoImpresion extends JFrame {
 	private TImpresora impresora;
 	private TDiseño diseño;
 	private TLocal local;
+	
+	private String fecha;
 
 	private GUIMensaje mensaje;
 
@@ -80,12 +86,17 @@ public class GUIAltaPedidoImpresion extends JFrame {
 	public GUIAltaPedidoImpresion(TUsuario usuarioSol, TImpresora impresora,
 			TDiseño diseño, TLocal local) {
 
-		contentPane = new JPanel();
 		this.usuarioSol = usuarioSol;
 		this.impresora = impresora;
 		this.diseño = diseño;
 		this.local = local;
 		this.mensaje = new GUIMensaje();
+		
+		Date fechaActual = new Date(); 
+		DateFormat formatoFecha = new SimpleDateFormat("dd-MM-yyyy");
+		this.fecha= formatoFecha.format(fechaActual);
+		contentPane = new JPanel();
+		
 		initGUI();
 	}
 
@@ -100,6 +111,7 @@ public class GUIAltaPedidoImpresion extends JFrame {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 681, 470);
 		contentPane = new JPanel();
+		setResizable(false);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
@@ -191,8 +203,8 @@ public class GUIAltaPedidoImpresion extends JFrame {
 		JButton btnContinuar = new JButton("Aceptar");
 		btnContinuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String fecha = "2019-06-24";
 				int cantidad = (int) spinnerCantidad.getValue();
+				
 				Material material = impresora.getMaterial();
 				boolean tipoenvio = false;
 				if (local != null)
@@ -203,10 +215,11 @@ public class GUIAltaPedidoImpresion extends JFrame {
 				// usuarioSol = new TUsuario(1,"pepe");
 
 				pedidoImpr = new TPedidoImpresion(usuarioSol,
-						diseño, impresora, fecha, estadoPed, cantidad,
+						diseño, impresora, fecha, (EstadoPedido)estadoPed, cantidad,
 						material, tipoenvio, local);
 				Controlador.getInstance().accion(Events.ALTA_PEDIDO_IMPRESION,
 						pedidoImpr);
+				dispose();
 			}
 		});
 		btnContinuar.setBounds(497, 345, 126, 40);
@@ -215,23 +228,29 @@ public class GUIAltaPedidoImpresion extends JFrame {
 		lblUsuario = new JLabel("Usuario: " + usuarioSol.getNombre() + " "
 				+ usuarioSol.getApellidos() + " (" + usuarioSol.getIdUsuario()
 				+ ")");
+		lblUsuario.getPreferredSize();
 		lblUsuario.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblUsuario.setBounds(246, 92, 84, 25);
+		lblUsuario.setBounds(246, 92, 377, 25);
 		panel.add(lblUsuario);
 
 		lblImpresora = new JLabel("Impresora: " + impresora.getId_impresora());
+		lblImpresora.getPreferredSize();
 		lblImpresora.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblImpresora.setBounds(246, 150, 113, 25);
+		lblImpresora.setBounds(246, 150, 377, 25);
 		panel.add(lblImpresora);
-
+		
+		
 		lblDiseño = new JLabel("Dise\u00F1o: " + diseño.getNombre() +" (" + diseño.getId_diseño()+")" );
+		lblDiseño.getPreferredSize();
 		lblDiseño.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblDiseño.setBounds(246, 121, 75, 25);
+		lblDiseño.setBounds(246, 121, 377, 25);
+		
 		panel.add(lblDiseño);
 
-		lblFecha = new JLabel("Fecha: " + pedidoImpr.getFecha() );
+		
+		lblFecha = new JLabel("Fecha: " + this.fecha);
 		lblFecha.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblFecha.setBounds(246, 179, 67, 25);
+		lblFecha.setBounds(246, 179, 377, 25);
 		panel.add(lblFecha);
 
 		lblCantidad = new JLabel("Cantidad: ");
@@ -239,9 +258,9 @@ public class GUIAltaPedidoImpresion extends JFrame {
 		lblCantidad.setBounds(246, 208, 97, 25);
 		panel.add(lblCantidad);
 
-		lblMaterial = new JLabel("Material de impresi\u00F3n: " + pedidoImpr.getMaterial().toString());
+		lblMaterial = new JLabel("Material de impresi\u00F3n: "  + impresora.getMaterial());
 		lblMaterial.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblMaterial.setBounds(246, 237, 227, 25);
+		lblMaterial.setBounds(246, 237, 377, 25);
 		panel.add(lblMaterial);
 
 		spinnerCantidad = new JSpinner();
@@ -250,11 +269,15 @@ public class GUIAltaPedidoImpresion extends JFrame {
 		spinnerCantidad.setBounds(375, 212, 75, 22);
 		panel.add(spinnerCantidad);
 
-		lblLocal = new JLabel("Local: " + local.getNombreLocal() + " ("+ local.getIdLocal()+")");
+		if (local== null){
+			lblLocal = new JLabel("Local:");
+		}else
+			lblLocal = new JLabel("Local: " + local.getNombreLocal() + " ("+ local.getIdLocal()+")");
 		lblLocal.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblLocal.setBounds(246, 266, 65, 25);
+		lblLocal.setBounds(246, 266, 377, 25);
 		panel.add(lblLocal);
 		this.repaint();
+		
 	}
 
 	@SuppressWarnings("unused")
@@ -280,13 +303,20 @@ public class GUIAltaPedidoImpresion extends JFrame {
 
 	public void update(int event, Object res) {
 		// TODO Apéndice de método generado automáticamente
+		GUIMensaje res_mensaje = new GUIMensaje();
 		switch (event) {
-		case Events.ALTA_PEDIDO_IMPRESION_OK:
-
-			break;
-		case Events.ALTA_DISEÑO_KO:
-
-			break;
+//		case Events.ALTA_PEDIDO_IMPRESION_OK:
+//			res_mensaje.showMessage(
+//					"Se ha creado un pedido con id: "
+//							+ (int) res, "REALIZAR PEDIDO", false);
+//			dispose();
+//	
+//			break;
+//		case Events.ALTA_PEDIDO_IMPRESION_KO:
+//			res_mensaje.showMessage("Error en la creación del Pedido :( .",
+//					"REALIZAR PEDIDO", false);
+//			dispose();
+//			break;
 		}
 	}
 }

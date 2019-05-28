@@ -26,6 +26,7 @@ import javax.swing.event.ListSelectionListener;
 import Negocio.Diseño.TDiseño;
 import Negocio.Impresora.TImpresora;
 import Negocio.Local.TLocal;
+import Negocio.Usuario.TUsuario;
 import Presentación.GUIMensaje;
 import Presentación.Controlador.Events;
 import Presentación.Plataforma.GUIListaModelo;
@@ -44,17 +45,32 @@ public class GUIAltaPedidoImpresionSeleccion extends JFrame {
 	private JList<TImpresora> listaImpresoras;
 	private JList<TLocal> listaLocales;
 	private JTextArea texto;
+	private GUIAltaPedidoImpresion guiAlta;
+	
+	private TDiseño dis;
+	private TImpresora imp;
+	private TLocal loc;
+	private TUsuario user;
 
 	private JCheckBox chckbxRecogerDomicilio;
 	private JButton botonContinuar;
 
-	public GUIAltaPedidoImpresionSeleccion() {
+	public GUIAltaPedidoImpresionSeleccion(TUsuario user) {
 		super();
-
+		this.user=user;
 		initGUI();
 
 	}
 
+	public void setDiseño(TDiseño dis){
+		this.dis = dis;
+	}
+	public void setImpresora(TImpresora imp){
+		this.imp = imp;
+	}
+	public void setLocal(TLocal loc){
+		this.loc= loc;
+	}
 	public void initGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 398);
@@ -81,10 +97,12 @@ public class GUIAltaPedidoImpresionSeleccion extends JFrame {
 			public void valueChanged(ListSelectionEvent arg0) {
 				// TODO Apéndice de método generado automáticamente
 				TDiseño dis =listaDiseños.getSelectedValue();
-				
+				setDiseño(dis);
 				if (dis != null) {
 					textIdDiseñoSelect.setText(dis.toStringNameID());
 				}
+				else
+					textIdDiseñoSelect.setText("");
 			}
 
 		});
@@ -107,10 +125,10 @@ public class GUIAltaPedidoImpresionSeleccion extends JFrame {
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
 				// TODO Apéndice de método generado automáticamente
-				TImpresora dis =listaImpresoras.getSelectedValue();
-				
-				if (dis != null) {
-					textIdImpresoraSelect.setText(dis.toString());
+				TImpresora imp =listaImpresoras.getSelectedValue();
+				setImpresora(imp);
+				if (imp != null) {
+					textIdImpresoraSelect.setText(imp.toString());
 				}
 			}
 
@@ -130,10 +148,10 @@ public class GUIAltaPedidoImpresionSeleccion extends JFrame {
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
 				// TODO Apéndice de método generado automáticamente
-				TLocal dis =listaLocales.getSelectedValue();
-				
-				if (dis != null) {
-					textIdLocalSelect.setText(dis.toString());
+				TLocal loc =listaLocales.getSelectedValue();
+				setLocal(loc);
+				if (loc != null) {
+					textIdLocalSelect.setText(loc.toString());
 				}
 			}
 
@@ -178,6 +196,7 @@ public class GUIAltaPedidoImpresionSeleccion extends JFrame {
 				if (chckbxRecogerDomicilio.isSelected()){
 				listaLocales.setEnabled(false);
 				textIdLocalSelect.setText("");
+				setLocal(null);
 				}
 				else{
 					listaLocales.setEnabled(true);
@@ -190,7 +209,9 @@ public class GUIAltaPedidoImpresionSeleccion extends JFrame {
 		botonContinuar = new JButton("CONTINUAR");
 		botonContinuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				guiAlta= new GUIAltaPedidoImpresion(user, imp, dis, loc);
+				guiAlta.setVisible(true);
+				dispose();
 				
 			}
 		});
@@ -260,6 +281,11 @@ public class GUIAltaPedidoImpresionSeleccion extends JFrame {
 		case Events.ALTA_PEDIDO_IMPRESION_LISTALOCALES_KO:
 			JOptionPane.showMessageDialog(null, "Error al listar los diseños");
 			break;
+			
+//		case Events.ALTA_PEDIDO_IMPRESION_OK:
+//			guiAlta.update(event, res);
+//		case Events.ALTA_PEDIDO_IMPRESION_KO:
+//			guiAlta.update(event, res);
 		}
 
 	}

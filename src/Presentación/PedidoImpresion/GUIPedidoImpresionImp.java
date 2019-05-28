@@ -98,13 +98,16 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 		mntmAlta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 
-				GUIDatos = new GUIAltaPedidoImpresionSeleccion();
-				GUIDatos.setVisible(true);
 				
+				GUIDatos = new GUIAltaPedidoImpresionSeleccion(usuarioSol);
+				GUIDatos.setVisible(true);
 				Controlador.getInstance().accion(Events.ALTA_PEDIDO_IMPRESION_LISTADISENIOS, usuarioSol.getIdUsuario());
 				Controlador.getInstance().accion(Events.ALTA_PEDIDO_IMPRESION_LISTAIMPRESORAS,null);
 				Controlador.getInstance().accion(Events.ALTA_PEDIDO_IMPRESION_LISTALOCALES, null);
+			
 				
+				
+			
 			}
 		});
 		mnAlta.add(mntmAlta);
@@ -164,7 +167,7 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 		JButton btnHacerPedido = new JButton("HACER PEDIDO");
 		btnHacerPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GUIDatos = new GUIAltaPedidoImpresionSeleccion();
+				GUIDatos = new GUIAltaPedidoImpresionSeleccion(usuarioSol);
 				GUIDatos.setVisible(true);
 				
 				Controlador.getInstance().accion(Events.ALTA_PEDIDO_IMPRESION_LISTADISENIOS, usuarioSol.getIdUsuario());
@@ -237,6 +240,20 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 		case Events.ALTA_PEDIDO_IMPRESION_LISTALOCALES_KO:
 			GUIDatos.update(event, (ArrayList<TLocal>) res);
 			break;
+		
+		case Events.ALTA_PEDIDO_IMPRESION_OK:
+			res_mensaje.showMessage(
+					"Se ha creado un pedido con id: "
+							+ (int) res, "REALIZAR PEDIDO", false);
+			GUIDatos.dispose();
+	
+			break;
+		case Events.ALTA_PEDIDO_IMPRESION_KO:
+			res_mensaje.showMessage("Error en la creación del Pedido :( .",
+					"REALIZAR PEDIDO", false);
+			GUIDatos.dispose();
+			break;
+		
 		}
 				
 	}
