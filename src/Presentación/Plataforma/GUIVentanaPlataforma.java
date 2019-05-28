@@ -89,7 +89,11 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 		
 		panel_1 = GUIDiseño.getInstance();
 		
-		panel_2 = GUIPedidoImpresion.getInstance();
+		
+		
+		TUsuario uLogueado= new TUsuario(2,"Fatima", "Garcia Delgado", "fatima@gmail.com","24/06/1990","calle pepinno, 52","fatima","Fatima","123456789E","25/05/2023", true);
+		panel_2 = GUIPedidoImpresion.getInstance(uLogueado);
+		//panel_2 = new GUIPedidoImpresionSeleccion();
 		
 		panel_3 = GUILocal.getInstance();
 		

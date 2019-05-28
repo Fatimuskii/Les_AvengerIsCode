@@ -26,10 +26,12 @@ private static GUIPedidoImpresion instance;
 	//public abstract void initGUI();
 	
 	
-	public static GUIPedidoImpresion getInstance() {
+	public static GUIPedidoImpresion getInstance(TUsuario userLog) {
 		if(instance == null)
-			instance = new GUIPedidoImpresionImp();
+			instance = new GUIPedidoImpresionImp(userLog);
 		instance.setVisible(true);
 		return instance;
 	}
+
+
 }

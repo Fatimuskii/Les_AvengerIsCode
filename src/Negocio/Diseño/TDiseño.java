@@ -403,6 +403,8 @@ public class TDiseño {
 		this.activo = activo;
 		// end-user-code
 	}
+	
+	//Para Carrito de Plataforma
 	public String listaToString() {
 		String text="";
 		text+=String.valueOf(this.id_diseño)+System.lineSeparator();
@@ -418,5 +420,12 @@ public class TDiseño {
 	
 	public String toString() {
 		return String.valueOf(this.id_diseño);
+	}
+	
+	//Para Pedido Impresion
+	public String toStringNameID(){
+		String text = "";
+		text+= "(" + String.valueOf(this.id_diseño) + ")" + getNombre();
+		return text;
 	}
 }

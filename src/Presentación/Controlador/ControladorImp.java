@@ -48,8 +48,8 @@ public class ControladorImp extends Controlador {
 	private SAPedidoImpresion SAPedidoImpresion;
 	private SAPlataforma SAPlataforma;
 	
-	private TUsuario uLogueado;
-	
+	//private TUsuario uLogueado;
+	private TUsuario uLogueado= new TUsuario(2,"Fatima", "Garcia Delgado", "fatima@gmail.com","24/06/1990","calle pepinno, 52","fatima","Fatima","123456789E","25/05/2023", true);
 
 	// AQUI VENDRIAN EL RESTO DE SA
 
@@ -378,7 +378,7 @@ public class ControladorImp extends Controlador {
 			break;
 		/*EVENTOS DE PEDIDO IMPRESION*/
 		case Events.OPEN_GUI_PEDIDO_IMPRESION_MENU:
-			GUIPedidoImpresion.getInstance();
+			GUIPedidoImpresion.getInstance(uLogueado);
 			break;
 			
 		case Events.ALTA_PEDIDO_IMPRESION:
@@ -386,9 +386,9 @@ public class ControladorImp extends Controlador {
 			res = this.SAPedidoImpresion.alta(tPedidoImpresion);
 
 			if (res > 0)
-				GUIPedidoImpresion.getInstance().update(Events.ALTA_PEDIDO_IMPRESION_OK, res);
+				GUIPedidoImpresion.getInstance(uLogueado).update(Events.ALTA_PEDIDO_IMPRESION_OK, res);
 			else
-				GUIPedidoImpresion.getInstance().update(Events.ALTA_PEDIDO_IMPRESION_KO, res);
+				GUIPedidoImpresion.getInstance(uLogueado).update(Events.ALTA_PEDIDO_IMPRESION_KO, res);
 			break;
 			
 		// end-user-code

@@ -46,10 +46,10 @@ public class GUIModificarEnvio extends JFrame {
 		JMenuItem mntmVolverAlMenu = new JMenuItem("Volver al Menu");
 		mntmVolverAlMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				 GUIPedidoImpresionImp imp; 
+				/* GUIPedidoImpresionImp imp; 
 					imp= new  GUIPedidoImpresionImp(); 
 					imp.setVisible(true); 
-					dispose();
+					dispose();*/
 			}
 		});
 		mnArchivo.add(mntmVolverAlMenu);

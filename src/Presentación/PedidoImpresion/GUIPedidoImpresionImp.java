@@ -32,66 +32,50 @@ import Negocio.Impresora.TImpresora;
 import Negocio.Local.TLocal;
 import Negocio.Usuario.TUsuario;
 import Presentación.GUIMensaje;
+import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 
 import java.awt.Font;
+import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 
 	private JPanel contentPane;
-	private GUIAltaPedidoImpresion guiAlta;
-	
-	private TUsuario usuarioSol; 
-	private TImpresora impresora;
-	private TDiseño diseño;
-	private TLocal local;
-	
+	private GUIAltaPedidoImpresionSeleccion GUIDatos;
+
+	private TUsuario usuarioSol;
+
 	private GUIMensaje res_mensaje;
-	
-	
 
 	/**
 	 * Create the frame.
 	 */
-	public GUIPedidoImpresionImp() {
+	public GUIPedidoImpresionImp(TUsuario Log) {
 		super();
 		this.contentPane = new JPanel();
 		this.res_mensaje = new GUIMensaje();
-		//guiAltaPedidoImpresion = new GUIAltaPedidoImpresion();
+		this.usuarioSol = Log;
+		// guiAltaPedidoImpresion = new GUIAltaPedidoImpresion();
 		initGUI();
 	}
-	
-	// Plataforma me pasara: TUsuario usuario, TImpresora impresora, TDiseño diseño, TLocal local
-	
-	public void setUsurio(TUsuario user){
-		this.usuarioSol= user;
+
+	// Plataforma me pasara: TUsuario usuario, TImpresora impresora, TDiseño
+	// diseño, TLocal local
+
+	public void setUsurio(TUsuario user) {
+		this.usuarioSol = user;
 	}
 
-	public void setImpresora(TImpresora impresora){
-		this.impresora= impresora;
-	}
-	public void setDiseño(TDiseño diseño){
-		this.diseño=diseño;
-	}
-	
-	public void setLocal(TLocal local){
-		this.local = local;
-	}
+
 	private void initGUI() {
 
-		/*setIconImage(Toolkit.getDefaultToolkit().getImage(
-				"imagenes\\logoUsu.png"));
-		setTitle("MENU PEDIDO IMPRESION");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 605, 429);*/
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		//setContentPane(contentPane);
 		contentPane.setLayout(null);
 		this.setLayout(new BorderLayout());
-		this.add(contentPane,BorderLayout.CENTER);
+		this.add(contentPane, BorderLayout.CENTER);
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 587, 40);
 		contentPane.add(menuBar);
@@ -113,9 +97,12 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 		JMenuItem mntmAlta = new JMenuItem("Hacer pedido\r\n");
 		mntmAlta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				guiAlta = new GUIAltaPedidoImpresion(usuarioSol,impresora,diseño,local);
-				
-				guiAlta.setVisible(true);
+
+				Controlador.getInstance().accion(Events.LISTAR_DISEÑOS_USU, usuarioSol.getIdUsuario());
+				Controlador.getInstance().accion(Events.LISTAR_IMPRESORAS, null);
+				Controlador.getInstance().accion(Events.LISTAR_LOCALES, null);
+				GUIDatos = new GUIAltaPedidoImpresionSeleccion();
+				GUIDatos.setVisible(true);
 			}
 		});
 		mnAlta.add(mntmAlta);
@@ -175,8 +162,8 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 		JButton btnHacerPedido = new JButton("HACER PEDIDO");
 		btnHacerPedido.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				guiAlta = new GUIAltaPedidoImpresion(usuarioSol,impresora,diseño,local); 
-				guiAlta.setVisible(true); 
+				GUIDatos = new GUIAltaPedidoImpresionSeleccion();
+				GUIDatos.setVisible(true);
 			}
 		});
 		btnHacerPedido.setBounds(312, 53, 263, 65);
@@ -223,13 +210,26 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 	public void update(int event, Object res) {
 		// TODO Apéndice de método generado automáticamente
 		switch (event) {
-		case Events.ALTA_PEDIDO_IMPRESION_OK:
-			guiAlta.update(event, res);
+		case Events.LISTAR_DISEÑOS_USU_OK:
+			GUIDatos.update(event, (ArrayList<TDiseño>) res);
 			break;
-		case Events.ALTA_DISEÑO_KO:
-			guiAlta.update(event, res);
+		case Events.LISTAR_DISEÑOS_USU_KO:
+			GUIDatos.update(event, (ArrayList<TDiseño>) res);
+			break;
+		case Events.LISTAR_IMPRESORAS_OK:
+			GUIDatos.update(event, (ArrayList<TImpresora>) res);
+			break;
+		case Events.LISTAR_IMPRESORAS_KO:
+			GUIDatos.update(event, (ArrayList<TImpresora>) res);
+			break;
+		case Events.LISTAR_LOCALES_OK:
+			GUIDatos.update(event, (ArrayList<TLocal>) res);
+			break;
+		case Events.LISTAR_LOCALES_KO:
+			GUIDatos.update(event, (ArrayList<TLocal>) res);
 			break;
 		}
+				
 	}
 
 }

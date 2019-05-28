@@ -66,9 +66,9 @@ public class GUIBuscarPedido extends JFrame{
 		mntmVolverAlMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				 GUIPedidoImpresionImp imp; 
-					imp= new  GUIPedidoImpresionImp(); 
+					/*imp= new  GUIPedidoImpresionImp(); 
 					imp.setVisible(true); 
-					dispose();
+					dispose();*/
 			}
 		});
 		mnArchivo.add(mntmVolverAlMenu);
