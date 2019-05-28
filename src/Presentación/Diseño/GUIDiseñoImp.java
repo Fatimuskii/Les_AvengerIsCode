@@ -4,6 +4,7 @@
 package Presentación.Diseño;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -102,14 +103,6 @@ public class GUIDiseñoImp extends GUIDiseño {
 	 */
 	private void initGUI() {
 		// begin-user-code
-		/*setTitle("Menú Diseños");
-		setIconImage(Toolkit
-				.getDefaultToolkit()
-				.getImage(
-						"imagenes\\graphic-tools.png"));
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 536, 338);*/
-
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		//setContentPane(contentPane);
@@ -273,179 +266,72 @@ public class GUIDiseñoImp extends GUIDiseño {
 		txtBuscarPalabraClave.setText("(palabra clave)");
 		txtBuscarPalabraClave.setColumns(10);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane
-				.setHorizontalGroup(gl_contentPane
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								gl_contentPane
-										.createSequentialGroup()
-										.addGap(10)
-										.addGroup(
-												gl_contentPane
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																gl_contentPane
-																		.createSequentialGroup()
-																		.addComponent(
-																				lblIconoDiseño,
-																				GroupLayout.PREFERRED_SIZE,
-																				147,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addGap(18)
-																		.addGroup(
-																				gl_contentPane
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addComponent(
-																								btnAltaDiseño,
-																								GroupLayout.PREFERRED_SIZE,
-																								133,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								btnListarDiseos,
-																								GroupLayout.PREFERRED_SIZE,
-																								133,
-																								GroupLayout.PREFERRED_SIZE))
-																		.addGap(36)
-																		.addGroup(
-																				gl_contentPane
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addComponent(
-																								btnBajaDiseño,
-																								GroupLayout.PREFERRED_SIZE,
-																								133,
-																								GroupLayout.PREFERRED_SIZE)
-																						.addComponent(
-																								btnModificarDiseos,
-																								GroupLayout.PREFERRED_SIZE,
-																								133,
-																								GroupLayout.PREFERRED_SIZE)))
-														.addGroup(
-																gl_contentPane
-																		.createSequentialGroup()
-																		.addComponent(
-																				txtBuscarId,
-																				GroupLayout.PREFERRED_SIZE,
-																				246,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addGap(6)
-																		.addComponent(
-																				btnBuscarDiseo,
-																				GroupLayout.PREFERRED_SIZE,
-																				237,
-																				GroupLayout.PREFERRED_SIZE))
-														.addGroup(
-																gl_contentPane
-																		.createSequentialGroup()
-																		.addComponent(
-																				txtListarIdusuario,
-																				GroupLayout.PREFERRED_SIZE,
-																				246,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addGap(6)
-																		.addComponent(
-																				btnListarDiseosPor,
-																				GroupLayout.PREFERRED_SIZE,
-																				237,
-																				GroupLayout.PREFERRED_SIZE))
-														.addGroup(
-																gl_contentPane
-																		.createSequentialGroup()
-																		.addComponent(
-																				txtBuscarPalabraClave,
-																				GroupLayout.PREFERRED_SIZE,
-																				246,
-																				GroupLayout.PREFERRED_SIZE)
-																		.addGap(6)
-																		.addComponent(
-																				btnBuscarDiseoPor,
-																				GroupLayout.PREFERRED_SIZE,
-																				237,
-																				GroupLayout.PREFERRED_SIZE)))));
-		gl_contentPane
-				.setVerticalGroup(gl_contentPane
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								gl_contentPane
-										.createSequentialGroup()
-										.addGap(31)
-										.addGroup(
-												gl_contentPane
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																gl_contentPane
-																		.createSequentialGroup()
-																		.addGap(2)
-																		.addComponent(
-																				btnAltaDiseño)
-																		.addGap(47)
-																		.addComponent(
-																				btnListarDiseos))
-														.addGroup(
-																gl_contentPane
-																		.createSequentialGroup()
-																		.addGap(2)
-																		.addComponent(
-																				btnBajaDiseño)
-																		.addGap(47)
-																		.addComponent(
-																				btnModificarDiseos))
-														.addComponent(
-																lblIconoDiseño,
-																GroupLayout.PREFERRED_SIZE,
-																137,
-																GroupLayout.PREFERRED_SIZE))
-										.addGap(18)
-										.addGroup(
-												gl_contentPane
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																gl_contentPane
-																		.createSequentialGroup()
-																		.addGap(1)
-																		.addComponent(
-																				txtBuscarId,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE))
-														.addComponent(
-																btnBuscarDiseo))
-										.addGap(11)
-										.addGroup(
-												gl_contentPane
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																gl_contentPane
-																		.createSequentialGroup()
-																		.addGap(1)
-																		.addComponent(
-																				txtListarIdusuario,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE))
-														.addComponent(
-																btnListarDiseosPor))
-										.addGap(11)
-										.addGroup(
-												gl_contentPane
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																gl_contentPane
-																		.createSequentialGroup()
-																		.addGap(1)
-																		.addComponent(
-																				txtBuscarPalabraClave,
-																				GroupLayout.PREFERRED_SIZE,
-																				GroupLayout.DEFAULT_SIZE,
-																				GroupLayout.PREFERRED_SIZE))
-														.addComponent(
-																btnBuscarDiseoPor))));
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(10)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(lblIconoDiseño, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnAltaDiseño, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+								.addComponent(btnListarDiseos, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
+							.addGap(36)
+							.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+								.addComponent(btnBajaDiseño, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+								.addComponent(btnModificarDiseos, GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
+							.addGap(22))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(txtBuscarId, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+							.addGap(6)
+							.addComponent(btnBuscarDiseo, GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(txtListarIdusuario, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+							.addGap(6)
+							.addComponent(btnListarDiseosPor, GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addComponent(txtBuscarPalabraClave, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+							.addGap(6)
+							.addComponent(btnBuscarDiseoPor, GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)))
+					.addGap(11))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(31)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING, false)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(2)
+							.addComponent(btnAltaDiseño, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+							.addGap(47)
+							.addComponent(btnListarDiseos))
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(2)
+							.addComponent(btnBajaDiseño)
+							.addGap(47)
+							.addComponent(btnModificarDiseos))
+						.addComponent(lblIconoDiseño, GroupLayout.PREFERRED_SIZE, 137, GroupLayout.PREFERRED_SIZE))
+					.addGap(18)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(1)
+							.addComponent(txtBuscarId, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnBuscarDiseo))
+					.addGap(11)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(1)
+							.addComponent(txtListarIdusuario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnListarDiseosPor))
+					.addGap(11)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_contentPane.createSequentialGroup()
+							.addGap(1)
+							.addComponent(txtBuscarPalabraClave, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnBuscarDiseoPor))
+					.addGap(12))
+		);
 		contentPane.setLayout(gl_contentPane);
 				// end-user-code
 	}

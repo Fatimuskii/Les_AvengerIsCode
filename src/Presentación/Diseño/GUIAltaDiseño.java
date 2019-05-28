@@ -106,18 +106,21 @@ public class GUIAltaDiseño extends JFrame{
 					float altura = Float.parseFloat(textAltura.getText());
 					float ancho = Float.parseFloat(textAncho.getText());
 					float profundidad = Float.parseFloat(textProfundidad.getText());
-					float precio = Float.parseFloat(textPrecio.getText());
+					double precio = Float.parseFloat(textPrecio.getText());
 					String descripcion = textAreaDescripcion.getText();
+					//int idUsuario = Integer.parseInt(textUsuario.getText());
 					//¿String?
 					String archivo = textArchivo.getText();
 					
 					if(nombre.equals("") || textAltura.getText().equals("") || textAncho.getText().equals("")||
 							textProfundidad.getText().equals("") || textPrecio.getText().equals("") ||
-							textArchivo.getText().equals("")){
+							textArchivo.getText().equals("") /*|| textUsuario.equals("")*/){
 						throw new Exception();
 					}
-					
-					diseño = new TDiseño(nombre, descripcion, 1, altura, ancho, profundidad, precio, archivo, true);
+					if(!archivo.split(".").equals("stf")){
+						
+					}
+					diseño = new TDiseño(nombre, descripcion, /*idUsuario*/1, altura, ancho, profundidad, precio, archivo, true);
 					Controlador.getInstance().accion(Events.ALTA_DISEÑO, diseño);
 				}
 				catch(Exception ex){
@@ -288,6 +291,7 @@ public class GUIAltaDiseño extends JFrame{
 		textArchivo.setText("");
 		textProfundidad.setText("");
 		textAreaDescripcion.setText("");
+		//textUsuario.setText("");
 		// end-user-code
 	}
 	

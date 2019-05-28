@@ -41,6 +41,7 @@ public class GUIPanelLogueado extends JPanel implements GUIEventoPlataforma{
 	public void update(int evento, Object objeto) {
 		// TODO Auto-generated method stub
 		txtpnBienvenido.setText("Bienvenid@ "+((TUsuario) objeto).getNombre());
+		txtpnBienvenido.setEditable(false);
 		StyledDocument doc = txtpnBienvenido.getStyledDocument();
 		SimpleAttributeSet center = new SimpleAttributeSet();
 		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);

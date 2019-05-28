@@ -3,8 +3,6 @@
  */
 package Presentación.Diseño;
 
-
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /** 

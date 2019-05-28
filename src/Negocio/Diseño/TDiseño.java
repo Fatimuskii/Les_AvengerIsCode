@@ -59,14 +59,7 @@ public class TDiseño {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	private float precio;
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	private int puntuacion;
+	private double precio;
 	/**
 	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
 	 * 
@@ -90,7 +83,7 @@ public class TDiseño {
 	private boolean activo;
 	
 	public TDiseño(int id, String nombre, String descripcion, int idUsuario, float alto,
-			float ancho, float profundidad, float precio, String archivo, boolean activo) {
+			float ancho, float profundidad, double precio, String archivo, boolean activo) {
 		this.id_diseño = id;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -104,7 +97,7 @@ public class TDiseño {
 	}
 	
 	public TDiseño(String nombre, String descripcion, int idUsuario, float alto,
-			float ancho, float profundidad, float precio, String archivo, boolean activo) {
+			float ancho, float profundidad, double precio, String archivo, boolean activo) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.propietario = idUsuario;
@@ -279,7 +272,7 @@ public class TDiseño {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public float getPrecio() {
+	public double getPrecio() {
 		// begin-user-code
 		return this.precio;
 		// end-user-code
@@ -292,35 +285,9 @@ public class TDiseño {
 	 * @generated 
 	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public void setPrecio(float precio) {
+	public void setPrecio(double precio) {
 		// begin-user-code
 		this.precio = precio;
-		// end-user-code
-	}
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @return
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public int getPuntuacion() {
-		// begin-user-code
-		return this.puntuacion;
-		// end-user-code
-	}
-
-	/**
-	 * <!-- begin-UML-doc --> <!-- end-UML-doc -->
-	 * 
-	 * @param puntuacion
-	 * @generated 
-	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
-	 */
-	public void setPuntuacion(int puntuacion) {
-		// begin-user-code
-		this.puntuacion = puntuacion;
 		// end-user-code
 	}
 
@@ -359,7 +326,6 @@ public class TDiseño {
 	 */
 	public String getArchivo() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		return this.archivo;
 		// end-user-code
 	}
@@ -373,7 +339,6 @@ public class TDiseño {
 	 */
 	public void setArchivo(String archivo) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		this.archivo = archivo;
 		// end-user-code
 	}
