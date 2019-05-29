@@ -6,6 +6,7 @@ package Negocio.Plataforma;
 import java.util.List;
 
 import Negocio.Diseño.TDiseño;
+import Negocio.Usuario.SAUsuario;
 import Negocio.Usuario.TUsuario;
 
 /** 
@@ -17,7 +18,7 @@ import Negocio.Usuario.TUsuario;
 public interface SAPlataforma {
 	
 	
-	public TUsuario logueo(String user, String pass);
+	public TUsuario logueo(int user, String pass, SAUsuario usuario);
 	
 	
 	public String getUsuarioLogueado();

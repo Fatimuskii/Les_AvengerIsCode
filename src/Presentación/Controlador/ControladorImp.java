@@ -4,6 +4,7 @@
 package Presentación.Controlador;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Negocio.Factoria.SAFactoria;
 import Negocio.Local.SALocal;
@@ -384,6 +385,16 @@ public class ControladorImp extends Controlador {
 		case Events.ACCESO_USUARIO:
 			// logguear en usuario
 			TUsuario user;
+<<<<<<< .mine
+			user=SAPlataforma.logueo(((TUsuario)datos).getIdUsuario(), ((TUsuario)datos).getContraseña(), SAUsuario);
+			if(user!=null){
+				this.uLogueado=(TUsuario)datos;
+				GUIPlataforma.getInstance().update(Events.ACCESO_USUARIO_OK, user);
+				//GUIPlataforma.getInstance().update(Events.ACCESO_USUARIO_OK, (TUsuario)datos);
+			}
+			else
+				GUIPlataforma.getInstance().update(Events.ACCESO_USUARIO_KO, null);
+=======
 			user = SAPlataforma.logueo(((TUsuario) datos).getNombre(),
 					((TUsuario) datos).getContraseña());
 			if (user != null) {
@@ -395,6 +406,12 @@ public class ControladorImp extends Controlador {
 			} else
 				GUIPlataforma.getInstance().update(Events.ACCESO_USUARIO_KO,
 						null);
+>>>>>>> .r98
+<<<<<<< .mine
+			break;
+		case Events.REGISTRO_USUARIO:
+			
+=======
 			nombre = String.valueOf(datos.toString());
 			idUsuarioLogueado = this.SAUsuario.acceso(nombre);
 			if (idUsuarioLogueado > 0)
@@ -402,6 +419,7 @@ public class ControladorImp extends Controlador {
 						idUsuarioLogueado);
 			else
 				GUIUsuario.getInstance().update(Events.ACCESO_USUARIO_KO, null);
+>>>>>>> .r98
 			break;
 		case Events.ALTA_CARRITO:
 			break;
@@ -414,7 +432,15 @@ public class ControladorImp extends Controlador {
 		case Events.BAJA_CARRITO:
 			SAPlataforma.vaciarElementosCarrito();
 			break;
+<<<<<<< .mine
+		case Events.ALTA_COMPRAS:
+			List<TDiseño> lista=SADiseño.listarPorUsuario(this.uLogueado.getIdUsuario());
+			GUIPlataforma.getInstance().update(Events.ALTA_COMPRAS_OK,lista);
+			break;
+		/*EVENTOS DE PEDIDO IMPRESION*/
+=======
 		/* EVENTOS DE PEDIDO IMPRESION */
+>>>>>>> .r98
 		case Events.OPEN_GUI_PEDIDO_IMPRESION_MENU:
 			GUIPedidoImpresion.getInstance(uLogueado);
 			break;

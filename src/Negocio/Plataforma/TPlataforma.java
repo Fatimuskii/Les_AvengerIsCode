@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 import Negocio.Diseño.TDiseño;
+import Negocio.Usuario.SAUsuario;
 import Negocio.Usuario.TUsuario;
 import Presentación.Plataforma.GUIPlataforma;
 import Presentación.Controlador.Events;
@@ -29,18 +30,17 @@ public class TPlataforma {
 		//this.usuarioLogueado=new TUsuario();
 		diseñosComprados=new ArrayList<TDiseño>();
 		listaCompra=new ArrayList<TDiseño>();
-		listaCompra.add(new TDiseño(0, "Diseño1","Material1", 0, 0, 0, 0, 0, null, false));
-		listaCompra.add(new TDiseño(0, "Diseño3","Material3", 0, 0, 0, 0, 0, null, false));
-		listaCompra.add(new TDiseño(0, "Diseño4","Material4", 0, 0, 0, 0, 0, null, false));
 		GUIPlataforma.getInstance().update(Events.MODIFICAR_CARRITO_ANNADIR, listaCompra);
 	}
 	
-	public TUsuario logueo(String user, String pass) {
-		this.usuarioLogueado= new TUsuario(484444, "pepe", "sfdfs",
-				"asdfadsf", new Date(), "sdfsadf",
-				"asdfadfa", "sfadfa", "asfdfadf",
-				new Date(),true);
-		return this.usuarioLogueado;
+	public TUsuario logueo(int user, String pass, SAUsuario usuario) {
+		TUsuario prueba = usuario.buscarIdUsuario(user);
+		if(prueba!=null && prueba.getContraseña().equals(pass)){
+			this.usuarioLogueado=prueba;
+			return this.usuarioLogueado;
+		}
+		else
+			return null;
 	}
 	
 	public String getUsuarioLogueado(){

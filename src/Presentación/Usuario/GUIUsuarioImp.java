@@ -52,6 +52,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 	private GUIBuscarporIdUsuario GUI_BuscarporIdUsuario;
 	private JLabel id_Usuario;
 	private boolean admin;
+	private JMenuItem mntmDarDeAlta;
 	
 	private int id;
 	
@@ -227,7 +228,8 @@ public class GUIUsuarioImp extends GUIUsuario {
 		});
 		mnConfiguacin.add(mntmDarDeBaja);
 		
-		JMenuItem mntmDarDeAlta = new JMenuItem("Dar de alta");
+		//JMenuItem mntmDarDeAlta = new JMenuItem("Dar de alta");
+		mntmDarDeAlta = new JMenuItem("Dar de alta");
 		mntmDarDeAlta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				GUI_AltaUsuario.setVisible(true);
@@ -239,6 +241,9 @@ public class GUIUsuarioImp extends GUIUsuario {
 		JMenuItem mntmCerrarSesin = new JMenuItem("Cerrar sesi\u00F3n");
 		mnConfiguacin.add(mntmCerrarSesin);
 
+	}
+	public JMenuItem getDarAlta(){
+		return this.mntmDarDeAlta;
 	}
 
 	@SuppressWarnings("unchecked")

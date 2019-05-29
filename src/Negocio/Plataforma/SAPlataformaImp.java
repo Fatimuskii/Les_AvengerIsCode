@@ -6,6 +6,7 @@ package Negocio.Plataforma;
 import java.util.List;
 
 import Negocio.Diseño.TDiseño;
+import Negocio.Usuario.SAUsuario;
 import Negocio.Usuario.TUsuario;
 
 /** 
@@ -21,8 +22,8 @@ public TPlataforma plataforma;
 		this.plataforma= new TPlataforma();
 	}
 	
-	public TUsuario logueo(String user, String pass) {
-		return plataforma.logueo(user, pass);
+	public TUsuario logueo(int user, String pass, SAUsuario usuario) {
+		return plataforma.logueo(user, pass, usuario);
 	}
 	
 	public String getUsuarioLogueado() {

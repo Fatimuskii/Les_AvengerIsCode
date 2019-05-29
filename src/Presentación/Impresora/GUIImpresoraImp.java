@@ -68,8 +68,8 @@ public class GUIImpresoraImp extends GUIImpresora {
 	
 	public GUIImpresoraImp() {
 		super();
-		setTitle("Menu Impresora");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\3d-printer.png"));
+		//setTitle("Menu Impresora");
+		//setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\3d-printer.png"));
 		this.contentPane = new JPanel();
 		this.gUIBajaImpresora = new GUIBajaImpresora();
 		this.gUIModificarImpresora = new GUIModificarImpresora();
@@ -87,11 +87,14 @@ public class GUIImpresoraImp extends GUIImpresora {
 	 * Create the frame.
 	 */
 	public void initGUI() {
-		setBounds(100, 100, 450, 300);
+		//setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		//setContentPane(contentPane);
+		this.add(contentPane);
+		this.setLayout(new BorderLayout());
+		this.add(contentPane);
 		
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);

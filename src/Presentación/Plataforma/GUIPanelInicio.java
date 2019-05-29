@@ -26,22 +26,25 @@ public class GUIPanelInicio extends JPanel implements GUIEventoPlataforma{
 	private JPanel panelLocal;
 	private JPanel panelUsuarios;
 	private JPanel panelCompras;
+	private JPanel panelImpresoras; 
 	
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JButton btnNewButton_2;
 	private JButton btnNewButton_3;
 	private JButton btnNewButton_4;
+	private JButton btnNewButton_5;
 	
-	public GUIPanelInicio(GUIVentanaPlataforma guiVentanaPlataforma, JLayeredPane layered,JPanel panelDiseños, JPanel panelPedImpresion, JPanel panelLocal, JPanel panelUsuarios, JPanel panelCompras) {
+	public GUIPanelInicio(GUIVentanaPlataforma guiVentanaPlataforma, JLayeredPane layered,JPanel panelDiseños, JPanel panelPedImpresion, JPanel panelLocal, JPanel panelUsuarios,JPanel panelImpresoras, JPanel panelCompras) {
 		this.layered=layered;
 		this.panelDiseños=panelDiseños;
 		this.panelPedImpresion=panelPedImpresion;
 		this.panelLocal=panelLocal;
 		this.panelUsuarios=panelUsuarios;
 		this.panelCompras=panelCompras;
+		this.panelImpresoras=panelImpresoras;
 		
-		setLayout(new GridLayout(5, 1, 0, 0));
+		setLayout(new GridLayout(6, 1, 0, 0));
 		init();
 	}
 	
@@ -83,7 +86,7 @@ public class GUIPanelInicio extends JPanel implements GUIEventoPlataforma{
 		add(btnNewButton_2);
 		
 		btnNewButton_3 = new JButton("Usuarios");
-		btnNewButton_3.setEnabled(false);
+		//	btnNewButton_3.setEnabled(false);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layered.removeAll();
@@ -101,12 +104,26 @@ public class GUIPanelInicio extends JPanel implements GUIEventoPlataforma{
 			public void actionPerformed(ActionEvent e) {
 				layered.removeAll();
 				layered.add(panelCompras);
+				Controlador.getInstance().accion(Events.ALTA_COMPRAS, null);
 				layered.repaint();
 				layered.revalidate();
 			}
 			
 		});
 		add(btnNewButton_4);
+		
+		btnNewButton_5 = new JButton("Impresoras");
+		btnNewButton_5.setEnabled(false);
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				layered.removeAll();
+				layered.add(panelImpresoras);
+				layered.repaint();
+				layered.revalidate();
+			}
+			
+		});
+		add(btnNewButton_5);
 
 	}
 
@@ -118,6 +135,7 @@ public class GUIPanelInicio extends JPanel implements GUIEventoPlataforma{
 		btnNewButton_2.setEnabled(true);
 		btnNewButton_3.setEnabled(true);
 		btnNewButton_4.setEnabled(true);
+		btnNewButton_5.setEnabled(true);
 	}
 	
 

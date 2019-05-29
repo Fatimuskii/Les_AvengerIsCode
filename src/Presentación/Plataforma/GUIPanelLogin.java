@@ -19,6 +19,7 @@ import Negocio.Plataforma.SAPlataforma;
 import Negocio.Usuario.TUsuario;
 import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
+import Presentación.Usuario.GUIUsuario;
 
 public class GUIPanelLogin extends JPanel implements GUIEventoPlataforma {
 	/**
@@ -71,6 +72,12 @@ public class GUIPanelLogin extends JPanel implements GUIEventoPlataforma {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Controlador.getInstance().accion(Events.ACCESO_USUARIO, new TUsuario(1, user.getText(),"","", "", null, String.copyValueOf(pass.getPassword()), "", "", null, true));
+			}
+		});
+		btnNewButton_1.setVisible(false);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		panel_1.add(btnNewButton);

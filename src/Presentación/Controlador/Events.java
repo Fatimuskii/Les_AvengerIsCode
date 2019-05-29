@@ -144,5 +144,8 @@ public class Events {
 	public static final int BAJA_CARRITO = 704;
 	public static final int ACCESO_USUARIO_OK = 705;
 	public static final int ACCESO_USUARIO_KO = 706;
+	public static final int ALTA_COMPRAS = 708;
+	public static final int ALTA_COMPRAS_OK = 709;
+	public static final int REGISTRO_USUARIO = 710;
 
 }

@@ -11,6 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Negocio.Plataforma.SAPlataforma;
@@ -18,6 +19,7 @@ import Negocio.Usuario.TUsuario;
 import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 import Presentación.Diseño.GUIDiseño;
+import Presentación.Impresora.GUIImpresora;
 import Presentación.Local.GUILocal;
 import Presentación.Local.GUILocalImp;
 import Presentación.PedidoImpresion.GUIPedidoImpresion;
@@ -42,6 +44,7 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 	private JPanel panel_2;
 	private JPanel panel_3;
 	private JPanel panel_4;
+	private JPanel panel_5;
 	private GUIPanelCarrito panelCarrito;
 	private GUIPanelCompras panelCompras;
 	
@@ -99,15 +102,18 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 		
 		panel_4 = GUIUsuario.getInstance();
 		
+		panel_5 = GUIImpresora.getInstance();
+		
 		panelCompras=new GUIPanelCompras();
 		
-		inicioPane =new GUIPanelInicio(this,layeredPane, panel_1, panel_2, panel_3, panel_4, panelCompras);
+		inicioPane =new GUIPanelInicio(this,layeredPane, panel_1, panel_2, panel_3, panel_4, panel_5, panelCompras);
 		izquierdoPane.add(inicioPane);
 		
 		borrar=panelCarrito.getBotonBorrar();
 		vaciar=panelCarrito.getBotonVaciar();
 		comprar=panelCarrito.getBotonComprar();
 		annadirCarrito=panelCompras.getBotonComprar();
+		
 		this.initBotonesPCarrito();
 		this.initBotonesPCompras();
 	}
@@ -133,7 +139,9 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 	public void initBotonesPCarrito() {
 		borrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controlador.getInstance().accion(Events.MODIFICAR_CARRITO, panelCarrito.getSelectedItem());
+				Object objeto=panelCarrito.getSelectedItem();
+				if(objeto!=null)
+					Controlador.getInstance().accion(Events.MODIFICAR_CARRITO, objeto);
 			}
 		});
 		
@@ -166,11 +174,15 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 			logueado((TUsuario)objeto);
 			break;
 		case Events.ACCESO_USUARIO_KO:
+			JOptionPane.showMessageDialog(null, "Usuario no reconocido o contraseña incorrecta", "Error Logueo", JOptionPane.ERROR_MESSAGE);
 			break;
 		case Events.MODIFICAR_CARRITO_ANNADIR:
 			panelCarrito.update(0, objeto);
 			break;
+		case Events.ALTA_COMPRAS_OK:
+			panelCompras.update(evento, objeto);
 		}
+		
 	}
 	
 	
