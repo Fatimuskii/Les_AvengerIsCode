@@ -74,6 +74,7 @@ public class TPlataforma {
 
 	public void annadirElementoCarrito(TDiseño aAnnadir) {
 		// TODO Auto-generated method stub
-		listaCompra.add(aAnnadir);
+		if(!listaCompra.contains(aAnnadir))
+			listaCompra.add(aAnnadir);
 	}
 }

@@ -392,7 +392,7 @@ public class ControladorImp extends Controlador {
 				//GUIPlataforma.getInstance().update(Events.ACCESO_USUARIO_OK, (TUsuario)datos);
 			}
 			else
-				GUIPlataforma.getInstance().update(Events.ACCESO_USUARIO_KO, null);
+				GUIPlataforma.getInstance().update(Events.ACCESO_USUARIO_KO, null); 	
 			break;
 		case Events.REGISTRO_USUARIO:
 			nombre = String.valueOf(datos.toString());
@@ -415,7 +415,8 @@ public class ControladorImp extends Controlador {
 			SAPlataforma.vaciarElementosCarrito();
 			break;
 		case Events.ALTA_COMPRAS:
-			List<TDiseño> lista=SADiseño.listarPorUsuario(this.uLogueado.getIdUsuario());
+			List<TDiseño> lista=SADiseño.listarTodos();
+			//List<TDiseño> lista=SADiseño.listarPorUsuario(this.uLogueado.getIdUsuario());
 			GUIPlataforma.getInstance().update(Events.ALTA_COMPRAS_OK,lista);
 			break;
 		/*EVENTOS DE PEDIDO IMPRESION*/

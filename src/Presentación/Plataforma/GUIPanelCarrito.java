@@ -101,7 +101,7 @@ public class GUIPanelCarrito extends JPanel implements GUIEventoPlataforma {
 	}
 	
 	public TDiseño getSelectedItem() {
-		if(!listaModelo.isEmpty())
+		if(listaModelo.getSize()!=0)
 			return this.listaDiseños.getSelectedValue();
 		else return null;
 	}

@@ -71,7 +71,7 @@ public class GUIPanelLogin extends JPanel implements GUIEventoPlataforma {
 		JButton btnNewButton_1 = new JButton("Registrarse");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controlador.getInstance().accion(Events.ACCESO_USUARIO, new TUsuario(1, user.getText(),"","", "", null, String.copyValueOf(pass.getPassword()), "", "", null, true));
+				Controlador.getInstance().accion(Events.ACCESO_USUARIO, new TUsuario(Integer.parseInt(user.getText()), "","","", "", null, String.copyValueOf(pass.getPassword()), "", "", null, true));
 			}
 		});
 		btnNewButton_1.setVisible(false);
