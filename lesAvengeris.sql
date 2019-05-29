@@ -9,41 +9,10 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `disenos`
---
-CREATE TABLE IF NOT EXISTS disenos(
-	idDiseno int(5) NOT NULL AUTO_INCREMENT,
-	nombre varchar(20) NOT NULL,
-	descripcion varchar(200),
-	propietario int(11) NOT NULL,
-	alto float NOT NULL,
-	ancho float NOT NULL,
-	profundidad float NOT NULL,
-	precio float NOT NULL,
-	archivo varchar(50) NOT NULL,
-	activo tinyint(1) NOT NULL,
-	PRIMARY KEY (idDiseno)
-);
-
---
--- Estructura de tabla para la tabla `impresora`
---
-CREATE TABLE IF NOT EXISTS impresora(
-	idImpresora int(5) NOT NULL AUTO_INCREMENT,
-	material varchar(20) NOT NULL,
-	alto float NOT NULL,
-	ancho float NOT NULL,
-	profundidad float NOT NULL,
-	usuario int(11) NOT NULL,
-	activo tinyint(1) NOT NULL,
-	PRIMARY KEY (idImpresora)
-);
 
 --
 -- Estructura de tabla para la tabla `locales`
 --
-
 
 CREATE TABLE IF NOT EXISTS locales (
   IdLocal int(5) NOT NULL AUTO_INCREMENT,
@@ -62,6 +31,7 @@ CREATE TABLE IF NOT EXISTS locales (
 
 --
 -- Estructura de tabla para la tabla 'usuario' 
+--
 
 CREATE TABLE IF NOT EXISTS usuario (
   idUsuario int(5) NOT NULL AUTO_INCREMENT,
@@ -76,8 +46,37 @@ CREATE TABLE IF NOT EXISTS usuario (
   fechaCaducidad varchar (15) NOT NULL,
   activo tinyint(1) NOT NULL, 
   PRIMARY KEY(idUsuario)
-  
-  
+);
+
+--
+-- Estructura de tabla para la tabla `disenos`
+--
+CREATE TABLE IF NOT EXISTS disenos(
+	idDiseno int(5) NOT NULL AUTO_INCREMENT,
+	nombre varchar(20) NOT NULL,
+	descripcion varchar(200),
+	propietario int(5) REFERENCES Usuario(idUsuario),
+	alto float NOT NULL,
+	ancho float NOT NULL,
+	profundidad float NOT NULL,
+	precio float NOT NULL,
+	archivo varchar(50) NOT NULL,
+	activo tinyint(1) NOT NULL,
+	PRIMARY KEY (idDiseno)
+);
+
+--
+-- Estructura de tabla para la tabla `impresora`
+--
+CREATE TABLE IF NOT EXISTS impresora(
+	idImpresora int(5) NOT NULL AUTO_INCREMENT,
+	material varchar(20) NOT NULL,
+	alto float NOT NULL,
+	ancho float NOT NULL,
+	profundidad float NOT NULL,
+	usuario int(5) REFERENCES Usuario(idUsuario),
+	activo tinyint(1) NOT NULL,
+	PRIMARY KEY (idImpresora)
 );
 
 --

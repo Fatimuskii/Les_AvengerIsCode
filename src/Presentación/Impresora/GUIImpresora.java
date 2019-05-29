@@ -3,7 +3,6 @@
  */
 package Presentación.Impresora;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 

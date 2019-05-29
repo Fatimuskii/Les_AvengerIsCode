@@ -134,7 +134,6 @@ public class SADiseñoImp implements SADiseño {
 	 */
 	public ArrayList<TDiseño> listarPorUsuario(int idUsuario) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		ArrayList<TDiseño> listaDiseños = null;
 		
 		//Comprobar que el usuario existe y está activo

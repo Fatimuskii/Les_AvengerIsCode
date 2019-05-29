@@ -4,9 +4,7 @@
 package Presentación.Impresora;
 
 import java.awt.BorderLayout;
-import java.awt.Toolkit;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
@@ -23,18 +21,9 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JButton;
 
-import Negocio.Diseño.TDiseño;
 import Negocio.Impresora.TImpresora;
 import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
-import Presentación.Diseño.GUIAltaDiseño;
-import Presentación.Diseño.GUIBajaDiseño;
-import Presentación.Diseño.GUIBuscarPalabraDiseño;
-import Presentación.Diseño.GUIBuscarporIdDiseño;
-import Presentación.Diseño.GUIDiseño;
-import Presentación.Diseño.GUIListarDiseños;
-import Presentación.Diseño.GUIListarporUsuarioDiseño;
-import Presentación.Diseño.GUIModificarDiseño;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -68,8 +57,6 @@ public class GUIImpresoraImp extends GUIImpresora {
 	
 	public GUIImpresoraImp() {
 		super();
-		//setTitle("Menu Impresora");
-		//setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\3d-printer.png"));
 		this.contentPane = new JPanel();
 		this.gUIBajaImpresora = new GUIBajaImpresora();
 		this.gUIModificarImpresora = new GUIModificarImpresora();
@@ -87,11 +74,9 @@ public class GUIImpresoraImp extends GUIImpresora {
 	 * Create the frame.
 	 */
 	public void initGUI() {
-		//setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
-		//setContentPane(contentPane);
 		this.add(contentPane);
 		this.setLayout(new BorderLayout());
 		this.add(contentPane);
@@ -114,7 +99,7 @@ public class GUIImpresoraImp extends GUIImpresora {
 		menuBar.setBounds(132, 57, 90, 21);
 		panel.add(menuBar);
 		
-		JMenu mnConfiguracin = new JMenu("Configuraci\u00F3n");
+		JMenu mnConfiguracin = new JMenu("Configuración");
 		menuBar.add(mnConfiguracin);
 		
 		JMenuItem mntmDarDeBaja = new JMenuItem("Dar de baja");
@@ -129,6 +114,7 @@ public class GUIImpresoraImp extends GUIImpresora {
 		JMenuItem mntmModificarImpresora = new JMenuItem("Modificar impresora");
 		mntmModificarImpresora.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				gUIModificarImpresora.clearData();
 				gUIModificarImpresora.setVisible(true);
 			}
 		});
@@ -137,6 +123,7 @@ public class GUIImpresoraImp extends GUIImpresora {
 		JMenuItem mntmAltaImpresora = new JMenuItem("Dar de alta");
 		mntmAltaImpresora.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				gUIAltaImpresora.clearData();
 				gUIAltaImpresora.setVisible(true);
 			}
 		});
@@ -190,18 +177,20 @@ public class GUIImpresoraImp extends GUIImpresora {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				try{
-					if(txtBuscar.getText().equals("Buscar Id impresora")){
+				try {
+					if (txtBuscar.getText().equals("Buscar Id impresora")) {
 						throw new Exception();
 					}
 					int idImpresora = Integer.parseInt(txtBuscar.getText());
 					gUIBuscarIdImpresora.clearData();
 					gUIBuscarIdImpresora.setVisible(true);
-					Controlador.getInstance().accion(Events.BUSCAR_IMPRESORA, idImpresora);
+					Controlador.getInstance().accion(Events.BUSCAR_IMPRESORA,
+							idImpresora);
 					gUIBuscarIdImpresora.toFront();
-				}
-				catch(Exception ex){
-					JOptionPane.showMessageDialog(null, "Introduzca un idImpresora válido", "Error", JOptionPane.ERROR_MESSAGE);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null,
+							"Introduzca un idImpresora válido", "Error",
+							JOptionPane.ERROR_MESSAGE);
 				}
 			}
 			
@@ -227,18 +216,21 @@ public class GUIImpresoraImp extends GUIImpresora {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				try{
-					if(txtBuscarIdusuarioImpresor.getText().equals("Buscar IdUsuario impresor")){
+				try {
+					if (txtBuscarIdusuarioImpresor.getText().equals(
+							"Buscar IdUsuario impresor")) {
 						throw new Exception("Introduzca un idUsuario");
 					}
-					int idUsuario = Integer.parseInt(txtBuscarIdusuarioImpresor.getText());
+					int idUsuario = Integer.parseInt(txtBuscarIdusuarioImpresor
+							.getText());
 					gUIBuscarUsuarioImpresora.clearData();
 					gUIBuscarUsuarioImpresora.setVisible(true);
-					Controlador.getInstance().accion(Events.BUSCAR_USUARIO_IMPRESORA, idUsuario);
+					Controlador.getInstance().accion(
+							Events.BUSCAR_USUARIO_IMPRESORA, idUsuario);
 					gUIBuscarUsuarioImpresora.toFront();
-				}
-				catch(Exception ex){
-					JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				} catch (Exception ex) {
+					JOptionPane.showMessageDialog(null, ex.getMessage(),
+							"Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 			
@@ -261,7 +253,7 @@ public class GUIImpresoraImp extends GUIImpresora {
 
 	/** 
 	 * (sin Javadoc)
-	 * @see GUIDiseño#update(int event, Object res)
+	 * @see GUIImpresora#update(int event, Object res)
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	@SuppressWarnings("unchecked")
@@ -280,10 +272,10 @@ public class GUIImpresoraImp extends GUIImpresora {
 			gUIBajaImpresora.update(event, res);
 			break;
 		case Events.MODIFICAR_IMPRESORA_OK:
-			gUIModificarImpresora.update(event, res);
+			gUIModificarImpresora.update(event, (TImpresora)res);
 			break;
 		case Events.MODIFICAR_IMPRESORA_KO:
-			gUIModificarImpresora.update(event, res);
+			gUIModificarImpresora.update(event, (TImpresora)res);
 			break;
 		case Events.LISTAR_IMPRESORAS_OK:
 			gUIListarImpresora.update(event, (ArrayList<TImpresora>) res);

@@ -42,6 +42,7 @@ public class GUIModificarDiseño extends JFrame{
 	private JTextPane textPane;
 	
 	private int id;
+	private int propietario;
 	
 	public GUIModificarDiseño(){
 		super();
@@ -140,7 +141,12 @@ public class GUIModificarDiseño extends JFrame{
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					id = Integer.parseInt(textID.getText());
+					if(textNombre.getText().equals("") || textAlto.getText().equals("") || textAncho.getText().equals("")||
+							textProfundidad.getText().equals("") || textPrecio.getText().equals("") || 
+							textArchivo.getText().equals("")){
+						throw new Exception();
+					}
+					
 					String nombre = textNombre.getText();
 					String descripcion = textPane.getText();
 					float precio = Float.parseFloat(textPrecio.getText());
@@ -148,14 +154,9 @@ public class GUIModificarDiseño extends JFrame{
 					float ancho = Float.parseFloat(textAncho.getText());
 					float profundidad = Float.parseFloat(textProfundidad.getText());
 					String archivo = textArchivo.getText();
-				
-					if(nombre.equals("") || textAlto.getText().equals("") || textAncho.getText().equals("")||
-							textProfundidad.getText().equals("") || textPrecio.getText().equals("") || 
-							textArchivo.getText().equals("")){
-						throw new Exception();
-					}
+					
 						
-					TDiseño tDiseño = new TDiseño (id, nombre, descripcion,1, alto, ancho, profundidad,precio, archivo,true); 
+					TDiseño tDiseño = new TDiseño (id, nombre, descripcion,propietario, alto, ancho, profundidad,precio, archivo,true); 
 				
 					Controlador.getInstance().accion(Events.MODIFICAR_DISEÑO, tDiseño);
 				}
@@ -257,6 +258,7 @@ public class GUIModificarDiseño extends JFrame{
 			textPrecio.setText(res.getPrecio()+"");
 			textPane.setText(res.getDescripcion());
 			
+			propietario = res.getPropietario();
 			break;
 		case Events.MODIFICAR_DISEÑO_COMPROBAR_KO:
 			JOptionPane.showMessageDialog(null,"El diseño con el id: " + id + " no existe.","Error Diseño",JOptionPane.ERROR_MESSAGE);

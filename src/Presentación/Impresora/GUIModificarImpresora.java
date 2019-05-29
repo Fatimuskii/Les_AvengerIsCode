@@ -3,37 +3,24 @@
  */
 package Presentación.Impresora;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.text.ParseException;
-import java.util.Date;
 
-import javax.swing.Icon;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
-import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 
+import Negocio.Impresora.Material;
 import Negocio.Impresora.TImpresora;
-import Negocio.Usuario.TUsuario;
 import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 
@@ -49,187 +36,189 @@ public class GUIModificarImpresora extends JFrame {
 
 	private JPanel contentPane;
 	private int id;
-	private JButton btnFinalizar;
-	private JTextField txtIntroduceTuId;
-	private JRadioButton mntmPal;
-	private JRadioButton mntmAbs;
-	private JRadioButton mntmPetg;
-	private JRadioButton mntmNylon;
-	private JSpinner alto;
-	private JSpinner ancho;
-	private JSpinner profundidad;
-	private JButton btnComprobar;
+	private JTextField textIdImpresora;
+	private JTextField textAlto;
+	private JTextField textAncho;
+	private JTextField textProfundidad;
+	private JComboBox<Material> comboBoxMaterial;
+	private int usuario;
 	
 	public GUIModificarImpresora() {
 		super();
 		this.contentPane = new JPanel();
-		this.btnFinalizar = new JButton();
-		this.mntmPal = new JRadioButton();
-		this.mntmAbs = new JRadioButton();
-		this.mntmPetg = new JRadioButton();
-		this.mntmNylon = new JRadioButton();
-		this.alto = new JSpinner();
-		this.ancho = new JSpinner();
-		this.profundidad = new JSpinner();
-		this.txtIntroduceTuId = new JTextField();
 		this.setFocusable(true);
 		initGUI();
 	}
 
 	private void initGUI() {
-			setResizable(false);
+		setResizable(false);
 
-			setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\3d-printer.png"));
-			setTitle("Modificar Impresora");
-			setBounds(100, 100, 453, 441);
-			contentPane = new JPanel();
-			contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-			contentPane.setLayout(new BorderLayout(0, 0));
-			setContentPane(contentPane);
+		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\3d-printer.png"));
+		setTitle("Modificar Impresora");
+		setBounds(100, 100, 453, 441);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
 
-			JPanel panel = new JPanel();
-			contentPane.add(panel, BorderLayout.CENTER);
-			panel.setLayout(null);
+		
+		contentPane.setLayout(null);
+		
+		JLabel label_3 = new JLabel("");
+		label_3.setBounds(47, 14, 156, 138);
+		contentPane.add(label_3);
+		label_3.setIcon(new ImageIcon("imagenes\\3d-printer-REDM-REDM.png"));
 
-			
-			txtIntroduceTuId.addFocusListener(new FocusAdapter() {
-				@Override
-				public void focusGained(FocusEvent arg0) {
-					if (txtIntroduceTuId.getText().equals("idImpresora")) {
-						txtIntroduceTuId.setText("");
+		JLabel lblIdImpresora = new JLabel("ID Impresora:");
+		lblIdImpresora.setBounds(236, 26, 110, 14);
+		contentPane.add(lblIdImpresora);
+
+		textIdImpresora = new JTextField();
+		textIdImpresora.setBounds(236, 51, 147, 20);
+		contentPane.add(textIdImpresora);
+		textIdImpresora.setColumns(10);
+
+		JButton btnComprobar = new JButton("Comprobar");
+		btnComprobar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try{
+					if(textIdImpresora.getText().equals("")){
+						throw new Exception();
 					}
-				}
-
-				@Override
-				public void focusLost(FocusEvent e) {
-					if (txtIntroduceTuId.getText().equals("")) {
-						txtIntroduceTuId.setText("idImpresora");
-					}
-				}
-			});
-			txtIntroduceTuId.setToolTipText("");
-			txtIntroduceTuId.setText("IdImpresora");
-			txtIntroduceTuId.setForeground(Color.DARK_GRAY);
-			txtIntroduceTuId.setFont(new Font("Tahoma", Font.PLAIN, 11));
-			txtIntroduceTuId.setColumns(10);
-			txtIntroduceTuId.setBounds(162, 11, 122, 20);
-			panel.add(txtIntroduceTuId);
-
-			
-			btnComprobar = new JButton("Comprobar");
-			btnComprobar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					id = Integer.parseInt(txtIntroduceTuId.getText());
-					Controlador.getInstance().accion(
-							Events.MODIFICAR_IMPRESORA_COMPROBAR, id);
+					id = Integer.parseInt(textIdImpresora.getText());
+					Controlador.getInstance().accion(Events.MODIFICAR_IMPRESORA_COMPROBAR, id);
 					toFront();
 				}
-			});
-			btnComprobar.setBounds(304, 10, 105, 23);
-			panel.add(btnComprobar);
-
-			JMenuBar menuBar = new JMenuBar();
-			menuBar.setBounds(30, 200, 56, 21);
-			panel.add(menuBar);
-
-			JMenu mnMaterial = new JMenu("Material");
-			menuBar.add(mnMaterial);
-
-			mntmPal = new JRadioButton("PAL");
-			mntmPal.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					mntmAbs.setSelected(false);
-					mntmPetg.setSelected(false);
-					mntmNylon.setSelected(false);
+				catch(Exception e){
+					JOptionPane.showMessageDialog(null, "Introduce un id válido (número)",
+							"Error Impresora", JOptionPane.ERROR_MESSAGE);
 				}
-			});
-			mnMaterial.add(mntmPal);
+			}
+		});
+		btnComprobar.setBounds(236, 100, 147, 23);
+		contentPane.add(btnComprobar);
 
-			mntmAbs = new JRadioButton("ABS");
-			mntmAbs.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					mntmPal.setSelected(false);
-					mntmPetg.setSelected(false);
-					mntmNylon.setSelected(false);
+		JSeparator separator = new JSeparator();
+		separator.setBounds(37, 163, 384, 2);
+		contentPane.add(separator);
+
+		JLabel lblDimensiones = new JLabel("Dimensiones:");
+		lblDimensiones.setBounds(37, 191, 86, 14);
+		contentPane.add(lblDimensiones);
+
+		textAlto = new JTextField();
+		textAlto.setEditable(false);
+		textAlto.setEnabled(false);
+		textAlto.setBounds(133, 188, 70, 20);
+		contentPane.add(textAlto);
+		textAlto.setColumns(10);
+
+		textAncho = new JTextField();
+		textAncho.setEditable(false);
+		textAncho.setEnabled(false);
+		textAncho.setBounds(236, 188, 70, 20);
+		contentPane.add(textAncho);
+		textAncho.setColumns(10);
+
+		textProfundidad = new JTextField();
+		textProfundidad.setEditable(false);
+		textProfundidad.setEnabled(false);
+		textProfundidad.setBounds(335, 188, 70, 20);
+		contentPane.add(textProfundidad);
+		textProfundidad.setColumns(10);
+
+		comboBoxMaterial = new JComboBox<Material>();
+		comboBoxMaterial.setEnabled(false);
+		comboBoxMaterial.setModel(new DefaultComboBoxModel<Material>(Material.values()));
+		comboBoxMaterial.setBounds(133, 270, 147, 20);
+		contentPane.add(comboBoxMaterial);
+
+		JButton btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					if(textAlto.getText().equals("") || textAncho.getText().equals("") || 
+							textProfundidad.getText().equals("")){
+						throw new Exception();
+					}
+					
+					float al = Float.parseFloat(textAlto.getText());
+					float an = Float.parseFloat(textAncho.getText());
+					float pr = Float.parseFloat(textProfundidad.getText());
+					Material m=(Material) comboBoxMaterial.getSelectedItem();
+					
+					
+					TImpresora tImpresora = new TImpresora(id, m, al, an, pr, usuario, true);
+					Controlador.getInstance().accion(Events.MODIFICAR_IMPRESORA, tImpresora);
 				}
-			});
-			mnMaterial.add(mntmAbs);
-
-			mntmPetg = new JRadioButton("PETG");
-			mntmPetg.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					mntmPal.setSelected(false);
-					mntmAbs.setSelected(false);
-					mntmNylon.setSelected(false);
+				catch(Exception ex){
+					JOptionPane.showMessageDialog(null, "Introduce un id válido (número)",
+							"Error Impresora", JOptionPane.ERROR_MESSAGE);
 				}
-			});
-			mnMaterial.add(mntmPetg);
+			}
+		});
+		btnModificar.setBounds(307, 357, 110, 33);
+		contentPane.add(btnModificar);
 
-			mntmNylon = new JRadioButton("Nylon");
-			mntmNylon.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					mntmPal.setSelected(false);
-					mntmAbs.setSelected(false);
-					mntmPetg.setSelected(false);
-				}
-			});
-			mnMaterial.add(mntmNylon);
+		JLabel lblX = new JLabel("x");
+		lblX.setBounds(216, 191, 20, 14);
+		contentPane.add(lblX);
 
-			JLabel lblTamao = new JLabel(" Tama\u00F1o");
-			lblTamao.setFont(new Font("Tahoma", Font.BOLD, 11));
-			lblTamao.setBounds(30, 316, 56, 14);
-			panel.add(lblTamao);
+		JLabel label = new JLabel("x");
+		label.setBounds(316, 191, 20, 14);
+		contentPane.add(label);
 
-			alto.setModel(new SpinnerNumberModel(8, 8, 1600, 1));
-			alto.setBounds(107, 313, 58, 20);
-			panel.add(alto);
+		JLabel lblMaterial = new JLabel("Material:");
+		lblMaterial.setBounds(37, 273, 86, 14);
+		contentPane.add(lblMaterial);
 
-			ancho.setModel(new SpinnerNumberModel(8, 8, 900, 1));
-			ancho.setBounds(189, 313, 58, 20);
-			panel.add(ancho);
+		JLabel lblalto = new JLabel("(alto)");
+		lblalto.setBounds(133, 211, 70, 14);
+		contentPane.add(lblalto);
 
-			profundidad.setModel(new SpinnerNumberModel(8, 8, 250, 1));
-			profundidad.setBounds(273, 313, 58, 20);
-			panel.add(profundidad);
+		JLabel lblancho = new JLabel("(ancho)");
+		lblancho.setBounds(236, 211, 70, 14);
+		contentPane.add(lblancho);
 
-			JLabel lblX = new JLabel("x");
-			lblX.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			lblX.setBounds(175, 306, 16, 30);
-			panel.add(lblX);
-
-			JLabel label_6 = new JLabel("x");
-			label_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			label_6.setBounds(257, 306, 16, 30);
-			panel.add(label_6);
-
-			JLabel label_3 = new JLabel("");
-			label_3.setIcon(new ImageIcon("imagenes\\3d-printer-REDM-REDM.png"));
-			label_3.setBounds(145, 42, 156, 138);
-			panel.add(label_3);
-			
-			JSeparator separator = new JSeparator();
-			separator.setBounds(44, 187, 365, 2);
-			panel.add(separator);
-			
-			btnFinalizar = new JButton("Finalizar");
-			btnFinalizar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					id = Integer.parseInt(txtIntroduceTuId.getText());
-				//	String material = String.valueOf(mnMaterial.getPressedIcon());//TODO
-					String nombre = null;
-					float al = Float.valueOf(alto.getValue().toString());
-					float an = Float.valueOf(ancho.getValue().toString());
-					float pr = Float.valueOf(profundidad.getValue().toString());
-					//TImpresora tImpresora = new TImpresora(id,nombre,material,al,an,pr,); // TODO
-					//Controlador.getInstance().accion(Events.MODIFICAR_IMPRESORA, tImpresora);
-				}
-			});
-			btnFinalizar.setBounds(338, 368, 89, 23);
-			panel.add(btnFinalizar);
+		JLabel lblprofundidad = new JLabel("(profundidad)");
+		lblprofundidad.setBounds(335, 211, 86, 14);
+		contentPane.add(lblprofundidad);
 	}
 
-	public void update(int events, Object res) {
+	public void clearData(){
+		textIdImpresora.setText("");
+		textAlto.setText("");
+		textAncho.setText("");
+		textProfundidad.setText("");
+		
+		textAlto.setEditable(false);
+		textAncho.setEditable(false);
+		textProfundidad.setEditable(false);
+
+		textAlto.setEnabled(false);
+		textAncho.setEnabled(false);
+		textProfundidad.setEnabled(false);
+		comboBoxMaterial.setEnabled(false);
+	}
+	
+	public void update(int events, TImpresora res) {
 		switch (events) {
+		case Events.MODIFICAR_IMPRESORA_COMPROBAR_OK:
+			textAlto.setEditable(true);
+			textAncho.setEditable(true);
+			textProfundidad.setEditable(true);
+
+			textAlto.setEnabled(true);
+			textAncho.setEnabled(true);
+			textProfundidad.setEnabled(true);
+			comboBoxMaterial.setEnabled(true);
+			
+			usuario = res.getUsuario();
+			break;
+		case Events.MODIFICAR_IMPRESORA_COMPROBAR_KO:
+			JOptionPane.showMessageDialog(null,
+					"La impresora indicada no existe",
+					"Error Impresora", JOptionPane.ERROR_MESSAGE);
+			break;
 		case Events.MODIFICAR_IMPRESORA_OK:
 			JOptionPane.showMessageDialog(null,
 					"Éxito al modificar la impresora id: " + id);

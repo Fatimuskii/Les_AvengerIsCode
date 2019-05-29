@@ -43,7 +43,6 @@ import Presentación.Local.GUIBuscarLocal;
 public class GUIUsuarioImp extends GUIUsuario {
 
 	private JPanel contentPane;
-	private GUIImpresoraImp GUI_ImpresoraImp;
 	private JTextField textField;
 	private GUIModificarUsuario GUI_ModificarUsuario;
 	private GUIBajaUsuario GUI_BajaUsuario;
@@ -62,7 +61,6 @@ public class GUIUsuarioImp extends GUIUsuario {
 		super();
 		this.admin = true;//************************* pasar como parametro
 		this.contentPane = new JPanel();
-		this.GUI_ImpresoraImp = new GUIImpresoraImp();
 		this.GUI_BajaUsuario = new GUIBajaUsuario();
 		this.GUI_AltaUsuario = new GUIAltaUsuario();
 		this.GUI_ListarUsuarios = new GUIListarUsuarios();
@@ -101,8 +99,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 		JButton btnImpresora = new JButton("Mi Impresora");
 		btnImpresora.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUI_ImpresoraImp.setVisible(true);
-			}
+				Controlador.getInstance().accion(Events.OPEN_GUI_IMPRESORA_MENU, null);			}
 		});
 
 		btnImpresora.setBounds(363, 86, 110, 21);

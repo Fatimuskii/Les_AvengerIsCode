@@ -27,7 +27,6 @@ public class DAOImpresoraImp implements DAOImpresora {
 	 */
 	public int alta(TImpresora tImpresora) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		int idImpresora = -100;
 
 		ConexionDAO con = ConexionDAO.getInstance();

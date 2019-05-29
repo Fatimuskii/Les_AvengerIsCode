@@ -118,7 +118,7 @@ public class GUIListarImpresora extends JFrame {
 
 	public void update(int event, ArrayList<TImpresora> res) {
 		switch (event) {
-		case Events.LISTAR_IMPRESORAS_OK:
+		case Events.LISTAR_IMPRESORAS_OK:			
 			tableModel.setRowCount(0);
 			for (int i = 0; i < res.size(); i++)
 				tableModel.insertRow(i, new Object[] {
@@ -132,8 +132,7 @@ public class GUIListarImpresora extends JFrame {
 			table.setModel(tableModel);
 			break;
 		case Events.LISTAR_IMPRESORAS_KO:
-			JOptionPane.showMessageDialog(null,
-					"Error al listar las impresoras", "Error Listar",
+			JOptionPane.showMessageDialog(null, "Error al listar las impresoras", "Error Listar",
 					JOptionPane.ERROR_MESSAGE);
 			break;
 		}

@@ -202,9 +202,8 @@ public class GUIAltaImpresora extends JFrame{
 						float ancho =Float.parseFloat(textFieldAncho.getText());
 						float profundidad = Float.parseFloat(textFieldProfundidad.getText());
 						int idUsuario = Integer.parseInt(txtIntroduceTuId.getText());
-						
-						TImpresora tImpresora = new TImpresora((Material) comboBox.getSelectedItem(), alto,
-								ancho, profundidad, idUsuario, true);
+						Material m = (Material) comboBox.getSelectedItem();
+						TImpresora tImpresora = new TImpresora(m, alto, ancho, profundidad, idUsuario, true);
 						Controlador.getInstance().accion(Events.ALTA_IMPRESORA, tImpresora);
 					}
 					catch(Exception ex){
@@ -223,7 +222,12 @@ public class GUIAltaImpresora extends JFrame{
 				txtIntroduceTuId.getText().equals("Introduce tu Id");
 	}
 	
-	
+	public void clearData(){
+		txtIntroduceTuId.setText("");
+		textFieldAlto.setText("");
+		textFieldAncho.setText("");
+		textFieldProfundidad.setText("");
+	}
 	public void update(int event, Object res){
 		switch (event) {
 		case Events.ALTA_IMPRESORA_OK:

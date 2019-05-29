@@ -112,7 +112,6 @@ public class TImpresora {
 	 */
 	public Material getMaterial() {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		return this.material;
 		// end-user-code
 	}
@@ -125,7 +124,6 @@ public class TImpresora {
 	 */
 	public void setMaterial(Material material) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		this.material = material;
 		// end-user-code
 	}

@@ -3,7 +3,6 @@
  */
 package Negocio.Diseño;
 
-import javax.swing.JLabel;
 
 /**
  * <!-- begin-UML-doc --> <!-- end-UML-doc -->

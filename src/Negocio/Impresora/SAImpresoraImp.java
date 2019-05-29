@@ -24,21 +24,20 @@ public class SAImpresoraImp implements SAImpresora {
 	 */
 	public int alta(TImpresora tImpresora) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		int id_impresora = -1;
 		
 		if (tImpresora != null) {	
-			//DAOUsuario usuarioDAO = FactoriaDAO.getInstance().generateDAOUsuario();
+			DAOUsuario usuarioDAO = FactoriaDAO.getInstance().generateDAOUsuario();
 
-		/*	TUsuario usuario = usuarioDAO.buscarIdUsuario(tDiseño.getPropietario());
+			TUsuario usuario = usuarioDAO.buscarIdUsuario(tImpresora.getUsuario());
 			if(usuario != null){
-				if(usuario.getActivo()){*/
+				if(usuario.getActivo()){
 					DAOImpresora impresoraDAO = FactoriaDAO.getInstance().generateDAOImpresora();
 					tImpresora.setActivo(true);
 					id_impresora = impresoraDAO.alta(tImpresora);
 				}
-	//		}
-		//}
+			}
+		}
 		
 		return id_impresora;
 		// end-user-code
@@ -101,8 +100,15 @@ public class SAImpresoraImp implements SAImpresora {
 	 */
 	public int modificar(TImpresora tImpresora) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
-		return 0;
+		int id = -1;
+		if (tImpresora != null) {
+
+			DAOImpresora impresoraDAO = FactoriaDAO.getInstance().generateDAOImpresora();
+			if (tImpresora != null) {
+				id = impresoraDAO.modificar(tImpresora);
+			}
+		}
+		return id;
 		// end-user-code
 	}
 
