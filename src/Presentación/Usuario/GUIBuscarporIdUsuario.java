@@ -38,9 +38,10 @@ import Presentación.Controlador.Events;
  * <!-- begin-UML-doc -->
  * <!-- end-UML-doc -->
  * @author Fatimuskii
+ * @param <T>
  * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
-public class GUIBuscarporIdUsuario extends JFrame{
+public class GUIBuscarporIdUsuario<T> extends JFrame{
 	
 	private String[] columnNames = { "#", "Id", "Nombre","Descripcion", "Dimensiones", "Precio" };//diseños
 	private String[] columnNames_1 = { "#", "Id", "Nombre", "Dimensiones", "Materiales" };//impresoras
@@ -164,43 +165,49 @@ public class GUIBuscarporIdUsuario extends JFrame{
 		table_1.setModel(model_1);
 	}
 	
-	//Diseño e impresora pedir a plataforma lista asociada id
-	//Utilizar parametro id
-//	public void update(int event, ) {//TODO
-//		switch (event) {
-//		//Events.LISTAR_DISEÑOS_USU
-//		case Events.BUSCAR_USUARIO_OK:
-//			model.setRowCount(0);
-//			for (int i = 0; i < res.size(); i++)
-//				model.insertRow(i, new Object[] {
-//						i + 1,
-//						res.get(i).getId_diseño(),
-//						res.get(i).getNombre(),
-//						res.get(i).getDescripcion(),
-//						res.get(i).getAlto() + "x" + res.get(i).getAncho()
-//								+ "x" + res.get(i).getProfundidad(),
-//						res.get(i).getPrecio()
-//						});
-//			table.setModel(model);
-//			
-//			model_1.setRowCount(0);
-//			for (int i = 0; i < res_1.size(); i++)
-//				model_1.insertRow(i, new Object[] {
-//						i + 1,
-//						res_1.get(i).getId_impresora(),
-//						res_1.get(i).getNombre(),
-//						res_1.get(i).getAlto() + "x" + res.get(i).getAncho()
-//								+ "x" + res.get(i).getProfundidad(),
-//						res_1.get(i).getPrecio()
-//						});
-//			table_1.setModel(model_1);
-//			break;
-//		case Events.BUSCAR_USUARIO_KO:
-//			JOptionPane.showMessageDialog(null,
-//					"Error al buscar el usuario", "Error Buscar",
-//					JOptionPane.ERROR_MESSAGE);
-//			break;
-//		}
-//
-//	}
+	public void update(int event, ArrayList<T> res) {
+		switch (event) {
+		
+		case Events.LISTAR_DISEÑOS_USU_LOG_OK:
+			model.setRowCount(0);
+			for (int i = 0; i < res.size(); i++)
+				model.insertRow(i, new Object[] {
+						i + 1,
+						((TDiseño) res.get(i)).getId_diseño(),
+						((TDiseño) res.get(i)).getNombre(),
+						((TDiseño) res.get(i)).getDescripcion(),
+						((TDiseño) res.get(i)).getAlto() + "x" + ((TDiseño) res.get(i)).getAncho()
+								+ "x" + ((TDiseño) res.get(i)).getProfundidad(),
+						((TDiseño) res.get(i)).getPrecio()
+						});
+			table.setModel(model);
+			break;
+		case Events.LISTAR_IMPRESORAS_USU_LOG_OK:
+			model_1.setRowCount(0);
+			for (int i = 0; i < res.size(); i++)
+				model_1.insertRow(i, new Object[] {
+						i + 1,
+						((TImpresora) res.get(i)).getId_impresora(),
+						((TImpresora) res.get(i)).getUsuario(),
+						((TImpresora) res.get(i)).getAlto() + "x" + ((TImpresora) res.get(i)).getAncho()
+								+ "x" + ((TImpresora) res.get(i)).getProfundidad(),
+						((TImpresora) res.get(i)).getMaterial()
+						});
+			table_1.setModel(model_1);
+			break;
+		
+	
+		case Events.LISTAR_DISEÑOS_USU_LOG_KO:
+			JOptionPane.showMessageDialog(null,
+					"Error al listar los diseños del usuario", "Error Listar",
+					JOptionPane.ERROR_MESSAGE);
+			break;
+		case Events.LISTAR_IMPRESORAS_USU_LOG_KO:
+			JOptionPane.showMessageDialog(null,
+					"Error al listar las impresoras del usuario", "Error Listar",
+					JOptionPane.ERROR_MESSAGE);
+			break;
+		}
+
+	}
 }

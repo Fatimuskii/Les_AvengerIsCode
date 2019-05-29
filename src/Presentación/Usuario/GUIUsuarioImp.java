@@ -49,14 +49,13 @@ public class GUIUsuarioImp extends GUIUsuario {
 	private GUIBajaUsuario GUI_BajaUsuario;
 	private GUIAltaUsuario GUI_AltaUsuario;
 	private GUIListarUsuarios GUI_ListarUsuarios;
-	private GUIBuscarporIdUsuario GUI_BuscarporIdUsuario;
-	private GUIListarporUsuarioDiseño GUI_ListarporUsuarioDiseño;
+	private GUIBuscarporIdUsuario<Object> GUI_BuscarporIdUsuario;
 	private JLabel id_Usuario;
 	private boolean admin;
 
 	private int id;
 
-	private GUIAccesoUsuario GUI_AccesoUsuario;
+//	private GUIAccesoUsuario GUI_AccesoUsuario;
 
 	public GUIUsuarioImp() {
 		super();
@@ -66,9 +65,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 		this.GUI_AltaUsuario = new GUIAltaUsuario();
 		this.GUI_ListarUsuarios = new GUIListarUsuarios();
 		this.GUI_ModificarUsuario = new GUIModificarUsuario(admin, id);
-		this.GUI_ListarporUsuarioDiseño = new GUIListarporUsuarioDiseño();
-
-		this.GUI_AccesoUsuario = new GUIAccesoUsuario();
+		//this.GUI_AccesoUsuario = new GUIAccesoUsuario();
 		initGUI();
 	}
 
@@ -97,16 +94,6 @@ public class GUIUsuarioImp extends GUIUsuario {
 		id_Usuario.setFont(new Font("Tahoma", Font.BOLD, 11));
 		id_Usuario.setBounds(20, 93, 68, 14);
 		panel.add(id_Usuario);
-
-		// IMPRESORA
-		JButton btnImpresora = new JButton("Mi Impresora");
-		btnImpresora.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Controlador.getInstance().accion(Events.OPEN_GUI_IMPRESORA_MENU, null);			}
-		});
-
-		btnImpresora.setBounds(700, 86, 110, 21);
-		panel.add(btnImpresora);
 
 		// MODIFICAR
 		JButton btnModificar = new JButton("Modificar");
@@ -193,11 +180,11 @@ public class GUIUsuarioImp extends GUIUsuario {
 				if (!textField.getText().equals("Buscar usuario")) {
 					id = Integer.parseInt(textField.getText());
 
-					GUI_BuscarporIdUsuario = new GUIBuscarporIdUsuario(id);
+					GUI_BuscarporIdUsuario = new GUIBuscarporIdUsuario<Object>(id);
 					GUI_BuscarporIdUsuario.setVisible(true);
-					Controlador.getInstance().accion(Events.BUSCAR_USUARIO, id);
-
-					// llamar 2 veces
+					Controlador.getInstance().accion(Events.LISTAR_DISEÑOS_USU_LOG, id);
+					Controlador.getInstance().accion(Events.LISTAR_IMPRESORAS_USU_LOG, id);
+					
 					GUI_BuscarporIdUsuario.toFront();
 				} else {
 					mensaje.showMessage("Debe introducir un Id",
@@ -258,12 +245,24 @@ public class GUIUsuarioImp extends GUIUsuario {
 			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_COMPROBAR_KO,
 					(TUsuario) res);
 			break;
-		// case Events.BUSCAR_USUARIO_OK:
-		// GUI_BuscarporIdUsuario.update(event, null);
-		// break;
-		// case Events.BUSCAR_USUARIO_KO:
-		// GUI_BuscarporIdUsuario.update(event, null);
-		// break;
+		case Events.BUSCAR_USUARIO_OK:
+			GUI_BuscarporIdUsuario.update(event, (ArrayList<Object>) res);
+			break;
+		case Events.BUSCAR_USUARIO_KO:
+			GUI_BuscarporIdUsuario.update(event, (ArrayList<Object>) res);
+			break;
+		case Events.LISTAR_DISEÑOS_USU_LOG_OK:
+			GUI_BuscarporIdUsuario.update(event, (ArrayList<Object>) res);
+			break;
+		case Events.LISTAR_DISEÑOS_USU_LOG_KO:
+			GUI_BuscarporIdUsuario.update(event, (ArrayList<Object>) res);
+			break;
+		case Events.LISTAR_IMPRESORAS_USU_LOG_OK:
+			GUI_BuscarporIdUsuario.update(event, (ArrayList<Object>) res);
+			break;
+		case Events.LISTAR_IMPRESORAS_USU_LOG_KO:
+			GUI_BuscarporIdUsuario.update(event, (ArrayList<Object>) res);
+			break;
 		}
 
 	}

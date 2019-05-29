@@ -49,10 +49,10 @@ public class ControladorImp extends Controlador {
 	private SAPedidoImpresion SAPedidoImpresion;
 	private SAPlataforma SAPlataforma;
 
-	// private TUsuario uLogueado;
-	private TUsuario uLogueado = new TUsuario(2, "Fatima", "Garcia Delgado",
-			"fatima@gmail.com", "24/06/1990", "calle pepinno, 52", "fatima",
-			"Fatima", "123456789E", "25/05/2023", true);
+	 private TUsuario uLogueado;
+//	private TUsuario uLogueado = new TUsuario(2, "Fatima", "Garcia Delgado",
+//			"fatima@gmail.com", "24/06/1990", "calle pepinno, 52", "fatima",
+//			"Fatima", "123456789E", "25/05/2023", true);
 
 	// AQUI VENDRIAN EL RESTO DE SA
 
@@ -183,7 +183,7 @@ public class ControladorImp extends Controlador {
 			tUsuario = this.SAUsuario.buscarIdUsuario(idUsuario);
 			if (tUsuario != null)
 				GUIUsuario.getInstance().update(Events.BUSCAR_USUARIO_OK,
-						tUsuario);// tDiseño, tImpresora
+						tUsuario);
 			else
 				GUIUsuario.getInstance().update(Events.BUSCAR_USUARIO_KO,
 						tUsuario);
@@ -207,14 +207,29 @@ public class ControladorImp extends Controlador {
 		case Events.MODIFICAR_USUARIO_COMPROBAR:
 			idUsuario = (int) datos;
 			tUsuario = this.SAUsuario.buscarIdUsuario(idUsuario);
-			if (tUsuario != null)// ****
-
+			if (tUsuario != null)
 				GUIUsuario.getInstance().update(
 						Events.MODIFICAR_USUARIO_COMPROBAR_OK, tUsuario);
 			else
 				GUIUsuario.getInstance().update(
 						Events.MODIFICAR_USUARIO_COMPROBAR_KO, null);
 			break;
+		case Events.LISTAR_DISEÑOS_USU_LOG:
+			List<TDiseño> listDiseños = SADiseño.listarPorUsuario(this.uLogueado.getIdUsuario());//hay que pasar el id introducido por el usuario
+			if(listDiseños != null)
+				GUIUsuario.getInstance().update(Events.LISTAR_DISEÑOS_USU_LOG_OK, listDiseños);
+				else 
+					GUIUsuario.getInstance().update(Events.LISTAR_DISEÑOS_USU_LOG_KO, null);
+			break;
+		case Events.LISTAR_IMPRESORAS_USU_LOG:
+			List<TImpresora> listImpresoras = SAImpresora.buscarPorUsuario(this.uLogueado.getIdUsuario());//hay que pasar el id introducido por el usuario
+			if(listImpresoras != null)
+				GUIUsuario.getInstance().update(Events.LISTAR_IMPRESORAS_USU_LOG_OK, listImpresoras);
+				else 
+					GUIUsuario.getInstance().update(Events.LISTAR_IMPRESORAS_USU_LOG_KO, null);
+			break;
+		
+			
 		/* IMPRESORA */
 		case Events.OPEN_GUI_IMPRESORA_MENU:
 			GUIImpresora.getInstance();
@@ -423,7 +438,7 @@ public class ControladorImp extends Controlador {
 		/* EVENTOS DE PEDIDO IMPRESION */
 		case Events.OPEN_GUI_PEDIDO_IMPRESION_MENU:
 			GUIPedidoImpresion.getInstance(uLogueado);
-			break;
+			break;			
 		case Events.ALTA_PEDIDO_IMPRESION_LISTAIMPRESORAS:
 			resultI = this.SAImpresora.listarTodo();
 			if (resultI != null)

@@ -85,7 +85,7 @@ public class GUILocalImp extends GUILocal {
 					
 					Controlador.getInstance().accion(Events.BUSCAR_LOCAL,
 							idLoc);
-					setVisible(false);
+					//setVisible(false);
 
 				} else {
 					mensaje.showMessage("Debe introducir un Id",

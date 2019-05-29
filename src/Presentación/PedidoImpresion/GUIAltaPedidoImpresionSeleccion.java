@@ -72,7 +72,6 @@ public class GUIAltaPedidoImpresionSeleccion extends JFrame {
 		this.loc= loc;
 	}
 	public void initGUI() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 949, 398);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

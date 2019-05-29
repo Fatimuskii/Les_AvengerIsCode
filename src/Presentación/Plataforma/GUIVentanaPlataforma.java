@@ -47,7 +47,7 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 	private JPanel panel_5;
 	private GUIPanelCarrito panelCarrito;
 	private GUIPanelCompras panelCompras;
-	
+	private TUsuario uLogueado;	
 	private JButton borrar;
 	private JButton vaciar;
 	private JButton comprar;
@@ -92,9 +92,6 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 		
 		panel_1 = GUIDiseño.getInstance();
 		
-		
-		
-		TUsuario uLogueado= new TUsuario(2,"Fatima", "Garcia Delgado", "fatima@gmail.com","24/06/1990","calle pepinno, 52","fatima","Fatima","123456789E","25/05/2023", true);
 		panel_2 = GUIPedidoImpresion.getInstance(uLogueado);
 		//panel_2 = new GUIPedidoImpresionSeleccion();
 		
@@ -118,6 +115,7 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 		this.initBotonesPCompras();
 	}
 	public void logueado(TUsuario usuario) {
+		uLogueado = usuario;
 		inicioPane.update(0, null);
 		logueadoPane=new GUIPanelLogueado();
 		logueadoPane.getBotonCarrito().addActionListener(new ActionListener() {
