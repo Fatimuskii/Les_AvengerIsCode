@@ -29,6 +29,7 @@ import Negocio.Usuario.TUsuario;
 import Presentación.GUIMensaje;
 import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
+import Presentación.Diseño.GUIListarporUsuarioDiseño;
 import Presentación.Impresora.GUIImpresoraImp;
 import Presentación.Local.GUIBuscarLocal;
 
@@ -49,39 +50,40 @@ public class GUIUsuarioImp extends GUIUsuario {
 	private GUIAltaUsuario GUI_AltaUsuario;
 	private GUIListarUsuarios GUI_ListarUsuarios;
 	private GUIBuscarporIdUsuario GUI_BuscarporIdUsuario;
+	private GUIListarporUsuarioDiseño GUI_ListarporUsuarioDiseño;
 	private JLabel id_Usuario;
 	private boolean admin;
-	private JMenuItem mntmDarDeAlta;
-	
+
 	private int id;
-	
+
 	private GUIAccesoUsuario GUI_AccesoUsuario;
 
-	public GUIUsuarioImp(){
+	public GUIUsuarioImp() {
 		super();
-		this.admin = true;//************************* pasar como parametro
+		this.admin = true;// ************************* pasar como parametro
 		this.contentPane = new JPanel();
 		this.GUI_BajaUsuario = new GUIBajaUsuario();
 		this.GUI_AltaUsuario = new GUIAltaUsuario();
 		this.GUI_ListarUsuarios = new GUIListarUsuarios();
-		this.GUI_ModificarUsuario = new GUIModificarUsuario(admin,id);
-		
-		
+		this.GUI_ModificarUsuario = new GUIModificarUsuario(admin, id);
+		this.GUI_ListarporUsuarioDiseño = new GUIListarporUsuarioDiseño();
+
 		this.GUI_AccesoUsuario = new GUIAccesoUsuario();
 		initGUI();
 	}
 
 	public void initGUI() {
-		/*setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\logo.png"));
-		setTitle("Perfil Usuario");
-		setBounds(100, 100, 521, 300);*/
+		/*
+		 * setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\logo.png"
+		 * )); setTitle("Perfil Usuario"); setBounds(100, 100, 521, 300);
+		 */
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
-		//setContentPane(contentPane);
+		// setContentPane(contentPane);
 		this.setLayout(new BorderLayout());
 		this.add(contentPane);
-		
+
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
@@ -96,56 +98,70 @@ public class GUIUsuarioImp extends GUIUsuario {
 		id_Usuario.setBounds(20, 93, 68, 14);
 		panel.add(id_Usuario);
 
+		// IMPRESORA
 		JButton btnImpresora = new JButton("Mi Impresora");
 		btnImpresora.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Controlador.getInstance().accion(Events.OPEN_GUI_IMPRESORA_MENU, null);			}
 		});
 
-		btnImpresora.setBounds(363, 86, 110, 21);
+		btnImpresora.setBounds(700, 86, 110, 21);
 		panel.add(btnImpresora);
 
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(148, 86, 60, 21);
-		panel.add(menuBar);
+		// MODIFICAR
+		JButton btnModificar = new JButton("Modificar");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (admin)
+					GUI_ModificarUsuario.clearData();
+				GUI_ModificarUsuario.setVisible(true);
+			}
+		});
 
-		JMenu mnDiseos = new JMenu("Dise\u00F1os");
-		menuBar.add(mnDiseos);
+		btnModificar.setBounds(120, 86, 90, 21);
+		panel.add(btnModificar);
 
-		JMenuItem mntmComprados = new JMenuItem("Comprados");
-		mnDiseos.add(mntmComprados);
+		// DAR DE BAJA
+		JButton btnBaja = new JButton("Dar de baja");
+		btnBaja.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (admin)
+					GUI_ModificarUsuario.clearData();
+				GUI_BajaUsuario.setVisible(true);
+			}
+		});
 
-		JMenuItem mntmCreados = new JMenuItem("Creados");
-		mnDiseos.add(mntmCreados);
+		btnBaja.setBounds(230, 86, 100, 21);
+		panel.add(btnBaja);
 
-		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2
-				.setIcon(new ImageIcon("imagenes\\graphic-tools-REDM.png"));
-		lblNewLabel_2.setBounds(155, 36, 53, 49);
-		panel.add(lblNewLabel_2);
+		// DAR DE ALTA
+		JButton btnAlta = new JButton("Dar de alta");
+		btnAlta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (admin)
+					GUI_ModificarUsuario.clearData();
+				GUI_AltaUsuario.setVisible(true);
+			}
+		});
 
-		JMenuBar menuBar_1 = new JMenuBar();
-		menuBar_1.setBounds(256, 86, 60, 21);
-		panel.add(menuBar_1);
+		btnAlta.setBounds(350, 86, 100, 21);
+		panel.add(btnAlta);
+		if (!admin)
+			btnAlta.setEnabled(false);
 
-		JMenu mnCesta = new JMenu("  Cesta");
-		menuBar_1.add(mnCesta);
+		// CERRAR SESION
+		JButton btnCerrarSesion= new JButton("Cerrar sesión");
+		btnCerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (admin)
+					GUI_ModificarUsuario.clearData();
+				GUI_BajaUsuario.setVisible(true);
+			}
+		});
 
-		JMenuItem mntmDiseos = new JMenuItem("Dise\u00F1os");
-		mnCesta.add(mntmDiseos);
+		btnCerrarSesion.setBounds(470, 86, 130, 21);
+		panel.add(btnCerrarSesion);
 
-		JMenuItem menuItem = new JMenuItem("Pedido impresión");
-		mnCesta.add(menuItem);
-
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("imagenes\\commerce-and-shopping-REDM.png"));
-		label.setBounds(261, 36, 53, 49);
-		panel.add(label);
-
-		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon("imagenes\\3d-printer-REDM.png"));
-		label_1.setBounds(393, 36, 53, 49);
-		panel.add(label_1);
 
 		textField = new JTextField();
 		textField.setText("Buscar usuario");
@@ -166,24 +182,24 @@ public class GUIUsuarioImp extends GUIUsuario {
 		});
 		textField.setForeground(Color.GRAY);
 		textField.setColumns(10);
-		textField.setBounds(183, 164, 227, 20);
+		textField.setBounds(230, 164, 227, 20);
 		panel.add(textField);
 
 		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.setBounds(183, 195, 89, 23);
+		btnBuscar.setBounds(230, 195, 89, 23);
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				GUIMensaje mensaje = new GUIMensaje();
-				if(!textField.getText().equals("Buscar usuario")){
+				if (!textField.getText().equals("Buscar usuario")) {
 					id = Integer.parseInt(textField.getText());
 
 					GUI_BuscarporIdUsuario = new GUIBuscarporIdUsuario(id);
 					GUI_BuscarporIdUsuario.setVisible(true);
-					Controlador.getInstance().accion(Events.BUSCAR_USUARIO,
-							id);
+					Controlador.getInstance().accion(Events.BUSCAR_USUARIO, id);
+
+					// llamar 2 veces
 					GUI_BuscarporIdUsuario.toFront();
-				}
-				else{
+				} else {
 					mensaje.showMessage("Debe introducir un Id",
 							"Buscar Usuario", false);
 				}
@@ -192,55 +208,16 @@ public class GUIUsuarioImp extends GUIUsuario {
 		panel.add(btnBuscar);
 
 		JButton button = new JButton("Mostrar todos");
-		button.setBounds(292, 195, 118, 23);
+		button.setBounds(335, 195, 118, 23);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				GUI_ListarUsuarios.setVisible(true);
-				Controlador.getInstance().accion(Events.LISTAR_USUARIO,null);}
+				Controlador.getInstance().accion(Events.LISTAR_USUARIO, null);
+			}
 		});
 		panel.add(button);
-		if(!admin)button.setEnabled(false);
-
-		JMenuBar menuBar_2 = new JMenuBar();
-		menuBar_2.setBounds(10, 134, 90, 21);
-		panel.add(menuBar_2);
-
-		JMenu mnConfiguacin = new JMenu("Configuraci\u00F3n");
-		menuBar_2.add(mnConfiguacin);
-
-		JMenuItem mntmModificarUsuario = new JMenuItem("Modificar usuario");
-		mntmModificarUsuario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				if (admin) GUI_ModificarUsuario.clearData();
-				GUI_ModificarUsuario.setVisible(true);
-			}
-		});
-		mnConfiguacin.add(mntmModificarUsuario);
-
-		JMenuItem mntmDarDeBaja = new JMenuItem("Darse de baja");
-		mntmDarDeBaja.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				GUI_BajaUsuario.setVisible(true);
-			}
-		});
-		mnConfiguacin.add(mntmDarDeBaja);
-		
-		//JMenuItem mntmDarDeAlta = new JMenuItem("Dar de alta");
-		mntmDarDeAlta = new JMenuItem("Dar de alta");
-		mntmDarDeAlta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				GUI_AltaUsuario.setVisible(true);
-			}
-		});
-		mnConfiguacin.add(mntmDarDeAlta);
-		if(!admin) mntmDarDeAlta.setEnabled(false);
-
-		JMenuItem mntmCerrarSesin = new JMenuItem("Cerrar sesi\u00F3n");
-		mnConfiguacin.add(mntmCerrarSesin);
-
-	}
-	public JMenuItem getDarAlta(){
-		return this.mntmDarDeAlta;
+		if (!admin)
+			button.setEnabled(false);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -260,10 +237,12 @@ public class GUIUsuarioImp extends GUIUsuario {
 			GUI_BajaUsuario.update(event, res);
 			break;
 		case Events.MODIFICAR_USUARIO_OK:
-			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_OK, (TUsuario)res);
+			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_OK,
+					(TUsuario) res);
 			break;
 		case Events.MODIFICAR_USUARIO_KO:
-			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_KO, (TUsuario)res);
+			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_KO,
+					(TUsuario) res);
 			break;
 		case Events.LISTAR_USUARIO_OK:
 			GUI_ListarUsuarios.update(event, (ArrayList<TUsuario>) res);
@@ -272,19 +251,21 @@ public class GUIUsuarioImp extends GUIUsuario {
 			GUI_ListarUsuarios.update(event, (ArrayList<TUsuario>) res);
 			break;
 		case Events.MODIFICAR_USUARIO_COMPROBAR_OK:
-			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_COMPROBAR_OK,(TUsuario)res);
+			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_COMPROBAR_OK,
+					(TUsuario) res);
 			break;
 		case Events.MODIFICAR_USUARIO_COMPROBAR_KO:
-			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_COMPROBAR_KO, (TUsuario)res);
+			GUI_ModificarUsuario.update(Events.MODIFICAR_USUARIO_COMPROBAR_KO,
+					(TUsuario) res);
 			break;
-//		case Events.BUSCAR_USUARIO_OK:
-//			GUI_BuscarporIdUsuario.update(event, null);
-//			break;
-//		case Events.BUSCAR_USUARIO_KO:
-//			GUI_BuscarporIdUsuario.update(event, null);
-//			break;
+		// case Events.BUSCAR_USUARIO_OK:
+		// GUI_BuscarporIdUsuario.update(event, null);
+		// break;
+		// case Events.BUSCAR_USUARIO_KO:
+		// GUI_BuscarporIdUsuario.update(event, null);
+		// break;
 		}
-		
+
 	}
 
 }

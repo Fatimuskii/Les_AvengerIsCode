@@ -120,7 +120,7 @@ public class GUIAltaDiseño extends JFrame{
 						throw new Exception();
 					}
 					String[] a = archivo.split("\\.");
-					if(!a[0].equals("stf")){
+					if(!a[1].equals("stf")){
 						throw new Exception("La extensión del archivo no es válida");
 					}
 					diseño = new TDiseño(nombre, descripcion, idUsuario, altura, ancho, profundidad, precio, archivo, true);

@@ -42,8 +42,7 @@ public class GUIBuscarIdImpresora extends JFrame{
 	}
 	
 	private void initGUI(){
-		setTitle("Impresora");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Impresora");;
 		setBounds(100, 100, 450, 352);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

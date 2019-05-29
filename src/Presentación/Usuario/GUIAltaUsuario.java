@@ -345,7 +345,7 @@ public class GUIAltaUsuario extends JFrame {
 					String apellidos = txtApellidos.getText();
 					String email = txtEmail.getText();
 					String fechaNacimiento = dia.getValue() + "/"
-							+ mes.getValue() + "/" + anio.getValue();
+							+ mes.getValue() + "/" + anio.getValue();//*
 					// // fecha de nacimiento
 					// Date fechaNacimiento = null;
 					// fechaNac = new SimpleDateFormat("dd/MM/yyyy");

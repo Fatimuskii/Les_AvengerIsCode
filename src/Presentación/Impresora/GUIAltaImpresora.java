@@ -205,6 +205,7 @@ public class GUIAltaImpresora extends JFrame{
 						Material m = (Material) comboBox.getSelectedItem();
 						TImpresora tImpresora = new TImpresora(m, alto, ancho, profundidad, idUsuario, true);
 						Controlador.getInstance().accion(Events.ALTA_IMPRESORA, tImpresora);
+						dispose();
 					}
 					catch(Exception ex){
 						JOptionPane.showMessageDialog(null, "Datos erróneos", "Error", JOptionPane.ERROR_MESSAGE);
