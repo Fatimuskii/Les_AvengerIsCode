@@ -488,11 +488,11 @@ public class GUIModificarUsuario extends JFrame {
 			
 
 			
-			dia.setValue(Integer.valueOf(res.getFechaNacimiento().substring(0, 1)));
-			mes.setValue(Integer.valueOf(res.getFechaNacimiento().substring(2, 4)));
-			anio.setValue(Integer.valueOf(res.getFechaNacimiento().substring(5, 9)));
-			mes_2.setValue(Integer.valueOf(res.getFechaCaducidad().substring(0, 1)));
-			anio_2.setValue(Integer.valueOf(res.getFechaCaducidad().substring(2, 6)));
+			dia.setValue(Integer.valueOf(Integer.parseInt(res.getFechaNacimiento().substring(0, 1))));
+			mes.setValue(Integer.valueOf(Integer.parseInt(res.getFechaNacimiento().substring(2, 4))));//**************
+			anio.setValue(Integer.valueOf(Integer.parseInt(res.getFechaNacimiento().substring(5, 9))));
+			mes_2.setValue(Integer.valueOf(Integer.parseInt(res.getFechaCaducidad().substring(0, 1))));
+			anio_2.setValue(Integer.valueOf(Integer.parseInt(res.getFechaCaducidad().substring(2, 6))));
 
 			txtNombre.setEnabled(true);
 			txtApellidos.setEnabled(true);
