@@ -9,8 +9,8 @@ import Integración.Local.DAOLocal;
 import Integración.Local.DAOLocalImpl;
 import Integración.PedidoImpresion.DAOPedidoImpresion;
 import Integración.PedidoImpresion.DAOPedidoImpresionImp;
-import Integración.Plataforma.DAOPlataforma;
-import Integración.Plataforma.DAOPlataformaImp;
+import Integración.Plataforma.DAOCompra;
+import Integración.Plataforma.DAOCompraImp;
 import Integración.Usuario.DAOUsuario;
 import Integración.Usuario.DAOUsuarioImp;
 import Integración.Diseño.DAODiseño;
@@ -61,9 +61,9 @@ public class FactoriaDAOImp extends FactoriaDAO {
 	 * @see FactoriaDAO#generateDAOPlataforma()
 	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
-	public DAOPlataforma generateDAOPlataforma() {
+	public DAOCompra generateDAOPlataforma() {
 		// begin-user-code
-		return new DAOPlataformaImp();
+		return new DAOCompraImp();
 		// end-user-code
 	}
 
@@ -86,5 +86,11 @@ public class FactoriaDAOImp extends FactoriaDAO {
 		// begin-user-code
 		return new DAOPedidoImpresionImp();
 		// end-user-code
+	}
+
+	@Override
+	public DAOCompra generateDAOCompra() {
+		// TODO Apéndice de método generado automáticamente
+		return new DAOCompraImp();
 	}
 }

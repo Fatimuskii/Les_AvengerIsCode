@@ -27,6 +27,7 @@ public class GUIPanelInicio extends JPanel implements GUIEventoPlataforma{
 	private JPanel panelUsuarios;
 	private JPanel panelCompras;
 	private JPanel panelImpresoras; 
+	private JPanel panelHistorial;
 	
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
@@ -34,8 +35,9 @@ public class GUIPanelInicio extends JPanel implements GUIEventoPlataforma{
 	private JButton btnNewButton_3;
 	private JButton btnNewButton_4;
 	private JButton btnNewButton_5;
+	private JButton btnNewButton_6;
 	
-	public GUIPanelInicio(GUIVentanaPlataforma guiVentanaPlataforma, JLayeredPane layered,JPanel panelDiseños, JPanel panelPedImpresion, JPanel panelLocal, JPanel panelUsuarios,JPanel panelImpresoras, JPanel panelCompras) {
+	public GUIPanelInicio(GUIVentanaPlataforma guiVentanaPlataforma, JLayeredPane layered,JPanel panelDiseños, JPanel panelPedImpresion, JPanel panelLocal, JPanel panelUsuarios,JPanel panelImpresoras, JPanel panelCompras, JPanel panelHistorial) {
 		this.layered=layered;
 		this.panelDiseños=panelDiseños;
 		this.panelPedImpresion=panelPedImpresion;
@@ -43,8 +45,9 @@ public class GUIPanelInicio extends JPanel implements GUIEventoPlataforma{
 		this.panelUsuarios=panelUsuarios;
 		this.panelCompras=panelCompras;
 		this.panelImpresoras=panelImpresoras;
+		this.panelHistorial=panelHistorial;
 		
-		setLayout(new GridLayout(6, 1, 0, 0));
+		setLayout(new GridLayout(7, 1, 0, 0));
 		init();
 	}
 	
@@ -124,6 +127,20 @@ public class GUIPanelInicio extends JPanel implements GUIEventoPlataforma{
 			
 		});
 		add(btnNewButton_5);
+		btnNewButton_6 = new JButton("Historial de compras");
+		btnNewButton_6.setEnabled(false);
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				layered.removeAll();
+				layered.add(panelHistorial);
+				Controlador.getInstance().accion(Events.HISTORIAL_COMPRAS, null);
+				layered.repaint();
+				layered.revalidate();
+			}
+			
+		});
+		add(btnNewButton_6);
+
 
 	}
 
@@ -136,7 +153,14 @@ public class GUIPanelInicio extends JPanel implements GUIEventoPlataforma{
 		btnNewButton_3.setEnabled(true);
 		btnNewButton_4.setEnabled(true);
 		btnNewButton_5.setEnabled(true);
+		btnNewButton_6.setEnabled(true);
 	}
 	
-
+	public void setPedidoImpresionGUI(JPanel panel){
+		this.panelPedImpresion=panel;
+	}
+	
+	public void setHistorialGUI(JPanel panel){
+		this.panelHistorial=panel;
+	}
 }

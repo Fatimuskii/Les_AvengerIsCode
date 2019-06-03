@@ -3,8 +3,13 @@
  */
 package Negocio.Plataforma;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import Integración.Diseño.DAODiseño;
+import Integración.Factoria.FactoriaDAO;
+import Integración.Plataforma.DAOCompra;
+import Integración.Usuario.DAOUsuario;
 import Negocio.Diseño.TDiseño;
 import Negocio.Usuario.SAUsuario;
 import Negocio.Usuario.TUsuario;
@@ -42,13 +47,21 @@ public TPlataforma plataforma;
 		plataforma.vaciarElementosCarrito();
 	}
 	
-	public void comprarElementosCarrito() {
-		plataforma.comprarElementosCarrito();
+	public boolean comprarElementosCarrito() {
+		return plataforma.comprarElementosCarrito();
 	}
 
 	@Override
-	public void annadirElementoCarrito(TDiseño aAnnadir) {
+	public boolean annadirElementoCarrito(TDiseño aAnnadir) {
 		// TODO Auto-generated method stub
-		plataforma.annadirElementoCarrito(aAnnadir);
+		return plataforma.annadirElementoCarrito(aAnnadir);
 	}
+	
+	public ArrayList<TCompra> listarPorIdUsuarioCompras(int idUsuario){
+		ArrayList<TCompra> compras=null;
+		DAOCompra compraDAO = FactoriaDAO.getInstance().generateDAOCompra();
+		compras = compraDAO.listarPorUsuario(idUsuario);
+		return compras;
+	}
+	
 }

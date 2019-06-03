@@ -3,6 +3,7 @@ package Presentación.Plataforma;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,9 +12,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
+import Negocio.Diseño.TDiseño;
 import Negocio.Plataforma.SAPlataforma;
 import Negocio.Usuario.TUsuario;
 import Presentación.Controlador.Controlador;
@@ -47,6 +55,7 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 	private JPanel panel_5;
 	private GUIPanelCarrito panelCarrito;
 	private GUIPanelCompras panelCompras;
+	private GUIHistorialCompras panelHistorial;
 	private TUsuario uLogueado;	
 	private JButton borrar;
 	private JButton vaciar;
@@ -92,8 +101,7 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 		
 		panel_1 = GUIDiseño.getInstance();
 		
-		panel_2 = GUIPedidoImpresion.getInstance(uLogueado);
-		//panel_2 = new GUIPedidoImpresionSeleccion();
+		panel_2 = new JPanel();
 		
 		panel_3 = GUILocal.getInstance();
 		
@@ -101,9 +109,11 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 		
 		panel_5 = GUIImpresora.getInstance();
 		
+		panelHistorial=new GUIHistorialCompras(null);
+		
 		panelCompras=new GUIPanelCompras();
 		
-		inicioPane =new GUIPanelInicio(this,layeredPane, panel_1, panel_2, panel_3, panel_4, panel_5, panelCompras);
+		inicioPane =new GUIPanelInicio(this,layeredPane, panel_1, panel_2, panel_3, panel_4, panel_5, panelCompras, panelHistorial);
 		izquierdoPane.add(inicioPane);
 		
 		borrar=panelCarrito.getBotonBorrar();
@@ -116,6 +126,9 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 	}
 	public void logueado(TUsuario usuario) {
 		uLogueado = usuario;
+		inicioPane.setPedidoImpresionGUI(GUIPedidoImpresion.getInstance(uLogueado));
+		panelHistorial=new GUIHistorialCompras(uLogueado);
+		inicioPane.setHistorialGUI(panelHistorial);
 		inicioPane.update(0, null);
 		logueadoPane=new GUIPanelLogueado();
 		logueadoPane.getBotonCarrito().addActionListener(new ActionListener() {
@@ -151,7 +164,7 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 		
 		comprar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controlador.getInstance().accion(Events.ALTA_CARRITO, null);
+				Controlador.getInstance().accion(Events.HISTORIAL_ANNADIR_COMPRAS, null);
 			}
 		});
 	}
@@ -177,10 +190,25 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 		case Events.MODIFICAR_CARRITO_ANNADIR:
 			panelCarrito.update(0, objeto);
 			break;
+		case Events.MODIFICAR_CARRITO_ANNADIR_OK:
+			JOptionPane.showMessageDialog(null, "Añadido correctamente", "Añadido", JOptionPane.INFORMATION_MESSAGE);
+			break;
+		case Events.MODIFICAR_CARRITO_ANNADIR_KO:
+			JOptionPane.showMessageDialog(null, "Ya se encuentra en el carrito", "No añadido", JOptionPane.ERROR_MESSAGE);
+			break;
+		case Events.HISTORIAL_ANNADIR_COMPRAS_OK:
+			JOptionPane.showMessageDialog(null, "Comprado con exito", "Comprado", JOptionPane.INFORMATION_MESSAGE);
+			this.panelCarrito.limpiar();
+			break;
+		case Events.HISTORIAL_ANNADIR_COMPRAS_KO:
+			JOptionPane.showMessageDialog(null, "Lista de la compra vacia", "No comprado", JOptionPane.ERROR_MESSAGE);
+			break;
 		case Events.ALTA_COMPRAS_OK:
 			panelCompras.update(evento, objeto);
+			break;
+		case Events.HISTORIAL_COMPRAS_OK:
+			panelHistorial.update(evento, objeto);
 		}
-		
 	}
 	
 	

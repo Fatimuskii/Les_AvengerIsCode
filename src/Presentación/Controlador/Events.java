@@ -147,11 +147,18 @@ public class Events {
 	public static final int ALTA_CARRITO = 702;
 	public static final int MODIFICAR_CARRITO = 703;
 	public static final int MODIFICAR_CARRITO_ANNADIR = 707;
+	public static final int MODIFICAR_CARRITO_ANNADIR_OK = 715;
+	public static final int MODIFICAR_CARRITO_ANNADIR_KO = 716;
 	public static final int BAJA_CARRITO = 704;
 	public static final int ACCESO_USUARIO_OK = 705;
 	public static final int ACCESO_USUARIO_KO = 706;
 	public static final int ALTA_COMPRAS = 708;
 	public static final int ALTA_COMPRAS_OK = 709;
 	public static final int REGISTRO_USUARIO = 710;
+	public static final int HISTORIAL_COMPRAS =711;
+	public static final int HISTORIAL_ANNADIR_COMPRAS=714;
+	public static final int HISTORIAL_ANNADIR_COMPRAS_OK=717;
+	public static final int HISTORIAL_ANNADIR_COMPRAS_KO=718;
+	public static final int HISTORIAL_COMPRAS_OK =713;
 
 }

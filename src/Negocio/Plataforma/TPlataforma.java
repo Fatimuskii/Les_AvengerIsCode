@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import Integración.Factoria.FactoriaDAO;
+import Integración.Plataforma.DAOCompra;
 import Negocio.Diseño.TDiseño;
 import Negocio.Usuario.SAUsuario;
 import Negocio.Usuario.TUsuario;
@@ -61,20 +63,30 @@ public class TPlataforma {
 		GUIPlataforma.getInstance().update(Events.MODIFICAR_CARRITO_ANNADIR, listaCompra);
 	}
 	
-	public void comprarElementosCarrito() {
+	public boolean comprarElementosCarrito() {
+		TCompra compra;
+		int ret;
+		DAOCompra compraDAO = FactoriaDAO.getInstance().generateDAOCompra();
 		for(TDiseño m : listaCompra) {
-			diseñosComprados.add(m);
+			compra=new TCompra(1,this.usuarioLogueado.getIdUsuario(),m.getId_diseño());
+			ret = compraDAO.alta(compra);
+		}
+		if(listaCompra.size()>=1){
+			listaCompra=new ArrayList<TDiseño>();
+			GUIPlataforma.getInstance().update(Events.MODIFICAR_CARRITO_ANNADIR, listaCompra);
+			return true;
 		}
 		listaCompra=new ArrayList<TDiseño>();
-	}
-	
-	public void guardarDatosCompra() {
-		
+		GUIPlataforma.getInstance().update(Events.MODIFICAR_CARRITO_ANNADIR, listaCompra);
+		return false;
 	}
 
-	public void annadirElementoCarrito(TDiseño aAnnadir) {
+	public boolean annadirElementoCarrito(TDiseño aAnnadir) {
 		// TODO Auto-generated method stub
-		if(!listaCompra.contains(aAnnadir))
+		if(!listaCompra.contains(aAnnadir)){
 			listaCompra.add(aAnnadir);
+			return true;
+		}
+		return false;
 	}
 }

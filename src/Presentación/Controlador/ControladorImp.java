@@ -18,6 +18,7 @@ import Negocio.Impresora.SAImpresora;
 import Negocio.Impresora.TImpresora;
 import Negocio.PedidoImpresion.SAPedidoImpresion;
 import Negocio.Plataforma.SAPlataforma;
+import Negocio.Plataforma.TCompra;
 import Presentación.Plataforma.GUIPlataforma;
 import Presentación.Plataforma.GUIPlataformaImp;
 import Presentación.Impresora.GUIImpresora;
@@ -420,13 +421,15 @@ public class ControladorImp extends Controlador {
 			else
 				GUIUsuario.getInstance().update(Events.ACCESO_USUARIO_KO, null);
 			break;
-		case Events.ALTA_CARRITO:
-			break;
 		case Events.MODIFICAR_CARRITO:
 			SAPlataforma.eliminarElementoCarrito((TDiseño) datos);
 			break;
 		case Events.MODIFICAR_CARRITO_ANNADIR:
-			SAPlataforma.annadirElementoCarrito((TDiseño) datos);
+			boolean just=SAPlataforma.annadirElementoCarrito((TDiseño) datos);
+			if(just)
+				GUIPlataforma.getInstance().update(Events.MODIFICAR_CARRITO_ANNADIR_OK, null);
+			else
+				GUIPlataforma.getInstance().update(Events.MODIFICAR_CARRITO_ANNADIR_KO, null);
 			break;
 		case Events.BAJA_CARRITO:
 			SAPlataforma.vaciarElementosCarrito();
@@ -435,6 +438,19 @@ public class ControladorImp extends Controlador {
 			List<TDiseño> lista=SADiseño.listarTodos();
 			//List<TDiseño> lista=SADiseño.listarPorUsuario(this.uLogueado.getIdUsuario());
 			GUIPlataforma.getInstance().update(Events.ALTA_COMPRAS_OK,lista);
+			break;
+		case Events.HISTORIAL_ANNADIR_COMPRAS:
+			boolean rest=SAPlataforma.comprarElementosCarrito();
+			List<TCompra> listaCompra=SAPlataforma.listarPorIdUsuarioCompras(this.uLogueado.getIdUsuario());
+			GUIPlataforma.getInstance().update(Events.HISTORIAL_COMPRAS_OK,listaCompra);
+			if(rest)
+				GUIPlataforma.getInstance().update(Events.HISTORIAL_ANNADIR_COMPRAS_OK,listaCompra);
+			else
+				GUIPlataforma.getInstance().update(Events.HISTORIAL_ANNADIR_COMPRAS_KO,listaCompra);
+			break;
+		case Events.HISTORIAL_COMPRAS:
+			List<TCompra> listaCompras=SAPlataforma.listarPorIdUsuarioCompras(this.uLogueado.getIdUsuario());
+			GUIPlataforma.getInstance().update(Events.HISTORIAL_COMPRAS_OK,listaCompras);
 			break;
 		/*EVENTOS DE PEDIDO IMPRESION*/
 		/* EVENTOS DE PEDIDO IMPRESION */

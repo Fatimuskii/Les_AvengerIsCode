@@ -3,6 +3,7 @@
  */
 package Negocio.Plataforma;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import Negocio.Diseño.TDiseño;
@@ -33,8 +34,11 @@ public interface SAPlataforma {
 	public void vaciarElementosCarrito();
 	
 	
-	public void comprarElementosCarrito();
+	public boolean comprarElementosCarrito();
 	
 	
-	public void annadirElementoCarrito(TDiseño aAnnadir);
+	public boolean annadirElementoCarrito(TDiseño aAnnadir);
+	
+	
+	public ArrayList<TCompra> listarPorIdUsuarioCompras(int idUsuario);
 }
