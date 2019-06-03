@@ -50,12 +50,11 @@ public class ControladorImp extends Controlador {
 	private SAPedidoImpresion SAPedidoImpresion;
 	private SAPlataforma SAPlataforma;
 
-	 private TUsuario uLogueado;
+	private TUsuario uLogueado;
 //	private TUsuario uLogueado = new TUsuario(2, "Fatima", "Garcia Delgado",
 //			"fatima@gmail.com", "24/06/1990", "calle pepinno, 52", "fatima",
 //			"Fatima", "123456789E", "25/05/2023", true);
 
-	// AQUI VENDRIAN EL RESTO DE SA
 
 	public ControladorImp() {
 		SAFactoria factoriaSA = SAFactoria.getInstance();
@@ -69,7 +68,6 @@ public class ControladorImp extends Controlador {
 
 	public void accion(int evento, Object datos) {
 		// begin-user-code
-		// TODO Apéndice de método generado automáticamente
 		TLocal tlocal;
 		TUsuario tUsuario;
 		TDiseño tDiseño;
@@ -239,6 +237,7 @@ public class ControladorImp extends Controlador {
 			break;
 		case Events.ALTA_IMPRESORA:
 			tImpresora = (TImpresora) datos;
+			tImpresora.setUsuario(uLogueado.getIdUsuario());
 			res = this.SAImpresora.alta(tImpresora);
 
 			if (res > 0)
@@ -320,6 +319,7 @@ public class ControladorImp extends Controlador {
 			break;
 		case Events.ALTA_DISEÑO:
 			tDiseño = (TDiseño) datos;
+			tDiseño.setPropietario(uLogueado.getIdUsuario());
 			res = this.SADiseño.alta(tDiseño);
 
 			if (res > 0)

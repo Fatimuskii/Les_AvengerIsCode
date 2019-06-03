@@ -9,8 +9,8 @@ import java.awt.Font;
 
 import java.awt.Toolkit;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -24,8 +24,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import javax.swing.ImageIcon;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
 import Negocio.Impresora.Material;
 import Negocio.Impresora.TImpresora;
@@ -76,123 +74,64 @@ public class GUIAltaImpresora extends JFrame{
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(null);
-
-		
-
 		JLabel lblTamao = new JLabel(" Tamaño");
+		lblTamao.setBounds(30, 234, 71, 14);
 		lblTamao.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblTamao.setBounds(28, 182, 71, 14);
-		panel.add(lblTamao);
 
 		JLabel lblX = new JLabel("x");
+		lblX.setBounds(177, 224, 16, 30);
 		lblX.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblX.setBounds(177, 172, 16, 30);
-		panel.add(lblX);
 
 		JLabel label_6 = new JLabel("x");
+		label_6.setBounds(263, 224, 16, 30);
 		label_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label_6.setBounds(263, 172, 16, 30);
-		panel.add(label_6);
-
-		JLabel lblIdUsuario = new JLabel("Id usuario");
-		lblIdUsuario.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblIdUsuario.setBounds(32, 293, 71, 14);
-		panel.add(lblIdUsuario);
-
-		txtIntroduceTuId = new JTextField();
-		txtIntroduceTuId.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				if (txtIntroduceTuId.getText().equals("Introduce tu Id")) {
-					txtIntroduceTuId.setText("");
-				}
-			}
-
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (txtIntroduceTuId.getText().equals("")) {
-					txtIntroduceTuId.setText("Introduce tu Id");
-				}
-			}
-		});
-		txtIntroduceTuId.setForeground(Color.GRAY);
-		txtIntroduceTuId.setText("Introduce tu Id");
-		txtIntroduceTuId.setBounds(113, 290, 95, 20);
-		panel.add(txtIntroduceTuId);
-		txtIntroduceTuId.setColumns(10);
-
-		JLabel label_7 = new JLabel("");
-		label_7.setIcon(new ImageIcon("imagenes\\logo-REDM.png"));
-		label_7.setBounds(28, 237, 58, 53);
-		panel.add(label_7);
 
 		JLabel label = new JLabel("*");
+		label.setBounds(20, 50, 17, 14);
 		label.setForeground(Color.RED);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label.setBounds(20, 50, 17, 14);
-		panel.add(label);
 
 		JLabel label_1 = new JLabel("*");
+		label_1.setBounds(20, 233, 17, 14);
 		label_1.setForeground(Color.RED);
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_1.setBounds(20, 182, 17, 14);
-		panel.add(label_1);
-
-		JLabel label_2 = new JLabel("*");
-		label_2.setForeground(Color.RED);
-		label_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		label_2.setBounds(20, 292, 17, 14);
-		panel.add(label_2);
 
 		JLabel label_3 = new JLabel("");
+		label_3.setBounds(236, 23, 156, 138);
 		label_3.setIcon(new ImageIcon("imagenes\\3d-printer-REDM-REDM.png"));
-		label_3.setBounds(229, 23, 156, 138);
-		panel.add(label_3);
 		
 		comboBox = new JComboBox<Material>();
-		comboBox.setModel(new DefaultComboBoxModel<Material>(Material.values()));
 		comboBox.setBounds(109, 43, 107, 30);
-		panel.add(comboBox);
+		comboBox.setModel(new DefaultComboBoxModel<Material>(Material.values()));
 		
 		textFieldAlto = new JTextField();
-		textFieldAlto.setBounds(111, 179, 56, 20);
-		panel.add(textFieldAlto);
+		textFieldAlto.setBounds(111, 231, 56, 20);
 		textFieldAlto.setColumns(10);
 		
 		JLabel lblMaterial = new JLabel("Material");
-		lblMaterial.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblMaterial.setBounds(30, 51, 69, 14);
-		panel.add(lblMaterial);
+		lblMaterial.setFont(new Font("Tahoma", Font.BOLD, 11));
 		
 		textFieldAncho = new JTextField();
-		textFieldAncho.setBounds(197, 179, 56, 20);
-		panel.add(textFieldAncho);
+		textFieldAncho.setBounds(197, 231, 56, 20);
 		textFieldAncho.setColumns(10);
 		
 		textFieldProfundidad = new JTextField();
-		textFieldProfundidad.setBounds(281, 179, 58, 20);
-		panel.add(textFieldProfundidad);
+		textFieldProfundidad.setBounds(281, 231, 58, 20);
 		textFieldProfundidad.setColumns(10);
 		
 		JLabel lblalto = new JLabel("(alto)");
-		lblalto.setBounds(113, 201, 54, 14);
-		panel.add(lblalto);
+		lblalto.setBounds(113, 252, 54, 14);
 		
 		JLabel lblancho = new JLabel("(ancho)");
-		lblancho.setBounds(203, 201, 58, 14);
-		panel.add(lblancho);
+		lblancho.setBounds(195, 252, 58, 14);
 		
 		JLabel lblprofundidad = new JLabel("(profundidad)");
-		lblprofundidad.setBounds(279, 201, 89, 14);
-		panel.add(lblprofundidad);
+		lblprofundidad.setBounds(273, 252, 89, 14);
 		
 		btnFinalizar = new JButton("Finalizar");
-		btnFinalizar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
+		btnFinalizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				if (datosObligatorios()) {
 					JOptionPane.showMessageDialog(new JFrame(), "Debes rellenar los campos obligatorios (*)", "Error",JOptionPane.ERROR_MESSAGE);
 				}
@@ -213,8 +152,24 @@ public class GUIAltaImpresora extends JFrame{
 				}
 			}
 		});
-		btnFinalizar.setBounds(312, 358, 89, 23);
-		panel.add(btnFinalizar);
+		btnFinalizar.setBounds(281, 339, 104, 30);
+		
+		contentPane.setLayout(null);
+		contentPane.add(lblTamao);
+		contentPane.add(lblX);
+		contentPane.add(label_6);
+		contentPane.add(label);
+		contentPane.add(label_1);
+		contentPane.add(label_3);
+		contentPane.add(comboBox);
+		contentPane.add(textFieldAlto);
+		contentPane.add(lblMaterial);
+		contentPane.add(textFieldAncho);
+		contentPane.add(textFieldProfundidad);
+		contentPane.add(lblalto);
+		contentPane.add(lblancho);
+		contentPane.add(lblprofundidad);
+		contentPane.add(btnFinalizar);
 	}
 
 	private boolean datosObligatorios() {

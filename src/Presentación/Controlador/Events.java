@@ -32,8 +32,6 @@ public class Events {
 	public static final int LISTAR_LOCALES_KO = 2017;
 
 	// DISEÑO
-	// GUI Diseño
-
 	public static final int ALTA_DISEÑO = 301;
 	public static final int BAJA_DISEÑO = 302;
 	public static final int MODIFICAR_DISEÑO = 303;

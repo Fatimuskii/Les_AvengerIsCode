@@ -12,15 +12,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 import Negocio.Diseño.TDiseño;
 import Presentación.Controlador.Controlador;
@@ -42,10 +39,7 @@ public class GUIAltaDiseño extends JFrame{
 	private JTextField textPrecio;
 	private JTextField textArchivo;
 	private JTextField textProfundidad;
-	private JTextField textPropietario;
 	private JTextArea textAreaDescripcion;
-
-	private TDiseño diseño;
 	
 	public GUIAltaDiseño(){
 		super();
@@ -54,53 +48,69 @@ public class GUIAltaDiseño extends JFrame{
 	}
 	
 	private void initGUI() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\graphic-tools.png"));
 		setTitle("Alta Diseño");
-		setBounds(100, 100, 390, 425);
+		setBounds(100, 100, 450, 441);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
 		JLabel lblNombre = new JLabel("Nombre:");
+		lblNombre.setBounds(27, 19, 58, 14);
 		
 		textNombre = new JTextField();
+		textNombre.setBounds(118, 16, 301, 20);
 		textNombre.setColumns(10);
 		
 		JLabel lblDescripción = new JLabel("Descripción:");
+		lblDescripción.setBounds(27, 57, 81, 14);
 		
 		JLabel lblPrecio = new JLabel("Precio:");
+		lblPrecio.setBounds(27, 279, 81, 14);
 		
 		JLabel lblArchivo = new JLabel("Archivo:");
+		lblArchivo.setBounds(27, 317, 81, 14);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(118, 54, 301, 92);
 		
 		textAreaDescripcion = new JTextArea();
 		textAreaDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		scrollPane.setViewportView(textAreaDescripcion);
 		
 		textAltura = new JTextField();
+		textAltura.setBounds(118, 162, 160, 20);
 		textAltura.setColumns(10);
 		
 		textAncho = new JTextField();
+		textAncho.setBounds(118, 200, 160, 20);
 		textAncho.setColumns(10);
 		
 		JLabel lblAltura = new JLabel("Altura:");
+		lblAltura.setBounds(27, 165, 81, 14);
 		
 		JLabel lblAncho = new JLabel("Ancho:");
+		lblAncho.setBounds(27, 203, 81, 14);
 		
 		JLabel lblProfundidad = new JLabel("Profundidad:");
+		lblProfundidad.setBounds(27, 241, 81, 14);
 		
 		textPrecio = new JTextField();
+		textPrecio.setBounds(118, 276, 160, 20);
 		textPrecio.setColumns(10);
 		
 		textArchivo = new JTextField();
+		textArchivo.setBounds(118, 314, 160, 20);
 		textArchivo.setColumns(10);
 		
 		textProfundidad = new JTextField();
+		textProfundidad.setBounds(118, 238, 160, 20);
 		textProfundidad.setColumns(10);
 		
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.setBounds(319, 354, 100, 32);
 		btnAceptar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -110,20 +120,18 @@ public class GUIAltaDiseño extends JFrame{
 					float profundidad = Float.parseFloat(textProfundidad.getText());
 					double precio = Float.parseFloat(textPrecio.getText());
 					String descripcion = textAreaDescripcion.getText();
-					int idUsuario = Integer.parseInt(textPropietario.getText());
-					//¿String?
 					String archivo = textArchivo.getText();
 					
 					if(nombre.equals("") || textAltura.getText().equals("") || textAncho.getText().equals("")||
 							textProfundidad.getText().equals("") || textPrecio.getText().equals("") ||
-							textArchivo.getText().equals("") || textPropietario.equals("")){
+							textArchivo.getText().equals("")){
 						throw new Exception();
 					}
 					String[] a = archivo.split("\\.");
 					if(!a[1].equals("stf")){
 						throw new Exception("La extensión del archivo no es válida");
 					}
-					diseño = new TDiseño(nombre, descripcion, idUsuario, altura, ancho, profundidad, precio, archivo, true);
+					TDiseño diseño = new TDiseño(nombre, descripcion, -1, altura, ancho, profundidad, precio, archivo, true);
 					Controlador.getInstance().accion(Events.ALTA_DISEÑO, diseño);
 				}
 				catch(Exception ex){
@@ -133,176 +141,54 @@ public class GUIAltaDiseño extends JFrame{
 		});
 		
 		JLabel label = new JLabel("*");
+		label.setBounds(15, 165, 6, 14);
 		label.setForeground(Color.RED);
 		
 		JLabel label_1 = new JLabel("*");
+		label_1.setBounds(15, 19, 6, 14);
 		label_1.setForeground(Color.RED);
 		
 		JLabel label_2 = new JLabel("*");
+		label_2.setBounds(15, 203, 6, 14);
 		label_2.setForeground(Color.RED);
 		
 		JLabel label_3 = new JLabel("*");
+		label_3.setBounds(15, 241, 6, 14);
 		label_3.setForeground(Color.RED);
 		
 		JLabel label_4 = new JLabel("*");
+		label_4.setBounds(15, 279, 6, 14);
 		label_4.setForeground(Color.RED);
 		
 		JLabel label_5 = new JLabel("*");
+		label_5.setBounds(15, 317, 6, 14);
 		label_5.setForeground(Color.RED);
-
-		JLabel lblPropietario = new JLabel("Propietario:");
+		contentPane.setLayout(null);
+		contentPane.add(label_1);
+		contentPane.add(lblNombre);
+		contentPane.add(textNombre);
+		contentPane.add(lblDescripción);
+		contentPane.add(scrollPane);
+		contentPane.add(label);
+		contentPane.add(lblAltura);
+		contentPane.add(textAltura);
+		contentPane.add(label_2);
+		contentPane.add(lblAncho);
+		contentPane.add(textAncho);
+		contentPane.add(label_3);
+		contentPane.add(lblProfundidad);
+		contentPane.add(textProfundidad);
+		contentPane.add(label_4);
+		contentPane.add(lblPrecio);
+		contentPane.add(textPrecio);
+		contentPane.add(label_5);
+		contentPane.add(lblArchivo);
+		contentPane.add(textArchivo);
+		contentPane.add(btnAceptar);
 		
-		textPropietario = new JTextField();
-		textPropietario.setColumns(10);
-		
-		JLabel label_6 = new JLabel("*");
-		label_6.setForeground(Color.RED);
-		
-		GroupLayout gl_contentPane = new GroupLayout(contentPane);
-		gl_contentPane.setHorizontalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(10)
-					.addComponent(label_1)
-					.addGap(6)
-					.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-					.addGap(33)
-					.addComponent(textNombre, GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-					.addGap(10))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(22)
-					.addComponent(lblDescripción, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-					.addGap(10))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(10)
-					.addComponent(label)
-					.addGap(6)
-					.addComponent(lblAltura, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(textAltura, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-					.addGap(151))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(10)
-					.addComponent(label_2)
-					.addGap(6)
-					.addComponent(lblAncho, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(textAncho, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-					.addGap(151))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(10)
-					.addComponent(label_3)
-					.addGap(6)
-					.addComponent(lblProfundidad, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(textProfundidad, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-					.addGap(151))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(10)
-					.addComponent(label_4)
-					.addGap(6)
-					.addComponent(lblPrecio, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
-					.addGap(10)
-					.addComponent(textPrecio, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-					.addGap(151))
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(10)
-							.addComponent(label_5))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(label_6, GroupLayout.PREFERRED_SIZE, 6, GroupLayout.PREFERRED_SIZE)))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-						.addComponent(lblPropietario, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(lblArchivo, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE))
-					.addGap(10)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(textPropietario, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-						.addComponent(textArchivo, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-					.addGap(41)
-					.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-		);
-		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(11)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(3)
-							.addComponent(label_1))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblNombre))
-						.addComponent(textNombre, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addComponent(lblDescripción)
-							.addGap(75))
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE))
-					.addGap(16)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(3)
-							.addComponent(label))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblAltura))
-						.addComponent(textAltura, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(3)
-							.addComponent(label_2))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblAncho))
-						.addComponent(textAncho, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(3)
-							.addComponent(label_3))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblProfundidad))
-						.addComponent(textProfundidad, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(3)
-							.addComponent(label_4))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblPrecio))
-						.addComponent(textPrecio, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(3)
-							.addComponent(label_5))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblArchivo))
-						.addComponent(textArchivo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(29)
-							.addComponent(btnAceptar, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(18)
-							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
-								.addComponent(lblPropietario)
-								.addComponent(textPropietario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(label_6))))
-					.addContainerGap())
-		);
-		contentPane.setLayout(gl_contentPane);
+		JLabel lbstf = new JLabel("(deberá ser .stf)");
+		lbstf.setBounds(118, 337, 160, 14);
+		contentPane.add(lbstf);
 	}
 	
 	/** 
@@ -318,7 +204,6 @@ public class GUIAltaDiseño extends JFrame{
 		textPrecio.setText("");
 		textArchivo.setText("");
 		textProfundidad.setText("");
-		textPropietario.setText("");
 		textAreaDescripcion.setText("");
 		// end-user-code
 	}
