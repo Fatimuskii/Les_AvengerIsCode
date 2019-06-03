@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS compras (
   IdCompra int(5) NOT NULL AUTO_INCREMENT,
   IdUsuario int(5),
   IdDiseño int(5),
-  PRIMARY KEY (IdLocal)
+  PRIMARY KEY (IdCompra)
   
   
   );
