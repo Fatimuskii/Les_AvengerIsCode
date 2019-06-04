@@ -89,7 +89,7 @@ public class GUIPanelInicio extends JPanel implements GUIEventoPlataforma{
 		add(btnNewButton_2);
 		
 		btnNewButton_3 = new JButton("Usuarios");
-		//	btnNewButton_3.setEnabled(false);
+		btnNewButton_3.setEnabled(false);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				layered.removeAll();

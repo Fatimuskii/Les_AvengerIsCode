@@ -20,6 +20,7 @@ import Negocio.Plataforma.SAPlataforma;
 import Negocio.Usuario.TUsuario;
 import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
+import Presentación.Usuario.GUIAltaUsuario;
 import Presentación.Usuario.GUIUsuario;
 
 public class GUIPanelLogin extends JPanel implements GUIEventoPlataforma {
@@ -29,6 +30,7 @@ public class GUIPanelLogin extends JPanel implements GUIEventoPlataforma {
 	private static final long serialVersionUID = 1L;
 	private JTextField user;
 	private JPasswordField pass;
+	private GUIAltaUsuario altaUser;
 
 	/**
 	 * Create the panel.
@@ -41,6 +43,7 @@ public class GUIPanelLogin extends JPanel implements GUIEventoPlataforma {
 	public void init() {
 		setLayout(new BorderLayout(0, 0));
 		
+		altaUser=new GUIAltaUsuario();
 		JPanel panel = new JPanel();
 		add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(2, 2, 0, 0));
@@ -80,10 +83,10 @@ public class GUIPanelLogin extends JPanel implements GUIEventoPlataforma {
 					}
 			}
 		});
-		btnNewButton_1.setVisible(false);
+		btnNewButton_1.setVisible(true);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				altaUser.setVisible(true);
 			}
 		});
 		panel_1.add(btnNewButton);
