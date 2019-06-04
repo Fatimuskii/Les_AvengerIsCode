@@ -104,8 +104,8 @@ CREATE TABLE IF NOT EXISTS pedidoImpresion (
 
 CREATE TABLE IF NOT EXISTS compras (
   IdCompra int(5) NOT NULL AUTO_INCREMENT,
-  IdUsuario int(5),
-  IdDiseno int(5),
+  IdUsuario int(5) REFERENCES Usuario(idUsuario),
+  IdDiseno int(5) REFERENCES disenio(idDiseno),
   PRIMARY KEY (IdCompra)
   
   

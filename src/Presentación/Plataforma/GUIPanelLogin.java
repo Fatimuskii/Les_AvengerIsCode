@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -71,7 +72,12 @@ public class GUIPanelLogin extends JPanel implements GUIEventoPlataforma {
 		JButton btnNewButton_1 = new JButton("Registrarse");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controlador.getInstance().accion(Events.ACCESO_USUARIO, new TUsuario(Integer.parseInt(user.getText()), "","","", "", null, String.copyValueOf(pass.getPassword()), "", "", null, true));
+				if(user.getText()!="" && String.copyValueOf(pass.getPassword())!="")
+					try{
+						Controlador.getInstance().accion(Events.ACCESO_USUARIO, new TUsuario(Integer.parseInt(user.getText()), "","","", "", null, String.copyValueOf(pass.getPassword()), "", "", null, true));
+					}catch(Exception e1){
+						JOptionPane.showMessageDialog(null, "El usuario debe ser un número", "Error login", JOptionPane.INFORMATION_MESSAGE);
+					}
 			}
 		});
 		btnNewButton_1.setVisible(false);
