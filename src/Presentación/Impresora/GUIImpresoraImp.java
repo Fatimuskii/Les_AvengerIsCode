@@ -35,26 +35,24 @@ import java.awt.event.ActionEvent;
  */
 import java.util.ArrayList;
 
-
 /**
  * Launch the application.
  */
 
 @SuppressWarnings("serial")
 public class GUIImpresoraImp extends GUIImpresora {
-	
+
 	private GUIAltaImpresora gUIAltaImpresora;
 	private GUIBajaImpresora gUIBajaImpresora;
 	private GUIModificarImpresora gUIModificarImpresora;
 	private GUIListarImpresora gUIListarImpresora;
 	private GUIBuscarIdImpresora gUIBuscarIdImpresora;
 	private GUIBuscarUsuarioImpresora gUIBuscarUsuarioImpresora;
-	
+
 	private JPanel contentPane;
 	private JTextField txtBuscar;
 	private JTextField txtBuscarIdusuarioImpresor;
-	
-	
+
 	public GUIImpresoraImp() {
 		super();
 		this.contentPane = new JPanel();
@@ -68,8 +66,6 @@ public class GUIImpresoraImp extends GUIImpresora {
 		initGUI();
 	}
 
-
-
 	/**
 	 * Create the frame.
 	 */
@@ -80,60 +76,55 @@ public class GUIImpresoraImp extends GUIImpresora {
 		this.add(contentPane);
 		this.setLayout(new BorderLayout());
 		this.add(contentPane);
-		
+
 		JPanel panel = new JPanel();
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
-		
+
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon("imagenes\\3d-printer-REDM.png"));
 		label.setBounds(22, 0, 73, 69);
 		panel.add(label);
-		
+
 		JLabel lblIdimpresora = new JLabel(" IdImpresora");
 		lblIdimpresora.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblIdimpresora.setBounds(10, 64, 85, 14);
 		panel.add(lblIdimpresora);
-		
-		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(132, 57, 90, 21);
-		panel.add(menuBar);
-		
-		JMenu mnConfiguracin = new JMenu("Configuración");
-		menuBar.add(mnConfiguracin);
-		
-		JMenuItem mntmDarDeBaja = new JMenuItem("Dar de baja");
-		mntmDarDeBaja.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gUIBajaImpresora.clearData();
-				gUIBajaImpresora.setVisible(true);
-			}
-		});
-		mnConfiguracin.add(mntmDarDeBaja);
-		
-		JMenuItem mntmModificarImpresora = new JMenuItem("Modificar impresora");
-		mntmModificarImpresora.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				gUIModificarImpresora.clearData();
-				gUIModificarImpresora.setVisible(true);
-			}
-		});
-		mnConfiguracin.add(mntmModificarImpresora);
-		
-		JMenuItem mntmAltaImpresora = new JMenuItem("Dar de alta");
-		mntmAltaImpresora.addActionListener(new ActionListener() {
+
+		JButton btnDarAlta = new JButton("Dar de alta");
+		btnDarAlta.setBounds(130, 57, 100, 21);
+		btnDarAlta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				gUIAltaImpresora.clearData();
 				gUIAltaImpresora.setVisible(true);
 			}
 		});
-		mnConfiguracin.add(mntmAltaImpresora);
-		
-		
+		panel.add(btnDarAlta);
+
+		JButton btnModificar = new JButton("Modificar");
+		btnModificar.setBounds(260, 57, 90, 21);
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gUIModificarImpresora.clearData();
+				gUIModificarImpresora.setVisible(true);
+			}
+		});
+		panel.add(btnModificar);
+
+		JButton btnDarBaja = new JButton("Dar de baja");
+		btnDarBaja.setBounds(370, 57, 100, 21);
+		btnDarBaja.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				gUIBajaImpresora.clearData();
+				gUIBajaImpresora.setVisible(true);
+			}
+		});
+		panel.add(btnDarBaja);
+
 		txtBuscar = new JTextField();
 		txtBuscar.setForeground(Color.DARK_GRAY);
 		txtBuscar.setText("Buscar Id impresora");
-		txtBuscar.setBounds(81, 146, 126, 21);
+		txtBuscar.setBounds(140, 146, 126, 21);
 		txtBuscar.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
@@ -141,6 +132,7 @@ public class GUIImpresoraImp extends GUIImpresora {
 					txtBuscar.setText("");
 				}
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txtBuscar.getText().equals("")) {
@@ -150,72 +142,78 @@ public class GUIImpresoraImp extends GUIImpresora {
 		});
 		panel.add(txtBuscar);
 		txtBuscar.setColumns(10);
-		
+
 		txtBuscarIdusuarioImpresor = new JTextField();
 		txtBuscarIdusuarioImpresor.setForeground(Color.DARK_GRAY);
 		txtBuscarIdusuarioImpresor.setText("Buscar IdUsuario impresor");
-		txtBuscarIdusuarioImpresor.setBounds(81, 203, 173, 20);
+		txtBuscarIdusuarioImpresor.setBounds(140, 203, 173, 20);
 		txtBuscarIdusuarioImpresor.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
-				if (txtBuscarIdusuarioImpresor.getText().equals("Buscar IdUsuario impresor")) {
+				if (txtBuscarIdusuarioImpresor.getText().equals(
+						"Buscar IdUsuario impresor")) {
 					txtBuscarIdusuarioImpresor.setText("");
 				}
 			}
+
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txtBuscarIdusuarioImpresor.getText().equals("")) {
-					txtBuscarIdusuarioImpresor.setText("Buscar IdUsuario impresor");
+					txtBuscarIdusuarioImpresor
+							.setText("Buscar IdUsuario impresor");
 				}
 			}
 		});
 		panel.add(txtBuscarIdusuarioImpresor);
 		txtBuscarIdusuarioImpresor.setColumns(10);
-		
+
+		// BOTON BUSCAR ID IMPRESORA
 		JButton btnBuscar = new JButton("Buscar");
-		btnBuscar.addActionListener(new ActionListener (){
+		btnBuscar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				try {
 					if (txtBuscar.getText().equals("Buscar Id impresora")) {
 						throw new Exception();
 					}
 					int idImpresora = Integer.parseInt(txtBuscar.getText());
+
 					gUIBuscarIdImpresora.clearData();
-					gUIBuscarIdImpresora.setVisible(true);
 					Controlador.getInstance().accion(Events.BUSCAR_IMPRESORA,
 							idImpresora);
-					gUIBuscarIdImpresora.toFront();
+
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null,
 							"Introduzca un idImpresora válido", "Error",
 							JOptionPane.ERROR_MESSAGE);
 				}
 			}
-			
+
 		});
-		
-		btnBuscar.setBounds(216, 145, 85, 23);
+
+		btnBuscar.setBounds(275, 145, 85, 23);
 		panel.add(btnBuscar);
-		
+
 		JButton btnMostrarTodos = new JButton("Mostrar todos");
 		btnMostrarTodos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				gUIListarImpresora.clearData();
 				gUIListarImpresora.setVisible(true);
-				Controlador.getInstance().accion(Events.LISTAR_IMPRESORAS, null);
+				Controlador.getInstance()
+						.accion(Events.LISTAR_IMPRESORAS, null);
 				gUIListarImpresora.toFront();
 			}
 		});
-		btnMostrarTodos.setBounds(309, 145, 115, 23);
+		btnMostrarTodos.setBounds(380, 145, 115, 23);
 		panel.add(btnMostrarTodos);
-		
+
+		// BOTON BUSCAR POR ID USUARIO IMPRESOR
 		JButton button = new JButton("Buscar");
-		button.addActionListener(new ActionListener (){
+		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				try {
 					if (txtBuscarIdusuarioImpresor.getText().equals(
 							"Buscar IdUsuario impresor")) {
@@ -224,40 +222,38 @@ public class GUIImpresoraImp extends GUIImpresora {
 					int idUsuario = Integer.parseInt(txtBuscarIdusuarioImpresor
 							.getText());
 					gUIBuscarUsuarioImpresora.clearData();
-					gUIBuscarUsuarioImpresora.setVisible(true);
 					Controlador.getInstance().accion(
 							Events.BUSCAR_USUARIO_IMPRESORA, idUsuario);
-					gUIBuscarUsuarioImpresora.toFront();
 				} catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, ex.getMessage(),
 							"Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
-			
+
 		});
-		button.setBounds(264, 202, 85, 23);
+		button.setBounds(323, 202, 85, 23);
 		panel.add(button);
-		
+
 		JLabel label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon("imagenes\\logo-REDM-REDM.png"));
-		label_1.setBounds(25, 127, 46, 41);
+		label_1.setIcon(new ImageIcon("imagenes\\3d-printer-conLOGO-REDM.png"));
+		label_1.setBounds(80, 127, 53, 49);
 		panel.add(label_1);
-		
+
 		JLabel label_2 = new JLabel("");
 		label_2.setIcon(new ImageIcon("imagenes\\Usuario-impresor-REDM.png"));
-		label_2.setBounds(22, 188, 53, 52);
+		label_2.setBounds(83, 188, 53, 52);
 		panel.add(label_2);
 	}
 
-
-
-	/** 
+	/**
 	 * (sin Javadoc)
+	 * 
 	 * @see GUIImpresora#update(int event, Object res)
-	 * @generated "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
+	 * @generated 
+	 *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
 	 */
 	@SuppressWarnings("unchecked")
-	public void update(int event, Object res){
+	public void update(int event, Object res) {
 		switch (event) {
 		case Events.ALTA_IMPRESORA_OK:
 			gUIAltaImpresora.update(event, res);
@@ -272,10 +268,10 @@ public class GUIImpresoraImp extends GUIImpresora {
 			gUIBajaImpresora.update(event, res);
 			break;
 		case Events.MODIFICAR_IMPRESORA_OK:
-			gUIModificarImpresora.update(event, (TImpresora)res);
+			gUIModificarImpresora.update(event, (TImpresora) res);
 			break;
 		case Events.MODIFICAR_IMPRESORA_KO:
-			gUIModificarImpresora.update(event, (TImpresora)res);
+			gUIModificarImpresora.update(event, (TImpresora) res);
 			break;
 		case Events.LISTAR_IMPRESORAS_OK:
 			gUIListarImpresora.update(event, (ArrayList<TImpresora>) res);
@@ -284,13 +280,15 @@ public class GUIImpresoraImp extends GUIImpresora {
 			gUIListarImpresora.update(event, (ArrayList<TImpresora>) res);
 			break;
 		case Events.BUSCAR_USUARIO_IMPRESORA_OK:
-			gUIBuscarUsuarioImpresora.update(event, (ArrayList<TImpresora>)res);
+			gUIBuscarUsuarioImpresora
+					.update(event, (ArrayList<TImpresora>) res);
 			break;
 		case Events.BUSCAR_USUARIO_IMPRESORA_KO:
-			gUIBuscarUsuarioImpresora.update(event, (ArrayList<TImpresora>)res);
+			gUIBuscarUsuarioImpresora
+					.update(event, (ArrayList<TImpresora>) res);
 			break;
 		case Events.BUSCAR_IMPRESORA_OK:
-			gUIBuscarIdImpresora.update(event,(TImpresora) res);
+			gUIBuscarIdImpresora.update(event, (TImpresora) res);
 			break;
 		case Events.BUSCAR_IMPRESORA_KO:
 			gUIBuscarIdImpresora.update(event, (TImpresora) res);

@@ -129,6 +129,8 @@ public class GUIBuscarIdImpresora extends JFrame{
 			textDimensiones.setEnabled(true);
 			textUsuario.setEnabled(true);
 			textMaterial.setEnabled(true);
+			this.setVisible(true);
+			this.toFront();
 			break;
 		case Events.BUSCAR_IMPRESORA_KO:
 			this.dispose();

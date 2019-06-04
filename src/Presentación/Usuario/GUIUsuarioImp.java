@@ -53,7 +53,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 	private GUIListarUsuarios GUI_ListarUsuarios;
 	private GUIBuscarporIdUsuario<Object> GUI_BuscarporIdUsuario;
 	private JLabel id_Usuario;
-	private boolean admin;
+//	private boolean admin;
 
 	private int id;
 
@@ -61,13 +61,13 @@ public class GUIUsuarioImp extends GUIUsuario {
 
 	public GUIUsuarioImp() {
 		super();
-		this.admin = true;// ************************* pasar como parametro
+	//	this.admin = true;// ************************* pasar como parametro
 		// this.id = userLog.getIdUsuario();
 		this.contentPane = new JPanel();
 		this.GUI_BajaUsuario = new GUIBajaUsuario();
 		this.GUI_AltaUsuario = new GUIAltaUsuario();
 		this.GUI_ListarUsuarios = new GUIListarUsuarios();
-		this.GUI_ModificarUsuario = new GUIModificarUsuario(admin, id);
+		this.GUI_ModificarUsuario = new GUIModificarUsuario(id);
 		// this.GUI_AccesoUsuario = new GUIAccesoUsuario();
 		initGUI();
 	}
@@ -102,20 +102,20 @@ public class GUIUsuarioImp extends GUIUsuario {
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (admin)
+			//	if (admin)
 					GUI_ModificarUsuario.clearData();
 				GUI_ModificarUsuario.setVisible(true);
 			}
 		});
 
-		btnModificar.setBounds(120, 86, 90, 21);
+		btnModificar.setBounds(350, 86, 100, 21);
 		panel.add(btnModificar);
 
 		// DAR DE BAJA
 		JButton btnBaja = new JButton("Dar de baja");
 		btnBaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (admin)
+			//	if (admin)
 					GUI_ModificarUsuario.clearData();
 				GUI_BajaUsuario.setVisible(true);
 			}
@@ -124,26 +124,26 @@ public class GUIUsuarioImp extends GUIUsuario {
 		btnBaja.setBounds(230, 86, 100, 21);
 		panel.add(btnBaja);
 
-		// DAR DE ALTA
-		JButton btnAlta = new JButton("Dar de alta");
-		btnAlta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (admin)
-					GUI_ModificarUsuario.clearData();
-				GUI_AltaUsuario.setVisible(true);
-			}
-		});
-
-		btnAlta.setBounds(350, 86, 100, 21);
-		panel.add(btnAlta);
-		if (!admin)
-			btnAlta.setEnabled(false);
+//		// DAR DE ALTA
+//		JButton btnAlta = new JButton("Dar de alta");
+//		btnAlta.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//			//	if (admin)
+//					GUI_ModificarUsuario.clearData();
+//				GUI_AltaUsuario.setVisible(true);
+//			}
+//		});
+//
+//		btnAlta.setBounds(350, 86, 100, 21);
+//		panel.add(btnAlta);
+//		if (!admin)
+//			btnAlta.setEnabled(false);
 
 		// CERRAR SESION
 		JButton btnCerrarSesion = new JButton("Cerrar sesión");
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (admin)
+			//	if (admin)
 					GUI_ModificarUsuario.clearData();
 
 				int confirma = JOptionPane.showConfirmDialog(null,
@@ -218,8 +218,8 @@ public class GUIUsuarioImp extends GUIUsuario {
 			}
 		});
 		panel.add(button);
-		if (!admin)
-			button.setEnabled(false);
+//		if (!admin)
+//			button.setEnabled(false);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -264,7 +264,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 			GUI_BuscarporIdUsuario.update(event, res);
 			break;
 		case Events.BUSCAR_USUARIO_KO:
-			GUI_BuscarporIdUsuario.update(event, res);// **
+			GUI_BuscarporIdUsuario.update(event, res);
 			break;
 		case Events.LISTAR_DISEÑOS_USU_LOG_OK:
 			GUI_BuscarporIdUsuario.update(event, res);

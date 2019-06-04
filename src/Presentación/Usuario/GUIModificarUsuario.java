@@ -78,12 +78,12 @@ public class GUIModificarUsuario extends JFrame {
 //	private SimpleDateFormat fechaVenc;
 
 	private int id;
-	private boolean admin;
+	//private boolean admin;
 
-	public GUIModificarUsuario(boolean admin, int id) {
+	public GUIModificarUsuario(int id) {
 		super();
 		this.contentPane = new JPanel();
-		this.admin = admin;
+	//	this.admin = admin;
 		this.id = id;
 		this.setFocusable(true);
 		initGUI();
@@ -103,7 +103,7 @@ public class GUIModificarUsuario extends JFrame {
 		panel.setLayout(null);
 
 		txtIdusuario = new JTextField();
-		if (admin) {
+	//	if (admin) {
 			txtIdusuario.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent arg0) {
@@ -120,10 +120,10 @@ public class GUIModificarUsuario extends JFrame {
 				}
 			});
 			txtIdusuario.setText("idUsuario");
-		} else {
-			txtIdusuario.setText(String.valueOf(id));
-			txtIdusuario.setEditable(false);
-		}
+//		} else {
+//			txtIdusuario.setText(String.valueOf(id));
+//			txtIdusuario.setEditable(false);
+//		}
 		txtIdusuario.setToolTipText("");
 		txtIdusuario.setForeground(Color.DARK_GRAY);
 		txtIdusuario.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -133,7 +133,7 @@ public class GUIModificarUsuario extends JFrame {
 
 		JButton btnComprobar = new JButton("Comprobar");
 		btnComprobar.setBounds(193, 28, 89, 23);
-		if (admin) {
+	//	if (admin) {
 			btnComprobar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					id = Integer.parseInt(txtIdusuario.getText());
@@ -142,8 +142,8 @@ public class GUIModificarUsuario extends JFrame {
 					toFront();
 				}
 			});
-		}
-		else btnComprobar.setEnabled(false);
+	//	}
+	//	else btnComprobar.setEnabled(false);
 		panel.add(btnComprobar);
 
 		txtNombre = new JTextField();
@@ -377,7 +377,7 @@ public class GUIModificarUsuario extends JFrame {
 		btnFinalizar = new JButton("Finalizar");
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(admin)
+			//	if(admin)
 				id = Integer.parseInt(txtIdusuario.getText());
 				String nombre = txtNombre.getText();
 				String apellidos = txtApellidos.getText();

@@ -80,7 +80,7 @@ public class DAOImpresoraImp implements DAOImpresora {
 		if(connection!=null) {
 			try {
 				Statement statement = connection.createStatement();
-				String query = "SELECT * FROM impresora WHERE idImpresora=" + idImpresora;
+				String query = "SELECT * FROM impresora WHERE activo=1 AND idImpresora=" + idImpresora;
 				ResultSet resultSet = statement.executeQuery(query);
 				if(resultSet.next()) {
 					tImpresora = new TImpresora(

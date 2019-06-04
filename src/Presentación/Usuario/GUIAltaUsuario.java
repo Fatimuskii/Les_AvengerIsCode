@@ -486,7 +486,7 @@ public class GUIAltaUsuario extends JFrame {
 		switch (event) {
 		case Events.ALTA_USUARIO_OK:
 			JOptionPane.showMessageDialog(null, "Éxito al crear el usuario."
-					+ "\n" + "             Tu id es " + res);
+					+ "\n" + "             Tu id es " + res, "Alta usuario",JOptionPane.INFORMATION_MESSAGE);
 			dispose();
 			break;
 		case Events.ALTA_USUARIO_KO:

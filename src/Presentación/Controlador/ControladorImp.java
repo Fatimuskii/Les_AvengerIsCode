@@ -273,7 +273,7 @@ public class ControladorImp extends Controlador {
 			tUsuario = this.SAUsuario.buscarIdUsuario(idUsuario);
 			if (tUsuario != null) {
 				resultI = this.SAImpresora.buscarPorUsuario(idUsuario);
-				if (resultI != null)
+				if (!resultI.isEmpty())
 					GUIImpresora.getInstance().update(
 							Events.BUSCAR_USUARIO_IMPRESORA_OK, resultI);
 				else

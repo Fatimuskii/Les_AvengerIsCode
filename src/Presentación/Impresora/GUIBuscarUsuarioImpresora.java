@@ -128,6 +128,8 @@ public class GUIBuscarUsuarioImpresora extends JFrame{
 						res.get(i).getMaterial()
 						});
 			table.setModel(tableModel);
+			this.setVisible(true);
+			this.toFront();
 			break;
 		case Events.BUSCAR_USUARIO_IMPRESORA_KO:
 			JOptionPane.showMessageDialog(null,
