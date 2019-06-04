@@ -68,7 +68,7 @@ public class TPlataforma {
 		int ret;
 		DAOCompra compraDAO = FactoriaDAO.getInstance().generateDAOCompra();
 		for(TDiseño m : listaCompra) {
-			compra=new TCompra(1,this.usuarioLogueado.getIdUsuario(),m.getId_diseño());
+			compra=new TCompra(1,this.usuarioLogueado.getIdUsuario(),this.usuarioLogueado.getNombre(),m.getId_diseño(),m.getNombre());
 			ret = compraDAO.alta(compra);
 		}
 		if(listaCompra.size()>=1){

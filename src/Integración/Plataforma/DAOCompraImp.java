@@ -30,11 +30,15 @@ public class DAOCompraImp implements DAOCompra {
 		if(connection != null){
 			try{
 				Statement statement = connection.createStatement();
-				String query = "INSERT INTO compras (IdUsuario,IdDiseno)"
+				String query = "INSERT INTO compras (IdUsuario,nombreUsuario,IdDiseno, nombreDiseno)"
 						+ "VALUES ('"
 						+ compra.getIdUsuario()
 						+ "', '"
+						+ compra.getNombreUsuario()
+						+ "', '"
 						+ compra.getIdDiseño()
+						+ "', '"
+						+ compra.getNombreDiseño()
 						+ "');";
 				statement.executeUpdate(query);
 				query = "SELECT last_insert_id() as last_id from compras";
@@ -68,7 +72,9 @@ public class DAOCompraImp implements DAOCompra {
 					compra = new TCompra(
 							resultSet.getInt("IdCompra"),
 							resultSet.getInt("IdUsuario"),
-							resultSet.getInt("IdDiseno")
+							resultSet.getString("nombreUsuario"),
+							resultSet.getInt("IdDiseno"),
+							resultSet.getString("nombreDiseno")
 							);
 					listaCompras.add(compra);
 				}
