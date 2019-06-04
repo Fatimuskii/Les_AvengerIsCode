@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS disenos(
 	alto float NOT NULL,
 	ancho float NOT NULL,
 	profundidad float NOT NULL,
-	precio float NOT NULL,
+	precio double(6,2) NOT NULL,
 	archivo varchar(50) NOT NULL,
 	activo tinyint(1) NOT NULL,
 	PRIMARY KEY (idDiseno)
