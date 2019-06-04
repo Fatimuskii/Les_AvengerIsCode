@@ -375,13 +375,13 @@ public class TDiseño {
 	// Para Carrito de Plataforma
 	public String listaToString() {
 		String text = "";
-		text += String.valueOf(this.id_diseño) + System.lineSeparator();
-		text += this.nombre + System.lineSeparator();
-		text += this.descripcion + System.lineSeparator();
-		text += this.alto + System.lineSeparator();
-		text += this.ancho + System.lineSeparator();
-		text += this.profundidad + System.lineSeparator();
-		text += this.precio + System.lineSeparator();
+		text += "ID: "+String.valueOf(this.id_diseño) + System.lineSeparator();
+		text += "Nombre: "+this.nombre + System.lineSeparator();
+		text += "Descripción: "+this.descripcion + System.lineSeparator();
+		text += "Alto: "+this.alto + System.lineSeparator();
+		text += "Ancho: "+this.ancho + System.lineSeparator();
+		text += "Profundidad: "+this.profundidad + System.lineSeparator();
+		text += "Precio: "+this.precio + System.lineSeparator();
 		return text;
 
 	}
