@@ -215,7 +215,7 @@ public class ControladorImp extends Controlador {
 			break;
 		case Events.LISTAR_DISEÑOS_USU_LOG:
 			idUsuario = (int) datos;
-			List<TDiseño> listDiseños = SADiseño.listarPorUsuario(idUsuario);//hay que pasar el id introducido por el usuario
+			List<TDiseño> listDiseños = SADiseño.listarPorUsuario(idUsuario);
 			if(listDiseños != null)
 				GUIUsuario.getInstance().update(Events.LISTAR_DISEÑOS_USU_LOG_OK, listDiseños);
 				else 
@@ -223,7 +223,7 @@ public class ControladorImp extends Controlador {
 			break;
 		case Events.LISTAR_IMPRESORAS_USU_LOG:
 			idUsuario = (int) datos;
-			List<TImpresora> listImpresoras = SAImpresora.buscarPorUsuario(idUsuario);//hay que pasar el id introducido por el usuario
+			List<TImpresora> listImpresoras = SAImpresora.buscarPorUsuario(idUsuario);
 			if(listImpresoras != null)
 				GUIUsuario.getInstance().update(Events.LISTAR_IMPRESORAS_USU_LOG_OK, listImpresoras);
 				else 

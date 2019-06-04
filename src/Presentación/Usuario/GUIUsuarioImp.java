@@ -16,10 +16,12 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -55,17 +57,18 @@ public class GUIUsuarioImp extends GUIUsuario {
 
 	private int id;
 
-//	private GUIAccesoUsuario GUI_AccesoUsuario;
+	// private GUIAccesoUsuario GUI_AccesoUsuario;
 
 	public GUIUsuarioImp() {
 		super();
 		this.admin = true;// ************************* pasar como parametro
+		// this.id = userLog.getIdUsuario();
 		this.contentPane = new JPanel();
 		this.GUI_BajaUsuario = new GUIBajaUsuario();
 		this.GUI_AltaUsuario = new GUIAltaUsuario();
 		this.GUI_ListarUsuarios = new GUIListarUsuarios();
 		this.GUI_ModificarUsuario = new GUIModificarUsuario(admin, id);
-		//this.GUI_AccesoUsuario = new GUIAccesoUsuario();
+		// this.GUI_AccesoUsuario = new GUIAccesoUsuario();
 		initGUI();
 	}
 
@@ -74,10 +77,10 @@ public class GUIUsuarioImp extends GUIUsuario {
 		 * setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\logo.png"
 		 * )); setTitle("Perfil Usuario"); setBounds(100, 100, 521, 300);
 		 */
+
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
-		// setContentPane(contentPane);
 		this.setLayout(new BorderLayout());
 		this.add(contentPane);
 
@@ -137,18 +140,22 @@ public class GUIUsuarioImp extends GUIUsuario {
 			btnAlta.setEnabled(false);
 
 		// CERRAR SESION
-		JButton btnCerrarSesion= new JButton("Cerrar sesión");
+		JButton btnCerrarSesion = new JButton("Cerrar sesión");
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (admin)
 					GUI_ModificarUsuario.clearData();
-				GUI_BajaUsuario.setVisible(true);
+
+				int confirma = JOptionPane.showConfirmDialog(null,
+						"Se va a cerrar la aplicación", "Cerrar sesión",
+						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+				if (confirma == JOptionPane.YES_OPTION)
+					System.exit(0);
 			}
 		});
 
 		btnCerrarSesion.setBounds(470, 86, 130, 21);
 		panel.add(btnCerrarSesion);
-
 
 		textField = new JTextField();
 		textField.setText("Buscar usuario");
@@ -172,6 +179,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 		textField.setBounds(230, 164, 227, 20);
 		panel.add(textField);
 
+		// BUSCAR
 		JButton btnBuscar = new JButton("Buscar");
 		btnBuscar.setBounds(230, 195, 89, 23);
 		btnBuscar.addActionListener(new ActionListener() {
@@ -179,13 +187,20 @@ public class GUIUsuarioImp extends GUIUsuario {
 				GUIMensaje mensaje = new GUIMensaje();
 				if (!textField.getText().equals("Buscar usuario")) {
 					id = Integer.parseInt(textField.getText());
+					GUI_BuscarporIdUsuario = new GUIBuscarporIdUsuario<Object>(
+							id);// ***
 
-					GUI_BuscarporIdUsuario = new GUIBuscarporIdUsuario<Object>(id);
-					GUI_BuscarporIdUsuario.setVisible(true);
-					Controlador.getInstance().accion(Events.LISTAR_DISEÑOS_USU_LOG, id);
-					Controlador.getInstance().accion(Events.LISTAR_IMPRESORAS_USU_LOG, id);
-					
-					GUI_BuscarporIdUsuario.toFront();
+					Controlador.getInstance().accion(Events.BUSCAR_USUARIO, id);
+
+					//
+					//
+					// Controlador.getInstance().accion(Events.LISTAR_DISEÑOS_USU_LOG,
+					// id);
+					// Controlador.getInstance().accion(Events.LISTAR_IMPRESORAS_USU_LOG,
+					// id);
+
+					// GUI_BuscarporIdUsuario.setVisible(true);
+					// GUI_BuscarporIdUsuario.toFront();
 				} else {
 					mensaje.showMessage("Debe introducir un Id",
 							"Buscar Usuario", false);
@@ -246,22 +261,22 @@ public class GUIUsuarioImp extends GUIUsuario {
 					(TUsuario) res);
 			break;
 		case Events.BUSCAR_USUARIO_OK:
-			GUI_BuscarporIdUsuario.update(event, (ArrayList<Object>) res);
+			GUI_BuscarporIdUsuario.update(event, res);
 			break;
 		case Events.BUSCAR_USUARIO_KO:
-			GUI_BuscarporIdUsuario.update(event, (ArrayList<Object>) res);
+			GUI_BuscarporIdUsuario.update(event, res);// **
 			break;
 		case Events.LISTAR_DISEÑOS_USU_LOG_OK:
-			GUI_BuscarporIdUsuario.update(event, (ArrayList<Object>) res);
+			GUI_BuscarporIdUsuario.update(event, res);
 			break;
 		case Events.LISTAR_DISEÑOS_USU_LOG_KO:
-			GUI_BuscarporIdUsuario.update(event, (ArrayList<Object>) res);
+			GUI_BuscarporIdUsuario.update(event, res);
 			break;
 		case Events.LISTAR_IMPRESORAS_USU_LOG_OK:
-			GUI_BuscarporIdUsuario.update(event, (ArrayList<Object>) res);
+			GUI_BuscarporIdUsuario.update(event, res);
 			break;
 		case Events.LISTAR_IMPRESORAS_USU_LOG_KO:
-			GUI_BuscarporIdUsuario.update(event, (ArrayList<Object>) res);
+			GUI_BuscarporIdUsuario.update(event, res);
 			break;
 		}
 

@@ -119,7 +119,7 @@ public class DAOUsuarioImp implements DAOUsuario {
 		if (connection != null) {
 			try {
 				Statement statement = connection.createStatement();
-				String query = "SELECT * FROM usuario WHERE idUsuario="
+				String query = "SELECT * FROM usuario WHERE activo =1 AND idUsuario="
 						+ idUsuario;
 				ResultSet resultSet = statement.executeQuery(query);
 				if (resultSet.next()) {

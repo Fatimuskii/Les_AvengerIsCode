@@ -6,6 +6,8 @@ package Presentación.Usuario;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import Negocio.Usuario.TUsuario;
+
 
 /** 
  * <!-- begin-UML-doc -->
