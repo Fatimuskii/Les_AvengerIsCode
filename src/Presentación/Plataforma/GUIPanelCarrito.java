@@ -26,6 +26,7 @@ public class GUIPanelCarrito extends JPanel implements GUIEventoPlataforma {
 	private GUIListaModelo<TDiseño> listaModelo;
 	private JList<TDiseño> listaDiseños;
 	private JTextArea texto;
+	List<TDiseño> diseños;
 	JButton botonBorrar;
 	JButton botonVaciar;
 	JButton botonComprar;
@@ -91,6 +92,7 @@ public class GUIPanelCarrito extends JPanel implements GUIEventoPlataforma {
 	}
 	
 	public void setList(List<TDiseño> diseños) {
+		this.diseños=diseños;
 		this.listaModelo.setList(diseños);
 		if(diseños.isEmpty()) {
 			texto.setText("");
@@ -109,6 +111,14 @@ public class GUIPanelCarrito extends JPanel implements GUIEventoPlataforma {
 	public void limpiar() {
 		this.listaDiseños.clearSelection();
 		this.texto.setText("");
+	}
+	
+	public int calcularPrecio(){
+		int suma=0;
+		for(TDiseño m : diseños){
+			suma+=m.getPrecio();
+		}
+		return suma;
 	}
 
 	@Override

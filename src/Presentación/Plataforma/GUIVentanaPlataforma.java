@@ -164,7 +164,11 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 		
 		comprar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controlador.getInstance().accion(Events.HISTORIAL_ANNADIR_COMPRAS, null);
+				int confirma=JOptionPane.showConfirmDialog(null,"Desea comprar, el precio total es: "+panelCarrito.calcularPrecio()+" €","Confirmacion de compra",
+						JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+				if(confirma==JOptionPane.YES_OPTION){
+					Controlador.getInstance().accion(Events.HISTORIAL_ANNADIR_COMPRAS, null);
+				}
 			}
 		});
 	}
@@ -173,6 +177,7 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 		annadirCarrito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Controlador.getInstance().accion(Events.MODIFICAR_CARRITO_ANNADIR, panelCompras.getSelectedItem());
+				
 			}
 		});
 	}
