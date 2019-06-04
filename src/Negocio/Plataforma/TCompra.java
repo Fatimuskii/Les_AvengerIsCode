@@ -16,10 +16,10 @@ public class TCompra {
 		return this.idCompra;
 	}
 	public int getIdDiseño(){
-		return this.idCompra;
+		return this.idDiseño;
 	}
 	public int getIdUsuario(){
-		return this.idCompra;
+		return this.idUsuario;
 	}
 	
 	public String listaToString(){

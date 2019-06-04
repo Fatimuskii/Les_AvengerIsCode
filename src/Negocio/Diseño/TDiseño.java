@@ -378,10 +378,10 @@ public class TDiseño {
 		text += "ID: "+String.valueOf(this.id_diseño) + System.lineSeparator();
 		text += "Nombre: "+this.nombre + System.lineSeparator();
 		text += "Descripción: "+this.descripcion + System.lineSeparator();
-		text += "Alto: "+this.alto + System.lineSeparator()+" Cm";
-		text += "Ancho: "+this.ancho + System.lineSeparator()+" Cm";
-		text += "Profundidad: "+this.profundidad + System.lineSeparator()+" Cm";
-		text += "Precio: "+this.precio + System.lineSeparator()+" €";
+		text += "Alto: "+this.alto+" Cm" + System.lineSeparator();
+		text += "Ancho: "+this.ancho+" Cm" + System.lineSeparator();
+		text += "Profundidad: "+this.profundidad+" Cm" + System.lineSeparator();
+		text += "Precio: "+this.precio+" €" + System.lineSeparator();
 		return text;
 
 	}
