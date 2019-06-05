@@ -471,11 +471,13 @@ public class ControladorImp extends Controlador {
 			break;
 		case Events.ALTA_PEDIDO_IMPRESION_LISTADISENIOS:
 			idUsuario = (int) datos;
-
+			List<TDiseño> comprados= SAPlataforma.listarIdDiseñosComprados(idUsuario);
 			tUsuario = this.SAUsuario.buscarIdUsuario(idUsuario);
-
 			if (tUsuario != null) {
 				resultD = this.SADiseño.listarPorUsuario(idUsuario);
+				for(TDiseño m: comprados)
+					resultD.add(m);
+				
 				if (resultD != null)
 					GUIPedidoImpresion.getInstance(uLogueado).update(
 							Events.ALTA_PEDIDO_IMPRESION_LISTADISENIOS_OK,

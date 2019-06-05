@@ -41,4 +41,7 @@ public interface SAPlataforma {
 	
 	
 	public ArrayList<TCompra> listarPorIdUsuarioCompras(int idUsuario);
+	
+	
+	public ArrayList<TDiseño> listarIdDiseñosComprados(int idUsuario);
 }

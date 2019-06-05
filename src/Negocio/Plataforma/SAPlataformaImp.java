@@ -64,4 +64,19 @@ public TPlataforma plataforma;
 		return compras;
 	}
 	
+	public ArrayList<TDiseño> listarIdDiseñosComprados(int idUsuario){
+		ArrayList<TDiseño> lista=new ArrayList<TDiseño>();
+		ArrayList<TCompra> compras;
+		TDiseño diseñoAct;
+		DAODiseño diseñoDAO=FactoriaDAO.getInstance().generateDAODiseño();
+		compras=listarPorIdUsuarioCompras(idUsuario);
+		for(TCompra m : compras){
+			diseñoAct=diseñoDAO.buscarPorId(m.getIdDiseño());
+			if(diseñoAct!=null){
+				lista.add(diseñoAct);
+			}
+		}
+		return lista;
+	}
+	
 }
