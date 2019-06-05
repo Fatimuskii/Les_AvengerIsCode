@@ -151,7 +151,7 @@ public class GUIModificarImpresora extends JFrame {
 					Controlador.getInstance().accion(Events.MODIFICAR_IMPRESORA, tImpresora);
 				}
 				catch(Exception ex){
-					JOptionPane.showMessageDialog(null, "Introduce un id válido (número)",
+					JOptionPane.showMessageDialog(null, "Introduzca los datos correctamente",
 							"Error Impresora", JOptionPane.ERROR_MESSAGE);
 				}
 			}
@@ -200,7 +200,7 @@ public class GUIModificarImpresora extends JFrame {
 		comboBoxMaterial.setEnabled(false);
 	}
 	
-	public void update(int events, TImpresora res) {
+	public void update(int events, Object res) {
 		switch (events) {
 		case Events.MODIFICAR_IMPRESORA_COMPROBAR_OK:
 			textAlto.setEditable(true);
@@ -212,7 +212,12 @@ public class GUIModificarImpresora extends JFrame {
 			textProfundidad.setEnabled(true);
 			comboBoxMaterial.setEnabled(true);
 			
-			usuario = res.getUsuario();
+			usuario = ((TImpresora) res).getUsuario();
+			id = ((TImpresora)res).getId_impresora();
+			textAlto.setText(String.valueOf(((TImpresora) res).getAlto()));
+			textAncho.setText(String.valueOf(((TImpresora) res).getAncho()));
+			textProfundidad.setText(String.valueOf(((TImpresora) res).getProfundidad()));
+			
 			break;
 		case Events.MODIFICAR_IMPRESORA_COMPROBAR_KO:
 			JOptionPane.showMessageDialog(null,

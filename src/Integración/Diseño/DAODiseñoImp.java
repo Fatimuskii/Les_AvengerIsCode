@@ -159,7 +159,7 @@ public class DAODiseñoImp implements DAODiseño {
 							resultSet.getFloat("alto"),
 							resultSet.getFloat("ancho"),
 							resultSet.getFloat("profundidad"),
-							resultSet.getFloat("precio"),
+							resultSet.getDouble("precio"),
 							resultSet.getString("archivo"),
 							resultSet.getBoolean("activo")
 							);
@@ -200,7 +200,7 @@ public class DAODiseñoImp implements DAODiseño {
 							resultSet.getFloat("alto"),
 							resultSet.getFloat("ancho"),
 							resultSet.getFloat("profundidad"),
-							resultSet.getFloat("precio"),
+							resultSet.getDouble("precio"),
 							resultSet.getString("archivo"),
 							resultSet.getBoolean("activo")
 							);
@@ -241,7 +241,7 @@ public class DAODiseñoImp implements DAODiseño {
 							resultSet.getFloat("alto"),
 							resultSet.getFloat("ancho"),
 							resultSet.getFloat("profundidad"),
-							resultSet.getFloat("precio"),
+							resultSet.getDouble("precio"),
 							resultSet.getString("archivo"),
 							resultSet.getBoolean("activo")
 							);
@@ -283,7 +283,7 @@ public class DAODiseñoImp implements DAODiseño {
 							resultSet.getFloat("alto"),
 							resultSet.getFloat("ancho"),
 							resultSet.getFloat("profundidad"),
-							resultSet.getFloat("precio"),
+							resultSet.getDouble("precio"),
 							resultSet.getString("archivo"),
 							resultSet.getBoolean("activo")
 							);

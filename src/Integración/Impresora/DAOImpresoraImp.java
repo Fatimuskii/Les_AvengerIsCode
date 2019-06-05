@@ -199,7 +199,7 @@ public class DAOImpresoraImp implements DAOImpresora {
 						+ "profundidad='" +  tImpresora.getProfundidad() + "', "
 						+ "usuario='" + tImpresora.getUsuario() + "', "
 						+ "activo=" + (tImpresora.getActivo() ? 1 : 0) + " "
-						+ "WHERE idDiseño=" + tImpresora.getId_impresora();
+						+ "WHERE idImpresora=" + tImpresora.getId_impresora();
 				statement.executeUpdate(query);
 				idImpresora = tImpresora.getId_impresora();
 			} catch (SQLException e) {

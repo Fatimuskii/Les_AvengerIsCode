@@ -47,7 +47,6 @@ public class GUIAltaImpresora extends JFrame{
 	private JPanel contentPane;
 
 	private JButton btnFinalizar;
-	private JTextField txtIntroduceTuId;
 	private JTextField textFieldAlto;
 	private JTextField textFieldAncho;
 	private JTextField textFieldProfundidad;
@@ -153,7 +152,11 @@ public class GUIAltaImpresora extends JFrame{
 		});
 		btnFinalizar.setBounds(281, 339, 104, 30);
 		
+		JLabel lblcm = new JLabel("cm");
+		lblcm.setBounds(346, 234, 46, 14);
+		
 		contentPane.setLayout(null);
+		contentPane.add(lblcm);
 		contentPane.add(lblTamao);
 		contentPane.add(lblX);
 		contentPane.add(label_6);

@@ -111,6 +111,9 @@ public class GUIListarDiseños extends JFrame{
 	public void update(int event, ArrayList<TDiseño> res){
 		switch (event) {
 		case Events.LISTAR_DISEÑOS_OK:
+			this.setVisible(true);
+			this.toFront();
+
 			 tableModel.setRowCount(0);
 			 for (int i = 0; i < res.size(); i++)
 				 tableModel.insertRow(i, new Object[] 

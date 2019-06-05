@@ -54,8 +54,8 @@ CREATE TABLE IF NOT EXISTS usuario (
 CREATE TABLE IF NOT EXISTS disenos(
 	idDiseno int(5) NOT NULL AUTO_INCREMENT,
 	nombre varchar(20) NOT NULL,
-	descripcion varchar(200),
-	propietario int(5) REFERENCES Usuario(idUsuario),
+	descripcion varchar(100),
+	propietario int(5) REFERENCES Usuario(idUsuario) ON UPDATE RESTRICT,
 	alto float NOT NULL,
 	ancho float NOT NULL,
 	profundidad float NOT NULL,
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS impresora(
 	alto float NOT NULL,
 	ancho float NOT NULL,
 	profundidad float NOT NULL,
-	usuario int(5) REFERENCES Usuario(idUsuario),
+	usuario int(5) REFERENCES Usuario(idUsuario) ON UPDATE RESTRICT,
 	activo tinyint(1) NOT NULL,
 	PRIMARY KEY (idImpresora)
 );

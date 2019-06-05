@@ -5,9 +5,12 @@ package Presentación.Diseño;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.KeyboardFocusManager;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -74,11 +77,23 @@ public class GUIAltaDiseño extends JFrame{
 		lblArchivo.setBounds(27, 317, 81, 14);
 		
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(118, 54, 301, 92);
 		
 		textAreaDescripcion = new JTextArea();
 		textAreaDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		scrollPane.setViewportView(textAreaDescripcion);
+		textAreaDescripcion.setWrapStyleWord(true);
+		textAreaDescripcion.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (textAreaDescripcion.getText().length()== 100) 
+			         e.consume(); 
+			}
+		});
+		textAreaDescripcion.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, null);
+		textAreaDescripcion.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, null);
+
 		
 		textAltura = new JTextField();
 		textAltura.setBounds(118, 162, 160, 20);
@@ -118,24 +133,27 @@ public class GUIAltaDiseño extends JFrame{
 					float altura = Float.parseFloat(textAltura.getText());
 					float ancho = Float.parseFloat(textAncho.getText());
 					float profundidad = Float.parseFloat(textProfundidad.getText());
-					double precio = Float.parseFloat(textPrecio.getText());
+					double precio = Double.parseDouble(textPrecio.getText());
 					String descripcion = textAreaDescripcion.getText();
 					String archivo = textArchivo.getText();
 					
 					if(nombre.equals("") || textAltura.getText().equals("") || textAncho.getText().equals("")||
 							textProfundidad.getText().equals("") || textPrecio.getText().equals("") ||
 							textArchivo.getText().equals("")){
-						throw new Exception();
+						throw new Exception("Introduzca todos los datos correctamente");
 					}
 					String[] a = archivo.split("\\.");
-					if(!a[1].equals("stf")){
+					if(a.length == 1 || !a[1].equals("stf") || a.length > 2){
 						throw new Exception("La extensión del archivo no es válida");
 					}
 					TDiseño diseño = new TDiseño(nombre, descripcion, -1, altura, ancho, profundidad, precio, archivo, true);
 					Controlador.getInstance().accion(Events.ALTA_DISEÑO, diseño);
 				}
-				catch(Exception ex){
+				catch(NumberFormatException nf){
 					JOptionPane.showMessageDialog(null, "Introduzca todos los datos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				catch(Exception ex){
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -189,6 +207,18 @@ public class GUIAltaDiseño extends JFrame{
 		JLabel lbstf = new JLabel("(deberá ser .stf)");
 		lbstf.setBounds(118, 337, 160, 14);
 		contentPane.add(lbstf);
+		
+		JLabel lblCm = new JLabel("cm");
+		lblCm.setBounds(282, 165, 46, 14);
+		contentPane.add(lblCm);
+		
+		JLabel label_6 = new JLabel("cm");
+		label_6.setBounds(282, 203, 46, 14);
+		contentPane.add(label_6);
+		
+		JLabel label_7 = new JLabel("cm");
+		label_7.setBounds(282, 241, 46, 14);
+		contentPane.add(label_7);
 	}
 	
 	/** 

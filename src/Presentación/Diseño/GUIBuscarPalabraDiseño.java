@@ -110,6 +110,10 @@ public class GUIBuscarPalabraDiseño extends JFrame{
 	public void update(int event, ArrayList<TDiseño> res){
 		switch (event) {
 		case Events.BUSCAR_DISEÑO_PALABRA_CLAVE_OK:
+			
+			this.setVisible(true);
+			this.toFront();
+
 			if(res.size()>0){
 			 tableModel.setRowCount(0);
 			 for (int i = 0; i < res.size(); i++)

@@ -197,6 +197,7 @@ public class GUIBuscarporIdDiseño extends JFrame{
 	public void update(int event, TDiseño res){
 		switch (event) {
 		case Events.BUSCAR_DISEÑO_ID_OK:
+			
 			textDiseño.setText("" + res.getId_diseño());
 			textNombre.setText("" + res.getNombre());
 			textDimensiones.setText("" + res.getAlto() + "x" + res.getAncho() + "x" + res.getProfundidad());
@@ -208,6 +209,8 @@ public class GUIBuscarporIdDiseño extends JFrame{
 			textDimensiones.setEnabled(true);
 			textPropietario.setEnabled(true);
 			textPane.setEnabled(true);
+			
+			this.setVisible(true);
 			break;
 		case Events.BUSCAR_DISEÑO_ID_KO:
 			this.dispose();

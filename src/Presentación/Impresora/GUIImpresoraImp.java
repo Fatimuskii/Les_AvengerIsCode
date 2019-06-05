@@ -13,9 +13,6 @@ import java.awt.Font;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Color;
@@ -224,7 +221,11 @@ public class GUIImpresoraImp extends GUIImpresora {
 					gUIBuscarUsuarioImpresora.clearData();
 					Controlador.getInstance().accion(
 							Events.BUSCAR_USUARIO_IMPRESORA, idUsuario);
-				} catch (Exception ex) {
+				} 
+				catch(NumberFormatException nf){
+					JOptionPane.showMessageDialog(null, "Introduzca un id correcto (número)", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				catch (Exception ex) {
 					JOptionPane.showMessageDialog(null, ex.getMessage(),
 							"Error", JOptionPane.ERROR_MESSAGE);
 				}
@@ -268,10 +269,16 @@ public class GUIImpresoraImp extends GUIImpresora {
 			gUIBajaImpresora.update(event, res);
 			break;
 		case Events.MODIFICAR_IMPRESORA_OK:
-			gUIModificarImpresora.update(event, (TImpresora) res);
+			gUIModificarImpresora.update(event, res);
 			break;
 		case Events.MODIFICAR_IMPRESORA_KO:
-			gUIModificarImpresora.update(event, (TImpresora) res);
+			gUIModificarImpresora.update(event, res);
+			break;
+		case Events.MODIFICAR_IMPRESORA_COMPROBAR_OK:
+			gUIModificarImpresora.update(event, res);
+			break;
+		case Events.MODIFICAR_IMPRESORA_COMPROBAR_KO:
+			gUIModificarImpresora.update(event, res);
 			break;
 		case Events.LISTAR_IMPRESORAS_OK:
 			gUIListarImpresora.update(event, (ArrayList<TImpresora>) res);

@@ -110,6 +110,9 @@ public class GUIListarporUsuarioDiseño extends JFrame{
 	public void update(int event, ArrayList<TDiseño> res){
 		switch (event) {
 		case Events.LISTAR_DISEÑOS_USU_OK:
+			this.setVisible(true);
+			this.toFront();
+
 			if(res.size()>0){
 				 tableModel.setRowCount(0);
 				 for (int i = 0; i < res.size(); i++)
@@ -126,7 +129,6 @@ public class GUIListarporUsuarioDiseño extends JFrame{
 			break;
 		case Events.LISTAR_DISEÑOS_USU_KO:
 			JOptionPane.showMessageDialog(null,"Error al listar los diseños");
-			
 			break;
 		}
 		

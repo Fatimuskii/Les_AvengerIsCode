@@ -12,6 +12,9 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JSeparator;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
@@ -20,6 +23,7 @@ import Negocio.Diseño.TDiseño;
 import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 
+import java.awt.KeyboardFocusManager;
 import java.awt.SystemColor;
 
 /** 
@@ -70,14 +74,14 @@ public class GUIModificarDiseño extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				try{
 					if(textID.getText().equals("")){
-						throw new Exception();
+						throw new Exception("Introduzca un ID válido");
 					}
 					id = Integer.parseInt(textID.getText());
 					Controlador.getInstance().accion(Events.MODIFICAR_DISEÑO_COMPROBAR, id);
 					toFront();
 				}
 				catch(Exception e){
-					JOptionPane.showMessageDialog(null, "Introduzca un ID válido", "Error", JOptionPane.ERROR_MESSAGE);	
+					JOptionPane.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);	
 				}
 			}
 		});
@@ -103,6 +107,15 @@ public class GUIModificarDiseño extends JFrame{
 		textPane.setBackground(SystemColor.menu);
 		textPane.setEditable(false);
 		scrollPane.setViewportView(textPane);
+		textPane.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if (textPane.getText().length()== 100) 
+			         e.consume(); 
+			}
+		});
+		textPane.setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, null);
+		textPane.setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, null);
 		
 		JLabel lblAltura = new JLabel("Alto:");
 		lblAltura.setBounds(15, 216, 81, 14);
@@ -144,24 +157,31 @@ public class GUIModificarDiseño extends JFrame{
 					if(textNombre.getText().equals("") || textAlto.getText().equals("") || textAncho.getText().equals("")||
 							textProfundidad.getText().equals("") || textPrecio.getText().equals("") || 
 							textArchivo.getText().equals("")){
-						throw new Exception();
+						throw new Exception("Introduzca los datos correctamente");
 					}
 					
 					String nombre = textNombre.getText();
 					String descripcion = textPane.getText();
-					float precio = Float.parseFloat(textPrecio.getText());
+					double precio = Double.parseDouble(textPrecio.getText());
 					float alto = Float.parseFloat(textAlto.getText());
 					float ancho = Float.parseFloat(textAncho.getText());
 					float profundidad = Float.parseFloat(textProfundidad.getText());
 					String archivo = textArchivo.getText();
 					
-						
-					TDiseño tDiseño = new TDiseño (id, nombre, descripcion,propietario, alto, ancho, profundidad,precio, archivo,true); 
+					String[] a = archivo.split("\\.");
+					if(a.length == 1 || !a[1].equals("stf") || a.length > 2){
+						throw new Exception("La extensión del archivo no es válida");
+					}
+					TDiseño tDiseño = new TDiseño (id, nombre, descripcion, propietario, alto, ancho, profundidad,precio, archivo,true); 
 				
 					Controlador.getInstance().accion(Events.MODIFICAR_DISEÑO, tDiseño);
 				}
-				catch(Exception ex){
+				catch(NumberFormatException nf){
 					JOptionPane.showMessageDialog(null, "Introduzca todos los datos correctamente", "Error", JOptionPane.ERROR_MESSAGE);
+				}
+				catch(Exception ex){
+					ex.printStackTrace();
+					JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
@@ -222,7 +242,7 @@ public class GUIModificarDiseño extends JFrame{
 		// end-user-code
 	}
 	
-	public void update(int event, TDiseño res){
+	public void update(int event, Object res){
 		switch (event) {
 		case Events.MODIFICAR_DISEÑO_OK:
 			JOptionPane.showMessageDialog(null,"Éxito al modificar el diseño id: "+ id);
@@ -250,15 +270,16 @@ public class GUIModificarDiseño extends JFrame{
 			textPane.setEnabled(true);
 			
 			
-			textNombre.setText(res.getNombre());
-			textAlto.setText(res.getAlto()+"");
-			textAncho.setText(res.getAncho()+"");
-			textProfundidad.setText(res.getProfundidad()+"");
-			textArchivo.setText(res.getArchivo());
-			textPrecio.setText(res.getPrecio()+"");
-			textPane.setText(res.getDescripcion());
+			textNombre.setText(((TDiseño) res).getNombre());
+			textAlto.setText(((TDiseño) res).getAlto()+"");
+			textAncho.setText(((TDiseño) res).getAncho()+"");
+			textProfundidad.setText(((TDiseño) res).getProfundidad()+"");
+			textArchivo.setText(((TDiseño) res).getArchivo());
+			textPrecio.setText(((TDiseño) res).getPrecio()+"");
+			textPane.setText(((TDiseño) res).getDescripcion());
 			
-			propietario = res.getPropietario();
+			propietario = ((TDiseño) res).getPropietario();
+			id = ((TDiseño) res).getId_diseño();
 			break;
 		case Events.MODIFICAR_DISEÑO_COMPROBAR_KO:
 			JOptionPane.showMessageDialog(null,"El diseño con el id: " + id + " no existe.","Error Diseño",JOptionPane.ERROR_MESSAGE);

@@ -311,7 +311,7 @@ public class ControladorImp extends Controlador {
 						Events.MODIFICAR_IMPRESORA_COMPROBAR_OK, tImpresora);
 			else
 				GUIImpresora.getInstance().update(
-						Events.MODIFICAR_IMPRESORA_COMPROBAR_KO, null);
+						Events.MODIFICAR_IMPRESORA_COMPROBAR_KO, tImpresora);
 			break;
 		/* DISEÑO */
 		case Events.OPEN_GUI_DISEÑO_MENU:
@@ -395,10 +395,10 @@ public class ControladorImp extends Controlador {
 			tDiseño = this.SADiseño.buscarPorId(idDiseño);
 			if (tDiseño != null)
 				GUIDiseño.getInstance().update(
-						Events.MODIFICAR_DISEÑO_COMPROBAR_OK, null);
+						Events.MODIFICAR_DISEÑO_COMPROBAR_OK, tDiseño);
 			else
 				GUIDiseño.getInstance().update(
-						Events.MODIFICAR_DISEÑO_COMPROBAR_KO, null);
+						Events.MODIFICAR_DISEÑO_COMPROBAR_KO, tDiseño);
 			break;
 		case Events.ACCESO_USUARIO:
 			// logguear en usuario
