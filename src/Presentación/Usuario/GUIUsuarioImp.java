@@ -188,19 +188,9 @@ public class GUIUsuarioImp extends GUIUsuario {
 				if (!textField.getText().equals("Buscar usuario")) {
 					id = Integer.parseInt(textField.getText());
 					GUI_BuscarporIdUsuario = new GUIBuscarporIdUsuario<Object>(
-							id);// ***
+							id);
 
 					Controlador.getInstance().accion(Events.BUSCAR_USUARIO, id);
-
-					//
-					//
-					// Controlador.getInstance().accion(Events.LISTAR_DISEÑOS_USU_LOG,
-					// id);
-					// Controlador.getInstance().accion(Events.LISTAR_IMPRESORAS_USU_LOG,
-					// id);
-
-					// GUI_BuscarporIdUsuario.setVisible(true);
-					// GUI_BuscarporIdUsuario.toFront();
 				} else {
 					mensaje.showMessage("Debe introducir un Id",
 							"Buscar Usuario", false);

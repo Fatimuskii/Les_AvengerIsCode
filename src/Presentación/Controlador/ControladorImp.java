@@ -308,7 +308,7 @@ public class ControladorImp extends Controlador {
 			tImpresora = this.SAImpresora.buscarId(idImpresora);
 			if (tImpresora != null)
 				GUIImpresora.getInstance().update(
-						Events.MODIFICAR_IMPRESORA_COMPROBAR_OK, null);
+						Events.MODIFICAR_IMPRESORA_COMPROBAR_OK, tImpresora);
 			else
 				GUIImpresora.getInstance().update(
 						Events.MODIFICAR_IMPRESORA_COMPROBAR_KO, null);

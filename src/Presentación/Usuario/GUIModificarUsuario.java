@@ -74,16 +74,17 @@ public class GUIModificarUsuario extends JFrame {
 	private JTextField numTarjeta;
 	private JTextField nombreTarjeta;
 	private JTextField txtIdusuario;
-//	private SimpleDateFormat fechaNac;
-//	private SimpleDateFormat fechaVenc;
+	// private SimpleDateFormat fechaNac;
+	// private SimpleDateFormat fechaVenc;
 
 	private int id;
-	//private boolean admin;
+
+	// private boolean admin;
 
 	public GUIModificarUsuario(int id) {
 		super();
 		this.contentPane = new JPanel();
-	//	this.admin = admin;
+		// this.admin = admin;
 		this.id = id;
 		this.setFocusable(true);
 		initGUI();
@@ -103,27 +104,27 @@ public class GUIModificarUsuario extends JFrame {
 		panel.setLayout(null);
 
 		txtIdusuario = new JTextField();
-	//	if (admin) {
-			txtIdusuario.addFocusListener(new FocusAdapter() {
-				@Override
-				public void focusGained(FocusEvent arg0) {
-					if (txtIdusuario.getText().equals("idUsuario")) {
-						txtIdusuario.setText("");
-					}
+		// if (admin) {
+		txtIdusuario.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				if (txtIdusuario.getText().equals("idUsuario")) {
+					txtIdusuario.setText("");
 				}
+			}
 
-				@Override
-				public void focusLost(FocusEvent e) {
-					if (txtIdusuario.getText().equals("")) {
-						txtIdusuario.setText("idUsuario");
-					}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtIdusuario.getText().equals("")) {
+					txtIdusuario.setText("idUsuario");
 				}
-			});
-			txtIdusuario.setText("idUsuario");
-//		} else {
-//			txtIdusuario.setText(String.valueOf(id));
-//			txtIdusuario.setEditable(false);
-//		}
+			}
+		});
+		txtIdusuario.setText("idUsuario");
+		// } else {
+		// txtIdusuario.setText(String.valueOf(id));
+		// txtIdusuario.setEditable(false);
+		// }
 		txtIdusuario.setToolTipText("");
 		txtIdusuario.setForeground(Color.DARK_GRAY);
 		txtIdusuario.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -133,17 +134,17 @@ public class GUIModificarUsuario extends JFrame {
 
 		JButton btnComprobar = new JButton("Comprobar");
 		btnComprobar.setBounds(193, 28, 89, 23);
-	//	if (admin) {
-			btnComprobar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					id = Integer.parseInt(txtIdusuario.getText());
-					Controlador.getInstance().accion(
-							Events.MODIFICAR_USUARIO_COMPROBAR, id);
-					toFront();
-				}
-			});
-	//	}
-	//	else btnComprobar.setEnabled(false);
+		// if (admin) {
+		btnComprobar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				id = Integer.parseInt(txtIdusuario.getText());
+				Controlador.getInstance().accion(
+						Events.MODIFICAR_USUARIO_COMPROBAR, id);
+				toFront();
+			}
+		});
+		// }
+		// else btnComprobar.setEnabled(false);
 		panel.add(btnComprobar);
 
 		txtNombre = new JTextField();
@@ -377,21 +378,21 @@ public class GUIModificarUsuario extends JFrame {
 		btnFinalizar = new JButton("Finalizar");
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			//	if(admin)
+				// if(admin)
 				id = Integer.parseInt(txtIdusuario.getText());
 				String nombre = txtNombre.getText();
 				String apellidos = txtApellidos.getText();
 				String email = txtEmail.getText();
 				String fechaNacimiento = dia.getValue().toString() + "/"
-						+ mes.getValue().toString() + "/" + anio.getValue().toString();
-				
+						+ mes.getValue().toString() + "/"
+						+ anio.getValue().toString();
 
 				String direccion = txtDireccin.getText();
 				String nombTarjeta = nombreTarjeta.getText();
 				String numeroTarjeta = numTarjeta.getText();
 				String fechaVencimiento = mes_2.getValue() + "/"
 						+ anio_2.getValue();
-				
+
 				String contraseña = txtContrasea.getText();
 
 				TUsuario tUsuario = new TUsuario(id, nombre, apellidos, email,
@@ -441,7 +442,6 @@ public class GUIModificarUsuario extends JFrame {
 		txtEmail.setEditable(false);
 	}
 
-	@SuppressWarnings("deprecation")
 	public void update(int events, TUsuario res) {
 		switch (events) {
 		case Events.MODIFICAR_USUARIO_OK:
@@ -471,7 +471,7 @@ public class GUIModificarUsuario extends JFrame {
 			((DefaultEditor) anio_2.getEditor()).getTextField().setEditable(
 					true);
 			txtEmail.setEditable(true);
-			
+
 			txtNombre.setText(res.getNombre());
 			txtApellidos.setText(res.getApellidos());
 			txtContrasea.setText(res.getContraseña());
@@ -480,19 +480,16 @@ public class GUIModificarUsuario extends JFrame {
 			numTarjeta.setText(res.getNumeroCuenta());
 			nombreTarjeta.setText(res.getTitularCuenta());
 			txtEmail.setText(res.getEmail());
-//			dia.setValue(res.getFechaNacimiento().substring(0, 2));
-//			mes.setValue(res.getFechaNacimiento().substring(3, 5));
-//			anio.setValue(res.getFechaNacimiento().substring(6, 9));
-//			mes_2.setValue(res.getFechaCaducidad().substring(0, 2));
-//			anio_2.setValue(res.getFechaCaducidad().substring(4, 7));
-			
 
 			
-			dia.setValue(Integer.valueOf(Integer.parseInt(res.getFechaNacimiento().substring(0, 1))));
-			mes.setValue(Integer.valueOf(Integer.parseInt(res.getFechaNacimiento().substring(2, 4))));//**************
-			anio.setValue(Integer.valueOf(Integer.parseInt(res.getFechaNacimiento().substring(5, 9))));
-			mes_2.setValue(Integer.valueOf(Integer.parseInt(res.getFechaCaducidad().substring(0, 1))));
-			anio_2.setValue(Integer.valueOf(Integer.parseInt(res.getFechaCaducidad().substring(2, 6))));
+			String fechaNacm[] = res.getFechaNacimiento().split("/");
+			dia.setValue(Integer.valueOf(fechaNacm[0]));
+			mes.setValue(Integer.valueOf(fechaNacm[1]));
+			anio.setValue(Integer.valueOf(fechaNacm[2]));
+			
+			String fechaVencm[] = res.getFechaCaducidad().split("/");
+			mes_2.setValue(Integer.parseInt(fechaVencm[0]));
+			anio_2.setValue(Integer.parseInt(fechaVencm[1]));
 
 			txtNombre.setEnabled(true);
 			txtApellidos.setEnabled(true);

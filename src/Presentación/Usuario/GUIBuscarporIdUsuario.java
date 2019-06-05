@@ -53,6 +53,7 @@ public class GUIBuscarporIdUsuario<T> extends JFrame {
 	private JTable table_1;
 	private DefaultTableModel model;
 	private DefaultTableModel model_1;
+	// private String nombre;
 
 	private int id;
 
@@ -127,8 +128,11 @@ public class GUIBuscarporIdUsuario<T> extends JFrame {
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon("imagenes\\logo-REDM-REDM.png"));
 
-		JLabel lblIdusuario = new JLabel(String.valueOf(id));
+		JLabel lblIdusuario = new JLabel("IdUsuario: " + String.valueOf(id));
 		lblIdusuario.setFont(new Font("Tahoma", Font.BOLD, 11));
+
+		// JLabel lblNombre = new JLabel("Nombre: " + nombre);
+		// lblNombre.setFont(new Font("Tahoma", Font.BOLD, 11));
 
 		JLabel lblEmail = new JLabel();
 		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -155,6 +159,8 @@ public class GUIBuscarporIdUsuario<T> extends JFrame {
 						.addGap(29)
 						.addComponent(lblEmail, GroupLayout.PREFERRED_SIZE,
 								156, GroupLayout.PREFERRED_SIZE)
+						// .addComponent(lblNombre, GroupLayout.PREFERRED_SIZE,
+						// 130, GroupLayout.PREFERRED_SIZE)
 						.addContainerGap(318, Short.MAX_VALUE)));
 		groupLayout
 				.setVerticalGroup(groupLayout
@@ -178,8 +184,13 @@ public class GUIBuscarporIdUsuario<T> extends JFrame {
 																lblEmail,
 																GroupLayout.PREFERRED_SIZE,
 																15,
-																GroupLayout.PREFERRED_SIZE))
-										.addContainerGap(311, Short.MAX_VALUE)));
+																GroupLayout.PREFERRED_SIZE)
+										// .addComponent(
+										// lblNombre,
+										// GroupLayout.PREFERRED_SIZE,
+										// 15,
+										// GroupLayout.PREFERRED_SIZE)
+										).addContainerGap(311, Short.MAX_VALUE)));
 		getContentPane().setLayout(groupLayout);
 	}
 
@@ -192,23 +203,26 @@ public class GUIBuscarporIdUsuario<T> extends JFrame {
 	}
 
 	@SuppressWarnings("unchecked")
-	public void update(int event, Object res) {//ArrayList<T> res
+	public void update(int event, Object res) {// ArrayList<T> res
 		switch (event) {
 
 		case Events.LISTAR_DISEÑOS_USU_LOG_OK:
-		//	res = (ArrayList<T>) res;
+			// res = (ArrayList<T>) res;
 			model.setRowCount(0);
 			for (int i = 0; i < ((ArrayList<TDiseño>) res).size(); i++)
 				model.insertRow(
 						i,
 						new Object[] {
 								i + 1,
-								(((ArrayList<TDiseño>) res).get(i)).getId_diseño(),
+								(((ArrayList<TDiseño>) res).get(i))
+										.getId_diseño(),
 								(((ArrayList<TDiseño>) res).get(i)).getNombre(),
-								(((ArrayList<TDiseño>) res).get(i)).getDescripcion(),
+								(((ArrayList<TDiseño>) res).get(i))
+										.getDescripcion(),
 								(((ArrayList<TDiseño>) res).get(i)).getAlto()
 										+ "x"
-										+ (((ArrayList<TDiseño>) res).get(i)).getAncho()
+										+ (((ArrayList<TDiseño>) res).get(i))
+												.getAncho()
 										+ "x"
 										+ (((ArrayList<TDiseño>) res).get(i))
 												.getProfundidad(),
@@ -222,15 +236,20 @@ public class GUIBuscarporIdUsuario<T> extends JFrame {
 						i,
 						new Object[] {
 								i + 1,
-								(((ArrayList<TImpresora>) res).get(i)).getId_impresora(),
-								(((ArrayList<TImpresora>) res).get(i)).getUsuario(),
-								(((ArrayList<TImpresora>) res).get(i)).getAlto()
+								(((ArrayList<TImpresora>) res).get(i))
+										.getId_impresora(),
+								(((ArrayList<TImpresora>) res).get(i))
+										.getUsuario(),
+								(((ArrayList<TImpresora>) res).get(i))
+										.getAlto()
 										+ "x"
-										+ (((ArrayList<TImpresora>) res).get(i)).getAncho()
+										+ (((ArrayList<TImpresora>) res).get(i))
+												.getAncho()
 										+ "x"
 										+ (((ArrayList<TImpresora>) res).get(i))
 												.getProfundidad(),
-								(((ArrayList<TImpresora>) res).get(i)).getMaterial() });
+								(((ArrayList<TImpresora>) res).get(i))
+										.getMaterial() });
 			table_1.setModel(model_1);
 			break;
 
@@ -251,6 +270,7 @@ public class GUIBuscarporIdUsuario<T> extends JFrame {
 			Controlador.getInstance().accion(Events.LISTAR_DISEÑOS_USU_LOG, id);
 			Controlador.getInstance().accion(Events.LISTAR_IMPRESORAS_USU_LOG,
 					id);
+			//this.nombre = ((TUsuario) res).getNombre();
 			this.setVisible(true);
 			this.toFront();
 			break;
