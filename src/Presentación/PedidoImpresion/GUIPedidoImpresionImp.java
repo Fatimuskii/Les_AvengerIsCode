@@ -80,77 +80,7 @@ public class GUIPedidoImpresionImp extends GUIPedidoImpresion {
 		menuBar.setBounds(0, 0, 587, 40);
 		contentPane.add(menuBar);
 
-		JMenu mnArchivo = new JMenu("Archivo");
-		menuBar.add(mnArchivo);
-
-		JMenuItem mntmSalir = new JMenuItem("Salir");
-		mntmSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
-			}
-		});
-		mnArchivo.add(mntmSalir);
-
-		JMenu mnAlta = new JMenu("Menu Pedido");
-		menuBar.add(mnAlta);
-
-		JMenuItem mntmAlta = new JMenuItem("Hacer pedido\r\n");
-		mntmAlta.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				
-				GUIDatos = new GUIAltaPedidoImpresionSeleccion(usuarioSol);
-				GUIDatos.setVisible(true);
-				Controlador.getInstance().accion(Events.ALTA_PEDIDO_IMPRESION_LISTADISENIOS, usuarioSol.getIdUsuario());
-				Controlador.getInstance().accion(Events.ALTA_PEDIDO_IMPRESION_LISTAIMPRESORAS,null);
-				Controlador.getInstance().accion(Events.ALTA_PEDIDO_IMPRESION_LISTALOCALES, null);
-			
-				
-				
-			
-			}
-		});
-		mnAlta.add(mntmAlta);
-
-		JMenuItem mntmBaja = new JMenuItem("Cancelar pedido\r\n");
-		mntmBaja.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				res_mensaje.showMessage("Opción no implementada. ",
-						"CANCELAR PEDIDO", false);
-			}
-		});
-		mnAlta.add(mntmBaja);
-
-		JMenuItem mntmBuscar = new JMenuItem("Buscar pedido\r\n");
-		mntmBuscar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				res_mensaje.showMessage("Opción no implementada. ",
-						"BUSCAR PEDIDO", false);
-			}
-		});
-		mnAlta.add(mntmBuscar);
-
-		JMenu mnModificar = new JMenu("Modificar");
-		mnAlta.add(mnModificar);
-
-		JMenuItem mntmPedidoImpresion = new JMenuItem("Pedido impresion");
-		mntmPedidoImpresion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				res_mensaje.showMessage("Opción no implementada. ",
-						"MODIFICAR PEDIDO", false);
-			}
-		});
-		mnModificar.add(mntmPedidoImpresion);
-
-		JMenuItem mntmEnvio = new JMenuItem("Envio");
-		mntmEnvio.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				res_mensaje.showMessage("Opción no implementada. ",
-						"ENVIO PEDIDO", false);
-				// dispose();
-			}
-		});
-		mnModificar.add(mntmEnvio);
+		
 
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon("imagenes\\logoUsu.png"));

@@ -274,11 +274,11 @@ public class GUIImpresoraImp extends GUIImpresora {
 		case Events.MODIFICAR_IMPRESORA_KO:
 			gUIModificarImpresora.update(event, res);
 			break;
-		case Events.MODIFICAR_IMPRESORA_COMPROBAR_OK:
-			gUIModificarImpresora.update(event, res);
-			break;
 		case Events.MODIFICAR_IMPRESORA_COMPROBAR_KO:
 			gUIModificarImpresora.update(event, res);
+			break;
+		case Events.MODIFICAR_IMPRESORA_COMPROBAR_OK:
+			gUIModificarImpresora.update(event, (TImpresora) res);
 			break;
 		case Events.LISTAR_IMPRESORAS_OK:
 			gUIListarImpresora.update(event, (ArrayList<TImpresora>) res);

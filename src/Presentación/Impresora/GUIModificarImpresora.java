@@ -218,6 +218,7 @@ public class GUIModificarImpresora extends JFrame {
 			textAncho.setText(String.valueOf(((TImpresora) res).getAncho()));
 			textProfundidad.setText(String.valueOf(((TImpresora) res).getProfundidad()));
 			
+
 			break;
 		case Events.MODIFICAR_IMPRESORA_COMPROBAR_KO:
 			JOptionPane.showMessageDialog(null,

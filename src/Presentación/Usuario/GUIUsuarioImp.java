@@ -43,6 +43,7 @@ import Presentación.Local.GUIBuscarLocal;
  *            "UML a Java (com.ibm.xtools.transform.uml2.java5.internal.UML2JavaTransform)"
  */
 
+@SuppressWarnings("serial")
 public class GUIUsuarioImp extends GUIUsuario {
 
 	private JPanel contentPane;
@@ -53,31 +54,21 @@ public class GUIUsuarioImp extends GUIUsuario {
 	private GUIListarUsuarios GUI_ListarUsuarios;
 	private GUIBuscarporIdUsuario<Object> GUI_BuscarporIdUsuario;
 	private JLabel id_Usuario;
-//	private boolean admin;
 
 	private int id;
 
-	// private GUIAccesoUsuario GUI_AccesoUsuario;
 
 	public GUIUsuarioImp() {
 		super();
-	//	this.admin = true;// ************************* pasar como parametro
-		// this.id = userLog.getIdUsuario();
 		this.contentPane = new JPanel();
 		this.GUI_BajaUsuario = new GUIBajaUsuario();
 		this.GUI_AltaUsuario = new GUIAltaUsuario();
 		this.GUI_ListarUsuarios = new GUIListarUsuarios();
 		this.GUI_ModificarUsuario = new GUIModificarUsuario(id);
-		// this.GUI_AccesoUsuario = new GUIAccesoUsuario();
 		initGUI();
 	}
 
 	public void initGUI() {
-		/*
-		 * setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes\\logo.png"
-		 * )); setTitle("Perfil Usuario"); setBounds(100, 100, 521, 300);
-		 */
-
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -102,7 +93,6 @@ public class GUIUsuarioImp extends GUIUsuario {
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			//	if (admin)
 					GUI_ModificarUsuario.clearData();
 				GUI_ModificarUsuario.setVisible(true);
 			}
@@ -115,7 +105,6 @@ public class GUIUsuarioImp extends GUIUsuario {
 		JButton btnBaja = new JButton("Dar de baja");
 		btnBaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			//	if (admin)
 					GUI_ModificarUsuario.clearData();
 				GUI_BajaUsuario.setVisible(true);
 			}
@@ -123,39 +112,6 @@ public class GUIUsuarioImp extends GUIUsuario {
 
 		btnBaja.setBounds(230, 86, 100, 21);
 		panel.add(btnBaja);
-
-//		// DAR DE ALTA
-//		JButton btnAlta = new JButton("Dar de alta");
-//		btnAlta.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
-//			//	if (admin)
-//					GUI_ModificarUsuario.clearData();
-//				GUI_AltaUsuario.setVisible(true);
-//			}
-//		});
-//
-//		btnAlta.setBounds(350, 86, 100, 21);
-//		panel.add(btnAlta);
-//		if (!admin)
-//			btnAlta.setEnabled(false);
-
-		// CERRAR SESION
-		JButton btnCerrarSesion = new JButton("Cerrar sesión");
-		btnCerrarSesion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			//	if (admin)
-					GUI_ModificarUsuario.clearData();
-
-				int confirma = JOptionPane.showConfirmDialog(null,
-						"Se va a cerrar la aplicación", "Cerrar sesión",
-						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-				if (confirma == JOptionPane.YES_OPTION)
-					System.exit(0);
-			}
-		});
-
-		btnCerrarSesion.setBounds(470, 86, 130, 21);
-		panel.add(btnCerrarSesion);
 
 		textField = new JTextField();
 		textField.setText("Buscar usuario");
@@ -208,8 +164,6 @@ public class GUIUsuarioImp extends GUIUsuario {
 			}
 		});
 		panel.add(button);
-//		if (!admin)
-//			button.setEnabled(false);
 	}
 
 	@SuppressWarnings("unchecked")
