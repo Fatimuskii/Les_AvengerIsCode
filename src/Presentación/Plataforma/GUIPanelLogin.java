@@ -92,6 +92,7 @@ public class GUIPanelLogin extends JPanel implements GUIEventoPlataforma {
 		panel_1.add(btnNewButton);
 		
 		panel_1.add(btnNewButton_1);
+		
 	}
 
 	@Override

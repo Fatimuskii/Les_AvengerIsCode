@@ -1,8 +1,11 @@
 package Presentación.Plataforma;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.text.SimpleAttributeSet;
@@ -31,6 +34,18 @@ public class GUIPanelLogueado extends JPanel implements GUIEventoPlataforma{
 		this.btnCarrito = new JButton("Carrito");
 		//btnCarrito.setIcon(new ImageIcon("C:\\Users\\iconm\\eclipse-workspace\\plataformaInterfaz\\resources\\imagenes\\plataforma\\carritoCompra.png"));
 		add(this.btnCarrito, BorderLayout.SOUTH);
+		
+		JButton btnCerrarSesion = new JButton("Cerrar sesión");
+		btnCerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int confirma = JOptionPane.showConfirmDialog(null,
+						"Se va a cerrar la aplicación", "Cerrar sesión",
+						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+				if (confirma == JOptionPane.YES_OPTION)
+					System.exit(0);
+			}
+		});
+		add(btnCerrarSesion,BorderLayout.CENTER);
 	}
 	
 	public JButton getBotonCarrito() {
