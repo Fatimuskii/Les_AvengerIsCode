@@ -163,7 +163,7 @@ public class GUIBuscarLocal extends JFrame {
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int confirma = JOptionPane.showConfirmDialog(null,
-						"¿Desea dar de este local?", "Confirmar baja",
+						"¿Está seguro que quiere dar de baja este local?", "Confirmar baja",
 						JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
 				if (confirma == JOptionPane.YES_OPTION){
 					Controlador.getInstance().accion(Events.BAJA_LOCAL,
