@@ -88,7 +88,7 @@ public class GUIVentanaPlataforma extends JPanel implements GUIEventoPlataforma 
 		
 		panelCarrito=new GUIPanelCarrito();
 
-		imagenSuperior = new GUIImagePanel(new ImageIcon("resources/imagenes/plataforma/avengerisLOGO.png").getImage());
+		imagenSuperior = new GUIImagePanel(new ImageIcon("imagenes/avengerisLOGO.png").getImage());
 		superiorPane.add(imagenSuperior, BorderLayout.WEST);
 		
 		izquierdoPane = new JPanel();

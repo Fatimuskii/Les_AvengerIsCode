@@ -22,7 +22,7 @@ public class GUIPlataformaImp extends GUIPlataforma {
 	public void initGUI() {
 		setBounds(100, 100, 1071, 684);
 		this.setLocationRelativeTo(null);//Pone el JFrame en el centro
-		setIconImage(Toolkit.getDefaultToolkit().getImage("resources/imagenes/plataforma/avengerisLOGO (Recortado).png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("imagenes/avengerisLOGO (Recortado).png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
