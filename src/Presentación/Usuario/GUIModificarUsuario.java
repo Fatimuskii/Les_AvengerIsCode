@@ -39,6 +39,7 @@ import javax.swing.border.EmptyBorder;
 
 import Negocio.Diseño.TDiseño;
 import Negocio.Usuario.TUsuario;
+import Presentación.GUIMensaje;
 import Presentación.Controlador.Controlador;
 import Presentación.Controlador.Events;
 
@@ -74,17 +75,13 @@ public class GUIModificarUsuario extends JFrame {
 	private JTextField numTarjeta;
 	private JTextField nombreTarjeta;
 	private JTextField txtIdusuario;
-	// private SimpleDateFormat fechaNac;
-	// private SimpleDateFormat fechaVenc;
 
 	private int id;
 
-	// private boolean admin;
 
 	public GUIModificarUsuario(int id) {
 		super();
 		this.contentPane = new JPanel();
-		// this.admin = admin;
 		this.id = id;
 		this.setFocusable(true);
 		initGUI();
@@ -104,7 +101,6 @@ public class GUIModificarUsuario extends JFrame {
 		panel.setLayout(null);
 
 		txtIdusuario = new JTextField();
-		// if (admin) {
 		txtIdusuario.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent arg0) {
@@ -121,10 +117,6 @@ public class GUIModificarUsuario extends JFrame {
 			}
 		});
 		txtIdusuario.setText("idUsuario");
-		// } else {
-		// txtIdusuario.setText(String.valueOf(id));
-		// txtIdusuario.setEditable(false);
-		// }
 		txtIdusuario.setToolTipText("");
 		txtIdusuario.setForeground(Color.DARK_GRAY);
 		txtIdusuario.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -134,17 +126,21 @@ public class GUIModificarUsuario extends JFrame {
 
 		JButton btnComprobar = new JButton("Comprobar");
 		btnComprobar.setBounds(193, 28, 89, 23);
-		// if (admin) {
 		btnComprobar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				GUIMensaje mensaje = new GUIMensaje();
+				try{
 				id = Integer.parseInt(txtIdusuario.getText());
 				Controlador.getInstance().accion(
 						Events.MODIFICAR_USUARIO_COMPROBAR, id);
 				toFront();
+				}catch (NumberFormatException ex) {
+					mensaje.showMessage("El id no es válido",
+							"Modificar Usuario", false);
+					txtIdusuario.setText("idUsuario");
+				}
 			}
 		});
-		// }
-		// else btnComprobar.setEnabled(false);
 		panel.add(btnComprobar);
 
 		txtNombre = new JTextField();

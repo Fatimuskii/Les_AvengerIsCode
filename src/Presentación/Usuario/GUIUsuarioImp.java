@@ -57,7 +57,6 @@ public class GUIUsuarioImp extends GUIUsuario {
 
 	private int id;
 
-
 	public GUIUsuarioImp() {
 		super();
 		this.contentPane = new JPanel();
@@ -93,7 +92,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 		JButton btnModificar = new JButton("Modificar");
 		btnModificar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUI_ModificarUsuario.clearData();
+				GUI_ModificarUsuario.clearData();
 				GUI_ModificarUsuario.setVisible(true);
 			}
 		});
@@ -105,7 +104,7 @@ public class GUIUsuarioImp extends GUIUsuario {
 		JButton btnBaja = new JButton("Dar de baja");
 		btnBaja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUI_ModificarUsuario.clearData();
+				GUI_ModificarUsuario.clearData();
 				GUI_BajaUsuario.setVisible(true);
 			}
 		});
@@ -141,12 +140,19 @@ public class GUIUsuarioImp extends GUIUsuario {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				GUIMensaje mensaje = new GUIMensaje();
-				if (!textField.getText().equals("Buscar usuario")) {
-					id = Integer.parseInt(textField.getText());
-					GUI_BuscarporIdUsuario = new GUIBuscarporIdUsuario<Object>(
-							id);
 
-					Controlador.getInstance().accion(Events.BUSCAR_USUARIO, id);
+				if (!textField.getText().equals("Buscar usuario")) {
+					try {
+						id = Integer.parseInt(textField.getText());
+						GUI_BuscarporIdUsuario = new GUIBuscarporIdUsuario<Object>(
+								id);
+						Controlador.getInstance().accion(Events.BUSCAR_USUARIO, id);
+					} catch (NumberFormatException ex) {
+						mensaje.showMessage("El id no es válido",
+								"Buscar Usuario", false);
+						textField.setText("Buscar usuario");
+					}
+					
 				} else {
 					mensaje.showMessage("Debe introducir un Id",
 							"Buscar Usuario", false);
