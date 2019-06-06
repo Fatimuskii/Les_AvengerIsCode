@@ -169,8 +169,8 @@ public class GUIModificarDiseño extends JFrame{
 					String archivo = textArchivo.getText();
 					
 					String[] a = archivo.split("\\.");
-					if(a.length == 1 || !a[1].equals("stf") || a.length > 2){
-						throw new Exception("La extensión del archivo no es válida");
+					if(a.length == 1 || !a[1].equals("stl") || a.length > 2){
+						throw new Exception("La extensión del archivo no es válida (debe ser .stl)");
 					}
 					TDiseño tDiseño = new TDiseño (id, nombre, descripcion, propietario, alto, ancho, profundidad,precio, archivo,true); 
 				

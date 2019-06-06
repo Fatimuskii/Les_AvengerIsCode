@@ -143,7 +143,7 @@ public class GUIAltaDiseño extends JFrame{
 						throw new Exception("Introduzca todos los datos correctamente");
 					}
 					String[] a = archivo.split("\\.");
-					if(a.length == 1 || !a[1].equals("stf") || a.length > 2){
+					if(a.length == 1 || !a[1].equals("stl") || a.length > 2){
 						throw new Exception("La extensión del archivo no es válida");
 					}
 					TDiseño diseño = new TDiseño(nombre, descripcion, -1, altura, ancho, profundidad, precio, archivo, true);
@@ -204,9 +204,9 @@ public class GUIAltaDiseño extends JFrame{
 		contentPane.add(textArchivo);
 		contentPane.add(btnAceptar);
 		
-		JLabel lbstf = new JLabel("(deberá ser .stf)");
-		lbstf.setBounds(118, 337, 160, 14);
-		contentPane.add(lbstf);
+		JLabel lbstl = new JLabel("(deberá ser .stl)");
+		lbstl.setBounds(118, 337, 160, 14);
+		contentPane.add(lbstl);
 		
 		JLabel lblCm = new JLabel("cm");
 		lblCm.setBounds(282, 165, 46, 14);

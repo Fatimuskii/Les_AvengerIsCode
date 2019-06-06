@@ -84,19 +84,16 @@ public class ControladorImp extends Controlador {
 		ArrayList<TDiseño> resultD;
 		ArrayList<TImpresora> resultI;
 		ArrayList<TUsuario> resultU;
-		boolean acceso;
 		int res;
 		switch (evento) {
 
 		case Events.GUI:
 			GUIPlataformaImp.getInstance();
-			// GUIPlataformaImp.getInstance();
 			break;
 		/* Eventos de Local */
 
 		case Events.OPEN_GUI_LOCAL_MENU:
 			GUILocal.getInstance();
-			// GUILocal.getInstance().update
 			break;
 		case Events.ALTA_LOCAL:
 			tlocal = (TLocal) datos;
